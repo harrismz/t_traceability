@@ -74,6 +74,16 @@
 	          } else {
 	            echo 'Page not found! :( symptom js';
 	          }
+	        }elseif($_REQUEST['content'] == 'errorfinder'){
+	          $page_dir4 = 'my/js';
+	          $thispages4 = scandir($page_dir4);
+	          unset($thispages4[0], $thispages4[1]);
+			  $page4 = $_REQUEST['content'];
+	          if(in_array($page4.'.js', $thispages4)){
+	            include_once($page_dir4.'/'.$page4.'.js');
+	          } else {
+	            echo 'Page not found! :( errorfinder.js js';
+	          }
 	        }
 	   } ?>
 </head>
@@ -117,8 +127,19 @@
 									//echo 'Page not found! :( singlepart php';
 									include "production/page_404.html";
 								}
+				      }elseif($_REQUEST['content'] == "errorfinder"){
+								$page_dir11 = 'production/content/errorfinder';
+								$thispages11 = scandir($page_dir11);
+								unset($thispages11[0], $thispages11[11]);
+								$page11 = $_REQUEST['content'];
+								if(in_array($page11.'.php', $thispages11)){
+									include_once($page_dir11.'/'.$page11.'.php');
+								} else {
+									//echo 'Page not found! :( singlepart php';
+									include "production/page_404.html";
+								}
 				      }
-        ?>
+        		?>
 			</div><!-- /page content -->
 			<!-- footer content -->
 			<footer>
