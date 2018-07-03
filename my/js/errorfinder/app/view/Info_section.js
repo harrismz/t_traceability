@@ -8,6 +8,8 @@ Ext.define('my.js.errorfinder.app.view.Info_section', {
 
     ],
 
+    plugins: 'responsive',
+
     xtype: 'info-section',
 	
 	// bodyPadding: 10,

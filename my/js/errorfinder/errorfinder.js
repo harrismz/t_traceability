@@ -9,7 +9,8 @@ Ext.application({
     requires: [
         'my.js.errorfinder.app.view.List',
         'my.js.errorfinder.app.view.Info_section',
-
+        'my.js.errorfinder.app.view.Oll_section',
+        'my.js.errorfinder.app.view.Panacim_section',
     ],
 
     platformConfig: {
@@ -39,8 +40,19 @@ Ext.application({
         });
 
 
-        
+        Ext.create({
+            renderTo:'oll-section',
+            cls : 'x_panel',
+            title: 'OLL Section',
+            xtype: 'oll-section',
+        });        
 
+        Ext.create({
+            renderTo:'panacim-section',
+            cls : 'x_panel',
+            title: 'Panacim Section',
+            xtype: 'panacim-section',
+        });
 
     },
 
