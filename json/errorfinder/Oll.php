@@ -1,5 +1,6 @@
 <?php
 
+include_once 'Database.php';
 /**
  *  model for my OLL 
  */
@@ -8,22 +9,31 @@ class Oll
 	// database connection and table name
     private $conn;
     private $table_name = "JOBHEADERINFO";
- 
+ 	
+ 	protected $database;
+	protected $db;
     // object properties
-    public $id;
-    public $name;
-    public $description;
-    public $price;
-    public $category_id;
-    public $category_name;
-    public $created;
- 
-	function __construct($DB)
+    public $NOID; //id
+    public $JOBMODELNAME; //model name
+    public $JOBPWBNO; //production number
+    public $JOBMC_PROGRAM; //mc program name or Filename
+    public $JOBFILE;
+    public $JOBNO;
+    public $JOBDATE;
+	public $JOBTIME;
+	public $JOBSTARTSERIAL;
+
+	// 
+	function __construct()
 	{
 		# code...
-		$this->conn = $DB;
+		// instantiate database and product object
+		$this->database = new Database();
+		$this->conn = $this->database->getConnection();
+		// $this->conn = $DB;
 	}
 
+	// TO READ first 10 record for testing connection purposes
 	public function read(){
 		// select all query
 	    $query = "SELECT FIRST 10  * FROM " . $this->table_name;
@@ -34,6 +44,25 @@ class Oll
 	    // execute query
 	    $stmt->execute();
 
+	    return $this->get($stmt);
+	}
+
+	public function index(Array $filters ){
+		$select  = [
+			// 'JOBFILE',
+			// 'JOBMC_PROGRAM',
+			'*'
+		];
+
+		$select = implode(', ', $select);
+
+		$query = 'select first 15 '.$select.' from '. $this->table_name;
+
+		$where = ' where ';
+
+		$stmt = $this->conn->prepare($query);
+	    // execute query
+	    $stmt->execute();
 	    return $this->get($stmt);
 	}
 

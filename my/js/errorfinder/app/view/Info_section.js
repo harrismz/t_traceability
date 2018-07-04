@@ -31,19 +31,11 @@ Ext.define('my.js.errorfinder.app.view.Info_section', {
             
         },{
             xtype: 'textfield',
-            name: 'part_location',
-            fieldLabel: 'Part Location',
+            name: 'pwb_no',
+            fieldLabel: 'PWB Number',
             allowBlank: false,
             enableKeyEvents: true,
-            emptyText : 'Part Location',
-            
-        },{
-            xtype: 'textfield',
-            name: 'board_no',
-            fieldLabel: 'Board Number',
-            allowBlank: false,
-            enableKeyEvents: true,
-            emptyText : 'Board Number',
+            emptyText : 'PWB Number',
             
         },{
             xtype: 'textfield',
@@ -55,19 +47,27 @@ Ext.define('my.js.errorfinder.app.view.Info_section', {
             
         },{
             xtype: 'textfield',
+            name: 'start_serial',
+            fieldLabel: 'Start Serial',
+            allowBlank: false,
+            enableKeyEvents: true,
+            emptyText : 'Start Serial',
+            
+        },/*{
+            xtype: 'textfield',
             name: 'prod_no',
             fieldLabel: 'Production Number',
             allowBlank: false,
             enableKeyEvents: true,
             emptyText : 'Production Number',
             // cls: 'form-control'
-        },{
+        },*/{
             xtype: 'textfield',
-            name: 'start_serial',
-            fieldLabel: 'Start Serial',
+            name: 'part_location',
+            fieldLabel: 'Part Location',
             allowBlank: false,
             enableKeyEvents: true,
-            emptyText : 'Start Serial',
+            emptyText : 'Part Location',
             
         },{
             xtype: 'textfield',
@@ -83,7 +83,8 @@ Ext.define('my.js.errorfinder.app.view.Info_section', {
     buttons: [{
     	xtype 	: 'button',
     	name 	: 'submit-button',
-    	text 	: 'Submit'
+    	text 	: 'Submit',
+        bindForm: true
     }],
 
 });
