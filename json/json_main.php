@@ -1,7 +1,7 @@
 <?php
     //error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
     include '../../adodb/con_ocs.php';
-    
+
     //$page 		= @$_REQUEST["page"];
 	//$limit 		= @$_REQUEST["limit"];
 	//$start		= (($page*$limit)-$limit)+1;
@@ -23,7 +23,7 @@
         $return[$i]['serial_id']    = (int)trim($rs->fields['8']);
         $return[$i]['mecha_model']  = $rs->fields['9'];
         $return[$i]['mecha_lot']    = $rs->fields['10'];
-        
+
         $rs->MoveNext();
     }
     $x = array(
