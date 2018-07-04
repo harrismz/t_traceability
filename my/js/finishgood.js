@@ -265,9 +265,9 @@
 									store_part_receiving.proxy.setExtraParam('prod_no', prodno);
 									store_part_receiving.proxy.setExtraParam('model', model);
 									store_part_receiving.loadPage(1);
-									// prd_lost_time.proxy.setExtraParam('prod_date', prod_date);
-									// prd_lost_time.proxy.setExtraParam('line', line);
-									// prd_lost_time.loadPage(1);
+									prd_lost_time.proxy.setExtraParam('prod_date', prod_date);
+									prd_lost_time.proxy.setExtraParam('line', line);
+									prd_lost_time.loadPage(1);
 									// mecha_res_store.proxy.setExtraParam('mecha_model', mecha_model);
 									// mecha_res_store.proxy.setExtraParam('mecha_lot', mecha_lot);
 									// mecha_res_store.loadPage(1);
