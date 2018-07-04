@@ -1,16 +1,20 @@
 Ext.define('my.js.errorfinder.app.view.Info_section', {
     extend: 'Ext.form.Panel',
     
-    require :[
+    requires :[
     	// model
 
     	// store
 
+        // controller
+        'my.js.errorfinder.app.view.InfoController',
     ],
 
     plugins: 'responsive',
 
     xtype: 'info-section',
+
+    controller: 'info-controller',
 	
 	// bodyPadding: 10,
 
@@ -23,7 +27,7 @@ Ext.define('my.js.errorfinder.app.view.Info_section', {
     items :[
     	{
             xtype: 'textfield',
-            name: 'model_name',
+            name: 'JOBMODELNAME',
             fieldLabel: 'Model Name',
             allowBlank: false,
             enableKeyEvents: true,
@@ -31,7 +35,7 @@ Ext.define('my.js.errorfinder.app.view.Info_section', {
             
         },{
             xtype: 'textfield',
-            name: 'pwb_no',
+            name: 'JOBPWBNO',
             fieldLabel: 'PWB Number',
             allowBlank: false,
             enableKeyEvents: true,
@@ -47,7 +51,7 @@ Ext.define('my.js.errorfinder.app.view.Info_section', {
             
         },{
             xtype: 'textfield',
-            name: 'start_serial',
+            name: 'JOBSTARTSERIAL',
             fieldLabel: 'Start Serial',
             allowBlank: false,
             enableKeyEvents: true,
@@ -84,7 +88,10 @@ Ext.define('my.js.errorfinder.app.view.Info_section', {
     	xtype 	: 'button',
     	name 	: 'submit-button',
     	text 	: 'Submit',
-        bindForm: true
-    }],
+        // formBind: true,
+        listeners: {
+            click: 'onButtonSubmit'
+        },
+    }]
 
 });

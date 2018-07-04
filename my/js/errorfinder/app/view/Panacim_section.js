@@ -1,7 +1,7 @@
 Ext.define('my.js.errorfinder.app.view.Panacim_section', {
     extend: 'Ext.form.Panel',
     
-    require :[
+    requires :[
     	// model
 
     	// store

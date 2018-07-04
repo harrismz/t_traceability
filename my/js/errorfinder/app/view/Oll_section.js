@@ -1,17 +1,21 @@
 Ext.define('my.js.errorfinder.app.view.Oll_section', {
     extend: 'Ext.form.Panel',
     
-    require :[
+    requires :[
     	// model
 
     	// store
 
+        // controller
+        'my.js.errorfinder.app.view.OllController',
     ],
 
     xtype: 'oll-section',
 	
 	// bodyPadding: 10,
     plugins: 'responsive',
+
+    controller: 'oll-controller',
 
 
     defaults : {

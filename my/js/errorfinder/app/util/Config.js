@@ -1,4 +1,4 @@
-Ext.define('App.util.Config', {
+Ext.define('my.js.errorfinder.app.util.Config', {
 	singleton : true,
 
     config : {
@@ -11,11 +11,11 @@ Ext.define('App.util.Config', {
     },
 
     hostname: function(){
-    	if ( window.location.hostname == 'localhost'){
-		    return 'localhost';
-		}else{
+        //if ( window.location.hostname == 'localhost'){
+		//     return 'localhost';
+		// }else{
             return  window.location.hostname;
-        }
+        // }
                 
  	},
     getUser: function (){

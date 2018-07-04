@@ -1,6 +1,6 @@
 <div class="container">
 	<div class="row">
-		<div class="col-md-6 col-sm-12 col-xs-12" id="info-section">
+		<div class="col-md-12 col-sm-12 col-xs-12" id="info-section">
 			<!-- <div class="x_panel">
 				<div class="x_title">
 					<i class="fa fa-clipboard"></i> INFO
@@ -40,8 +40,8 @@
 				</div>
 			</div> -->
 		</div>
-		<div class="col-md-6 col-sm-12 col-xs-12" id="oll-section" >
-			<!-- <div class="x_panel">
+		<!-- <div class="col-md-6 col-sm-12 col-xs-12" id="oll-section" >
+			<div class="x_panel">
 				<div class="x_title">OLL File Upload</div>
 				<div class="x_content">
 					<div class="form-group">
@@ -67,10 +67,10 @@
 						</div>
 					</div>
 				</div>
-			</div> -->
-		</div>
-		<div class="col-md-6 col-sm-12 col-xs-12" id="panacim-section">
-			<!-- <div class="x_panel">
+			</div>
+		</div> -->
+		<!-- <div class="col-md-6 col-sm-12 col-xs-12" id="panacim-section">
+			<div class="x_panel">
 				<div class="x_title">Panacim Upload Form</div>
 				<div class="x_content">
 					<div class="form-group">
@@ -82,8 +82,8 @@
 						<div class="x_content" id="panacim-list"></div>
 					</div>
 				</div>
-			</div> -->
-		</div>
+			</div>
+		</div> -->
 	</div>
 </div>
 

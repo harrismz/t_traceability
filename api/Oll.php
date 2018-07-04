@@ -1,6 +1,7 @@
 <?php
 
 include_once 'Database.php';
+// namespace 'api';
 /**
  *  model for my OLL 
  */
@@ -58,7 +59,7 @@ class Oll
 
 		$select = implode(', ', $select);
 
-		$query = 'select  '.$select.' from '. $this->table_name. ' a join JOBMODEL b on a.JOBNO=b.JOBNO';
+		$query = 'select first 2 '.$select.' from '. $this->table_name. ' a left join JOBMODEL b on a.JOBNO=b.JOBNO';
 
 		$where = '';
 		foreach ($filters as $key => $value) {
@@ -69,11 +70,15 @@ class Oll
 			}
 		}
 		
-		$query .= $where;
+		$query .= $where . ' order by a.NOID desc';
 
 		// return $query;
 
 		$stmt = $this->conn->prepare($query);
+		// kalau query salah, $stmt bakal false
+		if (!$stmt) {
+			return ['error'=> 'SQL error'];
+		}
 	    // execute query
 	    $stmt->execute();
 

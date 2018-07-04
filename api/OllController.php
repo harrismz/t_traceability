@@ -26,6 +26,7 @@ class OllController
 		//get all parameter here
 		foreach ($_GET as $key => $value) {
 			if (in_array($key, $acceptedParameter )) {
+
 				$this->parameter[$key] = trim($value);
 			}
 		}
