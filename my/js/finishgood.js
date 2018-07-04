@@ -79,11 +79,11 @@
 						fields: ['userid', 'supp', 'inv', 'part', 'po', 'qty', 'rcvdate', 'custom', 'category', 'sendflag', 'lot_out', 'pr_name']
 					});
 				//Part Inspection
-					// Ext.define('part_insp', {
-					// 	extend: 'Ext.data.Model',
-					// 	//fields: ['so', 'partno', 'partname', 'po', 'reqqty', 'scanqty', 'lot', 'line', 'model_name', 'issdate']
-					// 	fields: ['noid', 'deliv_date', 'partno', 'partname', 'supplier', 'suppcode', 'inspect_level', 'pic', 'shift', 'qty_sampling', 'qty_rejection', 'do', 'bc', 'po', 'qty_delivery', 'lot_out', 'pr_name', 'time_finish', 'fld_remark', 'sflag']
-					// });
+					Ext.define('model_part_insp', {
+						extend: 'Ext.data.Model',
+						//fields: ['so', 'partno', 'partname', 'po', 'reqqty', 'scanqty', 'lot', 'line', 'model_name', 'issdate']
+						fields: ['noid', 'deliv_date', 'partno', 'partname', 'supplier', 'suppcode', 'inspect_level', 'pic', 'shift', 'qty_sampling', 'qty_rejection', 'do', 'bc', 'po', 'qty_delivery', 'lot_out', 'pr_name', 'time_finish', 'fld_remark', 'sflag']
+					});
 				//Part Issuing
 					// Ext.define('part_mc_issue_ma', {
 					// 	extend: 'Ext.data.Model',
@@ -261,13 +261,18 @@
 									store_output.proxy.setExtraParam('lot_size', lot_size);
 									store_output.proxy.setExtraParam('st_serial', serial_no);
 									store_output.loadPage(1);
-									store_part_receiving.proxy.setExtraParam('prod_date', prod_date);
-									store_part_receiving.proxy.setExtraParam('prod_no', prodno);
-									store_part_receiving.proxy.setExtraParam('model', model);
-									store_part_receiving.loadPage(1);
-									prd_lost_time.proxy.setExtraParam('prod_date', prod_date);
-									prd_lost_time.proxy.setExtraParam('line', line);
-									prd_lost_time.loadPage(1);
+									// store_part_receiving.proxy.setExtraParam('prod_date', prod_date);
+									// store_part_receiving.proxy.setExtraParam('prod_no', prodno);
+									// store_part_receiving.proxy.setExtraParam('model', model);
+									// store_part_receiving.loadPage(1);
+									store_part_insp.proxy.setExtraParam('prod_date', prod_date);
+									store_part_insp.proxy.setExtraParam('prod_no', prodno);
+									store_part_insp.proxy.setExtraParam('model', model);
+									store_part_insp.loadPage(1);
+
+									// prd_lost_time.proxy.setExtraParam('prod_date', prod_date);
+									// prd_lost_time.proxy.setExtraParam('line', line);
+									// prd_lost_time.loadPage(1);
 									// mecha_res_store.proxy.setExtraParam('mecha_model', mecha_model);
 									// mecha_res_store.proxy.setExtraParam('mecha_lot', mecha_lot);
 									// mecha_res_store.loadPage(1);
@@ -313,10 +318,6 @@
 									// store_part_mc_issue_mecha.proxy.setExtraParam('model', model);
 									// store_part_mc_issue_mecha.proxy.setExtraParam('prod_no', prodno);
 									// store_part_mc_issue_mecha.loadPage(1);
-									// store_part_insp.proxy.setExtraParam('prod_date', prod_date);
-									// store_part_insp.proxy.setExtraParam('prod_no', prodno);
-									// store_part_insp.proxy.setExtraParam('model', model);
-									// store_part_insp.loadPage(1);
 
 									// scanin_store.proxy.setExtraParam('model', model);
 									// scanin_store.proxy.setExtraParam('prod_no', prodno);
@@ -387,21 +388,21 @@
 					});
 
 				//Part Inspection
-					// var store_part_insp = Ext.create('Ext.data.Store', {
-					// 	model: 'part_insp',
-					// 	autoLoad: false,
-					// 	pageSize: itemperpage,
-					// 	//groupField	: 'partno',
-					// 	proxy: {
-					// 		type: 'ajax',
-					// 		url: 'json/json_part_insp.php',
-					// 		reader: {
-					// 			type: 'json',
-					// 			root: 'rows',
-					// 			totalProperty: 'totalCount'
-					// 		}
-					// 	}
-					// });
+					var store_part_insp = Ext.create('Ext.data.Store', {
+						model: 'model_part_insp',
+						autoLoad: false,
+						pageSize: itemperpage,
+						//groupField	: 'partno',
+						proxy: {
+							type: 'ajax',
+							url: 'json/json_part_insp.php',
+							reader: {
+								type: 'json',
+								root: 'rows',
+								totalProperty: 'totalCount'
+							}
+						}
+					});
 
 				//Part Issuing
 					// var store_part_mc_issue_ma = Ext.create('Ext.data.Store', {
@@ -1344,7 +1345,7 @@
 						width				: '100%',
 						height			: 295,
 						columnLines	: true,
-						// store			: store_part_insp,
+						 store			: store_part_insp,
 						viewConfig	: {
 							stripeRows					: true,
 							emptyText						: '<div class="empty-txt">No data to display.</div>',
