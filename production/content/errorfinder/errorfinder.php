@@ -1,11 +1,11 @@
 <div class="container">
 	<div class="row">
-		<div class="col-md-6 col-sm-12 col-xs-12">
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h2><i class="fa fa-clipboard"></i> INFO</h2>
+		<div class="col-md-12 col-sm-12 col-xs-12" id="info-section">
+			<!-- <div class="x_panel">
+				<div class="x_title">
+					<i class="fa fa-clipboard"></i> INFO
 				</div>
-				<div class="panel-body">
+				<div class="x_content">
 					<form>
 						<div class="form-group">
 							<label for="email">Model Name:</label>
@@ -38,22 +38,53 @@
 						<button class="btn btn-success pull-right">SUBMIT</button>
 					</form>
 				</div>
-			</div>
+			</div> -->
 		</div>
-		<div class="col-md-6 col-sm-12 col-xs-12">
+		<!-- <div class="col-md-6 col-sm-12 col-xs-12" id="oll-section" >
 			<div class="x_panel">
-				<div class="x_title"></div>
-				<div class="x_content"></div>
+				<div class="x_title">OLL File Upload</div>
+				<div class="x_content">
+					<div class="form-group">
+						<label for="file">Filename:</label>	
+						<input type="file" name="" class="form-control"  >
+					</div>
+					<div class="col-md-12" >
+						<div class="form-group">
+							<label for="Date">Date</label>	
+							<input placeholder="Date" type="input" name="" class="form-control"  >
+						</div>
+						<div class="form-group">
+							<label for="Date">Machine Name</label>	
+							<input type="input" name="" class="form-control"  >
+						</div>
+						<div class="form-group">
+							<label for="Date">Feeder Number</label>	
+							<input type="input" name="" class="form-control"  >
+						</div>
+						<div class="form-group">
+							<label for="Date">Part Number</label>	
+							<input type="input" name="" class="form-control"  >
+						</div>
+					</div>
+				</div>
 			</div>
-		</div>
-	</div>
-	
-	<div class="row">
-		<div class="col-md-12 col-sm-12 col-xs-12">
+		</div> -->
+		<!-- <div class="col-md-6 col-sm-12 col-xs-12" id="panacim-section">
 			<div class="x_panel">
-				<div class="x_title"></div>
-				<div class="x_content"></div>
+				<div class="x_title">Panacim Upload Form</div>
+				<div class="x_content">
+					<div class="form-group">
+						<label for="file">Panacim File:</label>	
+						<input type="file" name="" class="form-control "  >
+					</div>
+					<h2>Result</h2>
+					<div class="x_panel" >
+						<div class="x_content" id="panacim-list"></div>
+					</div>
+				</div>
 			</div>
-		</div>
+		</div> -->
 	</div>
 </div>
+
+<script type="text/javascript" src="my/js/errorfinder/errorfinder.js"></script>

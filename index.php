@@ -74,17 +74,18 @@
 	          } else {
 	            echo 'Page not found! :( symptom js';
 	          }
-	        }elseif($_REQUEST['content'] == 'errorfinder'){
-	          $page_dir4 = 'my/js';
-	          $thispages4 = scandir($page_dir4);
-	          unset($thispages4[0], $thispages4[1]);
-			  $page4 = $_REQUEST['content'];
-	          if(in_array($page4.'.js', $thispages4)){
-	            include_once($page_dir4.'/'.$page4.'.js');
+	        }/*elseif($_REQUEST['content'] == 'errorfinder'){
+	          $page_dir5 = 'my/js';
+	          $thispages5 = scandir($page_dir5);
+	          unset($thispages5[0], $thispages5[1]);
+			  $page5 = $_REQUEST['content'];
+	          if(in_array($page5.'.js', $thispages5)){
+	          	$jsfile = $page_dir5.'/'.$page5.'.js';
+	            include_once($jsfile);
 	          } else {
 	            echo 'Page not found! :( errorfinder.js js';
 	          }
-	        }
+	        }*/
 	   } ?>
 </head>
 <body class="nav-md">
