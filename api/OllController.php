@@ -17,10 +17,11 @@ class OllController
 	{	
 		// accepted parameter
 		$acceptedParameter = [
-			'model',
-			'pwbno',
+			'JOBMODELNAME',
+			'JOBPWBNO',
 			'process',
-			'start_serial',
+			'JOBSTARTSERIAL',
+			// '*'
 		];
 		//get all parameter here
 		foreach ($_GET as $key => $value) {

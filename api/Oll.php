@@ -30,6 +30,7 @@ class Oll
 		// instantiate database and product object
 		$this->database = new Database();
 		$this->conn = $this->database->getConnection();
+
 		// $this->conn = $DB;
 	}
 
@@ -50,19 +51,32 @@ class Oll
 	public function index(Array $filters ){
 		$select  = [
 			// 'JOBFILE',
-			// 'JOBMC_PROGRAM',
-			'*'
+			'JOBMC_PROGRAM',
+			// 'process',
+			// '*'
 		];
 
 		$select = implode(', ', $select);
 
-		$query = 'select first 15 '.$select.' from '. $this->table_name;
+		$query = 'select  '.$select.' from '. $this->table_name. ' a join JOBMODEL b on a.JOBNO=b.JOBNO';
 
-		$where = ' where ';
+		$where = '';
+		foreach ($filters as $key => $value) {
+			if ($where == '') {
+				$where = ' where '. $key . "='" . $value."'";
+			}else {
+				$where .= ' and '. $key."='".$value."'";
+			}
+		}
+		
+		$query .= $where;
+
+		// return $query;
 
 		$stmt = $this->conn->prepare($query);
 	    // execute query
 	    $stmt->execute();
+
 	    return $this->get($stmt);
 	}
 
