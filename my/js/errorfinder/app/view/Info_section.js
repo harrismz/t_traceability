@@ -32,7 +32,7 @@ Ext.define('my.js.errorfinder.app.view.Info_section', {
             allowBlank: false,
             enableKeyEvents: true,
             emptyText : 'Type and Enter',
-            value : 'CB-XJ1122J01N',
+            
         },{
             xtype: 'textfield',
             name: 'JOBPWBNO',
@@ -40,7 +40,7 @@ Ext.define('my.js.errorfinder.app.view.Info_section', {
             allowBlank: false,
             enableKeyEvents: true,
             emptyText : 'PWB Number',
-            value : 'J7J-0170-20',
+            
         },{
             xtype: 'textfield',
             name: 'process',
@@ -48,7 +48,7 @@ Ext.define('my.js.errorfinder.app.view.Info_section', {
             allowBlank: false,
             enableKeyEvents: true,
             emptyText : 'Process',
-            value : 'DM1'
+            
         },{
             xtype: 'textfield',
             name: 'JOBSTARTSERIAL',
@@ -56,7 +56,6 @@ Ext.define('my.js.errorfinder.app.view.Info_section', {
             allowBlank: false,
             enableKeyEvents: true,
             emptyText : 'Start Serial',
-            value : '301'
             
         },/*{
             xtype: 'textfield',

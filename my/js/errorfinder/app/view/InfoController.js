@@ -1,10 +1,9 @@
 
 Ext.define('my.js.errorfinder.app.view.InfoController', {
 
-	requires : [
+	require: [
 		'Ext.app.ViewController',
 		'my.js.errorfinder.app.util.Config',
-        'my.js.errorfinder.app.view.OllController',
 	],
 
 	extend: 'Ext.app.ViewController',
@@ -47,10 +46,9 @@ Ext.define('my.js.errorfinder.app.view.InfoController', {
     				Ext.MessageBox.alert('INFO', 'No Data found!')
     				return;
     			}
-                // this method below is define on ollController
-                // fire event of listener controller with 1 argument is event name, and second is parameter to send to that argument
-                self.fireEvent('runShowUploadableFile', response.responseText );
+
     			self.showNext()
+
     		},
     		failure(){
     			Ext.MessageBox.alert('failure','something went wrong')
