@@ -26,8 +26,8 @@
   <!-- <link rel="stylesheet" type="text/css" href="../extjs-4.2.2/resources/css/ext-all-gray.css" /> -->
   <!-- <link href="../framework/extjs-6.2.0/build/classic/theme-crisp/resources/theme-crisp-all.css" rel="stylesheet" type="text/css"> -->
 	<script src="../framework/extjs-6.2.0/build/ext-all.js" type="text/javascript"> </script>
-	 <script src="../framework/extjs-6.2.0/build/classic/theme-crisp/theme-crisp.js" type="text/javascript">
-	</script>
+	<script src="../framework/extjs-6.2.0/build/classic/theme-crisp/theme-crisp.js" type="text/javascript"></script>
+	
   <!-- <script type="text/javascript" src="../extjs-4.2.2/ext-all.js"></script> -->
 
   <?php
