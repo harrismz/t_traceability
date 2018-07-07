@@ -261,10 +261,10 @@
 									store_output.proxy.setExtraParam('lot_size', lot_size);
 									store_output.proxy.setExtraParam('st_serial', serial_no);
 									store_output.loadPage(1);
-									// store_part_receiving.proxy.setExtraParam('prod_date', prod_date);
-									// store_part_receiving.proxy.setExtraParam('prod_no', prodno);
-									// store_part_receiving.proxy.setExtraParam('model', model);
-									// store_part_receiving.loadPage(1);
+									store_part_receiving.proxy.setExtraParam('prod_date', prod_date);
+									store_part_receiving.proxy.setExtraParam('prod_no', prodno);
+									store_part_receiving.proxy.setExtraParam('model', model);
+									store_part_receiving.loadPage(1);
 									store_part_insp.proxy.setExtraParam('prod_date', prod_date);
 									store_part_insp.proxy.setExtraParam('prod_no', prodno);
 									store_part_insp.proxy.setExtraParam('model', model);
@@ -374,7 +374,7 @@
 					var store_part_receiving = Ext.create('Ext.data.Store', {
 						model: 'model_rcvpart',
 						autoLoad: false,
-						//pageSize: itemperpage,
+						pageSize: itemperpage,
 						//groupField	: 'partno',
 						proxy: {
 							type: 'ajax',
