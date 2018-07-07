@@ -21,9 +21,17 @@ class CrbController
 		// get table for part location. == 'PositionData<1>'
 		preg_match_all( '(\[(.*?)\])', $content , $matches);
 		
+		$requiredTable = [
+			'PositionData<1>',
+			'PartsData',
+		];
+
 		$new = [];
 		foreach ($matches[1] as $key => $match) {
-			$new[] = $match;
+			if (in_array($match, $requiredTable)) {
+				# code...
+				$new[] = $match;
+			}
 		}
 
 		return json_encode($new);
