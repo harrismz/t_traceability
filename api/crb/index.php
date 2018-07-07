@@ -1,9 +1,12 @@
 <?php
 	
 	include_once './CrbController.php';
-
 	$crbController = new CrbController();
 
-	echo $crbController->upload()
+	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+		echo $crbController->upload();
+	}
+
+
 
 ?>
