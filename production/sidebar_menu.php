@@ -31,7 +31,7 @@
         <li><a href="index.php?content=quality"><i class="fas fa-tasks"></i> Quality </a></li>
         <li><a href="index.php?content=Production"><i class="fas fa-cogs"></i> Production </a></li>
         <li><a href="index.php?content=finishgood"><i class="fas fa-box"></i> Finished Goods </a></li>
-        <li><a href="index.php?content=errorfinder"><i class="fas fa-error"></i> Error Finder </a></li>
+        <li><a href="index.php?content=errorfinder"><i class="fas fa-exclamation-triangle"></i> Error Finder </a></li>
 
 
 <!--
