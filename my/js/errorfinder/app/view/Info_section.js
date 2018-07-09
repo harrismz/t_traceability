@@ -32,7 +32,7 @@ Ext.define('my.js.errorfinder.app.view.Info_section', {
             allowBlank: false,
             enableKeyEvents: true,
             emptyText : 'Type and Enter',
-            value : 'CB-XJ1122J01N',
+            value : 'KMM-104MN',
         },{
             xtype: 'textfield',
             name: 'JOBPWBNO',
@@ -40,7 +40,7 @@ Ext.define('my.js.errorfinder.app.view.Info_section', {
             allowBlank: false,
             enableKeyEvents: true,
             emptyText : 'PWB Number',
-            value : 'J7J-0170-20',
+            value : 'J7J-0352-10',
         },{
             xtype: 'textfield',
             name: 'process',
@@ -56,7 +56,7 @@ Ext.define('my.js.errorfinder.app.view.Info_section', {
             allowBlank: false,
             enableKeyEvents: true,
             emptyText : 'Start Serial',
-            value : '301'
+            value : '15261'
             
         },/*{
             xtype: 'textfield',
@@ -66,14 +66,6 @@ Ext.define('my.js.errorfinder.app.view.Info_section', {
             enableKeyEvents: true,
             emptyText : 'Production Number',
             // cls: 'form-control'
-        },*/{
-            xtype: 'textfield',
-            name: 'part_location',
-            fieldLabel: 'Part Location',
-            allowBlank: false,
-            enableKeyEvents: true,
-            emptyText : 'Part Location',
-            
         },{
             xtype: 'textfield',
             name: 'board_id',
@@ -82,6 +74,15 @@ Ext.define('my.js.errorfinder.app.view.Info_section', {
             enableKeyEvents: true,
             emptyText : 'Board Id',
             // cls: 'form-control'
+        },*/{
+            xtype: 'textfield',
+            name: 'part_location',
+            fieldLabel: 'Part Location',
+            allowBlank: false,
+            enableKeyEvents: true,
+            emptyText : 'Part Location',
+            value :'C2032',
+            
         },
     ],
 

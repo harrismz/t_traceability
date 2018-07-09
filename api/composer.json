@@ -1,0 +1,6 @@
+{
+    "name": "eng70/api",
+    "require": {
+        "maatwebsite/excel": "^2.1"
+    }
+}

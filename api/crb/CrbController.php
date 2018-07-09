@@ -35,14 +35,24 @@ class CrbController
 		$lines = file($file);
 
 		$positionData = $this->getTableContent('[PositionData<1>]'.PHP_EOL , $lines/*, ['IDNUM', 'C', 'PARTS']*/ ); //contain location name
-
 		$searchIndex = array_search($this->parameters['part_location'], array_column($positionData, 'C'));
 
 		$positionData = [$positionData[$searchIndex]];
 
-		$partsData = $this->getTableContent('[PartsData]'.PHP_EOL , $lines, ['IDNUM', 'NAME', 'C'] ); //contain parts number
 
-		return json_encode( $this->join($positionData, $partsData, 'PARTS', 'IDNUM') );
+		$partsData = $this->getTableContent('[PartsData]'.PHP_EOL , $lines/*, ['IDNUM', 'NAME', 'C'] */); //contain parts number
+
+		// $recogSeqInfo = $this->getTableContent('[RecogSeqInfo<1>]'.PHP_EOL, $lines, [ 'MArea', 'McNum' ]);
+
+		// return json_encode([$recogSeqInfo, $positionData]);
+
+		$success = true;
+		$result = $this->join($positionData, $partsData, 'PARTS', 'IDNUM');
+
+		return json_encode( [
+			'success' => $success,
+			'data' => $result 
+		] );
 	}
 
 	/*
@@ -52,6 +62,7 @@ class CrbController
 		@param3 = array of column that need to be fetch
 	*/
 	private function getTableContent( $tableName, Array $lines, Array $include = [] ){
+		// searching 
 		$index = array_search( $tableName , $lines);
 
 		if ($index == false ) {
@@ -95,7 +106,7 @@ class CrbController
 		foreach ($table1 as $key => $valueTable1) {
 			foreach ($table2 as $key => $valueTable2 ) {
 				if ($valueTable1[$column1] == $valueTable2[$column2]) {
-					$result[] = array_merge_recursive($valueTable1, $valueTable2);
+					$result = array_merge_recursive($valueTable1, $valueTable2);
 				}
 			}
 		}

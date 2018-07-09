@@ -72,6 +72,22 @@ Ext.define('my.js.errorfinder.app.view.InfoController', {
     	let view = this.getView();
     	let parent = view.up();
     	parent.showPrevious();
-    }
+    },
+
+    getPartLocationValue(result){
+        let view = this.getView();
+        part_location =  view.down('textfield[name=part_location]')
+        // console.log(part_location)
+        result = part_location.getValue();
+        return result;
+    },
+
+    /*listen : {
+        controller : {
+            'oll-controller' : {
+                getPartLocationValue : 'getPartLocationValue'
+            }
+        }
+    },*/
 
 });
