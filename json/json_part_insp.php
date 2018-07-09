@@ -21,7 +21,7 @@
 
   for($i=0;!$rs->EOF;$i++){
 		$return[$i]['noid']						= trim($rs->fields['0']);
-		$return[$i]['deliv_date']			= trim(date('Y-m-d H:i:s', strtotime($rs->fields['1'])));
+		$return[$i]['deliv_date']			= trim(date('Y-m-d', strtotime($rs->fields['1'])));
 		$return[$i]['partno']					= trim($rs->fields['2']);
 		$return[$i]['partname']				= trim($rs->fields['3']);
 		$return[$i]['supplier']				= trim($rs->fields['4']);
@@ -37,7 +37,7 @@
 		$return[$i]['qty_delivery']		= (float)trim($rs->fields['14']);
 		$return[$i]['lot_out']				= trim($rs->fields['15']);
 		$return[$i]['pr_name']				= trim($rs->fields['16']);
-		$return[$i]['time_finish']		= trim(date('Y-m-d H:i:s', strtotime($rs->fields['17'])));
+		$return[$i]['time_finish']		= trim(date('H:i:s', strtotime($rs->fields['17'])));
 		$return[$i]['fld_remark']			= trim($rs->fields['18']);
 		$return[$i]['sflag']					= trim($rs->fields['19']);
 
