@@ -6,6 +6,8 @@
 
 require_once '../vendor/autoload.php';
 use PhpOffice\PhpSpreadsheet\IOFactory;
+// use PHPExcel;
+// use PHPExcel_IOFactory;
 
 class PanacimController
 {
@@ -14,6 +16,17 @@ class PanacimController
 	protected $allowedType = [
 		'xls',
 		'xlsx'
+	];
+	protected $excludedSheet = [
+		'Intro',
+		'Production Summary',
+		'Production Summary-Data',
+		'OEE',
+		'Placement Summary',
+		'Placement Summary-Data',
+		'Boards Produced',
+		'Machine States',
+		'Placement Info',
 	];
 
 	function __construct()
@@ -32,14 +45,29 @@ class PanacimController
 			]);
 		}
 
-		// $excel = Excel::load($this->getFile());
-		$reader = IOFactory::createReader('Xlsx');
-		$reader->setReadDataOnly(true);
-		$excel = $reader->load($this->getFile());
+		$excel = $this->getContent();
+		return json_encode($excel);
 
-		$excelArray = $this->excelToArray($excel);
-		
-		return json_encode($excelArray);
+	}
+
+	private function getContent($tabName = []){
+
+		$filename = $this->getFile();
+		$type = PHPExcel_IOFactory::identify($filename);
+		$objReader = PHPExcel_IOFactory::createReader($type);
+		$objPHPExcel = $objReader->load($filename);
+
+		foreach ($objPHPExcel->getWorksheetIterator() as $worksheet) {
+			if (!is_null($worksheet->getTitle()) ) {
+				# code...
+				if (!in_array($worksheet->getTitle(), $this->excludedSheet )) {
+					# code...
+		    		$worksheets[$worksheet->getTitle()] = $worksheet->toArray();
+				}
+			}
+		}
+
+		return $worksheets;
 	}
 
 	private function saveOnServer(){

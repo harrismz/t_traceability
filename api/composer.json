@@ -1,11 +1,13 @@
 {
     "name": "eng70/api",
     "require": {
-        "phpoffice/phpspreadsheet": "^1.3"
+        "phpoffice/phpspreadsheet": "^1.3",
+        "phpoffice/phpexcel": "^1.8"
     },
     "autoload": {
         "psr-4": {
-            "PhpOffice\\PhpSpreadsheet\\": "src/Bootstrap"
+            "PhpOffice\\PhpSpreadsheet\\": "src/Bootstrap",
+            "PhpOffice\\PhpExcel" : "src/Classes"
         }
     }
 }
