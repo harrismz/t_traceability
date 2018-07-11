@@ -29,12 +29,26 @@ class PanacimController
 		'Placement Info',
 		'Glossary'
 	];
+	protected $allowedParameters = [
+		'machine_name',
+		'tanggal',
+		'feeder_number',
+		'part_number'
+	];
+
+	private $parameters = [];
 
 	function __construct()
 	{
 		// do something on contstruct
 		if (isset($_FILES['file'])) {
 			$this->file = $_FILES['file'];
+		}
+
+		foreach ($_POST as $key => $value) {
+			if (in_array( $value ,$this->allowedParameters)) {
+				$this->parameters[] = $value;
+			}
 		}
 	}
 
