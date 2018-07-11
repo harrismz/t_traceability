@@ -5,6 +5,7 @@ Ext.define('my.js.errorfinder.app.view.OllController', {
 
     requires : [
     	// 'my.js.errorfinder.app.view.InfoController'
+
     ],
 
     // method below is called by InfoController
@@ -25,6 +26,7 @@ Ext.define('my.js.errorfinder.app.view.OllController', {
     	let parent = component.up();
     	let part_location =  this.getPartLocation();
     	let form = component.up('form').getForm();
+        let tanggalValue = this.getView().down('textfield[name=tanggal]').value;
         self = this;
 
         if (form.isValid) {
@@ -43,6 +45,9 @@ Ext.define('my.js.errorfinder.app.view.OllController', {
                     })
                     Ext.Msg.alert('Success', o.result.data );
 
+                    o.result.data.tanggal = tanggalValue;
+
+                    console.log(o.result.data)
                     self.showData(o.result.data)
                     
                 },
@@ -77,6 +82,7 @@ Ext.define('my.js.errorfinder.app.view.OllController', {
         let newData = this.extractData(data)
         console.log(newData)
         let parent = this.getView().up(); 
+
         let components = {
             machine_name : parent.down('textfield[name=machine_name]'),
             feeder_number : parent.down('textfield[name=feeder_number]'),
@@ -87,6 +93,11 @@ Ext.define('my.js.errorfinder.app.view.OllController', {
         components.feeder_number.setValue(newData.feeder_number);
         components.part_no.setValue(newData.part_no)
 
+        // fireEvent on InfoController.showNext
+        this.fireEvent('showNext');
+        // fire Event on PanacimController.fillUploadInfo dengan parameter newData
+        this.fireEvent('fillUploadInfo', newData );
+
     },
 
     extractData(data){
@@ -94,7 +105,8 @@ Ext.define('my.js.errorfinder.app.view.OllController', {
             part_no : data.NAME,
             nozzle : data.NP,
             machine_name : '',
-            feeder_number : data.PU
+            feeder_number : data.PU,
+            tanggal : data.tanggal
         }
 
         // console.log(newData)
