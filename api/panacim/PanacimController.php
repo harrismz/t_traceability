@@ -27,6 +27,7 @@ class PanacimController
 		'Boards Produced',
 		'Machine States',
 		'Placement Info',
+		'Glossary'
 	];
 
 	function __construct()
@@ -45,12 +46,44 @@ class PanacimController
 			]);
 		}
 
-		$excel = $this->getContent();
+		$excel = $this->getContent('VA00XJ1219K02MND');
 		return json_encode($excel);
 
 	}
 
-	private function getContent($tabName = []){
+	private function getContent($searchValue='', $headerIndex=12 ){
+		$worksheets = $this->getWorkSheet();
+		if ( $searchValue == '') {
+			// if parameter didn't pass, just return the worksheet instead
+			return $worksheets;
+		}
+
+		$programWorkSheets = array_filter($worksheets, function ($key) use ($searchValue) {
+			return ( stripos($key , $searchValue ) !== false ) ;
+		}, ARRAY_FILTER_USE_KEY  );
+
+		$content = [];
+		foreach ($programWorkSheets as $key => $sheet) {
+			foreach ($sheet as $rowIndex => $row) {
+				if ($rowIndex > $headerIndex ) { //mulai dari index ke 12, header
+					
+					$header = $sheet[$headerIndex];
+					$newRow =[];
+					foreach ($header as $columnIndex => $title ) {
+						$title_lower_case = implode('_', explode(' ', strtolower($title)) );
+						$newRow[$title_lower_case] = $row[$columnIndex];	
+					}
+
+					$content[] = $newRow;
+				}
+			}
+		};
+
+		return $content;
+	}
+
+	// called by method getContent
+	private function getWorkSheet($tabName = []){
 
 		$filename = $this->getFile();
 		$type = PHPExcel_IOFactory::identify($filename);
