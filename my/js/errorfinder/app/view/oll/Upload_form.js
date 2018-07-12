@@ -18,7 +18,9 @@ Ext.define('my.js.errorfinder.app.view.oll.Upload_form', {
     items :[{
         xtype: 'filefield',
         name: 'file',
-        fieldLabel: 'FILENAME .CRB',
+        bind :{
+            fieldLabel: '{fieldLabel}',
+        },
         buttonText :'...',
         flex: 9,
         allowBlank: false,

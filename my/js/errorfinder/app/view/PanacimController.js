@@ -38,6 +38,10 @@ Ext.define('my.js.errorfinder.app.view.PanacimController',{
     			fillUploadInfo : 'fillUploadInfo'
     		}
     	}
+    },
+
+    onUpload(){
+        console.log('hai')
     }
 
 });
