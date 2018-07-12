@@ -1,0 +1,48 @@
+Ext.define('my.js.errorfinder.app.view.Oll_section', {
+    extend: 'Ext.form.Panel',
+    
+    requires :[
+    	// model
+
+    	// store
+
+        // child view
+        'my.js.errorfinder.app.view.oll.Upload_form',
+        'my.js.errorfinder.app.view.oll.Upload_info',
+
+        // controller
+        'my.js.errorfinder.app.view.OllController',
+    ],
+
+    xtype: 'oll-section',
+	
+	// bodyPadding: 10,
+    plugins: 'responsive',
+
+    controller: 'oll-controller',
+
+
+    defaults : {
+    	margin : 5,
+    	anchor: '100%',
+        labelWidth: 120,
+    },
+
+    items :[
+        {
+            xtype : 'textfield',
+            fieldLabel: 'Please Find & Upload this file',
+            readOnly : true,
+            name : 'filename_info',
+            cls : 'form-control',
+        },
+        {
+            xtype : 'upload-form'
+        },{
+            xtype : 'upload-info'
+        },
+    ],
+
+    
+
+});
