@@ -64,23 +64,31 @@ class PanacimController
 		// if statement 
 		$program_name = ( isset($this->parameters['program_name']) ) ? $this->parameters['program_name'] : '';
 		$excel = $this->getContent($program_name);
+
 		$result = $this->find([
 			'part_number' =>	$this->parameters['part_number'],
 			'feeder_number' =>	$this->parameters['feeder_number'],
 
 		], $excel );
-		return json_encode($result);
+
+		return json_encode([
+			'success' => true,
+			'data' =>	$result
+		]);
 
 	}
 
+	// $needle is array contain both part_number, and feeder_number as $key;
 	public function find (Array $needle, Array $haystacks ){
 		// return [$needle, $haystack];
 		$result = [];
 		foreach ($haystacks as $key => $haystack) {
 			# code...
-			$intersection = array_intersect($needle, $haystack );
-			
-			if (count( $intersection) > 0 ) {
+			if ( 
+				($haystack['part_number'] == $needle['part_number']) && 
+				(stripos($haystack["z_/_pu_number"], $needle['feeder_number']) !== FALSE ) 
+			){
+				
 				$result[] = $haystack;
 			}
 		}
