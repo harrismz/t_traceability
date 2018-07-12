@@ -5,4 +5,11 @@ Ext.define('my.js.errorfinder.app.view.PanacimModel', {
         name: 'App',
         fieldLabel : 'Panacim Xls',
     },
+
+    stores : {
+    	panacims : {
+    		type:'panacims',
+    	}
+    }
+
 });

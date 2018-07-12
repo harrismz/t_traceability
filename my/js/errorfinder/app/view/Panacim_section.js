@@ -12,6 +12,8 @@ Ext.define('my.js.errorfinder.app.view.Panacim_section', {
         // view
         'my.js.errorfinder.app.view.oll.Upload_info',
         'my.js.errorfinder.app.view.oll.Upload_form',
+        'my.js.errorfinder.app.view.List',
+
         
     ],
 
@@ -49,7 +51,10 @@ Ext.define('my.js.errorfinder.app.view.Panacim_section', {
             
         }, {
             xtype : 'panel',
-            title: 'RESULT'
+            title: 'RESULT',
+            items:[{
+                xtype: 'panacim-list'
+            }]
         }
     ],
 

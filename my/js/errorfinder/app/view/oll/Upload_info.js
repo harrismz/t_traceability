@@ -35,6 +35,7 @@ Ext.define('my.js.errorfinder.app.view.oll.Upload_info', {
             // id: 'tanggal',
             fieldLabel: 'Tanggal',
             emptyText : 'Tanggal',
+            value : '2018-07-05',
             
         },{
             xtype: 'textfield',
@@ -47,12 +48,14 @@ Ext.define('my.js.errorfinder.app.view.oll.Upload_info', {
             name: 'feeder_number',
             fieldLabel: 'Feeder Number',
             emptyText : 'Feeder Number',
+            value: 10013,
             
         },{
             xtype: 'textfield',
             name: 'part_no',
             fieldLabel: 'Part Number',
             emptyText : 'Part Number',
+            value : 'CK73HXR1A104K-9'
             // cls: 'form-control'
         },
     ]
