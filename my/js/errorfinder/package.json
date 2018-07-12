@@ -9,6 +9,7 @@
   "author": "punk73",
   "license": "ISC",
   "devDependencies": {
+    "gulp-extjs": "^1.1.0",
     "jest": "^23.3.0"
   }
 }

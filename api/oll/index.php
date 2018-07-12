@@ -1,6 +1,6 @@
 <?php
 	
-	include_once '../OllController.php';
+	include_once './OllController.php';
 
 	$controller = new OllController();
 

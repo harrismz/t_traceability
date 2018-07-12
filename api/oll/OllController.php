@@ -21,6 +21,7 @@ class OllController
 			'JOBPWBNO',
 			'process',
 			'JOBSTARTSERIAL',
+			// 'part_location',
 			// '*'
 		];
 		//get all parameter here
@@ -35,6 +36,8 @@ class OllController
 	public function index(){
 		// initialize object MODEL
 		$model = new Oll();
+
+		// return json_encode($this->parameter);
 		// query products
 		$result = $model->index($this->parameter);
 

@@ -30,8 +30,9 @@ Ext.define('my.js.errorfinder.app.view.oll.Upload_info', {
     },
     items :[
         {
-            xtype: 'datefield',
+            xtype: 'textfield',
             name: 'tanggal',
+            // id: 'tanggal',
             fieldLabel: 'Tanggal',
             emptyText : 'Tanggal',
             

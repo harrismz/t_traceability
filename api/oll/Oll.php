@@ -1,6 +1,6 @@
 <?php
 
-include_once 'Database.php';
+include_once '../Database.php';
 // namespace 'api';
 /**
  *  model for my OLL 
@@ -53,6 +53,8 @@ class Oll
 		$select  = [
 			// 'JOBFILE',
 			'JOBMC_PROGRAM',
+			'a.JOBDATE',
+			// 'b.JOBDATE as b_date'
 			// 'process',
 			// '*'
 		];
@@ -82,7 +84,13 @@ class Oll
 	    // execute query
 	    $stmt->execute();
 
-	    return $this->get($stmt);
+	    $result = $this->get($stmt);
+
+	    if (count($result) > 0 ) {
+	    	return $result[0];
+	    } else {
+	    	return [];
+	    }
 	}
 
 	private function get(PDOStatement $query ){
