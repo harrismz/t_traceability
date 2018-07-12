@@ -85,11 +85,11 @@
 						fields: ['noid', 'deliv_date', 'partno', 'partname', 'supplier', 'suppcode', 'inspect_level', 'pic', 'shift', 'qty_sampling', 'qty_rejection', 'do', 'bc', 'po', 'qty_delivery', 'lot_out', 'pr_name', 'time_finish', 'fld_remark', 'sflag']
 					});
 				//Part Issuing
-					// Ext.define('part_mc_issue_ma', {
-					// 	extend: 'Ext.data.Model',
-					// 	//fields: ['so', 'partno', 'partname', 'po', 'reqqty', 'scanqty', 'lot', 'line', 'model_name', 'issdate']
-					// 	fields: ['issdate', 'partno', 'partname', 'scanqty', 'po', 'model_name', 'lot', 'line', 'so', 'reqqty']
-					// });
+					Ext.define('part_mc_issue_ma', {
+						extend: 'Ext.data.Model',
+						//fields: ['so', 'partno', 'partname', 'po', 'reqqty', 'scanqty', 'lot', 'line', 'model_name', 'issdate']
+						fields: ['issdate', 'partno', 'partname', 'scanqty', 'po', 'model_name', 'lot', 'line', 'so', 'reqqty']
+					});
 					// Ext.define('part_mc_issue_mecha', {
 					// 	extend: 'Ext.data.Model',
 					// 	//fields: ['so', 'partno', 'partname', 'po', 'reqqty', 'scanqty', 'lot', 'line', 'model_name', 'issdate']
@@ -261,15 +261,18 @@
 									store_output.proxy.setExtraParam('lot_size', lot_size);
 									store_output.proxy.setExtraParam('st_serial', serial_no);
 									store_output.loadPage(1);
-									// store_part_receiving.proxy.setExtraParam('prod_date', prod_date);
-									// store_part_receiving.proxy.setExtraParam('prod_no', prodno);
-									// store_part_receiving.proxy.setExtraParam('model', model);
-									// store_part_receiving.loadPage(1);
+									store_part_receiving.proxy.setExtraParam('prod_date', prod_date);
+									store_part_receiving.proxy.setExtraParam('prod_no', prodno);
+									store_part_receiving.proxy.setExtraParam('model', model);
+									store_part_receiving.loadPage(1);
 									store_part_insp.proxy.setExtraParam('prod_date', prod_date);
 									store_part_insp.proxy.setExtraParam('prod_no', prodno);
 									store_part_insp.proxy.setExtraParam('model', model);
 									store_part_insp.loadPage(1);
-
+									store_part_mc_issue_ma.proxy.setExtraParam('prod_date', prod_date);
+									store_part_mc_issue_ma.proxy.setExtraParam('model', model);
+									store_part_mc_issue_ma.proxy.setExtraParam('prod_no', prodno);
+									store_part_mc_issue_ma.loadPage(1);
 									// prd_lost_time.proxy.setExtraParam('prod_date', prod_date);
 									// prd_lost_time.proxy.setExtraParam('line', line);
 									// prd_lost_time.loadPage(1);
@@ -310,10 +313,6 @@
 									// store_part_smt_zdbs.proxy.setExtraParam('prod_date', prod_date);
 									// store_part_smt_zdbs.proxy.setExtraParam('model', model);
 									// store_part_smt_zdbs.loadPage(1);
-									// store_part_mc_issue_ma.proxy.setExtraParam('prod_date', prod_date);
-									// store_part_mc_issue_ma.proxy.setExtraParam('model', model);
-									// store_part_mc_issue_ma.proxy.setExtraParam('prod_no', prodno);
-									// store_part_mc_issue_ma.loadPage(1);
 									// store_part_mc_issue_mecha.proxy.setExtraParam('prod_date', prod_date);
 									// store_part_mc_issue_mecha.proxy.setExtraParam('model', model);
 									// store_part_mc_issue_mecha.proxy.setExtraParam('prod_no', prodno);
@@ -374,7 +373,7 @@
 					var store_part_receiving = Ext.create('Ext.data.Store', {
 						model: 'model_rcvpart',
 						autoLoad: false,
-						//pageSize: itemperpage,
+						pageSize: itemperpage,
 						//groupField	: 'partno',
 						proxy: {
 							type: 'ajax',
@@ -405,21 +404,21 @@
 					});
 
 				//Part Issuing
-					// var store_part_mc_issue_ma = Ext.create('Ext.data.Store', {
-					// 	model: 'part_mc_issue_ma',
-					// 	autoLoad: false,
-					// 	pageSize: itemperpage,
-					// 	//groupField	: 'partno',
-					// 	proxy: {
-					// 		type: 'ajax',
-					// 		url: 'json/json_part_mcis_ma.php',
-					// 		reader: {
-					// 			type: 'json',
-					// 			root: 'rows',
-					// 			totalProperty: 'totalCount'
-					// 		}
-					// 	}
-					// });
+					var store_part_mc_issue_ma = Ext.create('Ext.data.Store', {
+						model: 'part_mc_issue_ma',
+						autoLoad: false,
+						pageSize: itemperpage,
+						//groupField	: 'partno',
+						proxy: {
+							type: 'ajax',
+							url: 'json/json_part_mcis_ma.php',
+							reader: {
+								type: 'json',
+								root: 'rows',
+								totalProperty: 'totalCount'
+							}
+						}
+					});
 					// var store_part_mc_issue_mecha = Ext.create('Ext.data.Store', {
 					// 	model: 'part_mc_issue_mecha',
 					// 	autoLoad: false,
@@ -1308,7 +1307,7 @@
 							enableTextSelection	: true
 						},
 						columns			: [
-							{ header: 'userid', dataIndex: 'userid', flex: 1, renderer: upsize },
+							{ header: 'rcvdate', dataIndex: 'rcvdate', flex: 1, renderer: upsize },
 							{ header: 'supp', dataIndex: 'supp', flex: 1, renderer: upsize },
 							{ header: 'Part Number', dataIndex: 'part', flex: 1, renderer: upsize,
 								filter: {
@@ -1318,7 +1317,7 @@
 							},
 							{ header: 'po', dataIndex: 'po', flex: 1, renderer: upsize },
 							{ header: 'qty', dataIndex: 'qty', flex: 1, renderer: upsize },
-							{ header: 'rcvdate', dataIndex: 'rcvdate', flex: 1, renderer: upsize },
+							{ header: 'userid', dataIndex: 'userid', flex: 1, renderer: upsize },
 							{ header: 'custom', dataIndex: 'custom', flex: 1, renderer: upsize },
 							{ header: 'category', dataIndex: 'category', flex: 1, renderer: upsize },
 							{ header: 'sendflag', dataIndex: 'sendflag', flex: 1, renderer: upsize },
@@ -1353,7 +1352,7 @@
 							enableTextSelection	: true
 						},
 						columns			: [
-						{ header: 'noid', dataIndex: 'noid', flex: 1, renderer: upsize },
+						{ header: 'noid', dataIndex: 'noid', minwidth:10, renderer: upsize, hidden:true },
 						{ header: 'deliv_date', dataIndex: 'deliv_date', flex: 1, renderer: upsize },
 						{ header: 'Part Number', dataIndex: 'partno', flex: 1, renderer: upsize,
 							filter: {
@@ -1361,23 +1360,23 @@
 								dataIndex: 'partno'
 							}
 						},
-						{ header: 'Part Name', dataIndex: 'partname', flex: 1, renderer: upsize },
-					  { header: 'supplier', dataIndex: 'supplier', flex: 1, renderer: upsize },
+						{ header: 'Part Name', dataIndex: 'partname', flex: 1, renderer: upsize, hidden:true },
+					  { header: 'supplier', dataIndex: 'supplier', flex: 1, renderer: upsize,  hidden:true },
 						{ header: 'suppcode', dataIndex: 'suppcode', flex: 1, renderer: upsize },
-						{ header: 'inspect_level', dataIndex: 'inspect_level', flex: 1, renderer: upsize },
+						{ header: 'inspect level', dataIndex: 'inspect_level', flex: 1, hidden:true },
 						{ header: 'pic', dataIndex: 'pic', flex: 1, renderer: upsize },
 						{ header: 'shift', dataIndex: 'shift', flex: 1, renderer: upsize },
-					  { header: 'qty_sampling', dataIndex: 'qty_sampling', flex: 1, renderer: upsize },
-						{ header: 'qty_rejection', dataIndex: 'qty_rejection', flex: 1, renderer: upsize },
+					  { header: 'qty sampling', dataIndex: 'qty_sampling', flex: 1, renderer: upsize },
+						{ header: 'qty rejection', dataIndex: 'qty_rejection', flex: 1, renderer: upsize },
 						{ header: 'do', dataIndex: 'do', flex: 1, renderer: upsize },
 						{ header: 'bc', dataIndex: 'bc', flex: 1, renderer: upsize },
 						{ header: 'po', dataIndex: 'po', flex: 1, renderer: upsize },
-						{ header: 'qty_delivery', dataIndex: 'qty_delivery', flex: 1, renderer: upsize },
-						{ header: 'lot_out', dataIndex: 'lot_out', flex: 1, renderer: upsize },
-						{ header: 'pr_name', dataIndex: 'pr_name', flex: 1, renderer: upsize },
-						{ header: 'time_finish', dataIndex: 'time_finish', flex: 1, renderer: upsize },
-						{ header: 'fld_remark', dataIndex: 'fld_remark', flex: 1, renderer: upsize },
-						{ header: 'sflag', dataIndex: 'sflag', flex: 1, renderer: upsize },
+						{ header: 'qty delivery', dataIndex: 'qty_delivery', flex: 1, renderer: upsize },
+						{ header: 'lot out', dataIndex: 'lot_out', flex: 1, renderer: upsize },
+						{ header: 'pr name', dataIndex: 'pr_name', flex: 1, renderer: upsize, hidden:true },
+						{ header: 'time finish', dataIndex: 'time_finish', flex: 1, renderer: upsize },
+						{ header: 'fld remark', dataIndex: 'fld_remark', flex: 1, renderer: upsize },
+						{ header: 'sflag', dataIndex: 'sflag', flex: 1, renderer: upsize, hidden:true },
 						//
 						//
 					  // {
@@ -1453,7 +1452,7 @@
 						width				: '100%',
 						height			: 295,
 						columnLines	: true,
-						// store: store_part_mc_issue_ma,
+						store				: store_part_mc_issue_ma,
 						viewConfig	: {
 							stripeRows					: true,
 							emptyText						: '<div class="empty-txt">No data to display.</div>',
@@ -2534,7 +2533,7 @@
 			//	Finished Goods ( Logistic )
 				//	Warehouse Management ( Stock Control )
 					var grid_log_stockcard = Ext.create('Ext.grid.Panel', {
-						id: 'grid_part_mc_ma',
+						id: 'grid_log_stockcard',
 						width: '100%',
 						height: 295,
 						columnLines: true,
