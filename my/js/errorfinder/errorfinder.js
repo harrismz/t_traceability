@@ -38,12 +38,14 @@ Ext.application({
                     itemId: 'card-prev',
                     text: '&laquo; Previous',
                     handler: 'showPrevious',
-                    disabled: true
+                    disabled: true,
+                    hidden: true,
                 },
                 {
                     itemId: 'card-next',
                     text: 'Next &raquo;',
-                    handler: 'showNext'
+                    handler: 'showNext',
+                    hidden: true,
                 }
             ],
             items: [
