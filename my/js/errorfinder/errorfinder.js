@@ -2,7 +2,7 @@
 Ext.application({
     extend: 'Ext.app.Application',
 
-    name: 'App',
+    name: 'errorfinder',
 
     quickTips: true,
 
@@ -21,13 +21,8 @@ Ext.application({
 
     stores: [
         // TODO: add global / shared stores here
+        // 'Panacims',
         // 'Mastermodels',
-        // 'Schedules',
-        // 'Histories',
-        // 'ScheduleMasters',
-        // 'ScheduleDates',
-        // 'Sides',
-        // 'Codes'
     ],
 
     launch: function () {

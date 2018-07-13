@@ -79,7 +79,6 @@ class PanacimController
 			'success' => true,
 			'data' =>	$result
 		]);
-
 	}
 
 	// $needle is array contain both part_no, and feeder_number as $key;
@@ -118,6 +117,7 @@ class PanacimController
 					
 					$header = $sheet[$headerIndex];
 					$newRow =[];
+					$newRow['program_name'] = $key;
 					foreach ($header as $columnIndex => $title ) {
 						$title_lower_case = implode('_', explode(' ', strtolower($title)) );
 						$newRow[$title_lower_case] = $row[$columnIndex];	

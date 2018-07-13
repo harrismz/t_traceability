@@ -94,8 +94,10 @@ Ext.define('my.js.errorfinder.app.view.PanacimController',{
             })
         }
 
-        console.log(form)
+        // console.log(form)
     },
+
+    
 
 
 });

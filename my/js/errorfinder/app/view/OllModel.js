@@ -4,5 +4,6 @@ Ext.define('my.js.errorfinder.app.view.OllModel', {
     data: {
         name: 'App',
         fieldLabel : 'File.CRB',
+        text_kosong: 'Please Choose Panacim xls File ...'
     },
 });

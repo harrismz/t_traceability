@@ -21,17 +21,19 @@ Ext.define('my.js.errorfinder.app.view.oll.Upload_form', {
         bind :{
             fieldLabel: '{fieldLabel}',
         },
+        emptyText: 'Browse ...',
         buttonText :'...',
         flex: 9,
         allowBlank: false,
         enableKeyEvents: true,
-        emptyText : '',
+        allowBlank: false,
         cls : 'form-control',
         
     },{
         xtype : 'button',
         text : 'UPLOAD',
         flex: 1,
+        formBind: true,
         cls : 'form-control',
         margin : '0 0 0 3',
         listeners : {

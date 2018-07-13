@@ -6,19 +6,15 @@ Ext.define('my.js.errorfinder.app.view.List', {
     
     xtype: 'panacim-list',
 
-    requires: [
-        'my.js.errorfinder.app.store.Panacims'
-    ],
-
     viewConfig  : {
         stripeRows          : true,
         enableTextSelection : true
     },
 
-    store : {
-        type:'panacims'
+    bind: {
+        store : '{panacims}',
     },
-    
+
     emptyText: 'No Data To Show',
 
     // layout : 'fit',
