@@ -84,12 +84,12 @@ Ext.define('my.js.errorfinder.app.view.OllController', {
         let parent = this.getView().up(); 
 
         let components = {
-            machine_name : parent.down('textfield[name=machine_name]'),
+            // machine_name : parent.down('textfield[name=machine_name]'),
             feeder_number : parent.down('textfield[name=feeder_number]'),
             part_no : parent.down('textfield[name=part_no]')
         }
 
-        components.machine_name.setValue(newData.machine_name);
+        // components.machine_name.setValue(newData.machine_name);
         components.feeder_number.setValue(newData.feeder_number);
         components.part_no.setValue(newData.part_no)
 
@@ -104,7 +104,6 @@ Ext.define('my.js.errorfinder.app.view.OllController', {
         return newData = {
             part_no : data.NAME,
             nozzle : data.NP,
-            machine_name : '',
             feeder_number : data.PU,
             tanggal : data.tanggal
         }

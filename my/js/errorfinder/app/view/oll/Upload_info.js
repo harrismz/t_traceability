@@ -39,12 +39,6 @@ Ext.define('my.js.errorfinder.app.view.oll.Upload_info', {
             
         },{
             xtype: 'textfield',
-            name: 'machine_name',
-            fieldLabel: 'Machine Name',
-            emptyText : 'Machine Name',
-            
-        },{
-            xtype: 'textfield',
             name: 'feeder_number',
             fieldLabel: 'Feeder Number',
             emptyText : 'Feeder Number',

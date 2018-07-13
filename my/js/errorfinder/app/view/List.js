@@ -31,6 +31,12 @@ Ext.define('my.js.errorfinder.app.view.List', {
             align: 'center',
             xtype: 'rownumberer'
         },
+
+        {
+            text: 'Program Name',
+            align:'center',
+            dataIndex: 'program_name',
+        },
         
         { 
             text: 'Machine Name',
