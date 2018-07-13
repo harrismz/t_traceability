@@ -6,7 +6,7 @@ Ext.application({
 
     quickTips: true,
 
-    
+    // appFolder: '../../../app',
 
     requires: [
         'my.js.errorfinder.app.view.List',
@@ -22,14 +22,11 @@ Ext.application({
     },
 
     stores: [
-        // TODO: add global / shared stores here
-        // 'Panacims',
-        // 'Mastermodels',
+        
     ],
 
     launch: function () {
 
-        // Ext.create()
 
     },
 
