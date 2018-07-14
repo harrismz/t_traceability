@@ -81,7 +81,6 @@
 				//Part Inspection
 					Ext.define('model_part_insp', {
 						extend: 'Ext.data.Model',
-						//fields: ['so', 'partno', 'partname', 'po', 'reqqty', 'scanqty', 'lot', 'line', 'model_name', 'issdate']
 						fields: ['noid', 'deliv_date', 'partno', 'partname', 'supplier', 'suppcode', 'inspect_level', 'pic', 'shift', 'qty_sampling', 'qty_rejection', 'do', 'bc', 'po', 'qty_delivery', 'lot_out', 'pr_name', 'time_finish', 'fld_remark', 'sflag']
 					});
 				//Part Issuing
