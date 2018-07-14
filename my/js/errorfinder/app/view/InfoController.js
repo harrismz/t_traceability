@@ -82,12 +82,14 @@ Ext.define('my.js.errorfinder.app.view.InfoController', {
         return result;
     },
 
-    /*listen : {
+    listen : {
         controller : {
             'oll-controller' : {
-                getPartLocationValue : 'getPartLocationValue'
+                showNext : 'showNext',
+                showPrevious : 'showPrevious',
+
             }
         }
-    },*/
+    },
 
 });

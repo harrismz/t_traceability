@@ -6,6 +6,9 @@ Ext.define('my.js.errorfinder.app.view.Oll_section', {
 
     	// store
 
+        // viewModel
+        'my.js.errorfinder.app.view.OllModel',
+
         // child view
         'my.js.errorfinder.app.view.oll.Upload_form',
         'my.js.errorfinder.app.view.oll.Upload_info',
@@ -20,6 +23,8 @@ Ext.define('my.js.errorfinder.app.view.Oll_section', {
     plugins: 'responsive',
 
     controller: 'oll-controller',
+
+    viewModel: { type : 'model-oll'},
 
 
     defaults : {

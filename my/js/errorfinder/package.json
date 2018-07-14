@@ -3,13 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "errorfinder.js",
-  "scripts": {
-    "test": "jest"
+  "directories": {
+    "test": "test"
   },
-  "author": "punk73",
-  "license": "ISC",
-  "devDependencies": {
-    "gulp-extjs": "^1.1.0",
-    "jest": "^23.3.0"
-  }
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
 }

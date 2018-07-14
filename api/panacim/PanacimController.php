@@ -12,11 +12,14 @@ use PhpOffice\PhpSpreadsheet\IOFactory;
 class PanacimController
 {
 	protected $file;
+
 	protected $dir = '../storage/';
+
 	protected $allowedType = [
 		'xls',
 		'xlsx'
 	];
+
 	protected $excludedSheet = [
 		'Intro',
 		'Production Summary',
@@ -29,11 +32,13 @@ class PanacimController
 		'Placement Info',
 		'Glossary'
 	];
+
 	protected $allowedParameters = [
 		'machine_name',
 		'tanggal',
 		'feeder_number',
-		'part_number'
+		'part_no',
+		'program_name'
 	];
 
 	private $parameters = [];
@@ -46,35 +51,64 @@ class PanacimController
 		}
 
 		foreach ($_POST as $key => $value) {
-			if (in_array( $value ,$this->allowedParameters)) {
-				$this->parameters[] = $value;
+			if (in_array( $key ,$this->allowedParameters)) {
+				$this->parameters[$key] = $value;
 			}
 		}
 	}
 
 	public function upload(){
-		// return json_encode($this->dir);
+		// simpan file ke server, kalau return false, maka error;
 		if(!$this->saveOnServer()){
 			return json_encode([
 				'error' => 'file not uploaded!! Something went wrong'
 			]);
 		}
 
-		$excel = $this->getContent('VA00XJ1219K02MND');
-		return json_encode($excel);
+		// if statement 
+		$program_name = ( isset($this->parameters['program_name']) ) ? $this->parameters['program_name'] : '';
+		$excel = $this->getContent($program_name);
 
+		$result = $this->find([
+			'part_no' =>	$this->parameters['part_no'],
+			'feeder_number' =>	$this->parameters['feeder_number'],
+
+		], $excel );
+
+		return json_encode([
+			'success' => true,
+			'data' =>	$result
+		]);
+	}
+
+	// $needle is array contain both part_no, and feeder_number as $key;
+	public function find (Array $needle, Array $haystacks ){
+		// return [$needle, $haystack];
+		$result = [];
+		foreach ($haystacks as $key => $haystack) {
+			# code...
+			if ( 
+				($haystack['part_number'] == $needle['part_no']) && 
+				(stripos($haystack["z_/_pu_number"], $needle['feeder_number']) !== FALSE ) 
+			){
+				
+				$result[] = $haystack;
+			}
+		}
+		return $result;
 	}
 
 	private function getContent($searchValue='', $headerIndex=12 ){
-		$worksheets = $this->getWorkSheet();
-		if ( $searchValue == '') {
-			// if parameter didn't pass, just return the worksheet instead
-			return $worksheets;
+		$programWorkSheets = $this->getWorkSheet();
+
+		// only filter if parameter is exists
+		if ( $searchValue !== '') {
+			// filter array based on $searchValue, yg mirip $key nya. $key = nama worksheet
+			$programWorkSheets = array_filter($programWorkSheets, function ($key) use ($searchValue) {
+				return ( stripos($key , $searchValue ) !== false );
+			}, ARRAY_FILTER_USE_KEY  );
 		}
 
-		$programWorkSheets = array_filter($worksheets, function ($key) use ($searchValue) {
-			return ( stripos($key , $searchValue ) !== false ) ;
-		}, ARRAY_FILTER_USE_KEY  );
 
 		$content = [];
 		foreach ($programWorkSheets as $key => $sheet) {
@@ -83,6 +117,7 @@ class PanacimController
 					
 					$header = $sheet[$headerIndex];
 					$newRow =[];
+					$newRow['program_name'] = $key;
 					foreach ($header as $columnIndex => $title ) {
 						$title_lower_case = implode('_', explode(' ', strtolower($title)) );
 						$newRow[$title_lower_case] = $row[$columnIndex];	

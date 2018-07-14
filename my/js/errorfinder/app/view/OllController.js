@@ -5,6 +5,7 @@ Ext.define('my.js.errorfinder.app.view.OllController', {
 
     requires : [
     	// 'my.js.errorfinder.app.view.InfoController'
+
     ],
 
     // method below is called by InfoController
@@ -16,8 +17,11 @@ Ext.define('my.js.errorfinder.app.view.OllController', {
         fileinfo.setValue(response.JOBMC_PROGRAM)
 
         tanggaltextfield = view.down('textfield[name=tanggal]');
-        // console.log(tanggaltextfield)
+        program_name = view.down('textfield[name=program_name]');
+
+
         tanggaltextfield.setValue(response.JOBDATE );
+        program_name.setValue(response.JOBMC_PROGRAM);
 
     },
 
@@ -25,6 +29,7 @@ Ext.define('my.js.errorfinder.app.view.OllController', {
     	let parent = component.up();
     	let part_location =  this.getPartLocation();
     	let form = component.up('form').getForm();
+        let tanggalValue = this.getView().down('textfield[name=tanggal]').value;
         self = this;
 
         if (form.isValid) {
@@ -38,11 +43,14 @@ Ext.define('my.js.errorfinder.app.view.OllController', {
                 },
                 success: function(fp, o) {
                     status = 'success',
-                    console.log({
-                        fp, o, status
-                    })
+                    // console.log({
+                    //     fp, o, status
+                    // })
                     Ext.Msg.alert('Success', o.result.data );
 
+                    o.result.data.tanggal = tanggalValue;
+
+                    // console.log(o.result.data)
                     self.showData(o.result.data)
                     
                 },
@@ -71,30 +79,47 @@ Ext.define('my.js.errorfinder.app.view.OllController', {
         return part_location.getValue();
     },
 
+    getElementInfo(parent){
+        return {
+            // machine_name : parent.down('textfield[name=machine_name]'),
+            feeder_number : parent.down('textfield[name=feeder_number]'),
+            part_no : parent.down('textfield[name=part_no]'),
+            program_name : parent.down('textfield[name=program_name]')
+        }
+    },
+
     // triggered by onUpload method after success ajax call
     showData(data){
 
         let newData = this.extractData(data)
-        console.log(newData)
+        // console.log(newData)
         let parent = this.getView().up(); 
-        let components = {
-            machine_name : parent.down('textfield[name=machine_name]'),
-            feeder_number : parent.down('textfield[name=feeder_number]'),
-            part_no : parent.down('textfield[name=part_no]')
-        }
 
-        components.machine_name.setValue(newData.machine_name);
+        let components = this.getElementInfo(parent);
+        
+        // add program name to new data
+        newData['program_name'] = components.program_name.value;
+
+
+        // components.program_name.setValue(newData.program_name);
         components.feeder_number.setValue(newData.feeder_number);
         components.part_no.setValue(newData.part_no)
 
+
+        // fireEvent on InfoController.showNext
+        this.fireEvent('showNext');
+        // fire Event on PanacimController.fillUploadInfo dengan parameter newData
+        this.fireEvent('fillUploadInfo', newData );
+
     },
 
+    // parameter 1 adalah hasil dari file crb,
     extractData(data){
-        return newData = {
+        return {
             part_no : data.NAME,
             nozzle : data.NP,
-            machine_name : '',
-            feeder_number : data.PU
+            feeder_number : data.PU,
+            tanggal : data.tanggal,
         }
 
         // console.log(newData)
