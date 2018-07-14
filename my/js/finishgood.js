@@ -81,7 +81,7 @@
 				//Part Inspection
 					Ext.define('model_part_insp', {
 						extend: 'Ext.data.Model',
-						fields: ['noid', 'deliv_date', 'partno', 'partname', 'supplier', 'suppcode', 'inspect_level', 'pic', 'shift', 'qty_sampling', 'qty_rejection', 'do', 'bc', 'po', 'qty_delivery', 'lot_out', 'pr_name', 'time_finish', 'fld_remark', 'sflag']
+						fields: ['noid', 'deliv_date', 'tbslppartno', 'partname', 'supplier', 'suppcode', 'inspect_level', 'pic', 'shift', 'qty_sampling', 'qty_rejection', 'do', 'bc', 'po', 'qty_delivery', 'lot_out', 'pr_name', 'time_finish', 'fld_remark', 'sflag']
 					});
 				//Part Issuing
 					Ext.define('part_mc_issue_ma', {
