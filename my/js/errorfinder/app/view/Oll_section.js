@@ -50,7 +50,8 @@ Ext.define('my.js.errorfinder.app.view.Oll_section', {
             // frame: true,
         },
         {
-            xtype : 'upload-form'
+            xtype : 'upload-form',
+            id: 'oll-form-upload'
         },{
             xtype : 'upload-info'
         },

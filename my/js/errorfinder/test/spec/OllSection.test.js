@@ -60,15 +60,19 @@ describe('Testing OLL Section ', function (){
 		});
 
 		it('should check if onUpload works properly', () => {
-			spyOn(controller, 'onUpload')
-			spyOn(Ext.Ajax, 'request')
+			form = ollSection.getForm()
+			// spy the form.submit
+			spyOn(form, 'submit');
 
 			button = ollSection.down('button[name=btn-upload]')
 			
-			button.click();
+			expect(form).toBeTruthy();
 			
-			expect(Ext.Ajax.request).toHaveBeenCalled();
-
+			// click the button
+			button.click();
+			console.log(form.submit)
+			expect(form.submit).toHaveBeenCalled()
+			
 		})
 
 	});
