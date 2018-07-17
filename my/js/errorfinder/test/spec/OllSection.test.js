@@ -42,19 +42,35 @@ describe('Testing OLL Section ', function (){
         	expect(program_name.getValue()).toBe(data.JOBMC_PROGRAM)
 		});
 
-		/*it('should check if onUpload works as expected', () => {
-			spyOn(controller, 'onUpload')
-
-		})*/
 
 		it('should check getPartLocation method', function (){
-			infoSection = new my.js.errorfinder.app.view.Info_section;
-			part_location = infoSection.down('textfield[name=part_location]')
-			console.log({infoSection, part_location})
+			part_location = ollSection.down('textfield[name=part_location]')
 			testCase = 'test';
 			part_location.setValue(testCase);
 			expect(controller.getPartLocation()).toBe(testCase);
 		})
+
+		it('should check if onUpload called by button click', () => {
+			spyOn(controller, 'onUpload')
+			button = ollSection.down('button[name=btn-upload]')
+			// expect(button).toBeTruthy();
+			button.click();
+			expect(controller.onUpload).toHaveBeenCalled();
+
+		});
+
+		it('should check if onUpload works properly', () => {
+			spyOn(controller, 'onUpload')
+			spyOn(Ext.Ajax, 'request')
+
+			button = ollSection.down('button[name=btn-upload]')
+			
+			button.click();
+			
+			expect(Ext.Ajax.request).toHaveBeenCalled();
+
+		})
+
 	});
 
 

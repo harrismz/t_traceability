@@ -90,7 +90,7 @@ Ext.define('my.js.errorfinder.app.view.Info_section', {
     	xtype 	: 'button',
     	name 	: 'submit-button',
     	text 	: 'Submit',
-        // formBind: true,
+        formBind: true,
         listeners: {
             click: 'onButtonSubmit'
         },

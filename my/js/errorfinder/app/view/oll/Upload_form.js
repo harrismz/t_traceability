@@ -32,6 +32,7 @@ Ext.define('my.js.errorfinder.app.view.oll.Upload_form', {
     },{
         xtype : 'button',
         text : 'UPLOAD',
+        name : 'btn-upload',
         flex: 1,
         formBind: true,
         cls : 'form-control',

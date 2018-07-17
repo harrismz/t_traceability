@@ -74,8 +74,7 @@ Ext.define('my.js.errorfinder.app.view.OllController', {
     // triggered by onUpload method to know part location value
     getPartLocation(){
         let view = this.getView(); //oll section
-        parent = view.up(); //info section
-        part_location = parent.down('textfield[name=part_location]')
+        part_location = view.down('textfield[name=part_location]')
         return part_location.getValue();
     },
 
@@ -125,10 +124,17 @@ Ext.define('my.js.errorfinder.app.view.OllController', {
         // console.log(newData)
     },
 
+    setPartLocationValue(value){
+        const view = this.getView();
+        partLocation = view.down('textfield[name=part_location]')
+        partLocation.setValue(value)
+    },
+
     listen : {
     	controller : {
     		'info-controller' : {
-    			runShowUploadableFile : 'showUploadableFile'
+    			runShowUploadableFile : 'showUploadableFile',
+                setPartLocationValue: 'setPartLocationValue'
     		}
     	}
     },

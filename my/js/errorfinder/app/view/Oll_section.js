@@ -40,6 +40,14 @@ Ext.define('my.js.errorfinder.app.view.Oll_section', {
             readOnly : true,
             name : 'filename_info',
             cls : 'form-control',
+        },{
+            xtype : 'textfield',
+            fieldLabel : 'Part Location',
+            name: 'part_location',
+            cls : 'form-control',
+            // padding : '2 0 1 0',
+            // bodyPadding: 0,
+            // frame: true,
         },
         {
             xtype : 'upload-form'
