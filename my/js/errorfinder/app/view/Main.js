@@ -5,21 +5,6 @@ Ext.define('my.js.errorfinder.app.view.Main',{
     layout: 'card',
     bodyPadding: 15,
     defaultListenerScope: true,
-    bbar: ['->',
-        {
-            itemId: 'card-prev',
-            text: '&laquo; Previous',
-            handler: 'showPrevious',
-            disabled: true,
-            hidden: true,
-        },
-        {
-            itemId: 'card-next',
-            text: 'Next &raquo;',
-            handler: 'showNext',
-            hidden: true,
-        }
-    ],
     items: [
         {
             id: 'card-0',
@@ -35,6 +20,22 @@ Ext.define('my.js.errorfinder.app.view.Main',{
             id: 'card-2',
             title: 'Panacim Section',
             xtype: 'panacim-section',
+        }
+    ],
+
+    bbar: ['->',
+        {
+            itemId: 'card-prev',
+            text: '&laquo; Previous',
+            handler: 'showPrevious',
+            disabled: true,
+            // hidden: true,
+        },
+        {
+            itemId: 'card-next',
+            text: 'Next &raquo;',
+            handler: 'showNext',
+            // hidden: true,
         }
     ],
 
