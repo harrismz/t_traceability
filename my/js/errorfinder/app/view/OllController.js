@@ -43,9 +43,10 @@ Ext.define('my.js.errorfinder.app.view.OllController', {
                 },
                 success: function(fp, o) {
                     status = 'success',
-                    // console.log({
-                    //     fp, o, status
-                    // })
+                    console.log({
+                        data: o.result.data
+                    })
+
                     Ext.Msg.alert('Success', o.result.data );
 
                     o.result.data.tanggal = tanggalValue;
@@ -61,7 +62,7 @@ Ext.define('my.js.errorfinder.app.view.OllController', {
                     })
 
                     if (o.result.error) {
-                        var message = o.result.error.message 
+                        var message = o.result.error
                         + '.<br> please screenshot & Call IT Team if you need help';
                         Ext.Msg.alert('failure', message );
                     }
@@ -92,7 +93,7 @@ Ext.define('my.js.errorfinder.app.view.OllController', {
 
         let newData = this.extractData(data)
         // console.log(newData)
-        let parent = this.getView().up(); 
+        let parent = this.getView();//.up(); 
 
         let components = this.getElementInfo(parent);
         

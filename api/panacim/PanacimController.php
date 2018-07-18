@@ -58,6 +58,16 @@ class PanacimController
 	}
 
 	public function upload(){
+
+		if ($this->checkDataType( $this->file )) {
+			// if it's not xls or xlsx then it will return immediately
+			return json_encode( [
+				'success' => false,
+				'data' => $this->file,
+				'errors' => 'You need to Pass ' . implode(' or ', $this->allowedType )
+			]);
+		}
+
 		// simpan file ke server, kalau return false, maka error;
 		if(!$this->saveOnServer()){
 			return json_encode([
@@ -174,6 +184,12 @@ class PanacimController
 		}
 
 		return $rows;
+	}
+
+	private function checkDataType($file){
+		$dataType = substr($file['name'], -3);
+		return !in_array($dataType, $this->allowedType ) ;
+
 	}
 
 }
