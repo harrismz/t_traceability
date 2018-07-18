@@ -58,9 +58,9 @@ Ext.define('my.js.errorfinder.app.view.PanacimController',{
         // return;
 
         if (form.isValid) {
-            let api = window.location.hostname +'/t_traceability/api/panacim/';
+            let api = 'http://'+ window.location.hostname +'/t_traceability/api/panacim/';
             form.submit({
-                url: 'http://'+ api,
+                url: api,
                 waitMsg: 'Processing...',
                 params : params,
                 success: function(fp, o) {
