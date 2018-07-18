@@ -25,12 +25,12 @@
       <!-- <h3>General</h3> -->
       <ul class="nav side-menu">
         <li><a href="index.php"><i class="fas fa-home"></i> Home </a></li>
-        <li><a href="index.php?content=modellotno"><i class="fas fa-search"></i> Model & Lot No </a></li>
-        <li><a href="index.php?content=symptom"><i class="fas fa-stethoscope"></i> Symptom </a></li>
-        <li><a href="index.php?content=singlepart"><i class="fas fa-microchip"></i> Part </a></li>
-        <li><a href="index.php?content=quality"><i class="fas fa-tasks"></i> Quality </a></li>
-        <li><a href="index.php?content=Production"><i class="fas fa-cogs"></i> Production </a></li>
         <li><a href="index.php?content=finishgood"><i class="fas fa-box"></i> Finished Goods </a></li>
+        <li><a href="index.php?content=singlepart"><i class="fas fa-microchip"></i> Part </a></li>
+        <li><a href="index.php?content=symptom"><i class="fas fa-stethoscope"></i> Symptom </a></li>
+        <li><a href="index.php?content=modellotno"><i class="fas fa-search"></i> Model & Lot No </a></li>
+        <!-- <li><a href="index.php?content=quality"><i class="fas fa-tasks"></i> Quality </a></li>
+        <li><a href="index.php?content=Production"><i class="fas fa-cogs"></i> Production </a></li> -->
         <li><a href="index.php?content=errorfinder"><i class="fas fa-exclamation-triangle"></i> Error Finder </a></li>
 
 

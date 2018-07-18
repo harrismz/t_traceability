@@ -224,115 +224,115 @@
 		//	=========================================================================    DATASTORE    ==========================
 
 			//	Traceability model
-					var main_store = Ext.create('Ext.data.Store', {
-						model: 'main_data',
-						//autoLoad: false,
-						pageSize: itemperpage,
-						proxy: {
-							type: 'ajax',
-							url: 'json/json_main.php',
-							reader: {
-								type: 'json',
-								root: 'rows',
-								totalProperty: 'totalCount'
-							}
-						},
-						listeners: {
-							load: function(store, records) {
-								if (records != "") {
-									 var line = store.getAt(0).get('line_name');
-									// var prod_date = store.getAt(0).get('prod_date');
-									 var model = store.getAt(0).get('model_name');
-									 var prodno = store.getAt(0).get('prod_no');
-									// var lot_size = store.getAt(0).get('lot_size');
-									 var serial_no = store.getAt(0).get('start_serial');
-									 var serial_id = store.getAt(0).get('serial_id');
-									// var serialno_id = store.getAt(0).get('serial_no_id');
-									// var mecha_model = store.getAt(0).get('mecha_model');
-									// var mecha_lot = store.getAt(0).get('mecha_lot');
-									 store_sched.proxy.setExtraParam('line', line);
-									 store_sched.proxy.setExtraParam('model', model);
-									 store_sched.proxy.setExtraParam('prod_no', prodno);
-									 store_sched.proxy.setExtraParam('serial_no', serial_no);
-									 store_sched.proxy.setExtraParam('serial_id', serial_id);
-									 store_sched.loadPage(1);
-									// output_store.proxy.setExtraParam('model', model);
-									// output_store.proxy.setExtraParam('prod_no', prodno);
-									// output_store.proxy.setExtraParam('lot_size', lot_size);
-									// output_store.proxy.setExtraParam('st_serial', serial_no);
-									// output_store.loadPage(1);
-									// prd_lost_time.proxy.setExtraParam('prod_date', prod_date);
-									// prd_lost_time.proxy.setExtraParam('line', line);
-									// prd_lost_time.loadPage(1);
-									// mecha_res_store.proxy.setExtraParam('mecha_model', mecha_model);
-									// mecha_res_store.proxy.setExtraParam('mecha_lot', mecha_lot);
-									// mecha_res_store.loadPage(1);
-									// mecha_lost_time.proxy.setExtraParam('prod_date', prod_date);
-									// mecha_output.proxy.setExtraParam('mecha_model', mecha_model);
-									// mecha_output.proxy.setExtraParam('mecha_lot', mecha_lot);
-									// mecha_output.loadPage(1);
-									// store_proc_smt_output.proxy.setExtraParam('model', model);
-									// store_proc_smt_output.proxy.setExtraParam('prod_no', prodno);
-									// store_proc_smt_output.proxy.setExtraParam('lot_size', lot_size);
-									// store_proc_smt_output.proxy.setExtraParam('st_serial', serial_no);
-									// store_proc_smt_output.proxy.setExtraParam('prod_date', prod_date);
-									// store_proc_smt_output.loadPage(1);
-									// store_proc_smt_downtime.proxy.setExtraParam('prod_date', prod_date);
-									// store_proc_smt_downtime.proxy.setExtraParam('model', model);
-									// store_proc_smt_downtime.proxy.setExtraParam('st_serial', serial_no);
-									// store_proc_smt_downtime.loadPage(1);
-									// store_proc_smt_quality.proxy.setExtraParam('prod_date', prod_date);
-									// store_proc_smt_quality.proxy.setExtraParam('model', model);
-									// store_proc_smt_quality.proxy.setExtraParam('st_serial', serial_no);
-									// store_proc_smt_quality.loadPage(1);
-									// store_part_smt_prep.proxy.setExtraParam('prod_date', prod_date);
-									// store_part_smt_prep.proxy.setExtraParam('model', model);
-									// store_part_smt_prep.proxy.setExtraParam('st_serial', serial_no);
-									// store_part_smt_prep.loadPage(1);
-									// part_mchcal.proxy.setExtraParam('prod_date', prod_date);
-									// part_mchcal.proxy.setExtraParam('model', model);
-									// part_mchcal.loadPage(1);
-									// part_mchnism.proxy.setExtraParam('prod_date', prod_date);
-									// part_mchnism.proxy.setExtraParam('model', model);
-									// part_mchnism.loadPage(1);
-									// part_mchtronics.proxy.setExtraParam('prod_date', prod_date);
-									// part_mchtronics.proxy.setExtraParam('model', model);
-									// part_mchtronics.loadPage(1);
-									// store_part_smt_zdbs.proxy.setExtraParam('prod_date', prod_date);
-									// store_part_smt_zdbs.proxy.setExtraParam('model', model);
-									// store_part_smt_zdbs.loadPage(1);
-									// store_part_mc_issue_ma.proxy.setExtraParam('prod_date', prod_date);
-									// store_part_mc_issue_ma.proxy.setExtraParam('model', model);
-									// store_part_mc_issue_ma.proxy.setExtraParam('prod_no', prodno);
-									// store_part_mc_issue_ma.loadPage(1);
-									// store_part_mc_issue_mecha.proxy.setExtraParam('prod_date', prod_date);
-									// store_part_mc_issue_mecha.proxy.setExtraParam('model', model);
-									// store_part_mc_issue_mecha.proxy.setExtraParam('prod_no', prodno);
-									// store_part_mc_issue_mecha.loadPage(1);
-									// store_part_insp.proxy.setExtraParam('prod_date', prod_date);
-									// store_part_insp.proxy.setExtraParam('prod_no', prodno);
-									// store_part_insp.proxy.setExtraParam('model', model);
-									// store_part_insp.loadPage(1);
-									// store_part_receiving.proxy.setExtraParam('prod_date', prod_date);
-									// store_part_receiving.proxy.setExtraParam('prod_no', prodno);
-									// store_part_receiving.proxy.setExtraParam('model', model);
-									// store_part_receiving.loadPage(1);
-									// scanin_store.proxy.setExtraParam('model', model);
-									// scanin_store.proxy.setExtraParam('prod_no', prodno);
-									// scanin_store.proxy.setExtraParam('serialno_id', serialno_id);
-									// scanin_store.loadPage(1);
-									// scanout_store.proxy.setExtraParam('model', model);
-									// scanout_store.proxy.setExtraParam('prod_no', prodno);
-									// scanout_store.proxy.setExtraParam('serialno_id', serialno_id);
-									// scanout_store.loadPage(1);
-									// fgsum_store.proxy.setExtraParam('model', model);
-									// fgsum_store.loadPage(1);
-								} else {
-									Ext.Msg.alert('Warning', 'No Data Found ! <br> Please try again with the correct Model and Serial Number.');
-								}
-							}
-						}
-					});
+					// var main_store = Ext.create('Ext.data.Store', {
+					// 	model: 'main_data',
+					// 	//autoLoad: false,
+					// 	pageSize: itemperpage,
+					// 	proxy: {
+					// 		type: 'ajax',
+					// 		url: 'json/json_main.php',
+					// 		reader: {
+					// 			type: 'json',
+					// 			root: 'rows',
+					// 			totalProperty: 'totalCount'
+					// 		}
+					// 	},
+					// 	listeners: {
+					// 		load: function(store, records) {
+					// 			if (records != "") {
+					// 				 var line = store.getAt(0).get('line_name');
+					// 				// var prod_date = store.getAt(0).get('prod_date');
+					// 				 var model = store.getAt(0).get('model_name');
+					// 				 var prodno = store.getAt(0).get('prod_no');
+					// 				// var lot_size = store.getAt(0).get('lot_size');
+					// 				 var serial_no = store.getAt(0).get('start_serial');
+					// 				 var serial_id = store.getAt(0).get('serial_id');
+					// 				// var serialno_id = store.getAt(0).get('serial_no_id');
+					// 				// var mecha_model = store.getAt(0).get('mecha_model');
+					// 				// var mecha_lot = store.getAt(0).get('mecha_lot');
+					// 				 store_sched.proxy.setExtraParam('line', line);
+					// 				 store_sched.proxy.setExtraParam('model', model);
+					// 				 store_sched.proxy.setExtraParam('prod_no', prodno);
+					// 				 store_sched.proxy.setExtraParam('serial_no', serial_no);
+					// 				 store_sched.proxy.setExtraParam('serial_id', serial_id);
+					// 				 store_sched.loadPage(1);
+					// 				// output_store.proxy.setExtraParam('model', model);
+					// 				// output_store.proxy.setExtraParam('prod_no', prodno);
+					// 				// output_store.proxy.setExtraParam('lot_size', lot_size);
+					// 				// output_store.proxy.setExtraParam('st_serial', serial_no);
+					// 				// output_store.loadPage(1);
+					// 				// prd_lost_time.proxy.setExtraParam('prod_date', prod_date);
+					// 				// prd_lost_time.proxy.setExtraParam('line', line);
+					// 				// prd_lost_time.loadPage(1);
+					// 				// mecha_res_store.proxy.setExtraParam('mecha_model', mecha_model);
+					// 				// mecha_res_store.proxy.setExtraParam('mecha_lot', mecha_lot);
+					// 				// mecha_res_store.loadPage(1);
+					// 				// mecha_lost_time.proxy.setExtraParam('prod_date', prod_date);
+					// 				// mecha_output.proxy.setExtraParam('mecha_model', mecha_model);
+					// 				// mecha_output.proxy.setExtraParam('mecha_lot', mecha_lot);
+					// 				// mecha_output.loadPage(1);
+					// 				// store_proc_smt_output.proxy.setExtraParam('model', model);
+					// 				// store_proc_smt_output.proxy.setExtraParam('prod_no', prodno);
+					// 				// store_proc_smt_output.proxy.setExtraParam('lot_size', lot_size);
+					// 				// store_proc_smt_output.proxy.setExtraParam('st_serial', serial_no);
+					// 				// store_proc_smt_output.proxy.setExtraParam('prod_date', prod_date);
+					// 				// store_proc_smt_output.loadPage(1);
+					// 				// store_proc_smt_downtime.proxy.setExtraParam('prod_date', prod_date);
+					// 				// store_proc_smt_downtime.proxy.setExtraParam('model', model);
+					// 				// store_proc_smt_downtime.proxy.setExtraParam('st_serial', serial_no);
+					// 				// store_proc_smt_downtime.loadPage(1);
+					// 				// store_proc_smt_quality.proxy.setExtraParam('prod_date', prod_date);
+					// 				// store_proc_smt_quality.proxy.setExtraParam('model', model);
+					// 				// store_proc_smt_quality.proxy.setExtraParam('st_serial', serial_no);
+					// 				// store_proc_smt_quality.loadPage(1);
+					// 				// store_part_smt_prep.proxy.setExtraParam('prod_date', prod_date);
+					// 				// store_part_smt_prep.proxy.setExtraParam('model', model);
+					// 				// store_part_smt_prep.proxy.setExtraParam('st_serial', serial_no);
+					// 				// store_part_smt_prep.loadPage(1);
+					// 				// part_mchcal.proxy.setExtraParam('prod_date', prod_date);
+					// 				// part_mchcal.proxy.setExtraParam('model', model);
+					// 				// part_mchcal.loadPage(1);
+					// 				// part_mchnism.proxy.setExtraParam('prod_date', prod_date);
+					// 				// part_mchnism.proxy.setExtraParam('model', model);
+					// 				// part_mchnism.loadPage(1);
+					// 				// part_mchtronics.proxy.setExtraParam('prod_date', prod_date);
+					// 				// part_mchtronics.proxy.setExtraParam('model', model);
+					// 				// part_mchtronics.loadPage(1);
+					// 				// store_part_smt_zdbs.proxy.setExtraParam('prod_date', prod_date);
+					// 				// store_part_smt_zdbs.proxy.setExtraParam('model', model);
+					// 				// store_part_smt_zdbs.loadPage(1);
+					// 				// store_part_mc_issue_ma.proxy.setExtraParam('prod_date', prod_date);
+					// 				// store_part_mc_issue_ma.proxy.setExtraParam('model', model);
+					// 				// store_part_mc_issue_ma.proxy.setExtraParam('prod_no', prodno);
+					// 				// store_part_mc_issue_ma.loadPage(1);
+					// 				// store_part_mc_issue_mecha.proxy.setExtraParam('prod_date', prod_date);
+					// 				// store_part_mc_issue_mecha.proxy.setExtraParam('model', model);
+					// 				// store_part_mc_issue_mecha.proxy.setExtraParam('prod_no', prodno);
+					// 				// store_part_mc_issue_mecha.loadPage(1);
+					// 				// store_part_insp.proxy.setExtraParam('prod_date', prod_date);
+					// 				// store_part_insp.proxy.setExtraParam('prod_no', prodno);
+					// 				// store_part_insp.proxy.setExtraParam('model', model);
+					// 				// store_part_insp.loadPage(1);
+					// 				// store_part_receiving.proxy.setExtraParam('prod_date', prod_date);
+					// 				// store_part_receiving.proxy.setExtraParam('prod_no', prodno);
+					// 				// store_part_receiving.proxy.setExtraParam('model', model);
+					// 				// store_part_receiving.loadPage(1);
+					// 				// scanin_store.proxy.setExtraParam('model', model);
+					// 				// scanin_store.proxy.setExtraParam('prod_no', prodno);
+					// 				// scanin_store.proxy.setExtraParam('serialno_id', serialno_id);
+					// 				// scanin_store.loadPage(1);
+					// 				// scanout_store.proxy.setExtraParam('model', model);
+					// 				// scanout_store.proxy.setExtraParam('prod_no', prodno);
+					// 				// scanout_store.proxy.setExtraParam('serialno_id', serialno_id);
+					// 				// scanout_store.loadPage(1);
+					// 				// fgsum_store.proxy.setExtraParam('model', model);
+					// 				// fgsum_store.loadPage(1);
+					// 			} else {
+					// 				Ext.Msg.alert('Warning', 'No Data Found ! <br> Please try again with the correct Model and Serial Number.');
+					// 			}
+					// 		}
+					// 	}
+					// });
 
 			//	Plan Model
 					var store_sched = Ext.create('Ext.data.Store', {
@@ -993,75 +993,75 @@
 
 		//	==============================================================================    GRID    ==========================
 			//	Traceability Grid
-					var main_grid = Ext.create('Ext.grid.Panel', {
-						id: 'main_grid',
-						columnLines: true,
-						width: '100%',
-						height: '100%',
-						store: main_store,
-						viewConfig: {
-							stripeRows: true,
-							emptyText: '<div class="empty-txt-main">No data to display.</div>',
-							deferEmptyText: false,
-							enableTextSelection: true
-						},
-						columns: [{
-							header: 'Line Name',
-							dataIndex: 'line_name',
-							width: 85,
-							renderer: upsize
-						}, {
-							header: 'Prod Date',
-							dataIndex: 'prod_date',
-							flex: 1,
-							renderer: upsize
-						}, {
-							header: 'Model Name',
-							dataIndex: 'model_name',
-							flex: 1,
-							renderer: upsize
-						}, {
-							header: 'Prod No',
-							dataIndex: 'prod_no',
-							width: 100,
-							renderer: upsize
-						}, {
-							header: 'Lot Size',
-							dataIndex: 'lot_size',
-							width: 100,
-							renderer: upsize
-						}, {
-							header: 'Start Serial',
-							dataIndex: 'start_serial',
-							width: 100,
-							renderer: upsize
-						}, {
-							header: 'Serial No ID',
-							dataIndex: 'serial_no_id',
-							flex: 1,
-							renderer: upsize
-						}, {
-							header: 'Host IP',
-							dataIndex: 'host_ip',
-							flex: 1,
-							hidden: true
-						}, {
-							header: 'Serial ID',
-							dataIndex: 'serial_id',
-							flex: 1,
-							hidden: true
-						}, {
-							header: 'Mecha Model',
-							dataIndex: 'mecha_model',
-							flex: 1,
-							renderer: upsize
-						}, {
-							header: 'Mecha Lot',
-							dataIndex: 'mecha_lot',
-							flex: 1,
-							renderer: upsize
-						}]
-					});
+					// var main_grid = Ext.create('Ext.grid.Panel', {
+					// 	id: 'main_grid',
+					// 	columnLines: true,
+					// 	width: '100%',
+					// 	height: '100%',
+					// 	store: main_store,
+					// 	viewConfig: {
+					// 		stripeRows: true,
+					// 		emptyText: '<div class="empty-txt-main">No data to display.</div>',
+					// 		deferEmptyText: false,
+					// 		enableTextSelection: true
+					// 	},
+					// 	columns: [{
+					// 		header: 'Line Name',
+					// 		dataIndex: 'line_name',
+					// 		width: 85,
+					// 		renderer: upsize
+					// 	}, {
+					// 		header: 'Prod Date',
+					// 		dataIndex: 'prod_date',
+					// 		flex: 1,
+					// 		renderer: upsize
+					// 	}, {
+					// 		header: 'Model Name',
+					// 		dataIndex: 'model_name',
+					// 		flex: 1,
+					// 		renderer: upsize
+					// 	}, {
+					// 		header: 'Prod No',
+					// 		dataIndex: 'prod_no',
+					// 		width: 100,
+					// 		renderer: upsize
+					// 	}, {
+					// 		header: 'Lot Size',
+					// 		dataIndex: 'lot_size',
+					// 		width: 100,
+					// 		renderer: upsize
+					// 	}, {
+					// 		header: 'Start Serial',
+					// 		dataIndex: 'start_serial',
+					// 		width: 100,
+					// 		renderer: upsize
+					// 	}, {
+					// 		header: 'Serial No ID',
+					// 		dataIndex: 'serial_no_id',
+					// 		flex: 1,
+					// 		renderer: upsize
+					// 	}, {
+					// 		header: 'Host IP',
+					// 		dataIndex: 'host_ip',
+					// 		flex: 1,
+					// 		hidden: true
+					// 	}, {
+					// 		header: 'Serial ID',
+					// 		dataIndex: 'serial_id',
+					// 		flex: 1,
+					// 		hidden: true
+					// 	}, {
+					// 		header: 'Mecha Model',
+					// 		dataIndex: 'mecha_model',
+					// 		flex: 1,
+					// 		renderer: upsize
+					// 	}, {
+					// 		header: 'Mecha Lot',
+					// 		dataIndex: 'mecha_lot',
+					// 		flex: 1,
+					// 		renderer: upsize
+					// 	}]
+					// });
 			//	Plan Grid
 					var schedule = Ext.create('Ext.grid.Panel', {
 						id:'schedule',
@@ -1174,21 +1174,21 @@
 				//var rcvpart = Ext.create()
 		//	=============================================================================    PANEL    ==========================
 			//	Traceability Panel
-					var induk_finishgood = Ext.create('Ext.panel.Panel', {
-						id :'finishgood_main',
-						renderTo : 'maindata',
-						border: false,
-						width: '100%',
-						height: 80,
-						frame: true,
-						//layout: 'border',
-						hidden: false,
-						defaults: {
-							split: true,
-							collapsible: false
-						},
-						items: [main_grid]
-					});
+					// var induk_finishgood = Ext.create('Ext.panel.Panel', {
+					// 	id :'finishgood_main',
+					// 	renderTo : 'maindata',
+					// 	border: false,
+					// 	width: '100%',
+					// 	height: 80,
+					// 	frame: true,
+					// 	//layout: 'border',
+					// 	hidden: false,
+					// 	defaults: {
+					// 		split: true,
+					// 		collapsible: false
+					// 	},
+					// 	items: [main_grid]
+					// });
 			//	Plan & Actual Panel
 					var finishgood_plan = Ext.create('Ext.panel.Panel', {
 						id :'finishgood_plan',
@@ -1302,7 +1302,7 @@
 						width: '100%',
 						height: 295,
 						columnLines: true,
-						store: store_part_receiving,
+						//store: store_part_receiving,
 						viewConfig: {
 							stripeRows: true,
 							emptyText: '<div class="empty-txt">No data to display.</div>',
@@ -1347,7 +1347,7 @@
 						width: '100%',
 						height: 295,
 						columnLines: true,
-						store: store_part_insp,
+						//store: store_part_insp,
 						viewConfig: {
 							stripeRows: true,
 							emptyText: '<div class="empty-txt">No data to display.</div>',
@@ -3105,17 +3105,17 @@
 		//	=================================================================    POPUP SEARCH DATA    ==========================
 			//	Form Search FinishGood
 					Ext.create('Ext.form.field.Text',{
-							renderTo: finishgood_model,
+							renderTo: singlepart_partno,
 							width: '100%',
-							id: 'finishgood_model',
-							name: 'finishgood_model',
+							id: 'singlepart_partno',
+							name: 'singlepart_partno',
 							fieldCls	: 'biggertext',
-							emptyText	: 'Search Model',
+							emptyText	: 'Part Number',
 							margins		: '0 6 0 0',
 							height 		: 30,
 							flex		: 1,
 							//value: 'DPX5000BTITA9N',
-							value: 'A9K4-V6-650JN',
+							//value: 'A9K4-V6-650JN',
 							listeners	: {
 								afterrender : function() {
 									this.inputEl.setStyle('text-align', 'center');
@@ -3123,91 +3123,91 @@
 									this.inputEl.setStyle('color', '#fff');
 									this.inputEl.setStyle('fontSize', '20px');
 								},
-								specialkey : function(field, e) {
-									if (e.getKey() == 13) {
-										var model = Ext.getCmp('finishgood_model').getValue();
-										var s_no = Ext.getCmp('finishgood_serial').getValue();
-										if (((!model) || (!s_no)) || ((!model) && (!s_no))) {
-											Ext.Msg.alert('Warning', model + s_no +' - Model or Serial Number cannot be null !!!');
-										} else {
-											//Ext.Msg.alert('Model',model);
-											//var x = Ext.getCmp('rb').getValue()['src_cat'];
-											output_store.proxy.setExtraParam('src_cat', 'fg');
-											store_sched.proxy.setExtraParam('src_cat', 'fg');
-											store_proc_smt_output.proxy.setExtraParam('src_cat', 'fg');
-											store_proc_smt_downtime.proxy.setExtraParam('src_cat', 'fg');
-											store_proc_smt_quality.proxy.setExtraParam('model', model);
-											store_proc_smt_quality.proxy.setExtraParam('serial_no', s_no);
-											store_proc_smt_quality.proxy.setExtraParam('src_cat', 'fg');
-											store_proc_smt_quality.loadPage(1);
-											part_mchcal.proxy.setExtraParam('model', model);
-											part_mchcal.proxy.setExtraParam('src_cat', 'fg');
-											part_mchcal.loadPage(1);
-											part_mchnism.proxy.setExtraParam('model', model);
-											part_mchnism.proxy.setExtraParam('src_cat', 'fg');
-											part_mchnism.loadPage(1);
-											part_mchtronics.proxy.setExtraParam('model', model);
-											part_mchtronics.proxy.setExtraParam('src_cat', 'fg');
-											part_mchtronics.loadPage(1);
-											/*======== problem info =============*/
-											part_problem_mc.proxy.setExtraParam('model', model);
-											part_problem_mc.proxy.setExtraParam('src_cat', 'fg');
-											part_problem_mc.loadPage(1);
-											qty_problem_mc.proxy.setExtraParam('model', model);
-											qty_problem_mc.proxy.setExtraParam('src_cat', 'fg');
-											qty_problem_mc.loadPage(1);
-											part_problem_iqc.proxy.setExtraParam('model', model);
-											part_problem_iqc.proxy.setExtraParam('src_cat', 'fg');
-											part_problem_iqc.loadPage(1);
-											qty_problem_iqc.proxy.setExtraParam('model', model);
-											qty_problem_iqc.proxy.setExtraParam('src_cat', 'fg');
-											qty_problem_iqc.loadPage(1);
-											part_problem_ma.proxy.setExtraParam('model', model);
-											part_problem_ma.proxy.setExtraParam('src_cat', 'fg');
-											part_problem_ma.loadPage(1);
-											qty_problem_ma.proxy.setExtraParam('model', model);
-											qty_problem_ma.proxy.setExtraParam('src_cat', 'fg');
-											qty_problem_ma.loadPage(1);
-											part_problem_mecha.proxy.setExtraParam('model', model);
-											part_problem_mecha.proxy.setExtraParam('src_cat', 'fg');
-											part_problem_mecha.loadPage(1);
-											qty_problem_mecha.proxy.setExtraParam('model', model);
-											qty_problem_mecha.proxy.setExtraParam('src_cat', 'fg');
-											qty_problem_mecha.loadPage(1);
-											/*========* problem info *=============*/
-											store_part_smt_prep.proxy.setExtraParam('src_cat', 'fg');
-											scanin_store.proxy.setExtraParam('src_cat', 'fg');
-											scanout_store.proxy.setExtraParam('src_cat', 'fg');
-											main_store.proxy.setExtraParam('model', model);
-											main_store.proxy.setExtraParam('serial_no', s_no);
-											main_store.loadPage(1);
-											prd_res_store.proxy.setExtraParam('model', model);
-											prd_res_store.proxy.setExtraParam('serial_no', s_no);
-											prd_res_store.proxy.setExtraParam('src_cat', 'fg');
-											prd_res_store.loadPage(1);
-											prd_lost_time.proxy.setExtraParam('line', Ext.getCmp('line_name').getValue());
-											prd_lost_time.proxy.setExtraParam('model', model);
-											scanin_store.proxy.setExtraParam('serial_no', s_no);
-											scanin_store.loadPage(1);
-											scanout_store.proxy.setExtraParam('serial_no', s_no);
-											scanout_store.loadPage(1);
-										}
-									}
-								}
+								// specialkey : function(field, e) {
+								// 	if (e.getKey() == 13) {
+								// 		var model = Ext.getCmp('finishgood_model').getValue();
+								// 		var s_no = Ext.getCmp('finishgood_serial').getValue();
+								// 		if (((!model) || (!s_no)) || ((!model) && (!s_no))) {
+								// 			Ext.Msg.alert('Warning', model + s_no +' - Model or Serial Number cannot be null !!!');
+								// 		} else {
+								// 			//Ext.Msg.alert('Model',model);
+								// 			//var x = Ext.getCmp('rb').getValue()['src_cat'];
+								// 			output_store.proxy.setExtraParam('src_cat', 'fg');
+								// 			store_sched.proxy.setExtraParam('src_cat', 'fg');
+								// 			store_proc_smt_output.proxy.setExtraParam('src_cat', 'fg');
+								// 			store_proc_smt_downtime.proxy.setExtraParam('src_cat', 'fg');
+								// 			store_proc_smt_quality.proxy.setExtraParam('model', model);
+								// 			store_proc_smt_quality.proxy.setExtraParam('serial_no', s_no);
+								// 			store_proc_smt_quality.proxy.setExtraParam('src_cat', 'fg');
+								// 			store_proc_smt_quality.loadPage(1);
+								// 			part_mchcal.proxy.setExtraParam('model', model);
+								// 			part_mchcal.proxy.setExtraParam('src_cat', 'fg');
+								// 			part_mchcal.loadPage(1);
+								// 			part_mchnism.proxy.setExtraParam('model', model);
+								// 			part_mchnism.proxy.setExtraParam('src_cat', 'fg');
+								// 			part_mchnism.loadPage(1);
+								// 			part_mchtronics.proxy.setExtraParam('model', model);
+								// 			part_mchtronics.proxy.setExtraParam('src_cat', 'fg');
+								// 			part_mchtronics.loadPage(1);
+								// 			/*======== problem info =============*/
+								// 			part_problem_mc.proxy.setExtraParam('model', model);
+								// 			part_problem_mc.proxy.setExtraParam('src_cat', 'fg');
+								// 			part_problem_mc.loadPage(1);
+								// 			qty_problem_mc.proxy.setExtraParam('model', model);
+								// 			qty_problem_mc.proxy.setExtraParam('src_cat', 'fg');
+								// 			qty_problem_mc.loadPage(1);
+								// 			part_problem_iqc.proxy.setExtraParam('model', model);
+								// 			part_problem_iqc.proxy.setExtraParam('src_cat', 'fg');
+								// 			part_problem_iqc.loadPage(1);
+								// 			qty_problem_iqc.proxy.setExtraParam('model', model);
+								// 			qty_problem_iqc.proxy.setExtraParam('src_cat', 'fg');
+								// 			qty_problem_iqc.loadPage(1);
+								// 			part_problem_ma.proxy.setExtraParam('model', model);
+								// 			part_problem_ma.proxy.setExtraParam('src_cat', 'fg');
+								// 			part_problem_ma.loadPage(1);
+								// 			qty_problem_ma.proxy.setExtraParam('model', model);
+								// 			qty_problem_ma.proxy.setExtraParam('src_cat', 'fg');
+								// 			qty_problem_ma.loadPage(1);
+								// 			part_problem_mecha.proxy.setExtraParam('model', model);
+								// 			part_problem_mecha.proxy.setExtraParam('src_cat', 'fg');
+								// 			part_problem_mecha.loadPage(1);
+								// 			qty_problem_mecha.proxy.setExtraParam('model', model);
+								// 			qty_problem_mecha.proxy.setExtraParam('src_cat', 'fg');
+								// 			qty_problem_mecha.loadPage(1);
+								// 			/*========* problem info *=============*/
+								// 			store_part_smt_prep.proxy.setExtraParam('src_cat', 'fg');
+								// 			scanin_store.proxy.setExtraParam('src_cat', 'fg');
+								// 			scanout_store.proxy.setExtraParam('src_cat', 'fg');
+								// 			main_store.proxy.setExtraParam('model', model);
+								// 			main_store.proxy.setExtraParam('serial_no', s_no);
+								// 			main_store.loadPage(1);
+								// 			prd_res_store.proxy.setExtraParam('model', model);
+								// 			prd_res_store.proxy.setExtraParam('serial_no', s_no);
+								// 			prd_res_store.proxy.setExtraParam('src_cat', 'fg');
+								// 			prd_res_store.loadPage(1);
+								// 			prd_lost_time.proxy.setExtraParam('line', Ext.getCmp('line_name').getValue());
+								// 			prd_lost_time.proxy.setExtraParam('model', model);
+								// 			scanin_store.proxy.setExtraParam('serial_no', s_no);
+								// 			scanin_store.loadPage(1);
+								// 			scanout_store.proxy.setExtraParam('serial_no', s_no);
+								// 			scanout_store.loadPage(1);
+								// 		}
+								// 	}
+								// }
 							}
 						});
 					Ext.create('Ext.form.field.Text',{
-						renderTo: finishgood_serial,
+						renderTo: singlepart_po,
 						width: '100%',
-						id: 'finishgood_serial',
-						name: 'finishgood_serial',
+						id: 'singlepart_po',
+						name: 'singlepart_po',
 						fieldCls	: 'biggertext',
-						emptyText	: 'Search Serial',
+						emptyText	: 'PO Number',
 						margins		: '0 6 0 0',
 						height 		: 30,
 						flex		: 1,
 						//value : '151X0001',
-						value : '103X0251',
+						//value : '103X0251',
 						listeners	: {
 							afterrender : function() {
 								this.inputEl.setStyle('text-align', 'center');
@@ -3215,78 +3215,170 @@
 								this.inputEl.setStyle('color', '#fff');
 								this.inputEl.setStyle('fontSize', '20px');
 							},
-							specialkey : function(field, e) {
-								if (e.getKey() == 13) {
-									var model = Ext.getCmp('finishgood_model').getValue();
-									var s_no = Ext.getCmp('finishgood_serial').getValue();
-									if (((!model) || (!s_no)) || ((!model) && (!s_no))) {
-										Ext.Msg.alert('Warning', model + s_no + '- Model or Serial Number cannot be null !!!');
-										//alert(model + s_no);
-									} else {
-						 						//Ext.Msg.alert('Model',model);
-										//var x = Ext.getCmp('rb').getValue()['src_cat'];
-										output_store.proxy.setExtraParam('src_cat', 'fg');
-										store_sched.proxy.setExtraParam('src_cat', 'fg');
-										store_proc_smt_output.proxy.setExtraParam('src_cat', 'fg');
-										store_proc_smt_downtime.proxy.setExtraParam('src_cat', 'fg');
-										store_proc_smt_quality.proxy.setExtraParam('model', model); // _Z_ by zaki20161017
-										store_proc_smt_quality.proxy.setExtraParam('serial_no', s_no); // _Z_ by zaki20161017
-										store_proc_smt_quality.proxy.setExtraParam('src_cat', 'fg'); // _Z_ by zaki20161017
-										store_proc_smt_quality.loadPage(1);
-										part_mchcal.proxy.setExtraParam('model', model); // _Z_ by zaki 20161031
-										part_mchcal.proxy.setExtraParam('src_cat', 'fg'); // _Z_ by zaki 20161031
-										part_mchcal.loadPage(1); // _Z_ by zaki 20161031
-										part_mchnism.proxy.setExtraParam('model', model); // _Z_ by zaki 20161031
-										part_mchnism.proxy.setExtraParam('src_cat', 'fg'); // _Z_ by zaki 20161031
-										part_mchnism.loadPage(1); // _Z_ by zaki 20161031
-										part_mchtronics.proxy.setExtraParam('model', model); // _Z_ by zaki 20161031
-										part_mchtronics.proxy.setExtraParam('src_cat', 'fg'); // _Z_ by zaki 20161031
-										part_mchtronics.loadPage(1); // _Z_ by zaki 20161031
-										/*======== problem info =============*/
-										part_problem_mc.proxy.setExtraParam('model', model); // _Z_ by zaki 20161031
-										part_problem_mc.proxy.setExtraParam('src_cat', 'fg'); // _Z_ by zaki 20161031
-										part_problem_mc.loadPage(1); // _Z_ by zaki 20161031
-										qty_problem_mc.proxy.setExtraParam('model', model); // _Z_ by zaki 20161031
-										qty_problem_mc.proxy.setExtraParam('src_cat', 'fg'); // _Z_ by zaki 20161031
-										qty_problem_mc.loadPage(1); // _Z_ by zaki 20161031
-										part_problem_iqc.proxy.setExtraParam('model', model); // _Z_ by zaki 20161031
-										part_problem_iqc.proxy.setExtraParam('src_cat', 'fg'); // _Z_ by zaki 20161031
-										part_problem_iqc.loadPage(1); // _Z_ by zaki 20161031
-										qty_problem_iqc.proxy.setExtraParam('model', model); // _Z_ by zaki 20161031
-										qty_problem_iqc.proxy.setExtraParam('src_cat', 'fg'); // _Z_ by zaki 20161031
-										qty_problem_iqc.loadPage(1); // _Z_ by zaki 20161031
-										part_problem_ma.proxy.setExtraParam('model', model); // _Z_ by zaki 20161031
-										part_problem_ma.proxy.setExtraParam('src_cat', 'fg'); // _Z_ by zaki 20161031
-										part_problem_ma.loadPage(1); // _Z_ by zaki 20161031
-										qty_problem_ma.proxy.setExtraParam('model', model); // _Z_ by zaki 20161031
-										qty_problem_ma.proxy.setExtraParam('src_cat', 'fg'); // _Z_ by zaki 20161031
-										qty_problem_ma.loadPage(1); // _Z_ by zaki 20161031
-										part_problem_mecha.proxy.setExtraParam('model', model); // _Z_ by zaki 20161031
-										part_problem_mecha.proxy.setExtraParam('src_cat', 'fg'); // _Z_ by zaki 20161031
-										part_problem_mecha.loadPage(1); // _Z_ by zaki 20161031
-										qty_problem_mecha.proxy.setExtraParam('model', model); // _Z_ by zaki 20161031
-										qty_problem_mecha.proxy.setExtraParam('src_cat', 'fg'); // _Z_ by zaki 20161031
-										qty_problem_mecha.loadPage(1);
-										/*========* problem info *=============*/
-										store_part_smt_prep.proxy.setExtraParam('src_cat', 'fg');
-										scanin_store.proxy.setExtraParam('src_cat', 'fg');
-										scanout_store.proxy.setExtraParam('src_cat', 'fg');
-										main_store.proxy.setExtraParam('model', model);
-										main_store.proxy.setExtraParam('serial_no', s_no);
-										main_store.loadPage(1);
-										prd_res_store.proxy.setExtraParam('model', model);
-										prd_res_store.proxy.setExtraParam('serial_no', s_no);
-										prd_res_store.proxy.setExtraParam('src_cat', 'fg');
-										prd_res_store.loadPage(1);
-										scanin_store.proxy.setExtraParam('serial_no', s_no);
-										scanin_store.loadPage(1);
-										scanout_store.proxy.setExtraParam('serial_no', s_no);
-										scanout_store.loadPage(1);
-									}
-								}
-							}
+							// specialkey : function(field, e) {
+							// 	if (e.getKey() == 13) {
+							// 		var model = Ext.getCmp('finishgood_model').getValue();
+							// 		var s_no = Ext.getCmp('finishgood_serial').getValue();
+							// 		if (((!model) || (!s_no)) || ((!model) && (!s_no))) {
+							// 			Ext.Msg.alert('Warning', model + s_no + '- Model or Serial Number cannot be null !!!');
+							// 			//alert(model + s_no);
+							// 		} else {
+						 	// 					//Ext.Msg.alert('Model',model);
+							// 			//var x = Ext.getCmp('rb').getValue()['src_cat'];
+							// 			output_store.proxy.setExtraParam('src_cat', 'fg');
+							// 			store_sched.proxy.setExtraParam('src_cat', 'fg');
+							// 			store_proc_smt_output.proxy.setExtraParam('src_cat', 'fg');
+							// 			store_proc_smt_downtime.proxy.setExtraParam('src_cat', 'fg');
+							// 			store_proc_smt_quality.proxy.setExtraParam('model', model); // _Z_ by zaki20161017
+							// 			store_proc_smt_quality.proxy.setExtraParam('serial_no', s_no); // _Z_ by zaki20161017
+							// 			store_proc_smt_quality.proxy.setExtraParam('src_cat', 'fg'); // _Z_ by zaki20161017
+							// 			store_proc_smt_quality.loadPage(1);
+							// 			part_mchcal.proxy.setExtraParam('model', model); // _Z_ by zaki 20161031
+							// 			part_mchcal.proxy.setExtraParam('src_cat', 'fg'); // _Z_ by zaki 20161031
+							// 			part_mchcal.loadPage(1); // _Z_ by zaki 20161031
+							// 			part_mchnism.proxy.setExtraParam('model', model); // _Z_ by zaki 20161031
+							// 			part_mchnism.proxy.setExtraParam('src_cat', 'fg'); // _Z_ by zaki 20161031
+							// 			part_mchnism.loadPage(1); // _Z_ by zaki 20161031
+							// 			part_mchtronics.proxy.setExtraParam('model', model); // _Z_ by zaki 20161031
+							// 			part_mchtronics.proxy.setExtraParam('src_cat', 'fg'); // _Z_ by zaki 20161031
+							// 			part_mchtronics.loadPage(1); // _Z_ by zaki 20161031
+							// 			/*======== problem info =============*/
+							// 			part_problem_mc.proxy.setExtraParam('model', model); // _Z_ by zaki 20161031
+							// 			part_problem_mc.proxy.setExtraParam('src_cat', 'fg'); // _Z_ by zaki 20161031
+							// 			part_problem_mc.loadPage(1); // _Z_ by zaki 20161031
+							// 			qty_problem_mc.proxy.setExtraParam('model', model); // _Z_ by zaki 20161031
+							// 			qty_problem_mc.proxy.setExtraParam('src_cat', 'fg'); // _Z_ by zaki 20161031
+							// 			qty_problem_mc.loadPage(1); // _Z_ by zaki 20161031
+							// 			part_problem_iqc.proxy.setExtraParam('model', model); // _Z_ by zaki 20161031
+							// 			part_problem_iqc.proxy.setExtraParam('src_cat', 'fg'); // _Z_ by zaki 20161031
+							// 			part_problem_iqc.loadPage(1); // _Z_ by zaki 20161031
+							// 			qty_problem_iqc.proxy.setExtraParam('model', model); // _Z_ by zaki 20161031
+							// 			qty_problem_iqc.proxy.setExtraParam('src_cat', 'fg'); // _Z_ by zaki 20161031
+							// 			qty_problem_iqc.loadPage(1); // _Z_ by zaki 20161031
+							// 			part_problem_ma.proxy.setExtraParam('model', model); // _Z_ by zaki 20161031
+							// 			part_problem_ma.proxy.setExtraParam('src_cat', 'fg'); // _Z_ by zaki 20161031
+							// 			part_problem_ma.loadPage(1); // _Z_ by zaki 20161031
+							// 			qty_problem_ma.proxy.setExtraParam('model', model); // _Z_ by zaki 20161031
+							// 			qty_problem_ma.proxy.setExtraParam('src_cat', 'fg'); // _Z_ by zaki 20161031
+							// 			qty_problem_ma.loadPage(1); // _Z_ by zaki 20161031
+							// 			part_problem_mecha.proxy.setExtraParam('model', model); // _Z_ by zaki 20161031
+							// 			part_problem_mecha.proxy.setExtraParam('src_cat', 'fg'); // _Z_ by zaki 20161031
+							// 			part_problem_mecha.loadPage(1); // _Z_ by zaki 20161031
+							// 			qty_problem_mecha.proxy.setExtraParam('model', model); // _Z_ by zaki 20161031
+							// 			qty_problem_mecha.proxy.setExtraParam('src_cat', 'fg'); // _Z_ by zaki 20161031
+							// 			qty_problem_mecha.loadPage(1);
+							// 			/*========* problem info *=============*/
+							// 			store_part_smt_prep.proxy.setExtraParam('src_cat', 'fg');
+							// 			scanin_store.proxy.setExtraParam('src_cat', 'fg');
+							// 			scanout_store.proxy.setExtraParam('src_cat', 'fg');
+							// 			main_store.proxy.setExtraParam('model', model);
+							// 			main_store.proxy.setExtraParam('serial_no', s_no);
+							// 			main_store.loadPage(1);
+							// 			prd_res_store.proxy.setExtraParam('model', model);
+							// 			prd_res_store.proxy.setExtraParam('serial_no', s_no);
+							// 			prd_res_store.proxy.setExtraParam('src_cat', 'fg');
+							// 			prd_res_store.loadPage(1);
+							// 			scanin_store.proxy.setExtraParam('serial_no', s_no);
+							// 			scanin_store.loadPage(1);
+							// 			scanout_store.proxy.setExtraParam('serial_no', s_no);
+							// 			scanout_store.loadPage(1);
+							// 		}
+							// 	}
+							// }
 						}
 					});
+					// Ext.create('Ext.form.field.DateField',{
+					// 		renderTo: singlepart_sdate,
+					// 		width: '100%',
+					// 		id: 'singlepart_sdate',
+					// 		name: 'singlepart_sdate',
+					// 		fieldCls	: 'biggertext',
+					// 		emptyText	: 'Part Number',
+					// 		margins		: '0 6 0 0',
+					// 		height 		: 30,
+					// 		flex		: 1,
+					// 		//value: 'DPX5000BTITA9N',
+					// 		//value: 'A9K4-V6-650JN',
+					// 		listeners	: {
+					// 			afterrender : function() {
+					// 				this.inputEl.setStyle('text-align', 'center');
+					// 				this.inputEl.setStyle('backgroundColor', '#0067AE');
+					// 				this.inputEl.setStyle('color', '#fff');
+					// 				this.inputEl.setStyle('fontSize', '20px');
+					// 			},
+					// 			// specialkey : function(field, e) {
+					// 			// 	if (e.getKey() == 13) {
+					// 			// 		var model = Ext.getCmp('finishgood_model').getValue();
+					// 			// 		var s_no = Ext.getCmp('finishgood_serial').getValue();
+					// 			// 		if (((!model) || (!s_no)) || ((!model) && (!s_no))) {
+					// 			// 			Ext.Msg.alert('Warning', model + s_no +' - Model or Serial Number cannot be null !!!');
+					// 			// 		} else {
+					// 			// 			//Ext.Msg.alert('Model',model);
+					// 			// 			//var x = Ext.getCmp('rb').getValue()['src_cat'];
+					// 			// 			output_store.proxy.setExtraParam('src_cat', 'fg');
+					// 			// 			store_sched.proxy.setExtraParam('src_cat', 'fg');
+					// 			// 			store_proc_smt_output.proxy.setExtraParam('src_cat', 'fg');
+					// 			// 			store_proc_smt_downtime.proxy.setExtraParam('src_cat', 'fg');
+					// 			// 			store_proc_smt_quality.proxy.setExtraParam('model', model);
+					// 			// 			store_proc_smt_quality.proxy.setExtraParam('serial_no', s_no);
+					// 			// 			store_proc_smt_quality.proxy.setExtraParam('src_cat', 'fg');
+					// 			// 			store_proc_smt_quality.loadPage(1);
+					// 			// 			part_mchcal.proxy.setExtraParam('model', model);
+					// 			// 			part_mchcal.proxy.setExtraParam('src_cat', 'fg');
+					// 			// 			part_mchcal.loadPage(1);
+					// 			// 			part_mchnism.proxy.setExtraParam('model', model);
+					// 			// 			part_mchnism.proxy.setExtraParam('src_cat', 'fg');
+					// 			// 			part_mchnism.loadPage(1);
+					// 			// 			part_mchtronics.proxy.setExtraParam('model', model);
+					// 			// 			part_mchtronics.proxy.setExtraParam('src_cat', 'fg');
+					// 			// 			part_mchtronics.loadPage(1);
+					// 			// 			/*======== problem info =============*/
+					// 			// 			part_problem_mc.proxy.setExtraParam('model', model);
+					// 			// 			part_problem_mc.proxy.setExtraParam('src_cat', 'fg');
+					// 			// 			part_problem_mc.loadPage(1);
+					// 			// 			qty_problem_mc.proxy.setExtraParam('model', model);
+					// 			// 			qty_problem_mc.proxy.setExtraParam('src_cat', 'fg');
+					// 			// 			qty_problem_mc.loadPage(1);
+					// 			// 			part_problem_iqc.proxy.setExtraParam('model', model);
+					// 			// 			part_problem_iqc.proxy.setExtraParam('src_cat', 'fg');
+					// 			// 			part_problem_iqc.loadPage(1);
+					// 			// 			qty_problem_iqc.proxy.setExtraParam('model', model);
+					// 			// 			qty_problem_iqc.proxy.setExtraParam('src_cat', 'fg');
+					// 			// 			qty_problem_iqc.loadPage(1);
+					// 			// 			part_problem_ma.proxy.setExtraParam('model', model);
+					// 			// 			part_problem_ma.proxy.setExtraParam('src_cat', 'fg');
+					// 			// 			part_problem_ma.loadPage(1);
+					// 			// 			qty_problem_ma.proxy.setExtraParam('model', model);
+					// 			// 			qty_problem_ma.proxy.setExtraParam('src_cat', 'fg');
+					// 			// 			qty_problem_ma.loadPage(1);
+					// 			// 			part_problem_mecha.proxy.setExtraParam('model', model);
+					// 			// 			part_problem_mecha.proxy.setExtraParam('src_cat', 'fg');
+					// 			// 			part_problem_mecha.loadPage(1);
+					// 			// 			qty_problem_mecha.proxy.setExtraParam('model', model);
+					// 			// 			qty_problem_mecha.proxy.setExtraParam('src_cat', 'fg');
+					// 			// 			qty_problem_mecha.loadPage(1);
+					// 			// 			/*========* problem info *=============*/
+					// 			// 			store_part_smt_prep.proxy.setExtraParam('src_cat', 'fg');
+					// 			// 			scanin_store.proxy.setExtraParam('src_cat', 'fg');
+					// 			// 			scanout_store.proxy.setExtraParam('src_cat', 'fg');
+					// 			// 			main_store.proxy.setExtraParam('model', model);
+					// 			// 			main_store.proxy.setExtraParam('serial_no', s_no);
+					// 			// 			main_store.loadPage(1);
+					// 			// 			prd_res_store.proxy.setExtraParam('model', model);
+					// 			// 			prd_res_store.proxy.setExtraParam('serial_no', s_no);
+					// 			// 			prd_res_store.proxy.setExtraParam('src_cat', 'fg');
+					// 			// 			prd_res_store.loadPage(1);
+					// 			// 			prd_lost_time.proxy.setExtraParam('line', Ext.getCmp('line_name').getValue());
+					// 			// 			prd_lost_time.proxy.setExtraParam('model', model);
+					// 			// 			scanin_store.proxy.setExtraParam('serial_no', s_no);
+					// 			// 			scanin_store.loadPage(1);
+					// 			// 			scanout_store.proxy.setExtraParam('serial_no', s_no);
+					// 			// 			scanout_store.loadPage(1);
+					// 			// 		}
+					// 			// 	}
+					// 			// }
+					// 		}
+					// 	});
 		//	==** end **==
 
 	});

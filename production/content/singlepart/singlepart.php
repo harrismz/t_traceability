@@ -3,11 +3,17 @@
   <div class="row">
     <div class="x_panel">
       <div class="form-inline">
-        <div id="finishgood_model" class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
-          <h5 class="x_title">Model</h5>
+        <div id="singlepart_partno" class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
+          <h5 class="x_title">Part Number</h5>
         </div>
-        <div id="finishgood_serial" class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
-          <h5 class="x_title">Serial</h5>
+        <div id="singlepart_po" class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
+          <h5 class="x_title">PO Number</h5>
+        </div>
+        <div id="singlepart_sdate" class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
+          <h5 class="x_title">Start Date</h5>
+        </div>
+        <div id="singlepart_edate" class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
+          <h5 class="x_title">End Date</h5>
         </div>
       </div>
     </div>
@@ -15,7 +21,7 @@
   <!--  END OF Searching Traceability -->
   <!-- ============================================================================== -->
   <!--  MAIN OCS Finishgood Model -->
-  <div class="row">
+  <!-- <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="x_panel">
         <div class="x_title">
@@ -36,7 +42,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
   <!--  END OF MAIN OCS Finishgood Model -->
   <!-- ============================================================================== -->
   <!-- Plan and Actual Data -->

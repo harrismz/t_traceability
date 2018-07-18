@@ -1,15 +1,18 @@
 Ext.application({
-
-    name: 'SymptomApp',
-
+    extend      : 'Ext.app.Application',
+    name        : 'SymptomApp',
     //appFolder : 'my.js.symptom',
-
-    extend: 'Ext.app.Application',
     // quickTips: true,
-    //
-     requires: [
-        'my.js.symptom.app.view.GridSymptom'
-     ],
+    requires    : [
+      // model
+
+      // stores
+        // 'my.js.symptom.app.store.Symptoms',
+      // grid
+        'my.js.symptom.app.view.GridSymptom',
+      // controller
+
+    ],
     //
     // platformConfig: {
     //     desktop: {
@@ -17,8 +20,9 @@ Ext.application({
     //     }
     // },
     //
-    // stores: [
+    stores: [
     //     // TODO: add global / shared stores here
+          //'Symptoms'
     //     // 'Mastermodels',
     //     // 'Schedules',
     //     // 'Histories',
@@ -26,25 +30,38 @@ Ext.application({
     //     // 'ScheduleDates',
     //     // 'Sides',
     //     // 'Codes'
-    // ],
+    ],
 
     launch: function () {
 
+        // alert('hais')
+           alert(window.location.protocol+window.location.hostname+window.location.pathname)
+          //alert(vars);
         Ext.create('Ext.panel.Panel', {
-          id 				:'panel_symptom',
-          renderTo 	: 'panel-symptom',
-          border		: false,
-          width			: '100%',
-          height		: 80,
-          frame			: true,
-          hidden		: false,
-          defaults	: {
-            split				: true,
-            collapsible	: false
-          },
-          items			: [{
-            xtype: 'grid-symptom'
-          }]
+            id 				:'panel_symptom',
+            renderTo 	: 'panel-symptom',
+            width			: '100%',
+            height		: 80,
+            frame			: true,
+            hidden		: false,
+            defaults	: {
+                split				: true,
+                collapsible	: false
+            },
+            tbar      :[
+                {
+                    xtype		    : 'textfield',
+                    fieldLabel  : 'Model',
+                    id          : 'model',
+                    name        : 'model',
+                    allowBlank  : false,
+                    labelWidth	: 50,
+                    value		: 'DPX5000BTITA9N'
+                }
+            ],
+            items			: [{
+              xtype: 'grid-symptom'
+            }]
         });
     },
 
