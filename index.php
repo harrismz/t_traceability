@@ -55,17 +55,18 @@
 	            echo 'Page not found! :( singlepart js';
 	          }
 	        }
-	        elseif($_REQUEST['content'] == 'modellotno'){
-	          $page_dir3 = 'my/js';
-	          $thispages3 = scandir($page_dir3);
-	          unset($thispages3[0], $thispages3[1]);
-	          $page3 = $_REQUEST['content'];
-	          if(in_array($page3.'.js', $thispages3)){
-	            include_once($page_dir3.'/'.$page3.'.js');
-	          } else {
-	            echo 'Page not found! :( modellotno js';
-	          }
-	        }/*elseif($_REQUEST['content'] == 'errorfinder'){
+	        // elseif($_REQUEST['content'] == 'modellotno'){
+	        //   $page_dir3 = 'my/js';
+	        //   $thispages3 = scandir($page_dir3);
+	        //   unset($thispages3[0], $thispages3[1]);
+	        //   $page3 = $_REQUEST['content'];
+	        //   if(in_array($page3.'.js', $thispages3)){
+	        //     include_once($page_dir3.'/'.$page3.'.js');
+	        //   } else {
+	        //     echo 'Page not found! :( modellotno js';
+	        //   }
+	        // }
+					/*elseif($_REQUEST['content'] == 'errorfinder'){
 	          $page_dir5 = 'my/js';
 	          $thispages5 = scandir($page_dir5);
 	          unset($thispages5[0], $thispages5[1]);
@@ -134,6 +135,18 @@
 				      }
 							elseif($_REQUEST['content'] == "symptom"){
 								$page_dir11 = 'production/content/symptom';
+								$thispages11 = scandir($page_dir11);
+								unset($thispages11[0], $thispages11[11]);
+								$page11 = $_REQUEST['content'];
+								if(in_array($page11.'.php', $thispages11)){
+									include_once($page_dir11.'/'.$page11.'.php');
+								} else {
+									//echo 'Page not found! :( symptom php';
+									include "production/page_404.html";
+								}
+				      }
+							elseif($_REQUEST['content'] == "modellotno"){
+								$page_dir11 = 'production/content/modellotno';
 								$thispages11 = scandir($page_dir11);
 								unset($thispages11[0], $thispages11[11]);
 								$page11 = $_REQUEST['content'];
