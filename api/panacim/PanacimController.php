@@ -6,8 +6,9 @@
 
 require_once '../vendor/autoload.php';
 require_once './Feeder.php';
-
+require '../vendor/autoload.php';
 use PhpOffice\PhpSpreadsheet\IOFactory;
+use Carbon\Carbon;
 // use PHPExcel;
 // use PHPExcel_IOFactory;
 
@@ -48,7 +49,8 @@ class PanacimController
 	protected $result = [];
 
 	function __construct()
-	{
+	{	
+		date_default_timezone_set('Asia/Bangkok');
 		// do something on contstruct
 		if (isset($_FILES['file'])) {
 			$this->file = $_FILES['file'];
@@ -61,14 +63,30 @@ class PanacimController
 		}
 	}
 
-	public function index(){
-		$feeder = new Feeder;
+	private function getFeederDetail($finishDate = '2018-07-07', $startDate = '2018-07-02'){
+		
+		$carbon = new Carbon();
+		$checkdate = $carbon->parse($startDate);
+		$now = $carbon->parse($finishDate);
 
-		return json_encode($feeder->find('FA0210APA454431'));
+		return [
+			'checkdate'=>$checkdate, 
+			'inspections'=>$now,
+			'status' => ($now->diffInDays($checkdate) > 90 ) ? 'NG (lewat masa checking)':'OK',
+			'diff' => $now->diffInDays($checkdate),
+		];
+
+		// return $now->diffInDays($checkdate);
+	}
+
+	private function getFeederCheckDate($feederBarcode){
+		$feeder = new Feeder;
+		$checkdate = $feeder->find($feederBarcode);
+		$finishDate = $this->parameters['tanggal'];
+		$result = $this->getFeederDetail($finishDate, $checkdate);
 	}
 
 	public function upload(){
-
 		if ($this->checkDataType( $this->file )) {
 			// if it's not xls or xlsx then it will return immediately
 			return json_encode( [
@@ -92,8 +110,11 @@ class PanacimController
 		$result = $this->find([
 			'part_no' =>	$this->parameters['part_no'],
 			'feeder_number' =>	$this->parameters['feeder_number'],
-
 		], $excel );
+
+		foreach ($result as $key => $items ) {
+			$result[$key]['feeder'] = ($items['feeder_barcode'] != '')? $this->getFeederCheckDate($items['feeder_barcode'])	: null ;
+		}
 
 		return json_encode([
 			'success' => true,
