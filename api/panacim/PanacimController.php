@@ -101,11 +101,23 @@ class PanacimController
 				($haystack['part_number'] == $needle['part_no']) && 
 				(stripos($haystack["z_/_pu_number"], $needle['feeder_number']) !== FALSE ) 
 			){
-				
+				// sanitize the white space
+				$haystack = $this->trimString($haystack);
 				$result[] = $haystack;
 			}
 		}
 		return $result;
+	}
+
+	private function trimString(Array $haystack){
+		foreach ($haystack as $key => $value) {
+			// sanitize the value of haystack
+			if (is_string($value)) {
+				# code...
+				$haystack[$key] = trim($value);	
+			}
+		}
+		return $haystack;
 	}
 
 	private function getContent($searchValue='', $headerIndex=12 ){
