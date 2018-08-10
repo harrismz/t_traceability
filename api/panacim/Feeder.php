@@ -20,8 +20,7 @@ class Feeder
 		// instantiate database and product object
 		$this->database = new Database([
 			'driver'=> 'sqlsrv',
-			'host'	=> '136.198.117.48:63244',
-			'port'  => '63244',
+			'host'	=> 'svrdbn\jeinsql2012trc,63244',
 			'db_name' => 'SMTPROS',
 			'username' => 'sa',
 			'password' => 'JvcSql@123',
@@ -32,10 +31,14 @@ class Feeder
 		// $this->conn = $DB;
 	}
 
-	// TO READ first 10 record for testing connection purposes
-	public function read(){
+	public function find($sn){
 		// select all query
-	    $query = "SELECT * FROM " . $this->table_name;
+		$select  = [
+			'datecheck',
+		];
+		$select = implode(', ', $select);
+
+	    $query = "SELECT top 1 ".$select." FROM " . $this->table_name . " where sn ='".$sn."'";
 	 	// return $query;
 	    // prepare query statement
 	    $stmt = $this->conn->prepare($query);	
@@ -47,67 +50,19 @@ class Feeder
 	    	return $e;
 	    }
 
-	    return $this->get($stmt);
+	    return $this->first($stmt);
 	}
 
-	public function getCon(){
-		return $this->database;
-	}
-
-	public function index(Array $filters ){
-		$select  = [
-			// 'JOBFILE',
-			'JOBMC_PROGRAM',
-			'a.JOBDATE',
-			// 'b.JOBDATE as b_date'
-			// 'process',
-			// '*'
-		];
-
-		$select = implode(', ', $select);
-
-		$query = 'select first 2 '.$select.' from '. $this->table_name. ' a left join JOBMODEL b on a.JOBNO=b.JOBNO';
-
-		$where = '';
-		foreach ($filters as $key => $value) {
-			if ($where == '') {
-				$where = ' where '. $key . "='" . $value."'";
-			}else {
-				$where .= ' and '. $key."='".$value."'";
-			}
-		}
+	private function first(PDOStatement $query ){
 		
-		$query .= $where . ' order by a.NOID desc';
-
-		// return $query;
-
-		$stmt = $this->conn->prepare($query);
-		// kalau query salah, $stmt bakal false
-		if (!$stmt) {
-			return ['error'=> 'SQL error'];
-		}
-	    // execute query
-	    $stmt->execute();
-
-	    $result = $this->get($stmt);
-
-	    if (count($result) > 0 ) {
-	    	return $result[0];
-	    } else {
-	    	return [];
-	    }
-	}
-
-	private function get(PDOStatement $query ){
-		$result = [];
 		while ($row = $query->fetch(PDO::FETCH_ASSOC) ) {
 			$newRow = [];
 			foreach ($row as $key => $value) {
 				$newRow[$key] = trim( $value);
 			}
-			$result[] = $newRow;
+			return $newRow;
 		}
-		return $result;
+		return null;
 	}
 
 }

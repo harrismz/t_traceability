@@ -64,7 +64,7 @@ class PanacimController
 	public function index(){
 		$feeder = new Feeder;
 
-		return json_encode($feeder->getCon());
+		return json_encode($feeder->find('FA0210APA454431'));
 	}
 
 	public function upload(){

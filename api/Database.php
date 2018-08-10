@@ -26,8 +26,14 @@ class Database{
         $this->conn = null;
  
         try{
-            // $connectionString = $this->driver.":host=" . $this->host . ";dbname=" . $this->db_name;
-            $connectionString = 'sqlsrv:Server=svrdbn\jeinsql2012trc;Port=63244;Database=136.198.117.48:SMTPROS;';
+            if($this->driver == 'firebird'){
+                $connectionString = $this->driver.":host=" . $this->host . ";dbname=" . $this->db_name;
+            }
+
+            if($this->driver == 'sqlsrv'){
+                $connectionString = $this->driver.':Server='.$this->host.';Database='.$this->db_name;
+            }
+            
             $this->conn = new PDO($connectionString,$this->username, $this->password);
             $this->conn->exec("set names utf8");
         }catch(PDOException $exception){
