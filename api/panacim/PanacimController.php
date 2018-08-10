@@ -187,9 +187,9 @@ class PanacimController
 	}
 
 	private function checkDataType($file){
-		$dataType = substr($file['name'], -3);
-		return !in_array($dataType, $this->allowedType ) ;
-
+		$dataType = explode('.', $file['name'] );
+		$dataType = $dataType[count($dataType)-1];
+		return !in_array($dataType, $this->allowedType );
 	}
 
 }
