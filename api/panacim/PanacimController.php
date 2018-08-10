@@ -5,6 +5,8 @@
 */
 
 require_once '../vendor/autoload.php';
+require_once './Feeder.php';
+
 use PhpOffice\PhpSpreadsheet\IOFactory;
 // use PHPExcel;
 // use PHPExcel_IOFactory;
@@ -43,6 +45,8 @@ class PanacimController
 
 	private $parameters = [];
 
+	protected $result = [];
+
 	function __construct()
 	{
 		// do something on contstruct
@@ -55,6 +59,12 @@ class PanacimController
 				$this->parameters[$key] = $value;
 			}
 		}
+	}
+
+	public function index(){
+		$feeder = new Feeder;
+
+		return json_encode($feeder->getCon());
 	}
 
 	public function upload(){

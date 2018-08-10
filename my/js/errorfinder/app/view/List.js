@@ -36,6 +36,7 @@ Ext.define('my.js.errorfinder.app.view.List', {
             text: 'Program Name',
             align:'center',
             dataIndex: 'program_name',
+            flex: 2,
         },
         
         { 
@@ -50,6 +51,13 @@ Ext.define('my.js.errorfinder.app.view.List', {
             dataIndex: 'z_/_pu_number', 
             flex: 1,
             align: 'left', 
+        },
+
+        {
+            text: 'Feeder Barcode',
+            dataIndex : 'feeder_barcode',
+            flex : 1,
+            align: 'left'
         },
 
         { 
