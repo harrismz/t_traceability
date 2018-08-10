@@ -81,7 +81,7 @@ Ext.define('my.js.errorfinder.app.view.Info_section', {
             allowBlank: false,
             enableKeyEvents: true,
             emptyText : 'Part Location',
-            value :'C702',
+            value :'C821',
             
         },
     ],

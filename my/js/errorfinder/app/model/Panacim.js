@@ -7,6 +7,43 @@ Ext.define('my.js.errorfinder.app.model.Panacim',{
 		{name: 'part_number',  type: 'string'},
 		{name: 'z_/_pu_number',  type: 'string'},
 
+		{
+			name:'checkdate', 
+			type : 'auto',
+			mapping: function(data){
+                if (data.feeder) {
+                  return data.feeder.checkdate;  
+                }
+            }
+        },
+		{
+			name:'inspections', 
+			type : 'auto',
+			mapping: function(data){
+                if (data.feeder) {
+                  return data.feeder.inspections;  
+                }
+            }
+		},
+		{
+			name:'status', 
+			type : 'auto',
+			mapping: function(data){
+                if (data.feeder) {
+                  return data.feeder.status;  
+                }
+            }
+		},
+		{
+			name:'diff', 
+			type : 'auto',
+			mapping: function(data){
+                if (data.feeder) {
+                  return data.feeder.diff;  
+                }
+            }
+		},
+		
 		{name: 'vendor_no', type: 'string'},
 		{name: 'lot_no',  type: 'string'},
 		{name: 'pickup_count',       type: 'int'},

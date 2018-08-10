@@ -54,7 +54,7 @@ Ext.define('my.js.errorfinder.app.view.PanacimController',{
         form = component.up('form').getForm();
         let params = this.getElementValue();
         var self = this;
-        // console.log(params)
+        console.log(params, 'panacim controller')
         // return;
 
         if (form.isValid) {

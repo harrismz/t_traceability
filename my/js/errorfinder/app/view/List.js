@@ -68,17 +68,24 @@ Ext.define('my.js.errorfinder.app.view.List', {
         },
 
         { 
-            text: 'Pickup Miss',
+            text: 'Pickup<br>Miss',
             dataIndex: 'pickup_miss_count', 
             flex: 1,
             align: 'left', 
         },
 
         { 
-            text: 'Recognition Errors',
+            text: 'Recognition<br>Errors',
             dataIndex: 'recognition_error_count', 
             flex: 1,
             align: 'left', 
+        },
+
+        {
+            text: 'Status Feeder',
+            dataIndex: 'status', 
+            flex: 1,
+            align: 'left',
         },
     ]
 
