@@ -25,7 +25,7 @@
 	<?php if(!empty($_REQUEST['content'])){ ?>
   <!-- <link rel="stylesheet" type="text/css" href="../extjs-4.2.2/resources/css/ext-all-gray.css" /> -->
   <!-- <link href="../framework/extjs-6.2.0/build/classic/theme-crisp/resources/theme-crisp-all.css" rel="stylesheet" type="text/css"> -->
-	
+
 	<!-- <script src="../framework/extjs-6.2.0/build/ext-all.js" type="text/javascript"> </script>
 	<script src="../framework/extjs-6.2.0/build/classic/theme-crisp/theme-crisp.js" type="text/javascript"></script> -->
 	<script type="text/javascript" src='./ext/ext-all.js'></script>
@@ -55,28 +55,18 @@
 	            echo 'Page not found! :( singlepart js';
 	          }
 	        }
-	        elseif($_REQUEST['content'] == 'modellotno'){
-	          $page_dir3 = 'my/js';
-	          $thispages3 = scandir($page_dir3);
-	          unset($thispages3[0], $thispages3[1]);
-	          $page3 = $_REQUEST['content'];
-	          if(in_array($page3.'.js', $thispages3)){
-	            include_once($page_dir3.'/'.$page3.'.js');
-	          } else {
-	            echo 'Page not found! :( modellotno js';
-	          }
-	        }
-	        elseif($_REQUEST['content'] == 'symptom'){
-	          $page_dir4 = 'my/js';
-	          $thispages4 = scandir($page_dir4);
-	          unset($thispages4[0], $thispages4[1]);
-						$page4 = $_REQUEST['content'];
-	          if(in_array($page4.'.js', $thispages4)){
-	            include_once($page_dir4.'/'.$page4.'.js');
-	          } else {
-	            echo 'Page not found! :( symptom js';
-	          }
-	        }/*elseif($_REQUEST['content'] == 'errorfinder'){
+	        // elseif($_REQUEST['content'] == 'modellotno'){
+	        //   $page_dir3 = 'my/js';
+	        //   $thispages3 = scandir($page_dir3);
+	        //   unset($thispages3[0], $thispages3[1]);
+	        //   $page3 = $_REQUEST['content'];
+	        //   if(in_array($page3.'.js', $thispages3)){
+	        //     include_once($page_dir3.'/'.$page3.'.js');
+	        //   } else {
+	        //     echo 'Page not found! :( modellotno js';
+	        //   }
+	        // }
+					/*elseif($_REQUEST['content'] == 'errorfinder'){
 	          $page_dir5 = 'my/js';
 	          $thispages5 = scandir($page_dir5);
 	          unset($thispages5[0], $thispages5[1]);
@@ -130,7 +120,8 @@
 									//echo 'Page not found! :( singlepart php';
 									include "production/page_404.html";
 								}
-				      }elseif($_REQUEST['content'] == "errorfinder"){
+				      }
+							elseif($_REQUEST['content'] == "errorfinder"){
 								$page_dir11 = 'production/content/errorfinder';
 								$thispages11 = scandir($page_dir11);
 								unset($thispages11[0], $thispages11[11]);
@@ -138,7 +129,31 @@
 								if(in_array($page11.'.php', $thispages11)){
 									include_once($page_dir11.'/'.$page11.'.php');
 								} else {
-									//echo 'Page not found! :( singlepart php';
+									//echo 'Page not found! :( errorfinder php';
+									include "production/page_404.html";
+								}
+				      }
+							elseif($_REQUEST['content'] == "symptom"){
+								$page_dir11 = 'production/content/symptom';
+								$thispages11 = scandir($page_dir11);
+								unset($thispages11[0], $thispages11[11]);
+								$page11 = $_REQUEST['content'];
+								if(in_array($page11.'.php', $thispages11)){
+									include_once($page_dir11.'/'.$page11.'.php');
+								} else {
+									//echo 'Page not found! :( symptom php';
+									include "production/page_404.html";
+								}
+				      }
+							elseif($_REQUEST['content'] == "modellotno"){
+								$page_dir11 = 'production/content/modellotno';
+								$thispages11 = scandir($page_dir11);
+								unset($thispages11[0], $thispages11[11]);
+								$page11 = $_REQUEST['content'];
+								if(in_array($page11.'.php', $thispages11)){
+									include_once($page_dir11.'/'.$page11.'.php');
+								} else {
+									//echo 'Page not found! :( symptom php';
 									include "production/page_404.html";
 								}
 				      }

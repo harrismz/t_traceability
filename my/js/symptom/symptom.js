@@ -1,103 +1,77 @@
-
 Ext.application({
-    extend: 'Ext.app.Application',
+    extend      : 'Ext.app.Application',
+    name        : 'SymptomApp',
+    //appFolder : 'my.js.symptom',
+    // quickTips: true,
+    requires    : [
+      // model
 
-    name: 'App',
+      // stores
+        // 'my.js.symptom.app.store.Symptoms',
+      // grid
+        'my.js.symptom.app.view.GridSymptom'
+      // controller
 
-    quickTips: true,
-
-    requires: [
-        'my.js.errorfinder.app.view.List',
-        'my.js.errorfinder.app.view.Info_section',
-        'my.js.errorfinder.app.view.Oll_section',
-        'my.js.errorfinder.app.view.Panacim_section',
     ],
-
-    platformConfig: {
-        desktop: {
-            quickTips: true
-        }
-    },
-
+    //
+    // platformConfig: {
+    //     desktop: {
+    //         quickTips: true
+    //     }
+    // },
+    //
     stores: [
-        // TODO: add global / shared stores here
-        // 'Mastermodels',
-        // 'Schedules',
-        // 'Histories',
-        // 'ScheduleMasters',
-        // 'ScheduleDates',
-        // 'Sides',
-        // 'Codes'
+    //     // TODO: add global / shared stores here
+          //'Symptoms'
+    //     // 'Mastermodels',
+    //     // 'Schedules',
+    //     // 'Histories',
+    //     // 'ScheduleMasters',
+    //     // 'ScheduleDates',
+    //     // 'Sides',
+    //     // 'Codes'
     ],
 
     launch: function () {
 
-        Ext.create({
-            xtype: 'panel',
-            renderTo : 'info-section',
-            layout: 'card',
-            bodyPadding: 15,
-            defaultListenerScope: true,
-            bbar: ['->',
-                {
-                    itemId: 'card-prev',
-                    text: '&laquo; Previous',
-                    handler: 'showPrevious',
-                    disabled: true
-                },
-                {
-                    itemId: 'card-next',
-                    text: 'Next &raquo;',
-                    handler: 'showNext'
-                }
-            ],
-            items: [
-                {
-                    id: 'card-0',
-                    title: 'Info',
-                    xtype: 'info-section',
-                },
-                {
-                    id: 'card-1',
-                    title: 'OLL Section',
-                    xtype: 'oll-section',
-                },
-                {
-                    id: 'card-2',
-                    title: 'Panacim Section',
-                    xtype: 'panacim-section',
-                }
-            ],
-
-            showNext: function () {
-                this.doCardNavigation(1);
+        // alert('hais')
+           // alert(window.location.protocol+"//"+window.location.hostname+'/t_traceability/json/json_symptom.php')
+          //alert(vars);
+        Ext.create('Ext.panel.Panel', {
+            id 				:'panel_symptom',
+            renderTo 	: 'panel-symptom',
+            width			: '100%',
+            height		: 80,
+            frame			: true,
+            hidden		: false,
+            defaults	: {
+                split				: true,
+                collapsible	: false
             },
-
-            showPrevious: function (btn) {
-                this.doCardNavigation(-1);
-            },
-
-            doCardNavigation: function (incr) {
-                var me = this;
-                var l = me.getLayout();
-                var i = l.activeItem.id.split('card-')[1];
-                var next = parseInt(i, 10) + incr;
-                l.setActiveItem(next);
-
-                me.down('#card-prev').setDisabled(next===0);
-                me.down('#card-next').setDisabled(next===2);
-            }
-        })
-
+            // tbar      :[
+            //     {
+            // 				xtype: 'button',
+            // 				id: 'src_symptom',
+            // 				name: 'src_symptom',
+            // 				text: 'SEARCH',
+            // 				iconCls: 'search',
+            // 				scale: 'medium'
+            // 				//handler: src_symptom
+            // 		}
+            // ],
+            items			: [{
+              xtype: 'grid-symptom'
+            }]
+        });
     },
 
-    onAppUpdate: function () {
-        Ext.Msg.confirm('Application Update', 'This application has an update, reload?',
-            function (choice) {
-                if (choice === 'yes') {
-                    window.location.reload();
-                }
-            }
-        );
-    }
+    // onAppUpdate: function () {
+    //     Ext.Msg.confirm('Application Update', 'This application has an update, reload?',
+    //         function (choice) {
+    //             if (choice === 'yes') {
+    //                 window.location.reload();
+    //             }
+    //         }
+    //     );
+    // }
 })
