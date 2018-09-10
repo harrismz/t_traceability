@@ -6,12 +6,12 @@ Ext.define('my.js.symptom.app.view.GridSymptomModel', {
       "my.js.symptom.app.store.Symptoms"
     ],
 
-    // 
-    // data: {
-    //     name: 'Symptom',
-    //     fieldLabel : 'judul',
-    //     emptyText: 'Please Choose Panacim xls File ...'
-    // },
+    //
+    data: {
+        name: 'Symptom',
+        fieldLabel : 'judul',
+        emptyText: 'Please Choose Panacim xls File ...'
+    },
 
     stores : {
     	symptoms : {

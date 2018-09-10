@@ -9,7 +9,7 @@ Ext.application({
       // stores
         // 'my.js.symptom.app.store.Symptoms',
       // grid
-        'my.js.symptom.app.view.GridSymptom',
+        'my.js.symptom.app.view.GridSymptom'
       // controller
 
     ],
@@ -35,7 +35,7 @@ Ext.application({
     launch: function () {
 
         // alert('hais')
-           alert(window.location.protocol+window.location.hostname+window.location.pathname)
+           // alert(window.location.protocol+"//"+window.location.hostname+'/t_traceability/json/json_symptom.php')
           //alert(vars);
         Ext.create('Ext.panel.Panel', {
             id 				:'panel_symptom',
@@ -48,17 +48,17 @@ Ext.application({
                 split				: true,
                 collapsible	: false
             },
-            tbar      :[
-                {
-                    xtype		    : 'textfield',
-                    fieldLabel  : 'Model',
-                    id          : 'model',
-                    name        : 'model',
-                    allowBlank  : false,
-                    labelWidth	: 50,
-                    value		: 'DPX5000BTITA9N'
-                }
-            ],
+            // tbar      :[
+            //     {
+            // 				xtype: 'button',
+            // 				id: 'src_symptom',
+            // 				name: 'src_symptom',
+            // 				text: 'SEARCH',
+            // 				iconCls: 'search',
+            // 				scale: 'medium'
+            // 				//handler: src_symptom
+            // 		}
+            // ],
             items			: [{
               xtype: 'grid-symptom'
             }]

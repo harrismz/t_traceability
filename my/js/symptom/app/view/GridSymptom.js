@@ -9,7 +9,7 @@ Ext.define('my.js.symptom.app.view.GridSymptom',  {
     bind      : {
         store : '{symptoms}',
     },
-    
+
     columns   : [
       { header : 'Reject Date',
         flex:1

@@ -5,7 +5,7 @@ Ext.define('my.js.symptom.app.store.Symptoms',{
     autoLoad: true,
     proxy   : {
         type    : 'ajax',
-      //  url     : window.location.protocol+"//"+window.location.host+'/json/json_symptom.php',
+        url     : "http://"+window.location.hostname+'/t_traceability/json/json_symptom.php',
   		  reader  : {
     			  type   : 'json',
     			  root   : 'rows'

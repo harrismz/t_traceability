@@ -1513,8 +1513,7 @@
 							{ header		: 'Line Name',
 								dataIndex	: 'line',
 								flex			: 1,
-								renderer	: upsize,
-								hidden		: true
+								renderer	: upsize
 							},
 							{ header		: 'so',
 								dataIndex	: 'so',
@@ -3229,58 +3228,59 @@
 										main_store.loadPage(1);
 										store_sched.proxy.setExtraParam('src_cat', 'fg');
 										store_output.proxy.setExtraParam('src_cat', 'fg');
-										// store_proc_smt_output.proxy.setExtraParam('src_cat', 'fg');
-										// store_proc_smt_downtime.proxy.setExtraParam('src_cat', 'fg');
-										// store_proc_smt_quality.proxy.setExtraParam('model', model); // _Z_ by zaki20161017
-										// store_proc_smt_quality.proxy.setExtraParam('serial_no', s_no); // _Z_ by zaki20161017
-										// store_proc_smt_quality.proxy.setExtraParam('src_cat', 'fg'); // _Z_ by zaki20161017
-										// store_proc_smt_quality.loadPage(1);
-										// part_mchcal.proxy.setExtraParam('model', model); // _Z_ by zaki 20161031
-										// part_mchcal.proxy.setExtraParam('src_cat', 'fg'); // _Z_ by zaki 20161031
-										// part_mchcal.loadPage(1); // _Z_ by zaki 20161031
-										// part_mchnism.proxy.setExtraParam('model', model); // _Z_ by zaki 20161031
-										// part_mchnism.proxy.setExtraParam('src_cat', 'fg'); // _Z_ by zaki 20161031
-										// part_mchnism.loadPage(1); // _Z_ by zaki 20161031
-										// part_mchtronics.proxy.setExtraParam('model', model); // _Z_ by zaki 20161031
-										// part_mchtronics.proxy.setExtraParam('src_cat', 'fg'); // _Z_ by zaki 20161031
-										// part_mchtronics.loadPage(1); // _Z_ by zaki 20161031
+
+										//	store_proc_smt_output.proxy.setExtraParam('src_cat', 'fg');
+										//	store_proc_smt_downtime.proxy.setExtraParam('src_cat', 'fg');
+										store_proc_smt_quality.proxy.setExtraParam('model', model); // _Z_ by zaki20161017
+										store_proc_smt_quality.proxy.setExtraParam('serial_no', s_no); // _Z_ by zaki20161017
+										store_proc_smt_quality.proxy.setExtraParam('src_cat', 'fg'); // _Z_ by zaki20161017
+										store_proc_smt_quality.loadPage(1);
+										part_mchcal.proxy.setExtraParam('model', model); // _Z_ by zaki 20161031
+										part_mchcal.proxy.setExtraParam('src_cat', 'fg'); // _Z_ by zaki 20161031
+										part_mchcal.loadPage(1); // _Z_ by zaki 20161031
+										part_mchnism.proxy.setExtraParam('model', model); // _Z_ by zaki 20161031
+										part_mchnism.proxy.setExtraParam('src_cat', 'fg'); // _Z_ by zaki 20161031
+										part_mchnism.loadPage(1); // _Z_ by zaki 20161031
+										part_mchtronics.proxy.setExtraParam('model', model); // _Z_ by zaki 20161031
+										part_mchtronics.proxy.setExtraParam('src_cat', 'fg'); // _Z_ by zaki 20161031
+										part_mchtronics.loadPage(1); // _Z_ by zaki 20161031
 										/*======== problem info =============*/
-										// part_problem_mc.proxy.setExtraParam('model', model); // _Z_ by zaki 20161031
-										// part_problem_mc.proxy.setExtraParam('src_cat', 'fg'); // _Z_ by zaki 20161031
-										// part_problem_mc.loadPage(1); // _Z_ by zaki 20161031
-										// qty_problem_mc.proxy.setExtraParam('model', model); // _Z_ by zaki 20161031
-										// qty_problem_mc.proxy.setExtraParam('src_cat', 'fg'); // _Z_ by zaki 20161031
-										// qty_problem_mc.loadPage(1); // _Z_ by zaki 20161031
-										// part_problem_iqc.proxy.setExtraParam('model', model); // _Z_ by zaki 20161031
-										// part_problem_iqc.proxy.setExtraParam('src_cat', 'fg'); // _Z_ by zaki 20161031
-										// part_problem_iqc.loadPage(1); // _Z_ by zaki 20161031
-										// qty_problem_iqc.proxy.setExtraParam('model', model); // _Z_ by zaki 20161031
-										// qty_problem_iqc.proxy.setExtraParam('src_cat', 'fg'); // _Z_ by zaki 20161031
-										// qty_problem_iqc.loadPage(1); // _Z_ by zaki 20161031
-										// part_problem_ma.proxy.setExtraParam('model', model); // _Z_ by zaki 20161031
-										// part_problem_ma.proxy.setExtraParam('src_cat', 'fg'); // _Z_ by zaki 20161031
-										// part_problem_ma.loadPage(1); // _Z_ by zaki 20161031
-										// qty_problem_ma.proxy.setExtraParam('model', model); // _Z_ by zaki 20161031
-										// qty_problem_ma.proxy.setExtraParam('src_cat', 'fg'); // _Z_ by zaki 20161031
-										// qty_problem_ma.loadPage(1); // _Z_ by zaki 20161031
-										// part_problem_mecha.proxy.setExtraParam('model', model); // _Z_ by zaki 20161031
-										// part_problem_mecha.proxy.setExtraParam('src_cat', 'fg'); // _Z_ by zaki 20161031
-										// part_problem_mecha.loadPage(1); // _Z_ by zaki 20161031
-										// qty_problem_mecha.proxy.setExtraParam('model', model); // _Z_ by zaki 20161031
-										// qty_problem_mecha.proxy.setExtraParam('src_cat', 'fg'); // _Z_ by zaki 20161031
-										// qty_problem_mecha.loadPage(1);
+										part_problem_mc.proxy.setExtraParam('model', model); // _Z_ by zaki 20161031
+										part_problem_mc.proxy.setExtraParam('src_cat', 'fg'); // _Z_ by zaki 20161031
+										part_problem_mc.loadPage(1); // _Z_ by zaki 20161031
+										qty_problem_mc.proxy.setExtraParam('model', model); // _Z_ by zaki 20161031
+										qty_problem_mc.proxy.setExtraParam('src_cat', 'fg'); // _Z_ by zaki 20161031
+										qty_problem_mc.loadPage(1); // _Z_ by zaki 20161031
+										part_problem_iqc.proxy.setExtraParam('model', model); // _Z_ by zaki 20161031
+										part_problem_iqc.proxy.setExtraParam('src_cat', 'fg'); // _Z_ by zaki 20161031
+										part_problem_iqc.loadPage(1); // _Z_ by zaki 20161031
+										qty_problem_iqc.proxy.setExtraParam('model', model); // _Z_ by zaki 20161031
+										qty_problem_iqc.proxy.setExtraParam('src_cat', 'fg'); // _Z_ by zaki 20161031
+										qty_problem_iqc.loadPage(1); // _Z_ by zaki 20161031
+										part_problem_ma.proxy.setExtraParam('model', model); // _Z_ by zaki 20161031
+										part_problem_ma.proxy.setExtraParam('src_cat', 'fg'); // _Z_ by zaki 20161031
+										part_problem_ma.loadPage(1); // _Z_ by zaki 20161031
+										qty_problem_ma.proxy.setExtraParam('model', model); // _Z_ by zaki 20161031
+										qty_problem_ma.proxy.setExtraParam('src_cat', 'fg'); // _Z_ by zaki 20161031
+										qty_problem_ma.loadPage(1); // _Z_ by zaki 20161031
+										part_problem_mecha.proxy.setExtraParam('model', model); // _Z_ by zaki 20161031
+										part_problem_mecha.proxy.setExtraParam('src_cat', 'fg'); // _Z_ by zaki 20161031
+										part_problem_mecha.loadPage(1); // _Z_ by zaki 20161031
+										qty_problem_mecha.proxy.setExtraParam('model', model); // _Z_ by zaki 20161031
+										qty_problem_mecha.proxy.setExtraParam('src_cat', 'fg'); // _Z_ by zaki 20161031
+										qty_problem_mecha.loadPage(1);
 										/*========* problem info *=============*/
-										// store_part_smt_prep.proxy.setExtraParam('src_cat', 'fg');
-										// scanin_store.proxy.setExtraParam('src_cat', 'fg');
-										// scanout_store.proxy.setExtraParam('src_cat', 'fg');
-										// prd_res_store.proxy.setExtraParam('model', model);
-										// prd_res_store.proxy.setExtraParam('serial_no', s_no);
-										// prd_res_store.proxy.setExtraParam('src_cat', 'fg');
-										// prd_res_store.loadPage(1);
-										// scanin_store.proxy.setExtraParam('serial_no', s_no);
-										// scanin_store.loadPage(1);
-										// scanout_store.proxy.setExtraParam('serial_no', s_no);
-										// scanout_store.loadPage(1);
+										store_part_smt_prep.proxy.setExtraParam('src_cat', 'fg');
+										scanin_store.proxy.setExtraParam('src_cat', 'fg');
+										scanout_store.proxy.setExtraParam('src_cat', 'fg');
+										prd_res_store.proxy.setExtraParam('model', model);
+										prd_res_store.proxy.setExtraParam('serial_no', s_no);
+										prd_res_store.proxy.setExtraParam('src_cat', 'fg');
+										prd_res_store.loadPage(1);
+										scanin_store.proxy.setExtraParam('serial_no', s_no);
+										scanin_store.loadPage(1);
+										scanout_store.proxy.setExtraParam('serial_no', s_no);
+										scanout_store.loadPage(1);
 									}
 								}
 							}
