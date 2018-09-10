@@ -6,6 +6,9 @@ Ext.define('my.js.errorfinder.app.view.Oll_section', {
 
     	// store
 
+        // viewModel
+        'my.js.errorfinder.app.view.OllModel',
+
         // child view
         'my.js.errorfinder.app.view.oll.Upload_form',
         'my.js.errorfinder.app.view.oll.Upload_info',
@@ -21,6 +24,8 @@ Ext.define('my.js.errorfinder.app.view.Oll_section', {
 
     controller: 'oll-controller',
 
+    viewModel: { type : 'model-oll'},
+
 
     defaults : {
     	margin : 5,
@@ -35,9 +40,18 @@ Ext.define('my.js.errorfinder.app.view.Oll_section', {
             readOnly : true,
             name : 'filename_info',
             cls : 'form-control',
+        },{
+            xtype : 'textfield',
+            fieldLabel : 'Part Location',
+            name: 'part_location',
+            cls : 'form-control',
+            // padding : '2 0 1 0',
+            // bodyPadding: 0,
+            // frame: true,
         },
         {
-            xtype : 'upload-form'
+            xtype : 'upload-form',
+            id: 'oll-form-upload'
         },{
             xtype : 'upload-info'
         },

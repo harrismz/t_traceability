@@ -41,6 +41,11 @@ class OllController
 		// query products
 		$result = $model->index($this->parameter);
 
+		if (count( $result) > 0 ) {
+			// if result exists, get only the program name. 
+			$programName = explode(' ', $result['JOBMC_PROGRAM'] );
+			$result['JOBMC_PROGRAM'] = $programName[count($programName)-1];
+		}
 		return json_encode($result);
 	}
 }

@@ -29,7 +29,12 @@ class CrbController
 	public function upload(){
 
 		// return json_encode($this->parameters );
-
+		if ($this->checkDataType()) {
+			return json_encode([
+				'success' => false,
+				'error' => $this->errors
+			]);
+		}
 		// get the file here.
 		$file = $this->validate();
 		$lines = file($file);
@@ -114,22 +119,28 @@ class CrbController
 	}
 
 	private function validate(){
+		return $this->file['tmp_name'];
+	}
+
+	private function checkDataType(){
+		$this->errors = null;
 		// cek if error is there
 		if (!$this->file) {
-			throw new Exception("No File Found!", 1);
+			$this->errors =  'no file found!';
 		}
 
 		// cek error form $_FILES
 		if ($this->file['error'] != 0) {
-			throw new Exception("Error Processing Request", 1);
+			$this->errors =  $this->file['error'];
 		}
 
 		// cek if it is crb
 		if (substr( $this->file['name'] , -3 ) !== 'crb' )  {
-			throw new Exception("you need to upload .crb file ", 1);
+
+			$this->errors =  'You need to upload only crb file!';
 		}
 
-		return $this->file['tmp_name'];
+		return ( $this->errors !== null );
 	}
 
 	public function download(){

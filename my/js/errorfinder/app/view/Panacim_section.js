@@ -3,13 +3,25 @@ Ext.define('my.js.errorfinder.app.view.Panacim_section', {
     
     requires :[
     	// model
+        'my.js.errorfinder.app.view.PanacimModel',
 
-    	// store
+        // store
+        // controller
+        'my.js.errorfinder.app.view.PanacimController',
 
+        // view
+        'my.js.errorfinder.app.view.oll.Upload_info',
+        'my.js.errorfinder.app.view.oll.Upload_form',
+        'my.js.errorfinder.app.view.List',
+
+        
     ],
 
     xtype: 'panacim-section',
+
+    controller: 'panacim-controller',
 	
+    viewModel: { type : 'model-panacim' },
 	// bodyPadding: 10,
     plugins: 'responsive',
     
@@ -29,15 +41,20 @@ Ext.define('my.js.errorfinder.app.view.Panacim_section', {
     },
 
     items :[
+        {
+            xtype : 'upload-info',
+        },
     	{
-            xtype: 'filefield',
+            xtype: 'upload-form',
             name: 'panacim',
-            fieldLabel: 'PANACIM .csv',
             cls : 'form-control'
             
         }, {
             xtype : 'panel',
-            title: 'RESULT'
+            title: 'RESULT',
+            items:[{
+                xtype: 'panacim-list'
+            }]
         }
     ],
 

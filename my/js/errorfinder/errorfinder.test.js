@@ -6,13 +6,13 @@ Ext.application({
 
     quickTips: true,
 
+    // appFolder: '../../../app',
+
     requires: [
         'my.js.errorfinder.app.view.List',
         'my.js.errorfinder.app.view.Info_section',
         'my.js.errorfinder.app.view.Oll_section',
         'my.js.errorfinder.app.view.Panacim_section',
-
-        'my.js.errorfinder.app.view.Main'
     ],
 
     platformConfig: {
@@ -22,16 +22,11 @@ Ext.application({
     },
 
     stores: [
-        // TODO: add global / shared stores here
-        // 'Panacims',
-        // 'Mastermodels',
+        
     ],
 
     launch: function () {
 
-        Ext.create({
-            xtype: 'main'
-        })
 
     },
 

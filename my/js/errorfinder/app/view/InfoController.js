@@ -50,6 +50,8 @@ Ext.define('my.js.errorfinder.app.view.InfoController', {
                 // this method below is define on ollController
                 // fire event of listener controller with 1 argument is event name, and second is parameter to send to that argument
                 self.fireEvent('runShowUploadableFile', response.responseText );
+                self.fireEvent('setPartLocationValue', data.part_location );
+
     			self.showNext()
     		},
     		failure(){
@@ -82,12 +84,14 @@ Ext.define('my.js.errorfinder.app.view.InfoController', {
         return result;
     },
 
-    /*listen : {
+    listen : {
         controller : {
             'oll-controller' : {
-                getPartLocationValue : 'getPartLocationValue'
+                showNext : 'showNext',
+                showPrevious : 'showPrevious',
+
             }
         }
-    },*/
+    },
 
 });
