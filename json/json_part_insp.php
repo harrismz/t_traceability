@@ -2,13 +2,13 @@
 
 	date_default_timezone_set('Asia/jakarta');
   include '../../adodb/con_wiqci.php';
-  $model  = $_REQUEST['model'];
-	$lot		= $_REQUEST['prod_no'];
-  $getdate= substr($_REQUEST['prod_date'],0,10);
-	$sdate 	= date('Y-m-d', strtotime($getdate."- 7 days"));
-  $edate  = date('Y-m-d', strtotime($getdate."+ 15 days"));
-
-	$query = $conn->prepare("exec traceability_partinsp_dispsc '{$model}','{$lot}','{$sdate}','{$edate}'");
+  $model 	= $_REQUEST['model'];
+  $lot		= $_REQUEST['prod_no'];
+  $getdate	= substr($_REQUEST['prod_date'],0,10);
+  $proddate = date('Y-m-d', strtotime($getdate));
+  // $sdate = date('Y-m-d', strtotime($getdate."- 7 days"));
+  // $edate = date('Y-m-d', strtotime($getdate."+ 15 days"));
+	$query = $conn->prepare("exec traceability_partinsp_dispsc '{$model}','{$lot}','{$proddate}'");
 	$conn->SetFetchMode(ADODB_FETCH_ASSOC);
 	$result = $conn->Execute($query);
 	$return = array();
@@ -36,7 +36,6 @@
 		$return[$i]['pr_name']       = trim($result->fields['pr_name']);
 		$return[$i]['time_finish']   = trim(date('H:i:s', strtotime($result->fields['time_finish'])));
 		$return[$i]['fld_remark']    = trim($result->fields['fld_remark']);
-		$return[$i]['sflag']         = trim($result->fields['sflag']);
 
 		$result->MoveNext();
 	}

@@ -21,17 +21,19 @@
 		$model      = $_REQUEST['model'];
 		$serial		= 0;
 		$getdate    = substr($_REQUEST['prod_date'],0,10);
-		$sdate 		= date('Y-m-d', strtotime($getdate."- 7 days"));
-		$edate      = date('Y-m-d', strtotime($getdate."+7 days"));
+		$proddate 		= date('Y-m-d', strtotime($getdate));
+		//$sdate 		= date('Y-m-d', strtotime($getdate."- 7 days"));
+		//$edate      = date('Y-m-d', strtotime($getdate."+7 days"));
 	} else {
 		$model      = $_REQUEST['model'];
 		$serial		= $_REQUEST['st_serial'];
 		$getdate    = substr($_REQUEST['prod_date'],0,10);
-		$sdate 		= date('Y-m-d', strtotime($getdate."- 7 days"));
-		$edate      = date('Y-m-d', strtotime($getdate."+7 days"));
+		$proddate 		= date('Y-m-d', strtotime($getdate));
+		//$sdate 		= date('Y-m-d', strtotime($getdate."- 7 days"));
+		//$edate      = date('Y-m-d', strtotime($getdate."+7 days"));
 	}
-
-    $rs    = $db->Execute("select * from show_part('{$model}', '{$serial}', '{$sdate}', '{$edate}', '{$src_cat}')");
+	echo "select * from show_part('{$model}', '{$serial}', '{$proddate}', '{$src_cat}')";
+    $rs    = $db->Execute("select * from show_part('{$model}', '{$serial}', '{$proddate}', '{$src_cat}')");
     $return = array();
 
     for($i=0;!$rs->EOF;$i++){

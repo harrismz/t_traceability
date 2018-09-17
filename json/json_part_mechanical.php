@@ -7,7 +7,7 @@
 	$symptom   = isset($_REQUEST['symptom']) ? $_REQUEST['symptom'] : '';
 	$getprodate= isset($_REQUEST['prod_date']) ? $_REQUEST['prod_date'] : '';
 	$getdate   = substr($getprodate,0,10);
-	
+	echo "exec TRACE_searchMechanical '$model', '$symptom', '$getdate', '$src_cat'";
     $rs    = $db->Execute("exec TRACE_searchMechanical '$model', '$symptom', '$getdate', '$src_cat'");
     $return = array();
 

@@ -4,10 +4,10 @@
     <div class="x_panel">
       <div class="form-inline">
         <div id="finishgood_model" class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
-          <h5 class="x_title">Model</h5>
+          <h5 class="x_title"><i class="fas fa-search"></i> Model</h5>
         </div>
         <div id="finishgood_serial" class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
-          <h5 class="x_title">Serial</h5>
+          <h5 class="x_title"><i class="fas fa-search"></i> Serial</h5>
         </div>
       </div>
     </div>
@@ -19,7 +19,7 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="x_panel">
         <div class="x_title">
-  				<h2><i class="fab fa-hubspot"></i> Traceability </h2>
+  				<h2><i class="fab fa-hubspot"></i> Finished Good </h2>
   				<ul class="nav navbar-right panel_toolbox">
   					<li>
   						<a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -298,9 +298,6 @@
             <!-- END OF PCB & MA Department -->
           </div>
           <!-- END OF collapsible -->
-
-
-
         </div>
       </div>
     </div>
@@ -308,7 +305,7 @@
   <!-- END OF Process Operational Data -->
   <!-- ============================================================================== -->
   <!-- Outgoing Quality Control Data -->
-  <div id="oqc_tab" class="row">
+ <!--  <div id="oqc_tab" class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="x_panel fixed_height_500">
         <div class="x_title">
@@ -333,7 +330,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
   <!-- END OF Outgoing Quality Control Data -->
   <!-- ============================================================================== -->
   <!-- Outgoing Quality Control Data -->
@@ -341,7 +338,7 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="x_panel fixed_height_500">
         <div class="x_title">
-          <h2><i class="fas fa-microchip"></i> Finished Goods <small> ( Logistic ) </small></h2>
+          <h2><i class="fas fa-microchip"></i> Warehouse <small> ( Logistic ) </small></h2>
   				<ul class="nav navbar-right panel_toolbox">
   					<li>
   						<a class="collapse-link"><i class="fa fa-chevron-up"></i></a>

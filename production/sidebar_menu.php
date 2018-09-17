@@ -1,6 +1,6 @@
 <div class="left_col scroll-view">
   <div class="navbar nav_title" style="border: 0;">
-    <a href="index.php" class="site_title"><i class="fas fa-chart-line"></i>&nbsp;&nbsp;<img src="production/images/jvclogo.png" width="150" /></a>
+    <a href="index.php?content=finishgood" class="site_title"><i class="fas fa-chart-line"></i>&nbsp;&nbsp;<img src="production/images/jvclogo.png" width="150" /></a>
   </div>
 
   <div class="clearfix"></div>
@@ -24,7 +24,7 @@
     <div class="menu_section">
       <!-- <h3>General</h3> -->
       <ul class="nav side-menu">
-        <li><a href="index.php"><i class="fas fa-home"></i> Home </a></li>
+        <!-- <li><a href="index.php"><i class="fas fa-home"></i> Home </a></li> -->
         <li><a href="index.php?content=finishgood"><i class="fas fa-box"></i> Finished Goods </a></li>
         <li><a href="index.php?content=singlepart"><i class="fas fa-microchip"></i> Part </a></li>
         <li><a href="index.php?content=symptom"><i class="fas fa-stethoscope"></i> Symptom </a></li>

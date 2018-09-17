@@ -1,12 +1,26 @@
 .extjs_border{
-border: solid #CFCFCF 2px;
+	border: solid #CFCFCF 2px;
 }
 
 .x-grid-cell-inner {
-white-space: normal;
+	white-space: normal;
+	text-align: center !important;
 }
+
+.x-column-header-inner .x-column-header-text {
+    white-space: normal;
+}
+ 
+.x-column-header-inner {
+    line-height: normal;
+    padding-top: 3px !important;
+    padding-bottom: 3px !important;
+    text-align: center;
+    top: 20%;
+}
+
 /* ==============================   OLD   ========================== */
-.upsize{
+.fontsize12{
 	font-size:12px;
 	white-space:normal;
 }
