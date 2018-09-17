@@ -1282,12 +1282,12 @@
 								reorderable : false,
 								items 		: [grid_part_mc_mecha]
 							},
-							{
-								id 			: 'show_grid_part_iqc',
-								title 		: 'IQC',
-								reorderable : false,
-								items		: [tab_part_iqc]
-							}
+							// {
+							// 	id 			: 'show_grid_part_iqc',
+							// 	title 		: 'IQC',
+							// 	reorderable : false,
+							// 	items		: [tab_part_iqc]
+							// }
 						]
 					});
 			//	Process Operational
