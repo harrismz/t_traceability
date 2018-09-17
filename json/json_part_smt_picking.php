@@ -22,18 +22,14 @@
 		$serial		= 0;
 		$getdate    = substr($_REQUEST['prod_date'],0,10);
 		$proddate 		= date('Y-m-d', strtotime($getdate));
-		//$sdate 		= date('Y-m-d', strtotime($getdate."- 7 days"));
-		//$edate      = date('Y-m-d', strtotime($getdate."+7 days"));
 	} else {
 		$model      = $_REQUEST['model'];
 		$serial		= $_REQUEST['st_serial'];
 		$getdate    = substr($_REQUEST['prod_date'],0,10);
 		$proddate 		= date('Y-m-d', strtotime($getdate));
-		//$sdate 		= date('Y-m-d', strtotime($getdate."- 7 days"));
-		//$edate      = date('Y-m-d', strtotime($getdate."+7 days"));
 	}
-	echo "select * from show_part('{$model}', '{$serial}', '{$proddate}', '{$src_cat}')";
-    $rs    = $db->Execute("select * from show_part('{$model}', '{$serial}', '{$proddate}', '{$src_cat}')");
+	//echo "select * from show_part('{$model}', '{$serial}', '{$proddate}', '{$src_cat}')";
+    $rs    = $db->Execute("select * from show_part_picking('{$model}', '{$serial}', '{$proddate}', '{$src_cat}')");
     $return = array();
 
     for($i=0;!$rs->EOF;$i++){
@@ -47,6 +43,12 @@
         $return[$i]['zfeeder']		= trim($rs->fields['7']);
         $return[$i]['part_no']		= trim($rs->fields['8']);
         $return[$i]['demand']		= trim($rs->fields['9']);
+        $return[$i]['loose_reel']	= trim($rs->fields['10']);
+        $return[$i]['full_reel']	= trim($rs->fields['11']);
+        $return[$i]['loose_nik']	= trim($rs->fields['12']);
+        $return[$i]['loose_time']	= trim($rs->fields['13']);
+        $return[$i]['full_nik']		= trim($rs->fields['14']);
+        $return[$i]['full_time']	= trim($rs->fields['15']);
 
         $rs->MoveNext();
     }
