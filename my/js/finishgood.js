@@ -53,6 +53,9 @@
 			var date 		= new Date();
 			
 		//	=======================================================    MODEL    =========================================
+			
+
+		//	for grid part > im > partnavigation
 			//	Traceability model
 					Ext.define('main_data', {
 						extend: 'Ext.data.Model',
@@ -98,8 +101,17 @@
 				//SMT DEPARTMENT
 					Ext.define('part_smt_picking',{
 		                extend: 'Ext.data.Model',
-		                fields: ['jobdate','jobtime','line','model_name','pwb_name','start_serial','lot','zfeeder','part_no','demand']
+		                fields: ['jobdate','jobtime','line','model_name','pwb_name','start_serial','lot','zfeeder','part_no','demand', 'loose_reel','full_reel','loose_nik','loose_time','full_nik','full_time']
 		            });
+		            Ext.define('model_part_smt_install',{
+		                extend: 'Ext.data.Model',
+		                fields: ['jobdate','jobtime','line','model_name','pwb_name','start_serial','lot','zfeeder','part_no','demand', 'install','install_nik','install_time']
+		            });
+		            Ext.define('model_part_smt_zdbs',{
+		                extend: 'Ext.data.Model',
+		                fields: ['place', 'mode', 'operatorid', 'feeder', 'compid1', 'compid2', 'compid3', 'compid4', 'compid5', 
+		                		'model', 'scandate','ng', 'partno', 'lot', 'qty']
+		           	});
 
 				//PCB & MA DEPARTMENT
 					Ext.define('model_mapros_board',{
@@ -129,7 +141,130 @@
 							root 		  : 'rows',
 							totalProperty : 'totalCount'
 						}
-					}
+					},
+					// listeners	: {
+					// 	load: function(store, records){
+					// 		var prod_date		= store.getAt(0).get('prod_date');
+					// 		var model_name		= store.getAt(0).get('model_name');
+					// 		var prod_no			= store.getAt(0).get('prod_no');
+					// 		var lot_size		= store.getAt(0).get('lot_size');
+					// 		var start_serial	= store.getAt(0).get('start_serial');
+					// 		var x 				= Ext.getCmp('rb3').getValue()['src_cat3'];
+					// 		var rbprod 			= Ext.getCmp('rbprod').getValue()['srcprod'];
+							
+					// 		store_part_smt_zdbs.proxy.setExtraParam('prod_date', prod_date);
+					// 		store_part_smt_zdbs.proxy.setExtraParam('model', 	model_name);
+					// 		store_part_smt_zdbs.loadPage(1);
+
+					// 		// //	for grid actual
+					// 		// actual.proxy.setExtraParam('model', 	model_name);
+					// 		// actual.proxy.setExtraParam('prod_no',  	prod_no);
+					// 		// actual.proxy.setExtraParam('lot_size', 	lot_size);
+					// 		// actual.proxy.setExtraParam('st_serial',	start_serial);
+					// 		// actual.proxy.setExtraParam('src_cat', 	x);
+					// 		// actual.proxy.setExtraParam('valrbprod',	rbprod);
+					// 		// actual.loadPage(1);
+							
+					// 		// //	for grid part > im > outsetinquiry
+					// 		// partim.proxy.setExtraParam('prod_date', prod_date);
+					// 		// partim.proxy.setExtraParam('model', 	model_name);
+					// 		// partim.proxy.setExtraParam('st_serial', start_serial);
+					// 		// partim.proxy.setExtraParam('src_cat', 	x);
+					// 		// partim.loadPage(1);
+							
+					// 		// //	for grid part > im > partnavigation
+					// 		// partimzdbs.proxy.setExtraParam('prod_date', prod_date);
+					// 		// partimzdbs.proxy.setExtraParam('model', 	model_name);
+					// 		// partimzdbs.loadPage(1);
+							
+					// 		// //	for grid part > mc > partnavigation
+					// 		// partmcissue.proxy.setExtraParam('prod_date',	prod_date);
+					// 		// partmcissue.proxy.setExtraParam('model', 		model_name);
+					// 		// partmcissue.proxy.setExtraParam('prod_no', 		prod_no);
+					// 		// partmcissue.loadPage(1);
+							
+					// 		// //	for grid part > iqc > mechanical
+					// 		// iqcmchcal.proxy.setExtraParam('model', model_name);
+					// 		// iqcmchcal.proxy.setExtraParam('prod_date', prod_date);
+					// 		// iqcmchcal.proxy.setExtraParam('src_cat', x);
+					// 		// iqcmchcal.loadPage(1);
+							
+					// 		// //	for grid part > iqc > mechanism
+					// 		// iqcmchnism.proxy.setExtraParam('model', model_name);
+					// 		// iqcmchnism.proxy.setExtraParam('prod_date', prod_date);
+					// 		// iqcmchnism.proxy.setExtraParam('src_cat', x);
+					// 		// iqcmchnism.loadPage(1);
+							
+					// 		// //	for grid part > iqc > mechatronic
+					// 		// iqcmchtronics.proxy.setExtraParam('model', model_name);
+					// 		// iqcmchtronics.proxy.setExtraParam('prod_date', prod_date);
+					// 		// iqcmchtronics.proxy.setExtraParam('src_cat', x);
+					// 		// iqcmchtronics.loadPage(1);
+							
+					// 		// //	for grid process > im > prodresult
+					// 		// imoutput.proxy.setExtraParam('model', 	 	model_name);
+					// 		// imoutput.proxy.setExtraParam('prod_no', 	prod_no);
+					// 		// imoutput.proxy.setExtraParam('lot_size', 	lot_size);
+					// 		// imoutput.proxy.setExtraParam('st_serial',	start_serial);
+					// 		// imoutput.proxy.setExtraParam('prod_date',	prod_date);
+					// 		// imoutput.proxy.setExtraParam('src_cat',		'fg');
+					// 		// imoutput.proxy.setExtraParam('valrbprod',	rbprod);
+					// 		// imoutput.loadPage(1);
+							
+					// 		// //	for grid process > im > downtime
+					// 		// imdowntime.proxy.setExtraParam('prod_date', prod_date);
+					// 		// imdowntime.proxy.setExtraParam('model', 	model_name);
+					// 		// imdowntime.proxy.setExtraParam('st_serial', start_serial);
+					// 		// imdowntime.proxy.setExtraParam('src_cat',	x);
+					// 		// imdowntime.loadPage(1);
+							
+					// 		// //	for grid process > im > quality
+					// 		// imquality.proxy.setExtraParam('prod_date', 	prod_date);
+					// 		// imquality.proxy.setExtraParam('model', 		model_name);
+					// 		// imquality.proxy.setExtraParam('st_serial', 	start_serial);
+					// 		// imquality.proxy.setExtraParam('src_cat',	'fg');
+					// 		// imquality.loadPage(1);
+							
+					// 		// //	for grid process > ma > quality
+					// 		// maquality.proxy.setExtraParam('model', model_name);
+					// 		// maquality.proxy.setExtraParam('lotno', prod_no);
+					// 		// maquality.proxy.setExtraParam('src_cat', x);
+					// 		// maquality.loadPage(1);
+							
+					// 		// //	for grid process > ma > losttime
+					// 		// malost.proxy.setExtraParam('model',		model_name);
+					// 		// malost.proxy.setExtraParam('prod_date', prod_date);
+					// 		// malost.loadPage(1);
+							
+					// 		// //	for grid process > mecha > quality
+					// 		// mechaquality.proxy.setExtraParam('mecha_model', model_name);
+					// 		// mechaquality.proxy.setExtraParam('mecha_lot', prod_no);
+					// 		// mechaquality.loadPage(1);
+							
+					// 		// //	for grid process > mecha > losttime
+					// 		// mechalosttime.proxy.setExtraParam('model',		model_name);
+					// 		// mechalosttime.proxy.setExtraParam('prod_no', 	prod_no);
+					// 		// mechalosttime.proxy.setExtraParam('prod_date',	prod_date);
+					// 		// mechalosttime.loadPage(1);
+							
+					// 		// //	for grid process > finishgood > scanin
+					// 		// fgscanin.proxy.setExtraParam('model', 		model_name);
+					// 		// fgscanin.proxy.setExtraParam('prod_no',  	prod_no);
+					// 		// fgscanin.proxy.setExtraParam('src_cat', 	'sp');
+					// 		// fgscanin.loadPage(1);
+							
+					// 		// //	for grid process > finishgood > scanout
+					// 		// fgscanout.proxy.setExtraParam('model', 		model_name);
+					// 		// fgscanout.proxy.setExtraParam('prod_no',  	prod_no);
+					// 		// fgscanout.proxy.setExtraParam('src_cat', 	'sp');
+					// 		// fgscanout.loadPage(1);
+							
+					// 		// //	for grid process > finishgood > summary
+					// 		// fgsum.proxy.setExtraParam('model', 		model_name);
+					// 		// fgsum.loadPage(1);
+							
+					// 	}
+					// }
 				});
 
 			//	Actual Model
@@ -240,6 +375,33 @@
 	                    }
 	                }
 				});
+				var store_part_smt_install = Ext.create('Ext.data.Store',{
+					model	: 'model_part_smt_install',
+					autoLoad: false,
+					pageSize: itemperpage,
+					proxy   : {
+	                    type    : 'ajax',
+	                    url     : 'json/json_part_smt_install.php',
+	                    reader  : {
+	                        type    : 'json',
+	                        root    : 'rows',
+	                        totalProperty  : 'totalCount'
+	                    }
+	                }
+				});
+				var store_part_smt_zdbs = Ext.create('Ext.data.Store',{
+					model	: 'model_part_smt_zdbs',
+					autoLoad: false,
+					pageSize: itemperpage,
+					proxy   : {
+						type    : 'ajax',
+						url     : 'json/json_part_smtzdbs.php',
+						reader  : {
+							type    : 'json',
+							root    : 'rows'
+						}
+					}
+				});
 				//PCB & MA Department
 				var store_mapros_board = Ext.create('Ext.data.Store',{
 					model	: 'model_mapros_board',
@@ -320,6 +482,16 @@
 								store_part_smt_picking.proxy.setExtraParam('st_serial', serial_no);
 								store_part_smt_picking.loadPage(1);
 
+								store_part_smt_install.proxy.setExtraParam('src_cat', 'fg');
+								store_part_smt_install.proxy.setExtraParam('prod_date', prod_date);
+								store_part_smt_install.proxy.setExtraParam('model', model);
+								store_part_smt_install.proxy.setExtraParam('st_serial', serial_no);
+								store_part_smt_install.loadPage(1);
+
+								store_part_smt_zdbs.proxy.setExtraParam('src_cat', 'fg');
+								store_part_smt_zdbs.proxy.setExtraParam('prod_date', prod_date);
+								store_part_smt_zdbs.proxy.setExtraParam('model', 	model);
+								store_part_smt_zdbs.loadPage(1);
 								// store_mapros_board.proxy.setExtraParam('model',model);
 								// store_mapros_board.proxy.setExtraParam('prod_date',prod_date);
 								// store_mapros_board.proxy.setExtraParam('prod_no',prod_no);
@@ -846,7 +1018,7 @@
 					var grid_part_mc_ma = Ext.create('Ext.grid.Panel', {
 						id				: 'grid_part_mc_ma',
 						autoWidth 		: '100%',
-						maxHeight		: 259,
+						maxHeight		: 290,
 						columnLines		: true,
 						store			: store_part_mc_issue_ma,
 						viewConfig		: {
@@ -1266,7 +1438,7 @@
 						plain 		: true,
 						//activeTab 	: 0,
 						autoWidth 	: '100%',
-						maxHeight 	: 295,
+						maxHeight 	: 300,
 						autoScroll 	: true,
 						frame 		: true,
 						style: 'padding:5px;-background:#157FCC;',
@@ -1292,8 +1464,8 @@
 					});
 			//	Process Operational
 				//	SMT DEPARTMENT
-						var grid_part_smt_prep = Ext.create('Ext.grid.Panel', {
-							id: 'grid_part_smt_prep',
+						var grid_part_smt_picking = Ext.create('Ext.grid.Panel', {
+							id: 'grid_part_smt_picking',
 							autoWidth 	: '100%',
 							maxHeight	: 295,
 							columnLines: true,
@@ -1364,6 +1536,130 @@
 								dataIndex: 'demand',
 								flex: 1,
 								renderer: upsize
+							}, {
+								header: 'Loose Reel',
+								dataIndex: 'loose_reel',
+								flex: 1,
+								renderer: upsize
+							}, {
+								header: 'Loose NIK',
+								dataIndex: 'loose_nik',
+								flex: 1,
+								renderer: upsize
+							}, {
+								header: 'Loose Time',
+								dataIndex: 'loose_time',
+								flex: 1,
+								renderer: upsize
+							}, {
+								header: 'Full Reel',
+								dataIndex: 'full_reel',
+								flex: 1,
+								renderer: upsize
+							}, {
+								header: 'Full NIK',
+								dataIndex: 'full_nik',
+								flex: 1,
+								renderer: upsize
+							}, {
+								header: 'Full time',
+								dataIndex: 'full_time',
+								flex: 1,
+								renderer: upsize
+							}],
+							//features: [filters],
+							// selModel: {
+							// 	selType: 'cellmodel'
+							// },
+							// plugins: [cellEditing]
+						});
+						var grid_part_smt_install = Ext.create('Ext.grid.Panel', {
+							id: 'grid_part_smt_install',
+							autoWidth 	: '100%',
+							maxHeight	: 295,
+							columnLines: true,
+							store: store_part_smt_install,
+							viewConfig: {
+								stripeRows: true,
+								emptyText: '<div class="empty-txt">No data to display.</div>',
+								deferEmptyText: false,
+								enableTextSelection: true
+							},
+							columns: [{
+								header: 'Req. Date',
+								dataIndex: 'jobdate',
+								flex: 1,
+								renderer: upsize
+							}, {
+								header: 'Req. Time',
+								dataIndex: 'jobtime',
+								flex: 1,
+								renderer: upsize
+							}, {
+								header: 'Line',
+								dataIndex: 'line',
+								flex: 1,
+								renderer: upsize
+							}, {
+								header: 'Model Name',
+								dataIndex: 'model_name',
+								flex: 1,
+								renderer: upsize,
+								hidden: true
+							}, {
+								header: 'PWB Name',
+								dataIndex: 'pwb_name',
+								flex: 1,
+								renderer: upsize,
+								hidden: true
+							}, {
+								header: 'Start Serial',
+								dataIndex: 'start_serial',
+								flex: 1,
+								renderer: upsize,
+								hidden: true
+							}, {
+								header: 'Lot',
+								dataIndex: 'lot',
+								flex: 1,
+								renderer: upsize,
+								hidden: true
+							}, {
+								header: 'Zfeeder',
+								dataIndex: 'zfeeder',
+								flex: 1,
+								renderer: upsize,
+								filter: {
+									type: 'string'
+								}
+							}, {
+								header: 'Part Number',
+								dataIndex: 'part_no',
+								flex: 1,
+								renderer: upsize,
+								filter: {
+									type: 'string'
+								}
+							}, {
+								header: 'Demand Qty',
+								dataIndex: 'demand',
+								flex: 1,
+								renderer: upsize
+							}, {
+								header: 'Status',
+								dataIndex: 'install',
+								flex: 1,
+								renderer: upsize
+							}, {
+								header: 'PIC',
+								dataIndex: 'install_nik',
+								flex: 1,
+								renderer: upsize
+							}, {
+								header: 'Scan Date',
+								dataIndex: 'install_time',
+								flex: 1,
+								renderer: upsize
 							}],
 							//features: [filters],
 							// selModel: {
@@ -1376,7 +1672,7 @@
 							autoWidth 	: '100%',
 							maxHeight	: 295,
 							columnLines: true,
-							// store: store_part_smt_zdbs,
+							store: store_part_smt_zdbs,
 							viewConfig: {
 								stripeRows: true,
 								emptyText: '<div class="empty-txt">No data to display.</div>',
@@ -1728,7 +2024,7 @@
 						var grid_smt_aoi = Ext.create('Ext.grid.Panel', {
 							id: 'grid_smt_aoi',
 							autoWidth 	: '100%',
-							maxHeight	: 295,
+							maxHeight	: 290,
 							columnLines: true,
 							//store: store_smt_aoi,
 							viewConfig: {
@@ -1807,11 +2103,10 @@
 						var part_smt = Ext.create('Ext.tab.Panel', {
 							id : 'part_smt',
 							renderTo : 'finishgood_part_smt',
-							autoHeight: true,
 							plain: true,
 							activeTab: 0,
 							autoWidth 	: '100%',
-							maxHeight	: 295,
+							maxHeight	: 300,
 							autoScroll: true,
 							frame: true,
 							//style: 'padding:5px;-background:#157FCC;',
@@ -1819,12 +2114,12 @@
 								{ 	id : 'show_grid_pickingpart',
 									title: 'Picking Part',
 									reorderable: false,
-									items: [grid_part_smt_prep]
+									items: [grid_part_smt_picking]
 								}, 
 								{ 	id : 'show_grid_installpart',
 									title: 'Install Part',
 									reorderable: false,
-									//items: [grid_part_smt_install]
+									items: [grid_part_smt_install]
 								}, 
 								{	id : 'show_grid_imzdbs',
 									title: 'IMZDBS',
