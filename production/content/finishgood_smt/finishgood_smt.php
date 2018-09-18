@@ -5,7 +5,7 @@
     <div class="x_panel">
       <div class="form-inline">
         <div id="boardid_scan" class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <h5 class="x_title"><i class="fas fa-search"></i> PCB ID</h5>
+          <h5 class="x_title"><i class="fas fa-search"></i> PCB ID </h5>
         </div>
       </div>
     </div>
