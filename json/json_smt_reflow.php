@@ -20,8 +20,8 @@
         $return[$i]['scan_date']         = trim($rs->fields['1']);
         $return[$i]['reflow_start_time'] = trim($rs->fields['2']);
         $return[$i]['reflow_end_time']   = trim($rs->fields['3']);
-        $return[$i]['reflow_end_time']   = trim($rs->fields['4']);
-        $return[$i]['reflow_end_time']   = trim($rs->fields['5']);
+        $return[$i]['boardlen']          = trim($rs->fields['4']);
+        $return[$i]['diffdate']          = trim($rs->fields['5']);
         $return[$i]['pcbid']	         = trim($rs->fields['6']);
        
         $rs->MoveNext();

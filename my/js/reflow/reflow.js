@@ -13,7 +13,13 @@
 
 	//function untuk fontsize grid
 	function upsize(val) {
-		return '<font class="fontsize12">' + val + '</font>';
+		var x = val;
+		if (x == ''){
+			return '<font class="fontsize12" style="color:red;font-weight: bold;"> --- </font>';
+		}
+		else{
+			return '<font class="fontsize12">' + x + '</font>';
+		}
 	}
 
 	// Start
@@ -35,7 +41,7 @@
 			
 					Ext.define('model_smt_reflow',{
 		                extend: 'Ext.data.Model',
-		                fields: ['board_id', 'scan_date', 'reflow_start_time', 'reflow_end_time','pcbid']
+		                fields: ['board_id', 'scan_date', 'reflow_start_time', 'reflow_end_time','boardlen','diffdate','pcbid']
 		           	});
 					
 		//	=======================================================    DATASTORE    =====================================

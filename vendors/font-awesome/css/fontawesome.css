@@ -1672,6 +1672,9 @@ readers do not read off random characters that represent icons */
 .fa-maxcdn:before {
   content: "\f136"; }
 
+.fa-memory:before {
+  content: "\f538"; }
+
 .fa-medapps:before {
   content: "\f3c6"; }
 
