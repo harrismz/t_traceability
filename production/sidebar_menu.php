@@ -26,6 +26,7 @@
       <ul class="nav side-menu">
         <!-- <li><a href="index.php"><i class="fas fa-home"></i> Home </a></li> -->
         <li><a href="index.php?content=finishgood"><i class="fas fa-box"></i> Finished Goods </a></li>
+        <li><a href="index.php?content=finishgood_smt"><i class="fas fa-code-branch"></i> Finished Goods SMT </a></li>
         <li><a href="index.php?content=singlepart"><i class="fas fa-microchip"></i> Part </a></li>
         <li><a href="index.php?content=symptom"><i class="fas fa-stethoscope"></i> Symptom </a></li>
         <li><a href="index.php?content=modellotno"><i class="fas fa-search"></i> Model & Lot No </a></li>
