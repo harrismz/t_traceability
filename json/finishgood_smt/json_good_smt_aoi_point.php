@@ -1,20 +1,18 @@
 <?php
 	date_default_timezone_set('Asia/jakarta');
-    include '../../../adodb/con_aoi.php';
+    include '../../../adodb/con_smtpros.php';
 
     //$page 		= @$_REQUEST["page"];
 	//$limit 		= @$_REQUEST["limit"];
 	//$start		= (($page*$limit)-$limit)+1;
 	
-    $model      = $_REQUEST['model'];
-    $src_cat        = $_REQUEST['src_cat'];
-    
-	$getdate    = substr($_REQUEST['prod_date'],0,10);
-	$proddate 	= date('Y-m-d', strtotime($getdate));
+    $boardid      = $_REQUEST['boardid'];
+    $getdate    = substr($_REQUEST['smt_date'],0,10);
+	$smt_date 	= date('Y-m-d', strtotime($getdate));
 
 	//echo "exec traceability_aoi '{$model}','{$proddate}','fg'";
-    $rs    = $db->Execute("exec traceability_smt_good_aoi_point '{$model}','{$proddate}','{$src_cat}'");
-    $return = array();
+    $rs         = $db->Execute("exec traceability_smt_good_aoi_point '{$boardid}','{$smt_date}'");
+    $return     = array();
 
     for($i=0;!$rs->EOF;$i++){
 		$return[$i]['linkedserver']   = trim($rs->fields['0']);
