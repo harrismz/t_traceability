@@ -32,6 +32,8 @@
         <!-- <li><a href="index.php?content=quality"><i class="fas fa-tasks"></i> Quality </a></li>
         <li><a href="index.php?content=Production"><i class="fas fa-cogs"></i> Production </a></li> -->
         <li><a href="index.php?content=errorfinder"><i class="fas fa-exclamation-triangle"></i> Error Finder </a></li>
+        <li><a href="index.php?content=measurement"><i class="fas fa-thermometer-half"></i> Measurement </a></li>
+        <li><a href="index.php?content=reflow"><i class="fas fa-memory"></i> Reflow </a></li>
 
 
 <!--
