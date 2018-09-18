@@ -53,49 +53,13 @@
 			
 		//	=======================================================    MODEL    =========================================
 			
-
+																					
 			//	for grid part > im > partnavigation
 			//	Traceability model
-					Ext.define('main_data', {
+					Ext.define('model_bigs', {
 						extend: 'Ext.data.Model',
-						fields: ['line_name', 'prod_date', 'host_ip', 'model_name', 'prod_no', 'lot_size', 'start_serial', 'serial_no_id', 'serial_id', 'mecha_model', 'mecha_lot']
+						fields: ['schedule_id', 'lot_size', 'model_code', 'prod_no_code', 'side', 'cavity', 'seq_start', 'seq_end', 'line', 'model', 'pwbname', 'pwbno', 'process', 'rev_date', 'qty']
 					});
-			//	Plan Model
-					Ext.define('model_sched', {
-						extend: 'Ext.data.Model',
-						fields: ['prod_date', 'line_name', 'model_name', 'prod_no', 'lot_size', 'start_serial', 'serial_id']
-					});
-			//	Actual Model
-					Ext.define('model_output', {
-						extend: 'Ext.data.Model',
-						fields: ['prod_date', 'line_name', 'model_name', 'shift', 'output', 'stime']
-					});
-
-			//	Part Handling Model
-				//Receiving Part
-					Ext.define('model_rcvpart', {
-						extend: 'Ext.data.Model',
-						fields: ['userid', 'supp', 'inv', 'part', 'po', 'qty', 'rcvdate', 'custom', 'category']
-					});
-				//Part Inspection
-					Ext.define('model_part_insp', {
-						extend: 'Ext.data.Model',
-						fields: ['noid', 'deliv_date', 'tbslppartno', 'partname', 'supplier', 'suppcode', 'inspect_level', 'pic', 'shift', 'qty_sampling', 'qty_rejection', 'do', 'bc', 'po', 'qty_delivery', 'lot_out', 'pr_name', 'time_finish', 'fld_remark']
-					});
-				//Part Issuing
-					Ext.define('part_mc_issue_ma', {
-						extend: 'Ext.data.Model',
-						fields: ['issdate', 'partno', 'partname', 'scanqty', 'po', 'model_name', 'lot', 'line', 'so', 'reqqty']
-					});
-					Ext.define('part_mc_issue_mecha', {
-						extend: 'Ext.data.Model',
-						fields: ['issdate', 'partno', 'partname', 'scanqty', 'po', 'model_name', 'lot', 'line', 'so', 'reqqty']
-					});
-					Ext.define('part_mchcal',{
-		                extend: 'Ext.data.Model',
-		                fields: ['symptom', 'probcause', 'model', 'line', 'shift', 'part_no', 'part_name', 'supplier', 'rejectqty', 'filepicture', 'corrmethod', 'mp', 'duration', 'total', 'actionsupp', 'status', 'remark', 'action_user', 'input_date', 'vw_inputdate', 'id']
-				    });
-					
 			//	Process Operational
 				//SMT DEPARTMENT
 					Ext.define('part_smt_picking',{
@@ -115,8 +79,13 @@
 		                extend: 'Ext.data.Model',
 		                fields: ['board_id', 'scan_date', 'reflow_start_time', 'reflow_end_time']
 		           	});
-					Ext.define('model_smt_aoi',{
+					Ext.define('model_good_smt_aoi_board',{
 		                extend: 'Ext.data.Model',
+						fields: ['linkedserver', 'pcbid', 'pcbguid', 'componentguid', 'uname', 'barcode', 'stdate',
+		                			'enddate','partno','partname','aoijudgment','userjudgment']
+		           	});
+					Ext.define('model_good_smt_aoi_point',{
+						extend: 'Ext.data.Model',
 						fields: ['linkedserver', 'pcbid', 'pcbguid', 'componentguid', 'uname', 'barcode', 'stdate',
 		                			'enddate','partno','partname','aoijudgment','userjudgment']
 		           	});
@@ -132,250 +101,45 @@
 					    extend: 'Ext.data.Model',
 		                fields: ['board_id','guid_master','guid_ticket','modelname','lotno','scanner_id','status']
 		            })
-			 	//Mecha DEPARTMENT
-				
-			//	Outgoing Quality Control
-				//***IQC can't share quality sampling in server ( cannot access server iqc from jein server )		
-			
-			//	Finished Goods
-					
-			//	Problem Information
-					
+		
 		//	=======================================================    DATASTORE    =====================================
 
-			//	Plan Model
-					var store_sched = Ext.create('Ext.data.Store', {
-						model 	: 'model_sched',
-						autoLoad: false,
-						proxy	: {
-							type  : 'ajax',
-							url	  : 'json/json_sched.php',
+					var store_bigs = Ext.create('Ext.data.Store', {
+						model: 'model_bigs',
+						proxy: {
+							type: 'ajax',
+							url: 'json/json_finishgood_smt_bigs.php',
 							reader: {
-								type 		  : 'json',
-								root 		  : 'rows',
-								totalProperty : 'totalCount'
+								type: 'json',
+								root: 'rows',
+								totalProperty: 'totalCount'
 							}
 						},
-						// listeners	: {
-						// 	load: function(store, records){
-						// 		var prod_date		= store.getAt(0).get('prod_date');
-						// 		var model_name		= store.getAt(0).get('model_name');
-						// 		var prod_no			= store.getAt(0).get('prod_no');
-						// 		var lot_size		= store.getAt(0).get('lot_size');
-						// 		var start_serial	= store.getAt(0).get('start_serial');
-						// 		var x 				= Ext.getCmp('rb3').getValue()['src_cat3'];
-						// 		var rbprod 			= Ext.getCmp('rbprod').getValue()['srcprod'];
-								
-						// 		store_part_smt_zdbs.proxy.setExtraParam('prod_date', prod_date);
-						// 		store_part_smt_zdbs.proxy.setExtraParam('model', 	model_name);
-						// 		store_part_smt_zdbs.loadPage(1);
+						listeners: {
+							load: function(store, records) {
+								if (records != "") {
+									// line 		= store.getAt(0).get('line_name');
+									// prod_date 	= store.getAt(0).get('prod_date');
+									// model 		= store.getAt(0).get('model_name');
+									// model_mecha	= store.getAt(0).get('mecha_model');
+									// prodno 		= store.getAt(0).get('prod_no');
+									// lot_size 	= store.getAt(0).get('lot_size');
+									// serial_no 	= store.getAt(0).get('start_serial');
+									// serial_id 	= store.getAt(0).get('serial_id');
+									
+									// store_part_receiving.proxy.setExtraParam('prod_date', prod_date);
+									// store_part_receiving.proxy.setExtraParam('prod_no', prodno);
+									// store_part_receiving.proxy.setExtraParam('model', model);
+									// store_part_receiving.loadPage(1);
 
-						// 		// //	for grid actual
-						// 		// actual.proxy.setExtraParam('model', 	model_name);
-						// 		// actual.proxy.setExtraParam('prod_no',  	prod_no);
-						// 		// actual.proxy.setExtraParam('lot_size', 	lot_size);
-						// 		// actual.proxy.setExtraParam('st_serial',	start_serial);
-						// 		// actual.proxy.setExtraParam('src_cat', 	x);
-						// 		// actual.proxy.setExtraParam('valrbprod',	rbprod);
-						// 		// actual.loadPage(1);
-								
-						// 		// //	for grid part > im > outsetinquiry
-						// 		// partim.proxy.setExtraParam('prod_date', prod_date);
-						// 		// partim.proxy.setExtraParam('model', 	model_name);
-						// 		// partim.proxy.setExtraParam('st_serial', start_serial);
-						// 		// partim.proxy.setExtraParam('src_cat', 	x);
-						// 		// partim.loadPage(1);
-								
-						// 		// //	for grid part > im > partnavigation
-						// 		// partimzdbs.proxy.setExtraParam('prod_date', prod_date);
-						// 		// partimzdbs.proxy.setExtraParam('model', 	model_name);
-						// 		// partimzdbs.loadPage(1);
-								
-						// 		// //	for grid part > mc > partnavigation
-						// 		// partmcissue.proxy.setExtraParam('prod_date',	prod_date);
-						// 		// partmcissue.proxy.setExtraParam('model', 		model_name);
-						// 		// partmcissue.proxy.setExtraParam('prod_no', 		prod_no);
-						// 		// partmcissue.loadPage(1);
-								
-						// 		// //	for grid part > iqc > mechanical
-						// 		// iqcmchcal.proxy.setExtraParam('model', model_name);
-						// 		// iqcmchcal.proxy.setExtraParam('prod_date', prod_date);
-						// 		// iqcmchcal.proxy.setExtraParam('src_cat', x);
-						// 		// iqcmchcal.loadPage(1);
-								
-						// 		// //	for grid part > iqc > mechanism
-						// 		// iqcmchnism.proxy.setExtraParam('model', model_name);
-						// 		// iqcmchnism.proxy.setExtraParam('prod_date', prod_date);
-						// 		// iqcmchnism.proxy.setExtraParam('src_cat', x);
-						// 		// iqcmchnism.loadPage(1);
-								
-						// 		// //	for grid part > iqc > mechatronic
-						// 		// iqcmchtronics.proxy.setExtraParam('model', model_name);
-						// 		// iqcmchtronics.proxy.setExtraParam('prod_date', prod_date);
-						// 		// iqcmchtronics.proxy.setExtraParam('src_cat', x);
-						// 		// iqcmchtronics.loadPage(1);
-								
-						// 		// //	for grid process > im > prodresult
-						// 		// imoutput.proxy.setExtraParam('model', 	 	model_name);
-						// 		// imoutput.proxy.setExtraParam('prod_no', 	prod_no);
-						// 		// imoutput.proxy.setExtraParam('lot_size', 	lot_size);
-						// 		// imoutput.proxy.setExtraParam('st_serial',	start_serial);
-						// 		// imoutput.proxy.setExtraParam('prod_date',	prod_date);
-						// 		// imoutput.proxy.setExtraParam('src_cat',		'fg');
-						// 		// imoutput.proxy.setExtraParam('valrbprod',	rbprod);
-						// 		// imoutput.loadPage(1);
-								
-						// 		// //	for grid process > im > downtime
-						// 		// imdowntime.proxy.setExtraParam('prod_date', prod_date);
-						// 		// imdowntime.proxy.setExtraParam('model', 	model_name);
-						// 		// imdowntime.proxy.setExtraParam('st_serial', start_serial);
-						// 		// imdowntime.proxy.setExtraParam('src_cat',	x);
-						// 		// imdowntime.loadPage(1);
-								
-						// 		// //	for grid process > im > quality
-						// 		// imquality.proxy.setExtraParam('prod_date', 	prod_date);
-						// 		// imquality.proxy.setExtraParam('model', 		model_name);
-						// 		// imquality.proxy.setExtraParam('st_serial', 	start_serial);
-						// 		// imquality.proxy.setExtraParam('src_cat',	'fg');
-						// 		// imquality.loadPage(1);
-								
-						// 		// //	for grid process > ma > quality
-						// 		// maquality.proxy.setExtraParam('model', model_name);
-						// 		// maquality.proxy.setExtraParam('lotno', prod_no);
-						// 		// maquality.proxy.setExtraParam('src_cat', x);
-						// 		// maquality.loadPage(1);
-								
-						// 		// //	for grid process > ma > losttime
-						// 		// malost.proxy.setExtraParam('model',		model_name);
-						// 		// malost.proxy.setExtraParam('prod_date', prod_date);
-						// 		// malost.loadPage(1);
-								
-						// 		// //	for grid process > mecha > quality
-						// 		// mechaquality.proxy.setExtraParam('mecha_model', model_name);
-						// 		// mechaquality.proxy.setExtraParam('mecha_lot', prod_no);
-						// 		// mechaquality.loadPage(1);
-								
-						// 		// //	for grid process > mecha > losttime
-						// 		// mechalosttime.proxy.setExtraParam('model',		model_name);
-						// 		// mechalosttime.proxy.setExtraParam('prod_no', 	prod_no);
-						// 		// mechalosttime.proxy.setExtraParam('prod_date',	prod_date);
-						// 		// mechalosttime.loadPage(1);
-								
-						// 		// //	for grid process > finishgood > scanin
-						// 		// fgscanin.proxy.setExtraParam('model', 		model_name);
-						// 		// fgscanin.proxy.setExtraParam('prod_no',  	prod_no);
-						// 		// fgscanin.proxy.setExtraParam('src_cat', 	'sp');
-						// 		// fgscanin.loadPage(1);
-								
-						// 		// //	for grid process > finishgood > scanout
-						// 		// fgscanout.proxy.setExtraParam('model', 		model_name);
-						// 		// fgscanout.proxy.setExtraParam('prod_no',  	prod_no);
-						// 		// fgscanout.proxy.setExtraParam('src_cat', 	'sp');
-						// 		// fgscanout.loadPage(1);
-								
-						// 		// //	for grid process > finishgood > summary
-						// 		// fgsum.proxy.setExtraParam('model', 		model_name);
-						// 		// fgsum.loadPage(1);
-								
-						// 	}
-						// }
-					});
-
-			//	Actual Model
-					var store_output = Ext.create('Ext.data.Store', {
-						model 	: 'model_output',
-						autoLoad: false,
-						proxy	: {
-							type  : 'ajax',
-							url   : 'json/json_output.php',
-							reader: {
-								type 		  : 'json',
-								root		  : 'rows',
-								totalProperty : 'totalCount'
+									
+								} else {
+									Ext.Msg.alert('Warning', 'No Data Found ! <br> Please try again with the correct PCB ID.');
+								}
 							}
 						}
 					});
-
-			//	Part Handling Model
-				//Receiving Part
-					var store_part_receiving = Ext.create('Ext.data.Store', {
-						model 	: 'model_rcvpart',
-						autoLoad: false,
-						//pageSize: itemperpage,
-						proxy 	: {
-							type   : 'ajax',
-							url    : 'json/json_part_receive.php',
-							reader : {
-								type 		 : 'json',
-								root		 : 'rows',
-								totalProperty: 'totalCount'
-							}
-						}
-					});
-
-				//Part Inspection
-					var store_part_insp = Ext.create('Ext.data.Store', {
-						model 	: 'model_part_insp',
-						autoLoad: false,
-						//pageSize: itemperpage,
-						proxy 	: {
-							type 	: 'ajax',
-							url 	: 'json/json_part_insp.php',
-							reader 	: {
-								type 		 : 'json',
-								root 		 : 'rows',
-								totalProperty: 'totalCount'
-							}
-						}
-					});
-
-				//Part Issuing
-					var store_part_mc_issue_ma = Ext.create('Ext.data.Store', {
-						model 	: 'part_mc_issue_ma',
-						autoLoad: false,
-						pageSize: itemperpage,
-						proxy 	: {
-							type 	: 'ajax',
-							url 	: 'json/json_part_mcis_ma.php',
-							reader 	: {
-								type 		 : 'json',
-								root 		 : 'rows',
-								totalProperty: 'totalCount'
-							}
-						}
-					});
-					var store_part_mc_issue_mecha = Ext.create('Ext.data.Store', {
-						model 	: 'part_mc_issue_mecha',
-						autoLoad: false,
-						pageSize: itemperpage,
-						proxy 	: {
-							type 	: 'ajax',
-							url 	: 'json/json_part_mcis_mecha.php',
-							reader 	: {
-								type 		 : 'json',
-								root 		 : 'rows',
-								totalProperty: 'totalCount'
-							}
-						}
-					});
-					var part_mchcal = Ext.create('Ext.data.Store',{
-						model	: 'part_mchcal',
-						autoLoad: false,
-						//pageSize: itemperpage,
-						proxy   : {
-		                    type    : 'ajax',
-		                    url     : 'json/json_part_mechanical.php',
-		                    reader  : {
-		                        type    : 'json',
-		                        root    : 'rows',
-		                    //    totalProperty  : 'totalCount'
-		                    }
-		                }
-					});
-					
-			//	Process Operational
-			 	//SMT Picking
-				 	var store_part_smt_picking = Ext.create('Ext.data.Store',{
+					var store_part_smt_picking = Ext.create('Ext.data.Store',{
 						model	: 'part_smt_picking',
 						autoLoad: false,
 						pageSize: itemperpage,
@@ -443,13 +207,26 @@
 							}
 						}
 					});
-					var store_smt_aoi = Ext.create('Ext.data.Store',{
-						model	: 'model_smt_aoi',
+					var store_good_smt_aoi_board = Ext.create('Ext.data.Store',{
+						model	: 'model_good_smt_aoi_board',
 						autoLoad: false,
 						pageSize: itemperpage,
 						proxy   : {
 							type    : 'ajax',
-							url     : 'json/json_smt_aoi.php',
+							url     : 'json/finishgood_smt/json_good_smt_aoi_board.php',
+							reader  : {
+								type    : 'json',
+								root    : 'rows'
+							}
+						}
+					});
+					var store_good_smt_aoi_point = Ext.create('Ext.data.Store',{
+						model	: 'model_good_smt_aoi_point',
+						autoLoad: false,
+						pageSize: itemperpage,
+						proxy   : {
+							type    : 'ajax',
+							url     : 'json/finishgood_smt/json_good_smt_aoi_point.php',
 							reader  : {
 								type    : 'json',
 								root    : 'rows'
@@ -486,122 +263,15 @@
 		                    }
 		                }
 					});
-
-			// 	Warehouse
-
-			//	Traceability model
-					var main_store = Ext.create('Ext.data.Store', {
-						model: 'main_data',
-						proxy: {
-							type: 'ajax',
-							url: 'json/json_main.php',
-							reader: {
-								type: 'json',
-								root: 'rows',
-								totalProperty: 'totalCount'
-							}
-						},
-						listeners: {
-							load: function(store, records) {
-								if (records != "") {
-									// line 		= store.getAt(0).get('line_name');
-									// prod_date 	= store.getAt(0).get('prod_date');
-									// model 		= store.getAt(0).get('model_name');
-									// model_mecha	= store.getAt(0).get('mecha_model');
-									// prodno 		= store.getAt(0).get('prod_no');
-									// lot_size 	= store.getAt(0).get('lot_size');
-									// serial_no 	= store.getAt(0).get('start_serial');
-									// serial_id 	= store.getAt(0).get('serial_id');
-									
-									// store_part_receiving.proxy.setExtraParam('prod_date', prod_date);
-									// store_part_receiving.proxy.setExtraParam('prod_no', prodno);
-									// store_part_receiving.proxy.setExtraParam('model', model);
-									// store_part_receiving.loadPage(1);
-
-									// store_sched.proxy.setExtraParam('line', line);
-									// store_sched.proxy.setExtraParam('model', model);
-									// store_sched.proxy.setExtraParam('prod_no', prodno);
-									// store_sched.proxy.setExtraParam('serial_no', serial_no);
-									// store_sched.proxy.setExtraParam('serial_id', serial_id);
-									// store_sched.loadPage(1);
-									
-									// store_output.proxy.setExtraParam('model', model);
-									// store_output.proxy.setExtraParam('prod_no', prodno);
-									// store_output.proxy.setExtraParam('lot_size', lot_size);
-									// store_output.proxy.setExtraParam('st_serial', serial_no);
-									// store_output.loadPage(1);
-									
-									// store_part_insp.proxy.setExtraParam('prod_date', prod_date);
-									// store_part_insp.proxy.setExtraParam('prod_no', prodno);
-									// store_part_insp.proxy.setExtraParam('model', model);
-									// store_part_insp.loadPage(1);
-									
-									// store_part_mc_issue_ma.proxy.setExtraParam('prod_date', prod_date);
-									// store_part_mc_issue_ma.proxy.setExtraParam('model', model);
-									// store_part_mc_issue_ma.proxy.setExtraParam('prod_no', prodno);
-									// store_part_mc_issue_ma.loadPage(1);
-									
-									// store_part_mc_issue_mecha.proxy.setExtraParam('prod_date', prod_date);
-									// store_part_mc_issue_mecha.proxy.setExtraParam('model', model_mecha);
-									// store_part_mc_issue_mecha.proxy.setExtraParam('prod_no', prodno);
-									// store_part_mc_issue_mecha.loadPage(1);
-
-									// store_part_smt_picking.proxy.setExtraParam('src_cat', 'fg');
-									// store_part_smt_picking.proxy.setExtraParam('prod_date', prod_date);
-									// store_part_smt_picking.proxy.setExtraParam('model', model);
-									// store_part_smt_picking.proxy.setExtraParam('st_serial', serial_no);
-									// store_part_smt_picking.loadPage(1);
-
-									// store_part_smt_install.proxy.setExtraParam('src_cat', 'fg');
-									// store_part_smt_install.proxy.setExtraParam('prod_date', prod_date);
-									// store_part_smt_install.proxy.setExtraParam('model', model);
-									// store_part_smt_install.proxy.setExtraParam('st_serial', serial_no);
-									// store_part_smt_install.loadPage(1);
-
-									// store_part_smt_zdbs.proxy.setExtraParam('src_cat', 'fg');
-									// store_part_smt_zdbs.proxy.setExtraParam('prod_date', prod_date);
-									// store_part_smt_zdbs.proxy.setExtraParam('model', 	model);
-									// store_part_smt_zdbs.loadPage(1);
-									
-									// store_smt_reflow.proxy.setExtraParam('src_cat', 'fg');
-									// store_smt_reflow.proxy.setExtraParam('prod_date', prod_date);
-									// store_smt_reflow.proxy.setExtraParam('model', 	model);
-									// store_smt_reflow.loadPage(1);
-									
-									// store_smt_quality.proxy.setExtraParam('model', model);
-									// store_smt_quality.proxy.setExtraParam('st_serial', serial_no);
-									// store_smt_quality.proxy.setExtraParam('serial_no', serial_no);
-									// store_smt_quality.proxy.setExtraParam('prod_date', prod_date);
-									// store_smt_quality.proxy.setExtraParam('src_cat', 'fg');
-									// store_smt_quality.loadPage(1);
-
-									// store_smt_aoi.proxy.setExtraParam('prod_date', '2018-09-18');
-									// store_smt_aoi.proxy.setExtraParam('model', 	model);
-									// store_smt_aoi.proxy.setExtraParam('src_cat', 'fg');
-									// store_smt_aoi.loadPage(1);
-									
-
-									// store_mapros_board.proxy.setExtraParam('model',model);
-									// store_mapros_board.proxy.setExtraParam('prod_date',prod_date);
-									// store_mapros_board.proxy.setExtraParam('prod_no',prod_no);
-									// store_mapros_board.loadPage(1);
-
-								} else {
-									Ext.Msg.alert('Warning', 'No Data Found ! <br> Please try again with the correct PCB ID.');
-								}
-							}
-						}
-					});
-
 		//	=======================================================    GRID    ==========================================
 			
 			//	Traceability Grid SMT
-					var bigs_grid = Ext.create('Ext.grid.Panel', {
-						id 			: 'bigs_grid',
+					var grid_bigs = Ext.create('Ext.grid.Panel', {
+						id 			: 'grid_bigs',
 						columnLines	: true,
 						width 		: '100%',
 						height 		: '100%',
-						//store 		: store_bigs,
+						store 		: store_bigs,
 						viewConfig	: {
 							stripeRows: true,
 							emptyText: '<div class="empty-txt-main">No data to display.</div>',
@@ -609,763 +279,93 @@
 							enableTextSelection: true
 						},
 						columns 	: [
-							{	header 	 : 'schedu',
-								dataIndex: 'line_name',
+							{	header 	 : 'schedule_id',
+								dataIndex: 'schedule_id',
 								width 	 : 50,
-								renderer : upsize
+								renderer : upsize,
+								hidden	 : true
 							}, 	
-							{	header 	 : 'Prod Date',
-								dataIndex: 'prod_date',
-								width 	 : 85,
-								renderer : upsize
-							}, 
-							{	header 	 : 'Model Name',
-								dataIndex: 'model_name',
-								width 	 : 125,
-								renderer : upsize
-							},
-							{ 	header 	 : 'Prod No',
-								dataIndex: 'prod_no',
-								width 	 : 70,
-								renderer : upsize
-							}, 
-							{ 	header 	 : 'Lot Size',
+							{	header 	 : 'lot_size',
 								dataIndex: 'lot_size',
+								width 	 : 85,
+								renderer : upsize,
+								hidden	 : true
+							}, 
+							{	header 	 : 'model_code',
+								dataIndex: 'model_code',
+								width 	 : 125,
+								renderer : upsize,
+								hidden	 : true
+							},
+							{ 	header 	 : 'prod_no_code',
+								dataIndex: 'prod_no_code',
 								width 	 : 70,
+								renderer : upsize,
+								hidden	 : true
+							}, 
+							{ 	header 	 : 'SIDE',
+								dataIndex: 'side',
+								width 	 : 60,
 								renderer : upsize
 							},
-							{ 	header 	 : 'Start Serial',
-								dataIndex: 'start_serial',
-								width 	 : 90,
+							{ 	header 	 : 'CAVITY',
+								dataIndex: 'cavity',
+								width 	 : 70,
 								renderer : upsize
 							}, 
-							{ 	header 	 : 'Serial No ID',
-								dataIndex: 'serial_no_id',
+							{ 	header 	 : 'SEQ START',
+								dataIndex: 'seq_start',
+								width 	 : 70,
+								renderer : upsize
+							}, 
+							{ 	header 	 : 'SEQ END',
+								dataIndex: 'seq_end',
+								width 	 : 70,
+								renderer : upsize
+							}, 
+							{ 	header 	 : 'LINE',
+								dataIndex: 'line',
+								width 	 : 60,
+								renderer : upsize
+							}, 
+							{ 	header 	 : 'MODEL',
+								dataIndex: 'model',
 								width 	 : 120,
 								renderer : upsize
 							}, 
-							{ 	header 	 : 'Host IP',
-								dataIndex: 'host_ip',
-								flex 	 : 1,
-								hidden 	 : true
-							}, 
-							{ 	header 	 : 'Serial ID',
-								dataIndex: 'serial_id',
-								flex 	 : 1,
-								hidden 	 : true
-							}, 
-							{ 	header 	 : 'Mecha Model',
-								dataIndex: 'mecha_model',
+							{ 	header 	 : 'PWB NAME',
+								dataIndex: 'pwbname',
 								flex 	 : 1,
 								renderer : upsize
 							}, 
-							{ 	header 	 : 'Mecha Lot',
-								dataIndex: 'mecha_lot',
+							{ 	header 	 : 'PWB NO',
+								dataIndex: 'pwbno',
+								flex 	 : 1,
+								renderer : upsize
+							}, 
+							{ 	header 	 : 'PROD NO',
+								dataIndex: 'prod_no',
+								flex 	 : 1,
+								renderer : upsize
+							}, 
+							{ 	header 	 : 'PROCESS',
+								dataIndex: 'process',
+								flex 	 : 1,
+								renderer : upsize
+							}, 
+							{ 	header 	 : 'rev_date',
+								dataIndex: 'rev_date',
+								flex 	 : 1,
+								renderer : upsize,
+								hidden	 : true
+							}, 
+							{ 	header 	 : 'QUANTITY',
+								dataIndex: 'qty',
 								flex 	 : 1,
 								renderer : upsize
 							}
 						]
 					});
-			//	Plan & Actual Grid
-					var schedule = Ext.create('Ext.grid.Panel', {
-						id 			:'schedule',
-						width 		: '100%',
-						height 		: '100%',
-						store  		: store_sched,
-						viewConfig 	: {
-							stripeRows 			: true,
-							emptyText 			: '<div class="empty-txt-main">No data to display.</div>',
-							deferEmptyText 		: false,
-							enableTextSelection : true
-						},
-						columns 	: [
-							{	header 		: 'Prod Date',
-								dataIndex 	: 'prod_date',
-								minWidth	: 85,
-								renderer 	: upsize
-							},
-							{	header 		: 'Line',
-								dataIndex 	: 'line_name',
-								minWidth	: 40,
-								renderer 	: upsize
-							},
-							{ 	header 		: 'Model Name',
-								dataIndex 	: 'model_name',
-								flex 		: 1,
-								renderer 	: upsize,
-								hidden 		: true
-							},
-							{ 	header 		: 'Prod No',
-								dataIndex 	: 'prod_no',
-								minWidth	: 90,
-								renderer 	: upsize,
-								hidden 		: true
-							},
-							{ 	header 		: 'Lot Size',
-								dataIndex 	: 'lot_size',
-								minWidth	: 100,
-								renderer 	: upsize
-							},
-							{ 	header 		: 'Start Serial',
-								dataIndex 	: 'start_serial',
-								flex 		: 1,
-								renderer 	: upsize
-							}
-						]
-					});
-					var outcount = Ext.create('Ext.grid.Panel', {
-						id 			:'outcount',
-						width 		: '100%',
-						height 		: '100%',
-						store 		: store_output,
-						centered	: true,
-						viewConfig	: {
-							stripeRows 			: true,
-							emptyText 			: '<div class="empty-txt-main">No data to display.</div>',
-							deferEmptyText 		: false,
-							enableTextSelection : true
-						},
-						columns 	: [
-							{ 	header 			: 'Prod Date',
-								dataIndex 		: 'prod_date',
-								width 			: 85,
-								renderer 		: upsize,
-								summaryRenderer	: function() {
-									return 'Output :'
-								}
-							},
-							{ 	header 			: 'First Output',
-								dataIndex 		: 'stime',
-								minWidth		: 90,
-								renderer 		: upsize
-							},
-							{	header 			: 'Line',
-								dataIndex 		: 'line_name',
-								minWidth		: 40,
-								renderer 		: upsize
-							},
-							{ 	header 			: 'Model Name',
-								dataIndex 		: 'model_name',
-								flex 			: 1,
-								renderer 		: upsize,
-								hidden 			: true
-							},
-							{ 	header 			: 'Shift',
-								dataIndex 		: 'shift',
-								minWidth		: 40,
-								renderer 		: upsize
-							},
-							{ 	header 			: 'Output',
-								dataIndex 		: 'output',
-								flex 			: 1,
-								renderer 		: upsize,
-								summaryType 	: 'sum'
-							}
-						],
-						features 	: [
-							{
-								id 				: 'linegroup',
-								ftype 			: 'groupingsummary',
-								//groupHeaderTpl: 'Line {name}',
-								//startCollapsed: true
-								//hideGroupedHeader: true,
-								//enableGroupingMenu: false
-							}
-						]
-					});
-			//	Part Handling
-				//Receiving Part
-					var grid_part_receiving = Ext.create('Ext.grid.Panel', {
-						id				: 'grid_part_receiving',
-						autoWidth		: '100%',
-						//height 		: '100%',
-						maxHeight		: 295,
-						columnLines		: true,
-						store			: store_part_receiving,
-						viewConfig		: {
-							stripeRows			: true,
-							emptyText			: '<div class="empty-txt">No data to display.</div>',
-							deferEmptyText		: false,
-							enableTextSelection	: true
-						},
-						columns			: [
-							{	header 		: 'Rcv Date', 
-								dataIndex 	: 'rcvdate', 
-								flex 		: 1, 
-								renderer 	: upsize 
-							},
-							{	header 		: 'Supplier', 
-								dataIndex 	: 'supp', 
-								flex 		: 1, 
-								renderer 	: upsize 
-							},
-							{ 	header 		: 'Part Number', 
-								dataIndex 	: 'part', 
-								flex 		: 1, 
-								renderer 	: upsize,
-								// filter 		: {
-								// 	type 	  : 'string',
-								// 	dataIndex : 'partno'
-								// }
-							},
-							{	header 		: 'PO', 
-								dataIndex 	: 'po', 
-								flex 		: 1, 
-								renderer 	: upsize 
-							},
-							{	header 		: 'QTY', 
-								dataIndex 	: 'qty', 
-								flex 		: 1, 
-								renderer 	: upsize 
-							},
-							{	header 		: 'userid', 
-								dataIndex 	: 'userid', 
-								flex 		: 1, 
-								renderer 	: upsize,
-								hidden		: true 
-							},
-							{	header 		: 'Custom', 
-								dataIndex 	: 'custom', 
-								flex 		: 1, 
-								renderer 	: upsize 
-							},
-							{	header 		: 'Category', 
-								dataIndex 	: 'category', 
-								flex 		: 1, 
-								renderer 	: upsize 
-							}
-						],
-						bbar	: Ext.create('Ext.PagingToolbar', {
-							pageSize		: 25,
-							store			: store_part_receiving,
-							displayInfo		: true,
-							displayMsg		: 'Data {0} - {1} from {2} data',
-							emptyMsg		: "Page not found",
-							beforePageText  : 'Page',
-							afterPageText   : 'from {0} Pages',
-							firstText       : 'First Page',
-							prevText        : 'Previous Page',
-							nextText        : 'Next page',
-							lastText        : 'Last Page',
-							plugins       	: Ext.create('Ext.ux.ProgressBarPager', {}),
-							listeners 		: {
-								afterrender: function (cmp) {
-									cmp.getComponent("refresh").hide();
-								}
-							}
-						})
-					});
-				//Part Inspection
-					var grid_part_insp = Ext.create('Ext.grid.Panel', {
-						id			: 'grid_part_insp',
-						autoWidth 	: '100%',
-						//height 	: '100%',
-						maxHeight	: 295,
-						columnLines	: true,
-						store		: store_part_insp,
-						viewConfig	: {
-							stripeRows			: true,
-							emptyText			: '<div class="empty-txt">No data to display.</div>',
-							deferEmptyText		: false,
-							enableTextSelection	: true
-						},
-						columns			: [
-						{ header: 'noid', dataIndex: 'noid', minwidth:10, renderer: upsize, hidden:true },
-						{ header: 'Delivery', dataIndex: 'deliv_date', width: 90, renderer: upsize },
-						{ header: 'Time Finish', dataIndex: 'time_finish', width: 80, renderer: upsize },
-						{ header: 'Part Number', dataIndex: 'partno', flex: 1, renderer: upsize,
-							filter: {
-								type: 'string',
-								dataIndex: 'partno'
-							}
-						},
-						{ header: 'Part Name', dataIndex: 'partname', width: 80, renderer: upsize, hidden:true },
-					    { header: 'Supplier', dataIndex: 'supplier', width: 100, renderer: upsize },
-						{ header: 'SuppCode', dataIndex: 'suppcode', flex:1, renderer: upsize,  hidden:true },
-						{ header: 'Inspect Level', dataIndex: 'inspect_level', width: 80, hidden:true },
-						{ header: 'PIC', dataIndex: 'pic', width: 60, renderer: upsize },
-						{ header: 'Shift', dataIndex: 'shift', width: 80, renderer: upsize, hidden:true },
-					    { header: 'Sampling', dataIndex: 'qty_sampling', width: 80, renderer: upsize },
-						{ header: 'Rejection', dataIndex: 'qty_rejection', width: 80, renderer: upsize },
-						{ header: 'DO', dataIndex: 'do', flex: 1, renderer: upsize, hidden:true },
-						{ header: 'BC', dataIndex: 'bc', flex: 1, renderer: upsize, hidden:true },
-						{ header: 'PO', dataIndex: 'po', width: 80, renderer: upsize },
-						{ header: 'Qty Delivery', dataIndex: 'qty_delivery', width: 80, renderer: upsize },
-						{ header: 'Lot Out', dataIndex: 'lot_out', width: 80, renderer: upsize },
-						{ header: 'PR Name', dataIndex: 'pr_name', flex: 1, renderer: upsize, hidden:true },
-						{ header: 'Remark', dataIndex: 'fld_remark', width: 80, renderer: upsize }
-							//
-							//
-						  	// {
-							// 	header: 'Issue Qty',
-							// 	dataIndex: 'scanqty',
-							// 	flex: 1,
-							// 	renderer: upsize,
-							// 	summaryType: 'sum',
-							// 	summaryRenderer: function(value, summaryData, dataIndex) {
-							// 		return ((value === 0 || value > 1) ? '(' + value + ' Total Issue)' : '(0 Total Issue)');
-							// 	}
-							// }, {
-							// 	header: 'PO',
-							// 	dataIndex: 'po',
-							// 	flex: 1,
-							// 	renderer: upsize
-							// }, {
-							// 	header: 'Req Qty',
-							// 	dataIndex: 'reqqty',
-							// 	flex: 1,
-							// 	renderer: upsize,
-							// 	hidden: true
-							// },{
-							// 	header: 'Model Name',
-							// 	dataIndex: 'model_name',
-							// 	flex: 1,
-							// 	renderer: upsize,
-							// 	hidden: true
-							// }, {
-							// 	header: 'Prod No',
-							// 	dataIndex: 'lot',
-							// 	flex: 1,
-							// 	renderer: upsize,
-							// 	hidden: true
-							// },  {
-							// 	header: 'Line Name',
-							// 	dataIndex: 'line',
-							// 	flex: 1,
-							// 	renderer: upsize,
-							// 	hidden: true
-							// },  {
-							// 	header: 'so',
-							// 	dataIndex: 'so',
-							// 	flex: 1,
-							// 	renderer: upsize
-							// }
-						],
-						// features: [{
-						// 	ftype: 'filters',
-						// 	encode: encode, // json encode the filter query
-						// 	local: local
-						// }, {
-						// 	id: 'group',
-						// 	ftype: 'groupingsummary'
-						// }]
-					});
-				//Part Issuing
-					var grid_part_mc_ma = Ext.create('Ext.grid.Panel', {
-						id				: 'grid_part_mc_ma',
-						autoWidth 		: '100%',
-						maxHeight		: 290,
-						columnLines		: true,
-						store			: store_part_mc_issue_ma,
-						viewConfig		: {
-							stripeRows			: true,
-							emptyText			: '<div class="empty-txt">No data to display.</div>',
-							deferEmptyText		: false,
-							enableTextSelection	: true
-						},
-						columns			: [
-							{ header		: 'Date',
-								dataIndex	: 'issdate',
-								minWidth	: 90,
-								renderer	: upsize
-							},
-							{ header		: 'Part Number',
-								dataIndex	: 'partno',
-								minWidth	: 90,
-								renderer	: upsize,
-								filter		: {
-									type		: 'string',
-									dataIndex	: 'partno'
-								}
-							},
-							{ header		: 'Part Name',
-								dataIndex	: 'partname',
-								minWidth	: 110,
-								renderer	: upsize
-							},
-							{ header			: 'QTY',
-								dataIndex		: 'scanqty',
-								minWidth	: 90,
-								renderer		: upsize,
-								summaryType		: 'sum',
-								summaryRenderer	: function(value, summaryData, dataIndex) {
-									return ((value === 0 || value > 1) ? '(' + value + ' Total Issue)' : '(0 Total Issue)');
-								}
-							},
-							{ header		: 'PO',
-								dataIndex	: 'po',
-								minWidth	: 90,
-								renderer	: upsize
-							},
-							{ header		: 'Req Qty',
-								dataIndex	: 'reqqty',
-								minWidth	: 90,
-								renderer	: upsize,
-								hidden		: true
-							},
-							{ header		: 'Model Name',
-								dataIndex	: 'model_name',
-								flex		: 1,
-								renderer	: upsize,
-								hidden		: true
-							},
-							{ header		: 'Prod No',
-								dataIndex	: 'lot',
-								minWidth	: 90,
-								renderer	: upsize,
-								hidden		: true
-							},
-							{ header		: 'Line Name',
-								dataIndex	: 'line',
-								minWidth	: 90,
-								renderer	: upsize
-							},
-							{ header		: 'so',
-								dataIndex	: 'so',
-								minWidth	: 90,
-								renderer	: upsize
-							}
-						],
-						// features		: [
-						// 	{
-						// 		ftype	: 'filters',
-						// 		encode: encode, // json encode the filter query
-						// 		local	: local
-						// 	},
-						// 	{
-						// 		id		: 'group',
-						// 		ftype	: 'groupingsummary'
-						// 	}
-						// ]
-					});
-					var grid_part_mc_mecha = Ext.create('Ext.grid.Panel', {
-						id 			: 'grid_part_mc_mecha',
-						autoWidth 	: '100%',
-						maxHeight	: 295,
-						columnLines	: true,
-						store 		: store_part_mc_issue_mecha,
-						viewConfig	: {
-							stripeRows 			: true,
-							emptyText 			: '<div class="empty-txt">No data to display.</div>',
-							deferEmptyText 		: false,
-							enableTextSelection : true
-						},
-						columns: [
-							{ header		: 'Date',
-								dataIndex	: 'issdate',
-								minWidth	: 90,
-								renderer	: upsize
-							},
-							{ header		: 'Part Number',
-								dataIndex	: 'partno',
-								minWidth	: 90,
-								renderer	: upsize,
-								filter		: {
-									type		: 'string',
-									dataIndex	: 'partno'
-								}
-							},
-							{ header		: 'Part Name',
-								dataIndex	: 'partname',
-								minWidth	: 110,
-								renderer	: upsize
-							},
-							{ header			: 'QTY',
-								dataIndex		: 'scanqty',
-								minWidth	: 90,
-								renderer		: upsize,
-								summaryType		: 'sum',
-								summaryRenderer	: function(value, summaryData, dataIndex) {
-									return ((value === 0 || value > 1) ? '(' + value + ' Total Issue)' : '(0 Total Issue)');
-								}
-							},
-							{ header		: 'PO',
-								dataIndex	: 'po',
-								minWidth	: 90,
-								renderer	: upsize
-							},
-							{ header		: 'Req Qty',
-								dataIndex	: 'reqqty',
-								minWidth	: 90,
-								renderer	: upsize,
-								hidden		: true
-							},
-							{ header		: 'Model Name',
-								dataIndex	: 'model_name',
-								flex		: 1,
-								renderer	: upsize,
-								hidden		: true
-							},
-							{ header		: 'Prod No',
-								dataIndex	: 'lot',
-								minWidth	: 90,
-								renderer	: upsize,
-								hidden		: true
-							},
-							{ header		: 'Line Name',
-								dataIndex	: 'line',
-								minWidth	: 90,
-								renderer	: upsize
-							},
-							{ header		: 'so',
-								dataIndex	: 'so',
-								minWidth	: 90,
-								renderer	: upsize
-							}
-						],
-						// features: [{
-						// 	ftype: 'filters',
-						// 	encode: encode, // json encode the filter query
-						// 	local: local
-						// }, {
-						// 	id: 'group',
-						// 	ftype: 'groupingsummary'
-						// }]
-					});
-					//	// var grid_part_mc_mecha = Ext.create('Ext.grid.Panel', {
-						// 	id 			: 'grid_part_mc_mecha',
-						// 	autoWidth 	: '100%',
-						// 	maxHeight 	: 295,
-						// 	columnLines: true,
-						// 	 store: store_part_mc_issue_mecha,
-						// 	viewConfig: {
-						// 		stripeRows: true,
-						// 		emptyText: '<div class="empty-txt">No data to display.</div>',
-						// 		deferEmptyText: false,
-						// 		enableTextSelection: true
-						// 	},
-						// 	columns: [
-						// 		{
-						// 		header: 'SO',
-						// 		dataIndex: 'so',
-						// 		flex: 1,
-						// 		renderer: upsize
-						// 	}, {
-						// 		header: 'Part Number',
-						// 		dataIndex: 'partno',
-						// 		flex: 1,
-						// 		renderer: upsize,
-						// 		filter: {
-						// 			type: 'string',
-						// 			dataIndex: 'partno'
-						// 		}
-						// 	}, {
-						// 		header: 'Part Name',
-						// 		dataIndex: 'partname',
-						// 		flex: 1,
-						// 		renderer: upsize
-						// 	}, {
-						// 		header: 'PO',
-						// 		dataIndex: 'po',
-						// 		flex: 1,
-						// 		renderer: upsize
-						// 	}, {
-						// 		header: 'Req Qty',
-						// 		dataIndex: 'reqqty',
-						// 		flex: 1,
-						// 		renderer: upsize,
-						// 		hidden: true
-						// 	}, {
-						// 		header: 'Issue Qty',
-						// 		dataIndex: 'scanqty',
-						// 		flex: 1,
-						// 		renderer: upsize,
-						// 		summaryType: 'sum',
-						// 		summaryRenderer: function(value, summaryData, dataIndex) {
-						// 			return ((value === 0 || value > 1) ? '(' + value + ' Total Issue)' : '(0 Total Issue)');
-						// 		}
-						// 	}, {
-						// 		header: 'Line Name',
-						// 		dataIndex: 'line',
-						// 		flex: 1,
-						// 		renderer: upsize,
-						// 		hidden: true
-						// 	}, {
-						// 		header: 'Model Name',
-						// 		dataIndex: 'model_name',
-						// 		flex: 1,
-						// 		renderer: upsize,
-						// 		hidden: true
-						// 	}, {
-						// 		header: 'Prod No',
-						// 		dataIndex: 'lot',
-						// 		flex: 1,
-						// 		renderer: upsize,
-						// 		hidden: true
-						// 	}, {
-						// 		header: 'Issue Date',
-						// 		dataIndex: 'issdate',
-						// 		flex: 1,
-						// 		renderer: upsize
-						// 	}],
-						// 	// features: [{
-						// 	// 	ftype: 'filters',
-						// 	// 	encode: encode, // json encode the filter query
-						// 	// 	local: local
-						// 	// }, {
-						// 	// 	id: 'group',
-						// 	// 	ftype: 'groupingsummary'
-						// 	// }]
-						// });
-
-				//---------------------aplikasi tidak dipakai lagi--------------------//
-					var grd_part_mchcal = Ext.create('Ext.grid.Panel',{
-						id          : 'grd_part_mchcal',
-						width 		: '100%',
-						maxHeight  	: 295,
-						columnLines : true,
-						store       : part_mchcal,
-						viewConfig  : {
-							stripeRows  : true,
-							emptyText	: '<div class="empty-txt">No data to display.</div>',
-							deferEmptyText: false,
-							enableTextSelection	: true
-						},
-						columns     : [
-								{ header: 'input_date', dataIndex: 'input_date', hidden: true },
-								{ header: 'id', 		dataIndex: 'id',		 hidden: true },
-								{ header: 'STATUS', 				dataIndex: 'status', 		width: 80, renderer: status, align: 'center' },
-								{ header: 'PIC', 					dataIndex: 'action_user', 	width: 150, renderer: upsize },
-								{ header: 'DATE INPUT', 			dataIndex: 'vw_inputdate', 	width: 150, renderer: upsize, align: 'center' },
-								{ header: 'SYMPTOM', 				dataIndex: 'symptom', 		width: 150, renderer: upsize },
-								{ header: 'PROBLEM AND CAUSE',		dataIndex: 'probcause', 	width: 250, renderer: upsize },
-								{ header: 'MODEL', 					dataIndex: 'model', 		width: 100, renderer: upsize },
-								{ header: 'OCCURRED PLACE',
-								  columns: [
-									{ header: 'LINE', 		dataIndex: 'line', 	width: 70, renderer: upsize },
-									{ header: 'SHIFT', 		dataIndex: 'shift', width: 50, renderer: upsize }
-								  ]
-								},
-								{ header: 'PART NO', 				dataIndex: 'part_no', 		width: 150, renderer: upsize },
-								{ header: 'PART NAME', 				dataIndex: 'part_name', 	width: 180, renderer: upsize },
-								{ header: 'SUPPLIER', 				dataIndex: 'supplier', 		width: 200, renderer: upsize },
-								{ header: 'REJECT QTY', 			dataIndex: 'rejectqty', 	width: 80, 	renderer: upsize },
-								{ header: 'DETAIL PICTURE<BR>(CLICK IMAGE FOR ZOOM)', 			dataIndex: 'filepicture', width: 200, renderer: fileimage, align: 'center' },
-								{ header: 'CORRECTION & METHOD',	dataIndex: 'corrmethod', 	width: 500, renderer: upsize },
-								{ header: 'LOSS TIME CORRECTION BY IQC ',
-								  columns: [
-									{ header: 'MAN POWER', 	dataIndex: 'mp', 		width: 50, renderer: upsize },
-									{ header: 'TIME (H)', 	dataIndex: 'duration',	width: 50, renderer: upsize },
-									{ header: 'TOTAL', 		dataIndex: 'total', 	width: 50, renderer: upsize }
-								  ]
-								},
-								{ header: 'ACTION ON SUPLIER', 		dataIndex: 'actionsupp', 	width: 500, renderer: upsize },
-								{ header: 'REMARK', 				dataIndex: 'remark', 		width: 200, renderer: upsize }
-		              	],
-		          	});
-		          	var grd_part_mchnism = Ext.create('Ext.grid.Panel',{
-		              	id          : 'grd_part_mchnism',
-		              	width 				: '100%',
-						height 				: '100%',
-						height  	: 295,
-						columnLines : true,
-						// store       : part_mchnism,
-						viewConfig  : {
-						 	stripeRows  : true,
-							emptyText	: '<div class="empty-txt">No data to display.</div>',
-							deferEmptyText: false,
-							enableTextSelection	: true
-						},
-		              	columns     : [
-								{ header: 'input_date', dataIndex: 'input_date', hidden: true },
-								{ header: 'id', 		dataIndex: 'id',		 hidden: true },
-								{ header: 'STATUS', 				dataIndex: 'status', 		width: 80, renderer: status, align: 'center' },
-								{ header: 'PIC', 					dataIndex: 'action_user', 	width: 150, renderer: upsize },
-								{ header: 'DATE INPUT', 			dataIndex: 'vw_inputdate', 	width: 150, renderer: upsize, align: 'center' },
-								{ header: 'SYMPTOM', 				dataIndex: 'symptom', 		width: 150, renderer: upsize },
-								{ header: 'PROBLEM AND CAUSE',		dataIndex: 'probcause', 	width: 250, renderer: upsize },
-								{ header: 'MODEL', 					dataIndex: 'model', 		width: 100, renderer: upsize },
-								{ header: 'OCCURRED PLACE',
-								  columns: [
-									{ header: 'LINE', 		dataIndex: 'line', 	width: 70, renderer: upsize },
-									{ header: 'SHIFT', 		dataIndex: 'shift', width: 50, renderer: upsize }
-								  ]
-								},
-								{ header: 'PART NO', 				dataIndex: 'part_no', 		width: 150, renderer: upsize },
-								{ header: 'PART NAME', 				dataIndex: 'part_name', 	width: 180, renderer: upsize },
-								{ header: 'SUPPLIER', 				dataIndex: 'supplier', 		width: 200, renderer: upsize },
-								{ header: 'REJECT QTY', 			dataIndex: 'rejectqty', 	width: 80, 	renderer: upsize },
-								{ header: 'DETAIL PICTURE<BR>(CLICK IMAGE FOR ZOOM)', 			dataIndex: 'filepicture', width: 200, renderer: fileimage, align: 'center' },
-								{ header: 'CORRECTION & METHOD',	dataIndex: 'corrmethod', 	width: 500, renderer: upsize },
-								{ header: 'LOSS TIME CORRECTION BY IQC ',
-								  columns: [
-									{ header: 'MAN POWER', 	dataIndex: 'mp', 		width: 50, renderer: upsize },
-									{ header: 'TIME (H)', 	dataIndex: 'duration',	width: 50, renderer: upsize },
-									{ header: 'TOTAL', 		dataIndex: 'total', 	width: 50, renderer: upsize }
-								  ]
-								},
-								{ header: 'ACTION ON SUPLIER', 		dataIndex: 'actionsupp', 	width: 500, renderer: upsize },
-								{ header: 'REMARK', 				dataIndex: 'remark', 		width: 200, renderer: upsize }
-		            	],
-		         	});
-		          	var grd_part_mchtronics = Ext.create('Ext.grid.Panel',{
-				        id          : 'grd_part_mchtronics',
-				        width 				: '100%',
-						height 				: '100%',
-						//height  	: 295,
-				        columnLines : true,
-				        // store       : part_mchtronics,
-				        viewConfig  : {
-				            stripeRows  : true,
-										emptyText	: '<div class="empty-txt">No data to display.</div>',
-										deferEmptyText: false,
-										enableTextSelection	: true
-				        },
-				        columns     : [
-									{ header: 'input_date', dataIndex: 'input_date', hidden: true },
-									{ header: 'id', 		dataIndex: 'id',		 hidden: true },
-									{ header: 'STATUS', 				dataIndex: 'status', 		idth: 80, renderer: status, align: 'center' },
-									{ header: 'PIC', 					dataIndex: 'action_user', 	width: 150, renderer: upsize },
-									{ header: 'DATE INPUT', 			dataIndex: 'vw_inputdate', 	width: 150, renderer: upsize, align: 'center' },
-									{ header: 'SYMPTOM', 				dataIndex: 'symptom', 		width: 150, renderer: upsize },
-									{ header: 'PROBLEM AND CAUSE',		dataIndex: 'probcause', 	width: 250, renderer: upsize },
-									{ header: 'MODEL', 					dataIndex: 'model', 		width: 100, renderer: upsize },
-									{ header: 'OCCURRED PLACE',
-									  columns: [
-										{ header: 'LINE', 		dataIndex: 'line', 	width: 70, renderer: upsize },
-										{ header: 'SHIFT', 		dataIndex: 'shift', width: 50, renderer: upsize }
-									  ]
-									},
-									{ header: 'PART NO', 				dataIndex: 'part_no', 		width: 150, renderer: upsize },
-									{ header: 'PART NAME', 				dataIndex: 'part_name', 	width: 180, renderer: upsize },
-									{ header: 'SUPPLIER', 				dataIndex: 'supplier', 		width: 200, renderer: upsize },
-									{ header: 'REJECT QTY', 			dataIndex: 'rejectqty', 	width: 80, 	renderer: upsize },
-									{ header: 'DETAIL PICTURE<BR>(CLICK IMAGE FOR ZOOM)', 			dataIndex: 'filepicture', width: 200, renderer: fileimage, align: 'center' },
-									{ header: 'CORRECTION & METHOD',	dataIndex: 'corrmethod', 	width: 500, renderer: upsize },
-									{ header: 'LOSS TIME CORRECTION BY IQC ',
-									  columns: [
-										{ header: 'MAN POWER', 	dataIndex: 'mp', 		width: 50, renderer: upsize },
-										{ header: 'TIME (H)', 	dataIndex: 'duration',	width: 50, renderer: upsize },
-										{ header: 'TOTAL', 		dataIndex: 'total', 	width: 50, renderer: upsize }
-									  ]
-									},
-									{ header: 'ACTION ON SUPLIER', 		dataIndex: 'actionsupp', 	width: 500, renderer: upsize },
-									{ header: 'REMARK', 				dataIndex: 'remark', 		width: 200, renderer: upsize }
-				      	],
-			     	});
-	    			var tab_part_iqc	= Ext.create('Ext.tab.Panel',{
-						tabPosition	: 'left',
-										autoHeight  : true,
-										activeTab   : 0,
-										width       : '100%',
-						style		: 'padding:5px;-background:#157FCC;',
-										items       : [
-							{
-								title       : 'Mechanical',
-								reorderable	: false,
-								items		: [grd_part_mchcal]
-							},{
-								title       : 'Mechanism',
-								reorderable	: false,
-								items		: [grd_part_mchnism]
-							},{
-								title       : 'Mechatronics',
-								reorderable	: false,
-								items		: [grd_part_mchtronics]
-							}
-						]
-					});
-				//-----------------------------------------//
 			//	Process Operational
 				
 				//	SMT DEPARTMENT
@@ -1374,7 +374,7 @@
 						autoWidth 	: '100%',
 						maxHeight	: 295,
 						columnLines: true,
-						store: store_part_smt_picking,
+						//store: store_part_smt_picking,
 						viewConfig: {
 							stripeRows: true,
 							emptyText: '<div class="empty-txt">No data to display.</div>',
@@ -1483,7 +483,7 @@
 						autoWidth 	: '100%',
 						maxHeight	: 295,
 						columnLines: true,
-						store: store_part_smt_install,
+						//store: store_part_smt_install,
 						viewConfig: {
 							stripeRows: true,
 							emptyText: '<div class="empty-txt">No data to display.</div>',
@@ -1577,7 +577,7 @@
 						autoWidth 	: '100%',
 						maxHeight	: 295,
 						columnLines: true,
-						store: store_part_smt_zdbs,
+						//store: store_part_smt_zdbs,
 						viewConfig: {
 							stripeRows: true,
 							emptyText: '<div class="empty-txt">No data to display.</div>',
@@ -2060,12 +1060,100 @@
 						// },
 						// plugins: [cellEditing]
 					});
-					var grid_smt_aoi = Ext.create('Ext.grid.Panel', {
-						id: 'grid_smt_aoi',
+					var grid_smt_aoi_point = Ext.create('Ext.grid.Panel', {
+						id: 'grid_smt_aoi_point',
 						autoWidth 	: '100%',
 						maxHeight	: 290,
 						columnLines: true,
-						store: store_smt_aoi,
+						store: store_good_smt_aoi_point,
+						viewConfig: {
+							stripeRows: true,
+							emptyText: '<div class="empty-txt">No data to display.</div>',
+							deferEmptyText: false,
+							enableTextSelection: true
+						},
+						columns: [
+
+						{ 	header: 'SERVER',
+							dataIndex: 'linkedserver',
+							flex: 1,
+							renderer: upsize
+						}, 
+						{ 	header: 'PCB ID',
+							dataIndex: 'pcbid',
+							flex: 1,
+							renderer: upsize
+						}, 
+						{ 	header: 'PCB GUID',
+							dataIndex: 'pcbguid',
+							flex: 1,
+							renderer: upsize,
+							hidden : true
+						}, 
+						{ 	header: 'COMPONENT GUID',
+							dataIndex: 'componentguid',
+							flex: 1,
+							renderer: upsize,
+							hidden: true
+						}, 
+						{ 	header: 'UNAME',
+							dataIndex: 'uname',
+							flex: 1,
+							renderer: upsize
+						}, 
+						{ 	header: 'BARCODE',
+							dataIndex: 'barcode',
+							flex: 1,
+							renderer: upsize
+						}, 
+						{ 	header: 'START DATE',
+							dataIndex: 'stdate',
+							flex: 1,
+							renderer: upsize
+						},
+						{ 	header: 'END DATE',
+							dataIndex: 'enddate',
+							flex: 1,
+							renderer: upsize,
+							filter: {
+								type: 'string'
+							}
+						}, 
+						{ 	header: 'PART NO',
+							dataIndex: 'partno',
+							flex: 1,
+							renderer: upsize,
+							filter: {
+								type: 'string'
+							}
+						}, 
+						{ 	header: 'PART NAME',
+							dataIndex: 'partname',
+							flex: 1,
+							renderer: upsize
+						}, 
+						{ 	header: 'AOI JUDGEMENT',
+							dataIndex: 'aoijudgment',
+							flex: 1,
+							renderer: upsize
+						}, 
+						{ 	header: 'USER JUDGEMENT',
+							dataIndex: 'userjudgment',
+							flex: 1,
+							renderer: upsize
+						}],
+						//features: [filters],
+						// selModel: {
+						// 	selType: 'cellmodel'
+						// },
+						// plugins: [cellEditing]
+					});
+					var grid_smt_aoi_board = Ext.create('Ext.grid.Panel', {
+						id: 'grid_smt_aoi_board',
+						autoWidth 	: '100%',
+						maxHeight	: 290,
+						columnLines: true,
+						store: store_good_smt_aoi_board,
 						viewConfig: {
 							stripeRows: true,
 							emptyText: '<div class="empty-txt">No data to display.</div>',
@@ -2486,545 +1574,12 @@
 					           })*/
 					});
 				
-				//	Outgoing Quality Control
-					//	Quality Sampling ( QA )
-					//	*******
-
-				//	Finished Goods ( Logistic )
-					//Warehouse Management ( Stock Control )
-					var grid_log_stockcard = Ext.create('Ext.grid.Panel', {
-						id: 'grid_log_stockcard',
-						width 				: '100%',
-						height 				: '100%',
-						//height: 295,
-						columnLines: true,
-						// store: store_log_stockcard,
-						viewConfig: {
-							stripeRows: true,
-							emptyText: '<div class="empty-txt">No data to display.</div>',
-							deferEmptyText: false,
-							enableTextSelection: true
-						},
-						columns: [
-							{
-							header: 'idstockcard',
-							dataIndex: 'idstockcard',
-							flex: 1,
-							renderer: upsize
-						}, {
-							header: 'startsn',
-							dataIndex: 'startsn',
-							flex: 1,
-							renderer: upsize
-						},{
-							header: 'endsn',
-							dataIndex: 'endsn',
-							flex: 1,
-							renderer: upsize
-						}, {
-							header: 'Qty',
-							dataIndex: 'qty',
-							flex: 1,
-							renderer: upsize,
-							summaryType: 'sum',
-							summaryRenderer: function(value, summaryData, dataIndex) {
-								return ((value === 0 || value > 1) ? '(' + value + ' Total Issue)' : '(0 Total Issue)');
-							}
-						}, {
-							header: 'remark',
-							dataIndex: 'remark',
-							flex: 1,
-							renderer: upsize
-						}, {
-							header: 'status',
-							dataIndex: 'status',
-							flex: 1,
-							renderer: upsize
-						},{
-							header: 'Model Name',
-							dataIndex: 'model',
-							flex: 1,
-							renderer: upsize,
-							//hidden: true
-						}, {
-							header: 'Prod No',
-							dataIndex: 'lotno',
-							flex: 1,
-							renderer: upsize,
-							//hidden: true
-						},  {
-							header: 'Line Name',
-							dataIndex: 'line',
-							flex: 1,
-							renderer: upsize,
-							//hidden: true
-						}],
-						// features: [{
-						// 	ftype: 'filters',
-						// 	encode: encode, // json encode the filter query
-						// 	local: local
-						// }, {
-						// 	id: 'group',
-						// 	ftype: 'groupingsummary'
-						// }]
-					});
-					var grid_log_shipmenthold = Ext.create('Ext.grid.Panel', {
-						id: 'grid_part_mc_mecha',
-						width 				: '100%',
-						height 				: '100%',
-						//height: 295,
-						columnLines: true,
-						// store: store_log_shipmenthold,
-						viewConfig: {
-							stripeRows: true,
-							emptyText: '<div class="empty-txt">No data to display.</div>',
-							deferEmptyText: false,
-							enableTextSelection: true
-						},
-						columns: [
-							{ header: 'idshipmenthold', dataIndex: 'idshipmenthold', flex: 1, renderer: upsize },
-							{ header: 'model', dataIndex: 'model', flex: 1, renderer: upsize },
-							{ header: 'lotno', dataIndex: 'lotno', flex: 1, renderer: upsize },
-							{ header: 'problem', dataIndex: 'problem', flex: 1, renderer: upsize },
-							{ header: 'status', dataIndex: 'status', flex: 1, renderer: upsize },
-							{ header: 'startsn', dataIndex: 'startsn', flex: 1, renderer: upsize },
-							{ header: 'endsn', dataIndex: 'endsn', flex: 1, renderer: upsize },
-							{ header: 'remark', dataIndex: 'remark', flex: 1, renderer: upsize },
-							{ header: 'qtyrequest', dataIndex: 'qtyrequest', flex: 1, renderer: upsize },
-							{ header: 'qtywh', dataIndex: 'qtywh', flex: 1, renderer: upsize },
-							{ header: 'qtyshipout', dataIndex: 'qtyshipout', flex: 1, renderer: upsize },
-							{ header: 'qtyhold', dataIndex: 'qtyhold', flex: 1, renderer: upsize }
-
-							// 	{
-							// 	header: 'SO',
-							// 	dataIndex: 'so',
-							// 	flex: 1,
-							// 	renderer: upsize
-							// }, {
-							// 	header: 'Part Number',
-							// 	dataIndex: 'partno',
-							// 	flex: 1,
-							// 	renderer: upsize,
-							// 	filter: {
-							// 		type: 'string',
-							// 		dataIndex: 'partno'
-							// 	}
-							// }, {
-							// 	header: 'Part Name',
-							// 	dataIndex: 'partname',
-							// 	flex: 1,
-							// 	renderer: upsize
-							// }, {
-							// 	header: 'PO',
-							// 	dataIndex: 'po',
-							// 	flex: 1,
-							// 	renderer: upsize
-							// }, {
-							// 	header: 'Req Qty',
-							// 	dataIndex: 'reqqty',
-							// 	flex: 1,
-							// 	renderer: upsize,
-							// 	hidden: true
-							// }, {
-							// 	header: 'Issue Qty',
-							// 	dataIndex: 'scanqty',
-							// 	flex: 1,
-							// 	renderer: upsize,
-							// 	summaryType: 'sum',
-							// 	summaryRenderer: function(value, summaryData, dataIndex) {
-							// 		return ((value === 0 || value > 1) ? '(' + value + ' Total Issue)' : '(0 Total Issue)');
-							// 	}
-							// }, {
-							// 	header: 'Line Name',
-							// 	dataIndex: 'line',
-							// 	flex: 1,
-							// 	renderer: upsize,
-							// 	hidden: true
-							// }, {
-							// 	header: 'Model Name',
-							// 	dataIndex: 'model_name',
-							// 	flex: 1,
-							// 	renderer: upsize,
-							// 	hidden: true
-							// }, {
-							// 	header: 'Prod No',
-							// 	dataIndex: 'lot',
-							// 	flex: 1,
-							// 	renderer: upsize,
-							// 	hidden: true
-							// }, {
-							// 	header: 'Issue Date',
-							// 	dataIndex: 'issdate',
-							// 	flex: 1,
-							// 	renderer: upsize
-							// }
-						],
-						// features: [{
-						// 	ftype: 'filters',
-						// 	encode: encode, // json encode the filter query
-						// 	local: local
-						// }, {
-						// 	id: 'group',
-						// 	ftype: 'groupingsummary'
-						// }]
-					});
-					var grid_log_scan_in = Ext.create('Ext.grid.Panel', {
-						id: 'grid_part_mc_mecha',
-						width 				: '100%',
-						height 				: '100%',
-						//height: 295,
-						columnLines: true,
-						// store: store_log_scanin,
-						viewConfig: {
-							stripeRows: true,
-							emptyText: '<div class="empty-txt">No data to display.</div>',
-							deferEmptyText: false,
-							enableTextSelection: true
-						},
-						columns: [
-							{ header: 'idnumber', dataIndex: 'idnumber', flex: 1, renderer: upsize },
-							{ header: 'model', dataIndex: 'model', flex: 1, renderer: upsize },
-							{ header: 'serial', dataIndex: 'serial', flex: 1, renderer: upsize },
-							{ header: 'lotno', dataIndex: 'lotno', flex: 1, renderer: upsize },
-							{ header: 'status', dataIndex: 'status', flex: 1, renderer: upsize },
-							{ header: 'input_user', dataIndex: 'input_user', flex: 1, renderer: upsize, hidden:true },
-							{ header: 'input_date', dataIndex: 'input_date', flex: 1, renderer: upsize },
-							{ header: 'update_user', dataIndex: 'update_user', flex: 1, renderer: upsize, hidden:true },
-							{ header: 'update_date', dataIndex: 'update_date', flex: 1, renderer: upsize }
-
-						// 	{
-						// 	header: 'Part Number',
-						// 	dataIndex: 'partno',
-						// 	flex: 1,
-						// 	renderer: upsize,
-						// 	filter: {
-						// 		type: 'string',
-						// 		dataIndex: 'partno'
-						// 	}
-						// }, {
-						// 	header: 'Part Name',
-						// 	dataIndex: 'partname',
-						// 	flex: 1,
-						// 	renderer: upsize
-						// }, {
-						// 	header: 'PO',
-						// 	dataIndex: 'po',
-						// 	flex: 1,
-						// 	renderer: upsize
-						// }, {
-						// 	header: 'Req Qty',
-						// 	dataIndex: 'reqqty',
-						// 	flex: 1,
-						// 	renderer: upsize,
-						// 	hidden: true
-						// }, {
-						// 	header: 'Issue Qty',
-						// 	dataIndex: 'scanqty',
-						// 	flex: 1,
-						// 	renderer: upsize,
-						// 	summaryType: 'sum',
-						// 	summaryRenderer: function(value, summaryData, dataIndex) {
-						// 		return ((value === 0 || value > 1) ? '(' + value + ' Total Issue)' : '(0 Total Issue)');
-						// 	}
-						// }, {
-						// 	header: 'Line Name',
-						// 	dataIndex: 'line',
-						// 	flex: 1,
-						// 	renderer: upsize,
-						// 	hidden: true
-						// }, {
-						// 	header: 'Model Name',
-						// 	dataIndex: 'model_name',
-						// 	flex: 1,
-						// 	renderer: upsize,
-						// 	hidden: true
-						// }, {
-						// 	header: 'Prod No',
-						// 	dataIndex: 'lot',
-						// 	flex: 1,
-						// 	renderer: upsize,
-						// 	hidden: true
-						// }, {
-						// 	header: 'Issue Date',
-						// 	dataIndex: 'issdate',
-						// 	flex: 1,
-						// 	renderer: upsize
-						// }
-						],
-						// features: [{
-						// 	ftype: 'filters',
-						// 	encode: encode, // json encode the filter query
-						// 	local: local
-						// }, {
-						// 	id: 'group',
-						// 	ftype: 'groupingsummary'
-						// }]
-					});
-					var grid_log_borrow = Ext.create('Ext.grid.Panel', {
-						id: 'grid_part_mc_mecha',
-						width 				: '100%',
-						height 				: '100%',
-						//height: 295,
-						columnLines: true,
-						//store: store_part_mc_issue_mecha,
-						viewConfig: {
-							stripeRows: true,
-							emptyText: '<div class="empty-txt">No data to display.</div>',
-							deferEmptyText: false,
-							enableTextSelection: true
-						},
-						columns: [
-							{
-							header: 'SO',
-							dataIndex: 'so',
-							flex: 1,
-							renderer: upsize
-						}, {
-							header: 'Part Number',
-							dataIndex: 'partno',
-							flex: 1,
-							renderer: upsize,
-							filter: {
-								type: 'string',
-								dataIndex: 'partno'
-							}
-						}, {
-							header: 'Part Name',
-							dataIndex: 'partname',
-							flex: 1,
-							renderer: upsize
-						}, {
-							header: 'PO',
-							dataIndex: 'po',
-							flex: 1,
-							renderer: upsize
-						}, {
-							header: 'Req Qty',
-							dataIndex: 'reqqty',
-							flex: 1,
-							renderer: upsize,
-							hidden: true
-						}, {
-							header: 'Issue Qty',
-							dataIndex: 'scanqty',
-							flex: 1,
-							renderer: upsize,
-							summaryType: 'sum',
-							summaryRenderer: function(value, summaryData, dataIndex) {
-								return ((value === 0 || value > 1) ? '(' + value + ' Total Issue)' : '(0 Total Issue)');
-							}
-						}, {
-							header: 'Line Name',
-							dataIndex: 'line',
-							flex: 1,
-							renderer: upsize,
-							hidden: true
-						}, {
-							header: 'Model Name',
-							dataIndex: 'model_name',
-							flex: 1,
-							renderer: upsize,
-							hidden: true
-						}, {
-							header: 'Prod No',
-							dataIndex: 'lot',
-							flex: 1,
-							renderer: upsize,
-							hidden: true
-						}, {
-							header: 'Issue Date',
-							dataIndex: 'issdate',
-							flex: 1,
-							renderer: upsize
-						}],
-						// features: [{
-						// 	ftype: 'filters',
-						// 	encode: encode, // json encode the filter query
-						// 	local: local
-						// }, {
-						// 	id: 'group',
-						// 	ftype: 'groupingsummary'
-						// }]
-					});
-					var grid_log_vanningplan = Ext.create('Ext.grid.Panel', {
-						id: 'grid_part_mc_mecha',
-						width 				: '100%',
-						height 				: '100%',
-						//height: 295,
-						columnLines: true,
-						// store: store_part_mc_issue_mecha,
-						viewConfig: {
-							stripeRows: true,
-							emptyText: '<div class="empty-txt">No data to display.</div>',
-							deferEmptyText: false,
-							enableTextSelection: true
-						},
-						columns: [
-							{
-							header: 'SO',
-							dataIndex: 'so',
-							flex: 1,
-							renderer: upsize
-						}, {
-							header: 'Part Number',
-							dataIndex: 'partno',
-							flex: 1,
-							renderer: upsize,
-							filter: {
-								type: 'string',
-								dataIndex: 'partno'
-							}
-						}, {
-							header: 'Part Name',
-							dataIndex: 'partname',
-							flex: 1,
-							renderer: upsize
-						}, {
-							header: 'PO',
-							dataIndex: 'po',
-							flex: 1,
-							renderer: upsize
-						}, {
-							header: 'Req Qty',
-							dataIndex: 'reqqty',
-							flex: 1,
-							renderer: upsize,
-							hidden: true
-						}, {
-							header: 'Issue Qty',
-							dataIndex: 'scanqty',
-							flex: 1,
-							renderer: upsize,
-							summaryType: 'sum',
-							summaryRenderer: function(value, summaryData, dataIndex) {
-								return ((value === 0 || value > 1) ? '(' + value + ' Total Issue)' : '(0 Total Issue)');
-							}
-						}, {
-							header: 'Line Name',
-							dataIndex: 'line',
-							flex: 1,
-							renderer: upsize,
-							hidden: true
-						}, {
-							header: 'Model Name',
-							dataIndex: 'model_name',
-							flex: 1,
-							renderer: upsize,
-							hidden: true
-						}, {
-							header: 'Prod No',
-							dataIndex: 'lot',
-							flex: 1,
-							renderer: upsize,
-							hidden: true
-						}, {
-							header: 'Issue Date',
-							dataIndex: 'issdate',
-							flex: 1,
-							renderer: upsize
-						}],
-						// features: [{
-						// 	ftype: 'filters',
-						// 	encode: encode, // json encode the filter query
-						// 	local: local
-						// }, {
-						// 	id: 'group',
-						// 	ftype: 'groupingsummary'
-						// }]
-					});
-					var grid_log_scan_out = Ext.create('Ext.grid.Panel', {
-						id: 'grid_part_mc_mecha',
-						width 				: '100%',
-						height 				: '100%',
-						//height: 295,
-						columnLines: true,
-						//store: store_part_mc_issue_mecha,
-						viewConfig: {
-							stripeRows: true,
-							emptyText: '<div class="empty-txt">No data to display.</div>',
-							deferEmptyText: false,
-							enableTextSelection: true
-						},
-						columns: [
-							{
-							header: 'SO',
-							dataIndex: 'so',
-							flex: 1,
-							renderer: upsize
-						}, {
-							header: 'Part Number',
-							dataIndex: 'partno',
-							flex: 1,
-							renderer: upsize,
-							filter: {
-								type: 'string',
-								dataIndex: 'partno'
-							}
-						}, {
-							header: 'Part Name',
-							dataIndex: 'partname',
-							flex: 1,
-							renderer: upsize
-						}, {
-							header: 'PO',
-							dataIndex: 'po',
-							flex: 1,
-							renderer: upsize
-						}, {
-							header: 'Req Qty',
-							dataIndex: 'reqqty',
-							flex: 1,
-							renderer: upsize,
-							hidden: true
-						}, {
-							header: 'Issue Qty',
-							dataIndex: 'scanqty',
-							flex: 1,
-							renderer: upsize,
-							summaryType: 'sum',
-							summaryRenderer: function(value, summaryData, dataIndex) {
-								return ((value === 0 || value > 1) ? '(' + value + ' Total Issue)' : '(0 Total Issue)');
-							}
-						}, {
-							header: 'Line Name',
-							dataIndex: 'line',
-							flex: 1,
-							renderer: upsize,
-							hidden: true
-						}, {
-							header: 'Model Name',
-							dataIndex: 'model_name',
-							flex: 1,
-							renderer: upsize,
-							hidden: true
-						}, {
-							header: 'Prod No',
-							dataIndex: 'lot',
-							flex: 1,
-							renderer: upsize,
-							hidden: true
-						}, {
-							header: 'Issue Date',
-							dataIndex: 'issdate',
-							flex: 1,
-							renderer: upsize
-						}],
-						// features: [{
-						// 	ftype: 'filters',
-						// 	encode: encode, // json encode the filter query
-						// 	local: local
-						// }, {
-						// 	id: 'group',
-						// 	ftype: 'groupingsummary'
-						// }]
-					});
-					
 		//	=======================================================    PANEL    =========================================
 			
-			//	Traceability Panel
-					var induk_finishgood = Ext.create('Ext.panel.Panel', {
+			//	BOARD ID GENERATOR
+					var panel_bigs = Ext.create('Ext.panel.Panel', {
 						id 				:'finishgood_main',
-					//	renderTo 		: 'maindata',
+						renderTo 		: 'panel_bigs',
 						width			: '100%',
 						height			: 80,
 						border			: false,
@@ -3034,24 +1589,48 @@
 							split		: true,
 							collapsible	: false
 						},
-						items			: [bigs_grid]
+						items			: [grid_bigs]
 					});
-			//	Plan & Actual Panel
+			//	AOI
+					var panel_aoi = Ext.create('Ext.tab.Panel', {
+						id 			: 'panel_aoi',
+						renderTo 	: 'panel_aoi',
+						plain 		: true,
+						activeTab 	: 0,
+						autoWidth 	: '100%',
+						maxHeight	: 300,
+						autoScroll 	: true,
+						frame 		: true,
+						//style 	: 'padding:5px;-background:#157FCC;',
+						items 		: [
+							{	title 		: 'BOARD',
+							 	id  		: 'show_grid_aoi_board',
+								reorderable : false,
+								items 		: [grid_smt_aoi_board]
+							}, 
+							{	title 		: 'POINT',
+							 	id  		: 'show_grid_aoi_point',
+								reorderable	: false,
+								items 		: [grid_smt_aoi_point]
+							}
+						]
+					});
+
 					var finishgood_plan   = Ext.create('Ext.panel.Panel', {
 						id 				:'finishgood_plan',
-					//	renderTo 	: 'finishgood_plan',
-						border		: false,
+						//	renderTo 	: 'finishgood_plan',
+						border			: false,
 						width			: '100%',
-						height		: 150,
-						defaults	: {
-							split				: true,
+						height			: 150,
+						defaults		: {
+							split		: true,
 							collapsible	: false
-						},
-						items			: [schedule]
+						}
+						//items			: [schedule]
 					});
 					var finishgood_actual = Ext.create('Ext.panel.Panel', {
 						id 				:'finishgood_actual',
-					//	renderTo	: 'finishgood_actual',
+						//	renderTo	: 'finishgood_actual',
 						border		: false,
 						width			: '100%',
 						height		: 150,
@@ -3059,7 +1638,7 @@
 							split				: true,
 							collapsible	: false
 						},
-						items			: [outcount],
+						//items			: [outcount],
 						// listeners: {
 						// 	select: function(selModel, record, index, options) {
 						// 		var x = Ext.getCmp('rb2').getValue()['src_cat2'];
@@ -3141,66 +1720,11 @@
 						// 	}
 						// }
 					});
-			//	Part Handling
-				//Receiving Part
-					var finishgood_part_receiving = Ext.create('Ext.panel.Panel', {
-						id 			: 'finishgood_part_receiving',
-					//	renderTo 	: 'finishgood_receivingpart',
-						border		: false,
-						autoWidth	: '100%',
-						maxHeight	: 295,
-						defaults	: {
-							split		: true,
-							collapsible	: false
-						},
-						items		: [grid_part_receiving]
-					});
-
-				//Part Inspection
-					var finishgood_part_insp = Ext.create('Ext.panel.Panel', {
-						id 			:'finishgood_part_insp',
-					//	renderTo 	: 'finishgood_part_insp',
-					  	border		: false,
-						autoWidth 	: '100%',
-						//height 	: '100%',
-						maxHeight	: 295,
-						defaults	: {
-							split		: true,
-							collapsible	: false
-						},
-						items			: [grid_part_insp]
-					});
-
-				//Part Issuing
-					var part_mc = Ext.create('Ext.tab.Panel', {
-						id 			: 'part_mc',
-					//	renderTo  	: 'finishgood_part_issue',
-						//autoHeight	: true,
-						plain 		: true,
-						//activeTab 	: 0,
-						autoWidth 	: '100%',
-						maxHeight 	: 300,
-						autoScroll 	: true,
-						frame 		: true,
-						style: 'padding:5px;-background:#157FCC;',
-						items: [
-							{	title 	 	: 'MC Issue to MA',
-							 	id  	 	: 'show_grid_mc_ma',
-								reorderable : false,
-								items 		: [grid_part_mc_ma]
-							},
-							{	title		: 'MC Issue to MECHA',
-								id  		: 'show_grid_mc_mecha',
-								reorderable : false,
-								items 		: [grid_part_mc_mecha]
-							}
-						]
-					});
 			//	Process Operational
 				//	SMT DEPARTMENT
 					var part_smt = Ext.create('Ext.tab.Panel', {
 						id 			: 'part_smt',
-					//	renderTo 	: 'finishgood_part_smt',
+						//	renderTo 	: 'finishgood_part_smt',
 						plain 		: true,
 						activeTab 	: 0,
 						autoWidth 	: '100%',
@@ -3247,7 +1771,7 @@
 							{	title 		: 'AOI',
 							 	id  		: 'show_grid_aoi',
 								reorderable : false,
-								items 		: [grid_smt_aoi]
+							//	items 		: [grid_smt_aoi]
 							}, 
 							{	title 		: 'QUALITY REPORT',
 							 	id  		: 'show_grid_quality',
@@ -3290,7 +1814,7 @@
 				//	PCB & MA Department
 					var part_ma = Ext.create('Ext.tab.Panel', {
 						id  		: 'part_ma',
-					//	renderTo 	: 'finishgood_part_ma_pcb',
+						//	renderTo 	: 'finishgood_part_ma_pcb',
 						plain 		: true,
 						activeTab 	: 0,
 						autoWidth 	: '100%',
@@ -3349,71 +1873,18 @@
 						]
 					});
 
-				//	Outgoing Quality Control
-					//	Quality Sampling ( QA )
-					//	*******
-
-				//	Finished Goods ( Logistic )
-					//Warehouse Management ( Stock Control )
-					var part_log = Ext.create('Ext.tab.Panel', {
-						id 			: 'part_log',
-					//	renderTo 	: 'finishgood_logistic',
-						autoHeight	: true,
-						plain		: true,
-						activeTab	: 0,
-						autoWidth	: '100%',
-						maxHeight 	: 295,
-						autoScroll	: true,
-						frame 		: true,
-						//style: 'padding:5px;-background:#157FCC;',
-						items: [
-							{	title 		: 'STOCKCARD',
-							 	id  		: 'show_grid_log_stockcard',
-								reorderable : false,
-								items 		: [grid_log_stockcard]
-							},
-							{	title 		: 'SHIPMENTHOLD',
-								id  		: 'show_grid_log_shipmenthold',
-								reorderable : false,
-								items 		: [grid_log_shipmenthold]
-							},
-							{	title 		: 'SCAN IN',
-								id  		: 'show_grid_part_iqc',
-								reorderable : false,
-								items		: [grid_log_scan_in]
-							},
-							{	title 		: 'BORROW',
-								id  		: 'show_grid_log_borrow',
-								reorderable : false,
-								items		: [grid_log_borrow]
-							},
-							{	title 		: 'VANNING PLAN',
-								id  		: 'show_grid_log_vanningplan',
-								reorderable : false,
-								items		: [grid_log_vanningplan]
-							},
-							{	title 		: 'SCAN OUT',
-								id  		: 'show_grid_log_scan_out',
-								reorderable : false,
-								items		: [grid_log_scan_out]
-							}
-						]
-					});
-
 		//	=======================================================    POPUP SEARCH DATA    =============================
 			//	Form Search FinishGood
 				Ext.create('Ext.form.field.Text',{
-						renderTo: boardid_scan,
-						width: '100%',
-						id: 'boardid_scan',
-						name: 'boardid_scan',
+						renderTo 	: boardid_scan,
+						width 	 	: '100%',
+						id 			: 'boardid_scan',
+						name 		: 'boardid_scan',
 						fieldCls	: 'biggertext',
 						emptyText	: 'Search Model',
 						margins		: '0 6 0 0',
 						height 		: 30,
 						flex		: 1,
-						//value 	: 'DPX5000BTITA9N',
-						//value 	: 'A9K4-V6-650JN',
 						value:  	'00013IA000010015',
 						listeners	: {
 							afterrender : function() {
@@ -3431,96 +1902,25 @@
 							},
 							specialkey : function(field, e) {
 								if (e.getKey() == 13) {
-									var model = Ext.getCmp('boardid_scan').getValue();
-									var s_no = Ext.getCmp('smt_date').getValue();
+									var boardid = Ext.getCmp('boardid_scan').getValue();
+									var smtdate = Ext.getCmp('smt_date').getValue();
 
-									if (((!model) || (!s_no)) || ((!model) && (!s_no))) {
-										Ext.Msg.alert('Warning', 'Model or Serial Number cannot be null !!!');
+									if (!boardid) {
+										Ext.Msg.alert('Warning', 'PCB ID cannot be null !!!');
 									} 
 									else {
-										//Ext.Msg.alert('Model',model);
-										//var x = Ext.getCmp('rb').getValue()['src_cat'];
+										store_bigs.proxy.setExtraParam('boardid', boardid);
+										store_bigs.proxy.setExtraParam('smt_date', smtdate);
+										store_bigs.loadPage(1);
 										
-										main_store.proxy.setExtraParam('model', model);
-										main_store.proxy.setExtraParam('serial_no', s_no);
-										main_store.loadPage(1);
+										store_good_smt_aoi_board.proxy.setExtraParam('boardid', boardid);
+										store_good_smt_aoi_board.proxy.setExtraParam('smt_date', smtdate);
+										store_good_smt_aoi_board.loadPage(1);
 										
-										store_sched.proxy.setExtraParam('src_cat', 'fg');
-										store_output.proxy.setExtraParam('src_cat', 'fg');
-
-										part_mchcal.proxy.setExtraParam('model', model);
-										part_mchcal.proxy.setExtraParam('src_cat', 'fg');
-										part_mchcal.loadPage(1);	
+										store_good_smt_aoi_point.proxy.setExtraParam('boardid', boardid);
+										store_good_smt_aoi_point.proxy.setExtraParam('smt_date', smtdate);
+										store_good_smt_aoi_point.loadPage(1);
 										
-
-										// store_proc_smt_output.proxy.setExtraParam('src_cat', 'fg');
-										// store_proc_smt_downtime.proxy.setExtraParam('src_cat', 'fg');
-										// store_proc_smt_quality.proxy.setExtraParam('model', model);
-										// store_proc_smt_quality.proxy.setExtraParam('serial_no', s_no);
-										// store_proc_smt_quality.proxy.setExtraParam('src_cat', 'fg');
-										// store_proc_smt_quality.loadPage(1);
-										
-										
-										// part_mchnism.proxy.setExtraParam('model', model);
-										// part_mchnism.proxy.setExtraParam('src_cat', 'fg');
-										// part_mchnism.loadPage(1);
-										
-										// part_mchtronics.proxy.setExtraParam('model', model);
-										// part_mchtronics.proxy.setExtraParam('src_cat', 'fg');
-										// part_mchtronics.loadPage(1);
-										
-										/*======== problem info =============*/
-										// part_problem_mc.proxy.setExtraParam('model', model);
-										// part_problem_mc.proxy.setExtraParam('src_cat', 'fg');
-										// part_problem_mc.loadPage(1);
-										
-										// qty_problem_mc.proxy.setExtraParam('model', model);
-										// qty_problem_mc.proxy.setExtraParam('src_cat', 'fg');
-										// qty_problem_mc.loadPage(1);
-										
-										// part_problem_iqc.proxy.setExtraParam('model', model);
-										// part_problem_iqc.proxy.setExtraParam('src_cat', 'fg');
-										// part_problem_iqc.loadPage(1);
-										
-										// qty_problem_iqc.proxy.setExtraParam('model', model);
-										// qty_problem_iqc.proxy.setExtraParam('src_cat', 'fg');
-										// qty_problem_iqc.loadPage(1);
-										
-										// part_problem_ma.proxy.setExtraParam('model', model);
-										// part_problem_ma.proxy.setExtraParam('src_cat', 'fg');
-										// part_problem_ma.loadPage(1);
-										
-										// qty_problem_ma.proxy.setExtraParam('model', model);
-										// qty_problem_ma.proxy.setExtraParam('src_cat', 'fg');
-										// qty_problem_ma.loadPage(1);
-										
-										// part_problem_mecha.proxy.setExtraParam('model', model);
-										// part_problem_mecha.proxy.setExtraParam('src_cat', 'fg');
-										// part_problem_mecha.loadPage(1);
-										
-										// qty_problem_mecha.proxy.setExtraParam('model', model);
-										// qty_problem_mecha.proxy.setExtraParam('src_cat', 'fg');
-										// qty_problem_mecha.loadPage(1);
-										
-										/*========* problem info *=============*/
-										// store_part_smt_prep.proxy.setExtraParam('src_cat', 'fg');
-										
-										// scanin_store.proxy.setExtraParam('src_cat', 'fg');
-										
-										// scanout_store.proxy.setExtraParam('src_cat', 'fg');
-										
-										// prd_res_store.proxy.setExtraParam('model', model);
-										// prd_res_store.proxy.setExtraParam('serial_no', s_no);
-										// prd_res_store.proxy.setExtraParam('src_cat', 'fg');
-										// prd_res_store.loadPage(1);
-										
-										// prd_lost_time.proxy.setExtraParam('line', Ext.getCmp('line_name').getValue());
-										// prd_lost_time.proxy.setExtraParam('model', model);
-										
-										// scanin_store.proxy.setExtraParam('serial_no', s_no);
-										// scanin_store.loadPage(1);
-										// scanout_store.proxy.setExtraParam('serial_no', s_no);
-										// scanout_store.loadPage(1);
 									}
 								}
 							}
