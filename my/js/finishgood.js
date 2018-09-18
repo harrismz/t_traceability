@@ -116,6 +116,11 @@
 		                extend: 'Ext.data.Model',
 		                fields: ['board_id', 'scan_date', 'reflow_start_time', 'reflow_end_time']
 		           	});
+					Ext.define('model_smt_aoi',{
+		                extend: 'Ext.data.Model',
+						fields: ['linkedserver', 'pcbid', 'pcbguid', 'componentguid', 'uname', 'barcode', 'stdate',
+		                			'enddate','partno','partname','aoijudgment','userjudgment']
+		           	});
 					Ext.define('model_smt_quality',{
 		                extend: 'Ext.data.Model',
 		                fields: ['inputid', 'dateid', 'group', 'shift', 'mch', 'model_name', 'start_serial', 
@@ -439,6 +444,20 @@
 							}
 						}
 					});
+					var store_smt_aoi = Ext.create('Ext.data.Store',{
+						model	: 'model_smt_aoi',
+						autoLoad: false,
+						pageSize: itemperpage,
+						proxy   : {
+							type    : 'ajax',
+							url     : 'json/json_smt_aoi.php',
+							reader  : {
+								type    : 'json',
+								root    : 'rows'
+							}
+						}
+					});
+					
 					var store_smt_quality = Ext.create('Ext.data.Store',{
 						model	: 'model_smt_quality',
 						autoLoad: false,
@@ -557,6 +576,11 @@
 									store_smt_quality.proxy.setExtraParam('src_cat', 'fg');
 									store_smt_quality.loadPage(1);
 
+									store_smt_aoi.proxy.setExtraParam('prod_date', '2018-09-18');
+									store_smt_aoi.proxy.setExtraParam('model', 	model);
+									store_smt_aoi.proxy.setExtraParam('src_cat', 'fg');
+									store_smt_aoi.loadPage(1);
+									
 
 									// store_mapros_board.proxy.setExtraParam('model',model);
 									// store_mapros_board.proxy.setExtraParam('prod_date',prod_date);
@@ -2042,71 +2066,80 @@
 						autoWidth 	: '100%',
 						maxHeight	: 290,
 						columnLines: true,
-						//store: store_smt_aoi,
+						store: store_smt_aoi,
 						viewConfig: {
 							stripeRows: true,
 							emptyText: '<div class="empty-txt">No data to display.</div>',
 							deferEmptyText: false,
 							enableTextSelection: true
 						},
-						columns: [{
-							header: 'Req. Date',
-							dataIndex: 'jobdate',
+						columns: [
+
+						{ 	header: 'SERVER',
+							dataIndex: 'linkedserver',
 							flex: 1,
 							renderer: upsize
-						}, {
-							header: 'Req. Time',
-							dataIndex: 'jobtime',
+						}, 
+						{ 	header: 'PCB ID',
+							dataIndex: 'pcbid',
 							flex: 1,
 							renderer: upsize
-						}, {
-							header: 'Line',
-							dataIndex: 'line',
+						}, 
+						{ 	header: 'PCB GUID',
+							dataIndex: 'pcbguid',
+							flex: 1,
+							renderer: upsize,
+							hidden : true
+						}, 
+						{ 	header: 'COMPONENT GUID',
+							dataIndex: 'componentguid',
+							flex: 1,
+							renderer: upsize,
+							hidden: true
+						}, 
+						{ 	header: 'UNAME',
+							dataIndex: 'uname',
 							flex: 1,
 							renderer: upsize
-						}, {
-							header: 'Model Name',
-							dataIndex: 'model_name',
+						}, 
+						{ 	header: 'BARCODE',
+							dataIndex: 'barcode',
 							flex: 1,
-							renderer: upsize,
-							hidden: true
-						}, {
-							header: 'PWB Name',
-							dataIndex: 'pwb_name',
+							renderer: upsize
+						}, 
+						{ 	header: 'START DATE',
+							dataIndex: 'stdate',
 							flex: 1,
-							renderer: upsize,
-							hidden: true
-						}, {
-							header: 'Start Serial',
-							dataIndex: 'start_serial',
-							flex: 1,
-							renderer: upsize,
-							hidden: true
-						}, {
-							header: 'Lot',
-							dataIndex: 'lot',
-							flex: 1,
-							renderer: upsize,
-							hidden: true
-						}, {
-							header: 'Zfeeder',
-							dataIndex: 'zfeeder',
+							renderer: upsize
+						},
+						{ 	header: 'END DATE',
+							dataIndex: 'enddate',
 							flex: 1,
 							renderer: upsize,
 							filter: {
 								type: 'string'
 							}
-						}, {
-							header: 'Part Number',
-							dataIndex: 'part_no',
+						}, 
+						{ 	header: 'PART NO',
+							dataIndex: 'partno',
 							flex: 1,
 							renderer: upsize,
 							filter: {
 								type: 'string'
 							}
-						}, {
-							header: 'Demand Qty',
-							dataIndex: 'demand',
+						}, 
+						{ 	header: 'PART NAME',
+							dataIndex: 'partname',
+							flex: 1,
+							renderer: upsize
+						}, 
+						{ 	header: 'AOI JUDGEMENT',
+							dataIndex: 'aoijudgment',
+							flex: 1,
+							renderer: upsize
+						}, 
+						{ 	header: 'USER JUDGEMENT',
+							dataIndex: 'userjudgment',
 							flex: 1,
 							renderer: upsize
 						}],
