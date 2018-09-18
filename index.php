@@ -159,6 +159,18 @@
 								include "production/page_404.html";
 							}
 				      	}
+				      	elseif($_REQUEST['content'] == "measurement"){
+							$page_dir11 = 'production/content/measurement';
+							$thispages11 = scandir($page_dir11);
+							unset($thispages11[0], $thispages11[11]);
+							$page11 = $_REQUEST['content'];
+							if(in_array($page11.'.php', $thispages11)){
+								include_once($page_dir11.'/'.$page11.'.php');
+							} else {
+								//echo 'Page not found! :( finishgood php';
+								include "production/page_404.html";
+							}
+				      	}
         		?>
 			</div><!-- /page content -->
 			<!-- footer content -->
