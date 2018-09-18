@@ -6,12 +6,14 @@
 	//$limit       = @$_REQUEST["limit"];
 	//$start       = (($page*$limit)-$limit)+1;
 	$boardid       = $_REQUEST['boardid'];
-	$getdate       = substr($_REQUEST['src_date'],0,10);
+	$getdate       = substr($_REQUEST['smt_date'],0,10);
 	$proddate 	   = date('Y-m-d', strtotime($getdate));
 
 	//echo "exec traceability_smt_big '{$boardid}','{$proddate}'";
     $rs    = $db->Execute("exec traceability_smt_big '{$boardid}','{$proddate}'");
     $return = array();
+
+
 
     for($i=0;!$rs->EOF;$i++){
         $return[$i]['schedule_id']  = trim($rs->fields['0']);
@@ -26,9 +28,10 @@
         $return[$i]['model']        = trim($rs->fields['9']);
         $return[$i]['pwbname']      = trim($rs->fields['10']);
         $return[$i]['pwbno']        = trim($rs->fields['11']);
-        $return[$i]['process']      = trim($rs->fields['12']);
-        $return[$i]['rev_date']     = trim($rs->fields['13']);
-        $return[$i]['qty']	        = trim($rs->fields['14']);
+        $return[$i]['prod_no']      = trim($rs->fields['12']);
+        $return[$i]['process']      = trim($rs->fields['13']);
+        $return[$i]['rev_date']     = trim($rs->fields['14']);
+        $return[$i]['qty']	        = trim($rs->fields['15']);
        
         $rs->MoveNext();
     }
