@@ -204,32 +204,32 @@
 								flex 		: 1,
 								renderer 	: upsize
 							},
-							{	header 		: 'TIME IN',
+							{	header 		: 'TIME',
 								dataIndex 	: 'datetimein',
 								flex 		: 1,
 								renderer 	: upsize
 							},
-							{	header 		: 'alm',
+							{	header 		: 'ALM',
 								dataIndex 	: 'alm',
 								flex 		: 1,
 								renderer 	: upsize
 							},
-							{	header 		: 't_ch1',
+							{	header 		: 'TEMPERATURE <br> ( &deg;C )',
 								dataIndex 	: 't_ch1',
-								flex 		: 1,
+								width 		: 120,
 								renderer 	: upsize
 							},
-							{	header 		: 'h_ch2',
+							{	header 		: 'HUMIDITY <br> ( <i class="fas fa-tint"></i> )',
 								dataIndex 	: 'h_ch2',
 								flex 		: 1,
 								renderer 	: upsize
 							},
-							{	header 		: 'alm1',
+							{	header 		: 'ALM1',
 								dataIndex	: 'alm1',
 								flex 		: 1,
 								renderer	: upsize
 							},
-							{	header 		: 'alm2',
+							{	header 		: 'ALM2',
 								dataIndex 	: 'alm2',
 								flex 		: 1,
 								renderer 	: upsize
