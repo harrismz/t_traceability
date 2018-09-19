@@ -345,7 +345,7 @@
 							}, 
 							{ 	header 		: 'PCB ID',
 								dataIndex 	: 'pcbid',
-								width 	 	: 67,
+								width 	 	: 75,
 								renderer 	: upsize
 							}, 
 							{ 	header 		: 'PCB GUID',
@@ -411,7 +411,7 @@
 							}, 
 							{ 	header 		: 'PCB ID',
 								dataIndex 	: 'pcbid',
-								width 	 	: 67,
+								width 	 	: 75,
 								renderer 	: upsize
 							}, 
 							{ 	header 		: 'PCB GUID',
