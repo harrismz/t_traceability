@@ -47,7 +47,7 @@
 
 					var store_thermo_ma = Ext.create('Ext.data.Store',{
 						model	: 'model_thermo_ma',
-						autoLoad: false,
+						autoLoad: true,
 						pageSize: itemperpage,
 						proxy   : {
 							type    : 'ajax',
@@ -56,18 +56,11 @@
 								type    : 'json',
 								root    : 'rows'
 							}
-						},
-						// listeners: {
-						// 	load: function(store, records) {
-						// 		if (records == "") {
-						// 			Ext.Msg.alert('Warning', 'No Data Found ! <br> Please try again with the correct Date Measurement.');
-						// 		}
-						// 	}
-						// }
+						}
 					});
 					var store_thermo_smt = Ext.create('Ext.data.Store',{
 						model	: 'model_thermo_smt',
-						autoLoad: false,
+						autoLoad: true,
 						pageSize: itemperpage,
 						proxy   : {
 							type    : 'ajax',
@@ -76,18 +69,11 @@
 								type    : 'json',
 								root    : 'rows'
 							}
-						},
-						// listeners: {
-						// 	load: function(store, records) {
-						// 		if (records == "") {
-						// 			Ext.Msg.alert('Warning', 'No Data Found ! <br> Please try again with the correct Date Measurement.');
-						// 		}
-						// 	}
-						// }
+						}
 					});
 					var store_esd_ma = Ext.create('Ext.data.Store',{
 						model	: 'model_esd_ma',
-						autoLoad: false,
+						autoLoad: true,
 						pageSize: itemperpage,
 						proxy   : {
 							type    : 'ajax',
@@ -96,7 +82,7 @@
 								type    : 'json',
 								root    : 'rows'
 							}
-						}
+						 }				
 					});
 					
 
