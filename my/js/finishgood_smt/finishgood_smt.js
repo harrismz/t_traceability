@@ -65,160 +65,160 @@
 			var date 		= new Date();
 			
 		//	=======================================================    MODEL    =========================================
-				//	BOARD ID GENERATOR
-					Ext.define('model_bigs', {
-						extend: 'Ext.data.Model',
-						fields: ['schedule_id', 'lot_size', 'model_code', 'prod_no_code', 'side', 'cavity', 'seq_start', 'seq_end', 'line', 'model', 'pwbname', 'pwbno', 'process', 'rev_date', 'qty']
-					});
-				//	AOI
-					Ext.define('model_good_smt_aoi_board',{
-		                extend: 'Ext.data.Model',
-						fields: ['linkedserver', 'pcbid', 'pcbguid', 'componentguid', 'uname', 'barcode', 'stdate',
-		                			'enddate','partno','partname','aoijudgment','userjudgment']
-		           	});
-					Ext.define('model_good_smt_aoi_point',{
-						extend: 'Ext.data.Model',
-						fields: ['linkedserver', 'pcbid', 'pcbguid', 'componentguid', 'uname', 'barcode', 'stdate',
-		                			'enddate','partno','partname','aoijudgment','userjudgment']
-		           	});
-				//	REFLOW
-					Ext.define('model_smt_reflow',{
-		                extend: 'Ext.data.Model',
-		                fields: ['board_id', 'scan_date', 'reflow_start_time', 'reflow_end_time','boardlen','diffdate','pcbid']
-		           	});
-	           	//	MOUNTER
-					Ext.define('model_smt_mounter',{
-		                extend: 'Ext.data.Model',
-						fields: ['autoid','mjsid','sidepu','partloc','jobno','model','board','process','mode',
-		                			'compid1','compid2','compid3','compid4','compid5','input_user','input_date']
-		           	});
-	           	//	SPI
-					Ext.define('model_smt_spi',{
-		                extend: 'Ext.data.Model',
-						fields: ['mchname','inspectiondatetime','inspectiondate','inspectiontime','filename',
-								'pcbid','barcode','spijudge','opjudge','defectcnt']
-		           	});
-				//	MAPROS
-					Ext.define('model_mapros_board',{
-		                extend: 'Ext.data.Model',
-		                fields: ['board_id','guid_master','guid_ticket','modelname','lotno',
-								'scanner_id','status','scan_nik','judge','created_at','updated_at','lineprocess']
-		           	});
+			//	BOARD ID GENERATOR
+				Ext.define('model_bigs', {
+					extend: 'Ext.data.Model',
+					fields: ['schedule_id', 'lot_size', 'model_code', 'prod_no_code', 'side', 'cavity', 'seq_start', 'seq_end', 'line', 'model', 'pwbname', 'pwbno', 'process', 'rev_date', 'qty']
+				});
+			//	AOI
+				Ext.define('model_good_smt_aoi_board',{
+	                extend: 'Ext.data.Model',
+					fields: ['linkedserver', 'pcbid', 'pcbguid', 'barcode', 'stdate',
+	                			'enddate','aoijudgment','userjudgment']
+				});
+				Ext.define('model_good_smt_aoi_point',{
+					extend: 'Ext.data.Model',
+					fields: ['linkedserver', 'pcbid', 'pcbguid', 'componentguid', 'uname', 'barcode', 'stdate',
+	                			'enddate','partno','partname','aoijudgment','userjudgment']
+	           	});
+			//	REFLOW
+				Ext.define('model_smt_reflow',{
+	                extend: 'Ext.data.Model',
+	                fields: ['board_id', 'scan_date', 'reflow_start_time', 'reflow_end_time','boardlen','diffdate','pcbid']
+	           	});
+           	//	MOUNTER
+				Ext.define('model_smt_mounter',{
+	                extend: 'Ext.data.Model',
+					fields: ['autoid','mjsid','sidepu','partloc','jobno','model','board','process','mode',
+	                			'compid1','compid2','compid3','compid4','compid5','input_user','input_date']
+	           	});
+           	//	SPI
+				Ext.define('model_smt_spi',{
+	                extend: 'Ext.data.Model',
+					fields: ['mchname','inspectiondatetime','inspectiondate','inspectiontime','filename',
+							'pcbid','barcode','spijudge','opjudge','defectcnt']
+	           	});
+			//	MAPROS
+				Ext.define('model_mapros_board',{
+	                extend: 'Ext.data.Model',
+	                fields: ['board_id','guid_master','guid_ticket','modelname','lotno',
+							'scanner_id','status','scan_nik','judge','created_at','updated_at','lineprocess']
+	           	});
 
 		//	=======================================================    DATASTORE    =====================================
-				//	BOARD ID GENERATOR
-					var store_bigs = Ext.create('Ext.data.Store', {
-						model: 'model_bigs',
-						proxy: {
-							type: 'ajax',
-							url: 'json/json_finishgood_smt_bigs.php',
-							reader: {
-								type: 'json',
-								root: 'rows',
-								totalProperty: 'totalCount'
-							}
-						},
-						listeners: {
-							load: function(store, records) {
-								if (records != "") {
-									model 	= store.getAt(0).get('model');
-									proces	= store.getAt(0).get('process');
-									pwbno	= store.getAt(0).get('pwbno');
-									
-									store_smt_mounter.proxy.setExtraParam('model', model);
-									store_smt_mounter.proxy.setExtraParam('process', proces);
-									store_smt_mounter.proxy.setExtraParam('pwbno', pwbno);
-									store_smt_mounter.loadPage(1);
-									
-								} else {
-									Ext.Msg.alert('Warning', 'No Data Found ! <br> Please try again with the correct PCB ID.');
-								}
+			//	BOARD ID GENERATOR
+				var store_bigs = Ext.create('Ext.data.Store', {
+					model: 'model_bigs',
+					proxy: {
+						type: 'ajax',
+						url: 'json/json_finishgood_smt_bigs.php',
+						reader: {
+							type: 'json',
+							root: 'rows',
+							totalProperty: 'totalCount'
+						}
+					},
+					listeners: {
+						load: function(store, records) {
+							if (records != "") {
+								model 	= store.getAt(0).get('model');
+								proces	= store.getAt(0).get('process');
+								pwbno	= store.getAt(0).get('pwbno');
+								
+								store_smt_mounter.proxy.setExtraParam('model', model);
+								store_smt_mounter.proxy.setExtraParam('process', proces);
+								store_smt_mounter.proxy.setExtraParam('pwbno', pwbno);
+								store_smt_mounter.loadPage(1);
+								
+							} else {
+								Ext.Msg.alert('Warning', 'No Data Found ! <br> Please try again with the correct PCB ID.');
 							}
 						}
-					});
-				//	AOI
-					var store_good_smt_aoi_board = Ext.create('Ext.data.Store',{
-						model	: 'model_good_smt_aoi_board',
-						autoLoad: false,
-						pageSize: itemperpage,
-						proxy   : {
-							type    : 'ajax',
-							url     : 'json/finishgood_smt/json_good_smt_aoi_board.php',
-							reader  : {
-								type    : 'json',
-								root    : 'rows'
-							}
+					}
+				});
+			//	AOI
+				var store_good_smt_aoi_board = Ext.create('Ext.data.Store',{
+					model	: 'model_good_smt_aoi_board',
+					autoLoad: false,
+					pageSize: itemperpage,
+					proxy   : {
+						type    : 'ajax',
+						url     : 'json/finishgood_smt/json_good_smt_aoi_board.php',
+						reader  : {
+							type    : 'json',
+							root    : 'rows'
 						}
-					});
-					var store_good_smt_aoi_point = Ext.create('Ext.data.Store',{
-						model	: 'model_good_smt_aoi_point',
-						autoLoad: false,
-						pageSize: itemperpage,
-						proxy   : {
-							type    : 'ajax',
-							url     : 'json/finishgood_smt/json_good_smt_aoi_point.php',
-							reader  : {
-								type    : 'json',
-								root    : 'rows'
-							}
+					}
+				});
+				var store_good_smt_aoi_point = Ext.create('Ext.data.Store',{
+					model	: 'model_good_smt_aoi_point',
+					autoLoad: false,
+					pageSize: itemperpage,
+					proxy   : {
+						type    : 'ajax',
+						url     : 'json/finishgood_smt/json_good_smt_aoi_point.php',
+						reader  : {
+							type    : 'json',
+							root    : 'rows'
 						}
-					});
-				//	REFLOW
-					var store_smt_reflow = Ext.create('Ext.data.Store',{
-						model	: 'model_smt_reflow',
-						autoLoad: false,
-						pageSize: itemperpage,
-						proxy   : {
-							type    : 'ajax',
-							url     : 'json/finishgood_smt/json_good_smt_reflow.php',
-							reader  : {
-								type    : 'json',
-								root    : 'rows'
-							}
+					}
+				});
+			//	REFLOW
+				var store_smt_reflow = Ext.create('Ext.data.Store',{
+					model	: 'model_smt_reflow',
+					autoLoad: false,
+					pageSize: itemperpage,
+					proxy   : {
+						type    : 'ajax',
+						url     : 'json/finishgood_smt/json_good_smt_reflow.php',
+						reader  : {
+							type    : 'json',
+							root    : 'rows'
 						}
-					});
-				//	MOUNTER
-					var store_smt_mounter = Ext.create('Ext.data.Store',{
-						model	: 'model_smt_mounter',
-						autoLoad: false,
-						pageSize: itemperpage,
-						proxy   : {
-							type    : 'ajax',
-							url     : 'json/finishgood_smt/json_good_smt_mounter.php',
-							reader  : {
-								type    : 'json',
-								root    : 'rows'
-							}
+					}
+				});
+			//	MOUNTER
+				var store_smt_mounter = Ext.create('Ext.data.Store',{
+					model	: 'model_smt_mounter',
+					autoLoad: false,
+					pageSize: itemperpage,
+					proxy   : {
+						type    : 'ajax',
+						url     : 'json/finishgood_smt/json_good_smt_mounter.php',
+						reader  : {
+							type    : 'json',
+							root    : 'rows'
 						}
-					});
-				//	SPI
-					var store_smt_spi = Ext.create('Ext.data.Store',{
-						model	: 'model_smt_spi',
-						autoLoad: false,
-						pageSize: itemperpage,
-						proxy   : {
-							type    : 'ajax',
-							url     : 'json/finishgood_smt/json_good_smt_spi.php',
-							reader  : {
-								type    : 'json',
-								root    : 'rows'
-							}
+					}
+				});
+			//	SPI
+				var store_smt_spi = Ext.create('Ext.data.Store',{
+					model	: 'model_smt_spi',
+					autoLoad: false,
+					pageSize: itemperpage,
+					proxy   : {
+						type    : 'ajax',
+						url     : 'json/finishgood_smt/json_good_smt_spi.php',
+						reader  : {
+							type    : 'json',
+							root    : 'rows'
 						}
-					});
-				//	MAPROS
-					var store_mapros_board = Ext.create('Ext.data.Store',{
-						model	: 'model_mapros_board',
-						autoLoad: false,
-						pageSize: itemperpage,
-						proxy   : {
-							type    : 'ajax',
-							url     : 'json/finishgood_smt/json_good_smt_mapros_board.php',
-							reader  : {
-								type    : 'json',
-								root    : 'rows'
-							}
+					}
+				});
+			//	MAPROS
+				var store_mapros_board = Ext.create('Ext.data.Store',{
+					model	: 'model_mapros_board',
+					autoLoad: false,
+					pageSize: itemperpage,
+					proxy   : {
+						type    : 'ajax',
+						url     : 'json/finishgood_smt/json_good_smt_mapros_board.php',
+						reader  : {
+							type    : 'json',
+							root    : 'rows'
 						}
-					});
+					}
+				});
 
 		//	=======================================================    GRID    ==========================================
 			
@@ -326,6 +326,7 @@
 			//	AOI
 					var grid_smt_aoi_board = Ext.create('Ext.grid.Panel', {
 						id 			: 'grid_smt_aoi_board',
+						name		: 'grid_smt_aoi_board',
 						autoWidth 	: '100%',
 						maxHeight	: 290,
 						columnLines : true,
@@ -353,17 +354,6 @@
 								renderer 	: upsize,
 								hidden  	: true
 							}, 
-							{ 	header 		: 'COMPONENT GUID',
-								dataIndex 	: 'componentguid',
-								flex 		: 1,
-								renderer 	: upsize,
-								hidden 		: true
-							}, 
-							{ 	header 		: 'UNAME',
-								dataIndex 	: 'uname',
-								width 	 	: 75,
-								renderer 	: upsize
-							}, 
 							{ 	header 		: 'BARCODE',
 								dataIndex 	: 'barcode',
 								width 	 	: 100,
@@ -382,19 +372,6 @@
 								filters 	: {
 									type 	: 'string'
 								}
-							}, 
-							{ 	header 		: 'PART NO',
-								dataIndex 	: 'partno',
-								width 		: 180,
-								renderer 	: upsize,
-								filter 		: {
-									type 	: 'string'
-								}
-							}, 
-							{ 	header 		: 'PART NAME',
-								dataIndex 	: 'partname',
-								flex 		: 1,
-								renderer 	: upsize
 							}, 
 							{ 	header 		: 'AOI JUDGEMENT',
 								dataIndex 	: 'aoijudgment',
@@ -415,8 +392,9 @@
 					});
 					var grid_smt_aoi_point = Ext.create('Ext.grid.Panel', {
 						id 				: 'grid_smt_aoi_point',
+						name			: 'grid_smt_aoi_point',
 						autoWidth 	 	: '100%',
-						maxHeight	 	: 290,
+						maxHeight		: 290,
 						columnLines 	: true,
 						store 			: store_good_smt_aoi_point,
 						viewConfig 		: {
@@ -848,7 +826,7 @@
 						plain 		: true,
 						activeTab 	: 0,
 						autoWidth 	: '100%',
-						maxHeight	: 300,
+						height		: 300,
 						autoScroll 	: true,
 						frame 		: true,
 						//style 	: 'padding:5px;-background:#157FCC;',
@@ -939,7 +917,9 @@
 							}
 						]
 					});
+		
 		//	=======================================================    POPUP SEARCH DATA    =============================
+		
 			//	Form Search FinishGood
 				Ext.create('Ext.form.field.Text',{
 						renderTo 	: boardid_scan,
@@ -1050,6 +1030,7 @@
 							}
 						}
 				});
+		
 		//	==** end **==
 
 	});

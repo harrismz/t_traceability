@@ -10,7 +10,7 @@
     $getdate    = substr($_REQUEST['smt_date'],0,10);
 	$smt_date 	= date('Y-m-d', strtotime($getdate));
 
-	//echo "exec traceability_aoi '{$model}','{$proddate}','fg'";
+	//echo "exec traceability_smt_good_aoi_point '{$boardid}','{$smt_date}'";
     $rs         = $db->Execute("exec traceability_smt_good_aoi_point '{$boardid}','{$smt_date}'");
     $return     = array();
 
