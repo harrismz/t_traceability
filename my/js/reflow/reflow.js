@@ -48,7 +48,7 @@
 
 					var store_smt_reflow = Ext.create('Ext.data.Store',{
 						model	: 'model_smt_reflow',
-						autoLoad: false,
+						autoLoad: true,
 						pageSize: itemperpage,
 						proxy   : {
 							type    : 'ajax',
@@ -61,7 +61,7 @@
 						listeners: {
 							load: function(store, records) {
 								if (records == "") {
-									Ext.Msg.alert('Warning', 'No Data Found ! <br> Please try again with the correct Date Reflow.');
+									Ext.Msg.alert('Warning', 'Data not Available !');
 								}
 							}
 						}

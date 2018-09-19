@@ -2,14 +2,19 @@
 	date_default_timezone_set('Asia/jakarta');
     include '../../adodb/con_mounter.php';
 
-    //$page 		= @$_REQUEST["page"];
-	//$limit 		= @$_REQUEST["limit"];
-	//$start		= (($page*$limit)-$limit)+1;
-	$src_cat	    = $_REQUEST['src_cat'];
-	
-	$model      = $_REQUEST['model'];
-	$getdate    = substr($_REQUEST['prod_date'],0,10);
-	$proddate 	= date('Y-m-d', strtotime($getdate));
+    //$page 	= @$_REQUEST["page"];
+	//$limit 	= @$_REQUEST["limit"];
+	//$start	= (($page*$limit)-$limit)+1;
+	$src_cat	= isset($_REQUEST['src_cat']) ? $_REQUEST['src_cat'] : 'fg';
+    $model      = isset($_REQUEST['model']) ? $_REQUEST['model'] : '';
+    $today      = date("Y-m-d");
+    $getdate1   = isset($_REQUEST['prod_date']) ? $_REQUEST['prod_date'] : '2018-09-17';
+	$getdate    = substr($getdate1,0,10);
+    $proddate 	= date('Y-m-d', strtotime($getdate));
+
+
+
+
 
 	//echo "exec traceability_reflow '{$model}','{$proddate}'";
     $rs    = $db->Execute("exec traceability_reflow '{$model}','{$proddate}'");
