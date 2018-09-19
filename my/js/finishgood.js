@@ -1744,595 +1744,595 @@
 						// },
 						// plugins: [cellEditing]
 					});
-					// var grd_proc_smt_qualityreport = Ext.create('Ext.grid.Panel', {
-					// 	id: 'grd_proc_smt_qualityreport',
-					// 	autoWidth 	: '100%',
-					// 	maxHeight	: 295,
-					// 	columnLines: true,
-					// 	// store: store_proc_smt_quality,
-					// 	viewConfig: {
-					// 		stripeRows: true,
-					// 		emptyText: '<div class="empty-txt">No data to display.</div>',
-					// 		deferEmptyText: false,
-					// 		enableTextSelection: true
-					// 	},
-					// 	columns: [{
-					// 		header: 'InputID',
-					// 		dataIndex: 'inputid',
-					// 		flex: 1,
-					// 		locked: true,
-					// 		hidden: true
-					// 	}, {
-					// 		header: 'Date',
-					// 		dataIndex: 'dateid',
-					// 		width: 80,
-					// 		locked: true,
-					// 		renderer: Ext.util.Format.dateRenderer('Y-m-d')
-					// 	}, {
-					// 		header: 'Group',
-					// 		dataIndex: 'group',
-					// 		width: 50,
-					// 		locked: true
-					// 	}, {
-					// 		header: 'Shift',
-					// 		dataIndex: 'shift',
-					// 		width: 50,
-					// 		locked: true
-					// 	}, {
-					// 		header: 'Machine Name',
-					// 		dataIndex: 'mch',
-					// 		width: 60,
-					// 		locked: true
-					// 	}, {
-					// 		header: 'Model Name',
-					// 		dataIndex: 'model_name',
-					// 		width: 100,
-					// 		locked: true
-					// 	}, {
-					// 		header: 'Start Serial',
-					// 		dataIndex: 'start_serial',
-					// 		width: 60,
-					// 		locked: true
-					// 	}, {
-					// 		header: 'Start Number',
-					// 		dataIndex: 'serial_no',
-					// 		width: 100,
-					// 		locked: true
-					// 	}, {
-					// 		header: 'Lot No',
-					// 		dataIndex: 'lot_no',
-					// 		width: 50,
-					// 		locked: true
-					// 	}, {
-					// 		header: 'Lot Qty',
-					// 		dataIndex: 'lot_qty',
-					// 		width: 60,
-					// 		locked: true
-					// 	}, {
-					// 		header: 'PCB Name',
-					// 		dataIndex: 'pcb_name',
-					// 		width: 70,
-					// 		locked: true,
-					// 		summaryType: 'count'
-					// 	}, {
-					// 		header: 'PWB No',
-					// 		dataIndex: 'pwb_no',
-					// 		width: 80,
-					// 		locked: true
-					// 	}, {
-					// 		header: 'Process',
-					// 		dataIndex: 'process',
-					// 		width: 60,
-					// 		locked: true
-					// 	}, {
-					// 		header: 'AI',
-					// 		dataIndex: 'ai',
-					// 		width: 100,
-					// 		locked: true,
-					// 		hidden: true
-					// 	}, {
-					// 		header: 'Problem/Symptom',
-					// 		dataIndex: 'smt',
-					// 		width: 150,
-					// 		locked: true
-					// 	}, {
-					// 		header: 'Location',
-					// 		dataIndex: 'loc',
-					// 		width: 70
-					// 	}, {
-					// 		header: 'Magazine No',
-					// 		dataIndex: 'magazineno',
-					// 		width: 100
-					// 	}, {
-					// 		header: 'NG Found By',
-					// 		dataIndex: 'ng',
-					// 		width: 100
-					// 	}, {
-					// 		header: 'Board No',
-					// 		dataIndex: 'boardke',
-					// 		width: 70
-					// 	}, {
-					// 		header: 'Board NG Qty',
-					// 		dataIndex: 'boardqty',
-					// 		width: 100,
-					// 		summaryType: 'sum'
-					// 	}, {
-					// 		header: 'Point NG Qty',
-					// 		dataIndex: 'pointqty',
-					// 		width: 100,
-					// 		summaryType: 'sum'
-					// 	}, {
-					// 		header: 'Input Date',
-					// 		dataIndex: 'inputdate',
-					// 		width: 130
-					// 	}],
-					// 	// features: [{
-					// 	// 	ftype: 'filters',
-					// 	// 	encode: encode,
-					// 	// 	local: local
-					// 	// }]
-					// });
-					// var grd_proc_smt_downtime = Ext.create('Ext.grid.Panel', { //_Z_ Finish good
-					// 	id: 'grd_proc_smt_downtime',
-					// 	autoWidth 	: '100%',
-					// 	maxHeight	: 295,
-					// 	columnLines: true,
-					// 	// store: store_proc_smt_downtime,
-					// 	viewConfig: {
-					// 		stripeRows: true,
-					// 		emptyText: '<div class="empty-txt">No data to display.</div>',
-					// 		deferEmptyText: false,
-					// 		enableTextSelection: true
-					// 	},
-					// 	columns: [{
-					// 		header: 'Starting',
-					// 		dataIndex: 'date_id',
-					// 		flex: 1,
-					// 		renderer: upsize
-					// 	}, {
-					// 		header: 'Duration',
-					// 		dataIndex: 'downtime',
-					// 		flex: 1,
-					// 		renderer: upsize
-					// 	}, {
-					// 		header: 'Shift',
-					// 		dataIndex: 'shift',
-					// 		width: 50,
-					// 		renderer: upsize
-					// 	}, {
-					// 		header: 'Machine',
-					// 		dataIndex: 'bn',
-					// 		flex: 1,
-					// 		renderer: upsize
-					// 	}, {
-					// 		header: 'Model Name',
-					// 		dataIndex: 'model_name',
-					// 		flex: 1,
-					// 		renderer: upsize,
-					// 		hidden: true
-					// 	}, {
-					// 		header: 'PWB',
-					// 		dataIndex: 'pwb_name',
-					// 		width: 80,
-					// 		renderer: upsize
-					// 	}, {
-					// 		header: 'Process',
-					// 		dataIndex: 'process',
-					// 		width: 60,
-					// 		renderer: upsize
-					// 	}, {
-					// 		header: 'Start Serial',
-					// 		dataIndex: 'start_serial',
-					// 		width: 85,
-					// 		renderer: upsize,
-					// 		hidden: true
-					// 	}, {
-					// 		header: 'Status',
-					// 		dataIndex: 'confirm',
-					// 		flex: 1,
-					// 		renderer: upsize
-					// 	}, {
-					// 		header: 'Reason',
-					// 		dataIndex: 'reason',
-					// 		flex: 1,
-					// 		renderer: upsize,
-					// 		filter: {
-					// 			type: 'string'
-					// 		}
-					// 	}, {
-					// 		header: 'Cause 1',
-					// 		dataIndex: 'cause1',
-					// 		flex: 1,
-					// 		renderer: upsize
-					// 	}, {
-					// 		header: 'Cause 2',
-					// 		dataIndex: 'cause2',
-					// 		flex: 1,
-					// 		renderer: upsize
-					// 	}, {
-					// 		header: 'Cause 3',
-					// 		dataIndex: 'cause3',
-					// 		flex: 1,
-					// 		renderer: upsize
-					// 	}, {
-					// 		header: 'Cause 4',
-					// 		dataIndex: 'cause4',
-					// 		flex: 1,
-					// 		renderer: upsize
-					// 	}, ],
-					// 	// features: [{
-					// 	// 	ftype: 'filters',
-					// 	// 	encode: encode,
-					// 	// 	local: local
-					// 	// }]
-					// });
-					// var grd_proc_smt_output = Ext.create('Ext.grid.Panel', {
-					// 	id: 'grd_proc_smt_output',
-					// 	autoWidth 	: '100%',
-					// 	maxHeight	: 295,
-					// 	columnLines: true,
-					// 	// store: store_proc_smt_prodresult,
-					// 	viewConfig: {
-					// 		stripeRows: true,
-					// 		emptyText: '<div class="empty-txt">No data to display.</div>',
-					// 		deferEmptyText: false,
-					// 		enableTextSelection: true
-					// 	},
-					// 	columns: [{
-					// 		header: 'Prod Date',
-					// 		dataIndex: 'prod_date',
-					// 		flex: 1,
-					// 		renderer: upsize
-					// 	}, {
-					// 		header: 'First Output',
-					// 		dataIndex: 'stime',
-					// 		flex: 1,
-					// 		renderer: upsize
-					// 	}, {
-					// 		header: 'Line Name',
-					// 		dataIndex: 'line_name',
-					// 		flex: 1,
-					// 		renderer: upsize
-					// 	}, {
-					// 		header: 'Shift',
-					// 		dataIndex: 'shift',
-					// 		flex: 1,
-					// 		renderer: upsize
-					// 	}, {
-					// 		header: 'PWB Name',
-					// 		dataIndex: 'pwb',
-					// 		flex: 1,
-					// 		renderer: upsize
-					// 	}, {
-					// 		header: 'Process',
-					// 		dataIndex: 'process',
-					// 		flex: 1,
-					// 		renderer: upsize
-					// 	}, {
-					// 		header: 'Model Name',
-					// 		dataIndex: 'model_name',
-					// 		flex: 1,
-					// 		renderer: upsize,
-					// 		hidden: true
-					// 	}, {
-					// 		header: 'Output',
-					// 		dataIndex: 'output',
-					// 		flex: 1,
-					// 		renderer: upsize
-					// 	}]
-					// });
-					var grid_smt_mounter = Ext.create('Ext.grid.Panel', {
-						id: 'grid_smt_mounter',
-						autoWidth 	: '100%',
-						maxHeight	: 290,
-						columnLines : true,
-						store 		: store_smt_mounter,
-						viewConfig 	: {
-							stripeRows 			: true,
-							emptyText 			: '<div class="empty-txt">No data to display.</div>',
-							deferEmptyText 		: false,
-							enableTextSelection : true
-						},
-						columns 	: [
-							{	header 		: 'BOARD ID',
-								dataIndex 	: 'board_id',
-								flex 		: 1,
-								renderer 	: upsize
+					//	// var grd_proc_smt_qualityreport = Ext.create('Ext.grid.Panel', {
+						// 	id: 'grd_proc_smt_qualityreport',
+						// 	autoWidth 	: '100%',
+						// 	maxHeight	: 295,
+						// 	columnLines: true,
+						// 	// store: store_proc_smt_quality,
+						// 	viewConfig: {
+						// 		stripeRows: true,
+						// 		emptyText: '<div class="empty-txt">No data to display.</div>',
+						// 		deferEmptyText: false,
+						// 		enableTextSelection: true
+						// 	},
+						// 	columns: [{
+						// 		header: 'InputID',
+						// 		dataIndex: 'inputid',
+						// 		flex: 1,
+						// 		locked: true,
+						// 		hidden: true
+						// 	}, {
+						// 		header: 'Date',
+						// 		dataIndex: 'dateid',
+						// 		width: 80,
+						// 		locked: true,
+						// 		renderer: Ext.util.Format.dateRenderer('Y-m-d')
+						// 	}, {
+						// 		header: 'Group',
+						// 		dataIndex: 'group',
+						// 		width: 50,
+						// 		locked: true
+						// 	}, {
+						// 		header: 'Shift',
+						// 		dataIndex: 'shift',
+						// 		width: 50,
+						// 		locked: true
+						// 	}, {
+						// 		header: 'Machine Name',
+						// 		dataIndex: 'mch',
+						// 		width: 60,
+						// 		locked: true
+						// 	}, {
+						// 		header: 'Model Name',
+						// 		dataIndex: 'model_name',
+						// 		width: 100,
+						// 		locked: true
+						// 	}, {
+						// 		header: 'Start Serial',
+						// 		dataIndex: 'start_serial',
+						// 		width: 60,
+						// 		locked: true
+						// 	}, {
+						// 		header: 'Start Number',
+						// 		dataIndex: 'serial_no',
+						// 		width: 100,
+						// 		locked: true
+						// 	}, {
+						// 		header: 'Lot No',
+						// 		dataIndex: 'lot_no',
+						// 		width: 50,
+						// 		locked: true
+						// 	}, {
+						// 		header: 'Lot Qty',
+						// 		dataIndex: 'lot_qty',
+						// 		width: 60,
+						// 		locked: true
+						// 	}, {
+						// 		header: 'PCB Name',
+						// 		dataIndex: 'pcb_name',
+						// 		width: 70,
+						// 		locked: true,
+						// 		summaryType: 'count'
+						// 	}, {
+						// 		header: 'PWB No',
+						// 		dataIndex: 'pwb_no',
+						// 		width: 80,
+						// 		locked: true
+						// 	}, {
+						// 		header: 'Process',
+						// 		dataIndex: 'process',
+						// 		width: 60,
+						// 		locked: true
+						// 	}, {
+						// 		header: 'AI',
+						// 		dataIndex: 'ai',
+						// 		width: 100,
+						// 		locked: true,
+						// 		hidden: true
+						// 	}, {
+						// 		header: 'Problem/Symptom',
+						// 		dataIndex: 'smt',
+						// 		width: 150,
+						// 		locked: true
+						// 	}, {
+						// 		header: 'Location',
+						// 		dataIndex: 'loc',
+						// 		width: 70
+						// 	}, {
+						// 		header: 'Magazine No',
+						// 		dataIndex: 'magazineno',
+						// 		width: 100
+						// 	}, {
+						// 		header: 'NG Found By',
+						// 		dataIndex: 'ng',
+						// 		width: 100
+						// 	}, {
+						// 		header: 'Board No',
+						// 		dataIndex: 'boardke',
+						// 		width: 70
+						// 	}, {
+						// 		header: 'Board NG Qty',
+						// 		dataIndex: 'boardqty',
+						// 		width: 100,
+						// 		summaryType: 'sum'
+						// 	}, {
+						// 		header: 'Point NG Qty',
+						// 		dataIndex: 'pointqty',
+						// 		width: 100,
+						// 		summaryType: 'sum'
+						// 	}, {
+						// 		header: 'Input Date',
+						// 		dataIndex: 'inputdate',
+						// 		width: 130
+						// 	}],
+						// 	// features: [{
+						// 	// 	ftype: 'filters',
+						// 	// 	encode: encode,
+						// 	// 	local: local
+						// 	// }]
+						// });
+						// var grd_proc_smt_downtime = Ext.create('Ext.grid.Panel', { //_Z_ Finish good
+						// 	id: 'grd_proc_smt_downtime',
+						// 	autoWidth 	: '100%',
+						// 	maxHeight	: 295,
+						// 	columnLines: true,
+						// 	// store: store_proc_smt_downtime,
+						// 	viewConfig: {
+						// 		stripeRows: true,
+						// 		emptyText: '<div class="empty-txt">No data to display.</div>',
+						// 		deferEmptyText: false,
+						// 		enableTextSelection: true
+						// 	},
+						// 	columns: [{
+						// 		header: 'Starting',
+						// 		dataIndex: 'date_id',
+						// 		flex: 1,
+						// 		renderer: upsize
+						// 	}, {
+						// 		header: 'Duration',
+						// 		dataIndex: 'downtime',
+						// 		flex: 1,
+						// 		renderer: upsize
+						// 	}, {
+						// 		header: 'Shift',
+						// 		dataIndex: 'shift',
+						// 		width: 50,
+						// 		renderer: upsize
+						// 	}, {
+						// 		header: 'Machine',
+						// 		dataIndex: 'bn',
+						// 		flex: 1,
+						// 		renderer: upsize
+						// 	}, {
+						// 		header: 'Model Name',
+						// 		dataIndex: 'model_name',
+						// 		flex: 1,
+						// 		renderer: upsize,
+						// 		hidden: true
+						// 	}, {
+						// 		header: 'PWB',
+						// 		dataIndex: 'pwb_name',
+						// 		width: 80,
+						// 		renderer: upsize
+						// 	}, {
+						// 		header: 'Process',
+						// 		dataIndex: 'process',
+						// 		width: 60,
+						// 		renderer: upsize
+						// 	}, {
+						// 		header: 'Start Serial',
+						// 		dataIndex: 'start_serial',
+						// 		width: 85,
+						// 		renderer: upsize,
+						// 		hidden: true
+						// 	}, {
+						// 		header: 'Status',
+						// 		dataIndex: 'confirm',
+						// 		flex: 1,
+						// 		renderer: upsize
+						// 	}, {
+						// 		header: 'Reason',
+						// 		dataIndex: 'reason',
+						// 		flex: 1,
+						// 		renderer: upsize,
+						// 		filter: {
+						// 			type: 'string'
+						// 		}
+						// 	}, {
+						// 		header: 'Cause 1',
+						// 		dataIndex: 'cause1',
+						// 		flex: 1,
+						// 		renderer: upsize
+						// 	}, {
+						// 		header: 'Cause 2',
+						// 		dataIndex: 'cause2',
+						// 		flex: 1,
+						// 		renderer: upsize
+						// 	}, {
+						// 		header: 'Cause 3',
+						// 		dataIndex: 'cause3',
+						// 		flex: 1,
+						// 		renderer: upsize
+						// 	}, {
+						// 		header: 'Cause 4',
+						// 		dataIndex: 'cause4',
+						// 		flex: 1,
+						// 		renderer: upsize
+						// 	}, ],
+						// 	// features: [{
+						// 	// 	ftype: 'filters',
+						// 	// 	encode: encode,
+						// 	// 	local: local
+						// 	// }]
+						// });
+						// var grd_proc_smt_output = Ext.create('Ext.grid.Panel', {
+						// 	id: 'grd_proc_smt_output',
+						// 	autoWidth 	: '100%',
+						// 	maxHeight	: 295,
+						// 	columnLines: true,
+						// 	// store: store_proc_smt_prodresult,
+						// 	viewConfig: {
+						// 		stripeRows: true,
+						// 		emptyText: '<div class="empty-txt">No data to display.</div>',
+						// 		deferEmptyText: false,
+						// 		enableTextSelection: true
+						// 	},
+						// 	columns: [{
+						// 		header: 'Prod Date',
+						// 		dataIndex: 'prod_date',
+						// 		flex: 1,
+						// 		renderer: upsize
+						// 	}, {
+						// 		header: 'First Output',
+						// 		dataIndex: 'stime',
+						// 		flex: 1,
+						// 		renderer: upsize
+						// 	}, {
+						// 		header: 'Line Name',
+						// 		dataIndex: 'line_name',
+						// 		flex: 1,
+						// 		renderer: upsize
+						// 	}, {
+						// 		header: 'Shift',
+						// 		dataIndex: 'shift',
+						// 		flex: 1,
+						// 		renderer: upsize
+						// 	}, {
+						// 		header: 'PWB Name',
+						// 		dataIndex: 'pwb',
+						// 		flex: 1,
+						// 		renderer: upsize
+						// 	}, {
+						// 		header: 'Process',
+						// 		dataIndex: 'process',
+						// 		flex: 1,
+						// 		renderer: upsize
+						// 	}, {
+						// 		header: 'Model Name',
+						// 		dataIndex: 'model_name',
+						// 		flex: 1,
+						// 		renderer: upsize,
+						// 		hidden: true
+						// 	}, {
+						// 		header: 'Output',
+						// 		dataIndex: 'output',
+						// 		flex: 1,
+						// 		renderer: upsize
+						// 	}]
+						// });
+						var grid_smt_mounter = Ext.create('Ext.grid.Panel', {
+							id: 'grid_smt_mounter',
+							autoWidth 	: '100%',
+							maxHeight	: 290,
+							columnLines : true,
+							store 		: store_smt_mounter,
+							viewConfig 	: {
+								stripeRows 			: true,
+								emptyText 			: '<div class="empty-txt">No data to display.</div>',
+								deferEmptyText 		: false,
+								enableTextSelection : true
+							},
+							columns 	: [
+								{	header 		: 'BOARD ID',
+									dataIndex 	: 'board_id',
+									flex 		: 1,
+									renderer 	: upsize
+								}, 
+								{ 	header: 'SCAN DATE',
+									dataIndex: 'scan_date',
+									flex: 1,
+									renderer: upsize
+								}, 
+								{ 	header: 'START TIME',
+									dataIndex: 'reflow_start_time',
+									flex: 1,
+									renderer: upsize
+								}, 
+								{ 	header: 'END TIME',
+									dataIndex: 'reflow_end_time',
+									flex: 1,
+									renderer: upsize
+								}
+							],
+							//features: [filters],
+							// selModel: {
+							// 	selType: 'cellmodel'
+							// },
+							// plugins: [cellEditing]
+						});
+						var grid_smt_aoi = Ext.create('Ext.grid.Panel', {
+							id: 'grid_smt_aoi',
+							autoWidth 	: '100%',
+							maxHeight	: 290,
+							columnLines: true,
+							store: store_smt_aoi,
+							viewConfig: {
+								stripeRows: true,
+								emptyText: '<div class="empty-txt">No data to display.</div>',
+								deferEmptyText: false,
+								enableTextSelection: true
+							},
+							columns: [
+
+							{ 	header: 'SERVER',
+								dataIndex: 'linkedserver',
+								flex: 1,
+								renderer: upsize
 							}, 
-							{ 	header: 'SCAN DATE',
+							{ 	header: 'PCB ID',
+								dataIndex: 'pcbid',
+								flex: 1,
+								renderer: upsize
+							}, 
+							{ 	header: 'PCB GUID',
+								dataIndex: 'pcbguid',
+								flex: 1,
+								renderer: upsize,
+								hidden : true
+							}, 
+							{ 	header: 'COMPONENT GUID',
+								dataIndex: 'componentguid',
+								flex: 1,
+								renderer: upsize,
+								hidden: true
+							}, 
+							{ 	header: 'UNAME',
+								dataIndex: 'uname',
+								flex: 1,
+								renderer: upsize
+							}, 
+							{ 	header: 'BARCODE',
+								dataIndex: 'barcode',
+								flex: 1,
+								renderer: upsize
+							}, 
+							{ 	header: 'START DATE',
+								dataIndex: 'stdate',
+								flex: 1,
+								renderer: upsize
+							},
+							{ 	header: 'END DATE',
+								dataIndex: 'enddate',
+								flex: 1,
+								renderer: upsize,
+								filter: {
+									type: 'string'
+								}
+							}, 
+							{ 	header: 'PART NO',
+								dataIndex: 'partno',
+								flex: 1,
+								renderer: upsize,
+								filter: {
+									type: 'string'
+								}
+							}, 
+							{ 	header: 'PART NAME',
+								dataIndex: 'partname',
+								flex: 1,
+								renderer: upsize
+							}, 
+							{ 	header: 'AOI JUDGEMENT',
+								dataIndex: 'aoijudgment',
+								flex: 1,
+								renderer: upsize
+							}, 
+							{ 	header: 'USER JUDGEMENT',
+								dataIndex: 'userjudgment',
+								flex: 1,
+								renderer: upsize
+							}],
+							//features: [filters],
+							// selModel: {
+							// 	selType: 'cellmodel'
+							// },
+							// plugins: [cellEditing]
+						});
+						var grid_smt_reflow = Ext.create('Ext.grid.Panel', {
+							id: 'grid_smt_reflow',
+							autoWidth 	: '100%',
+							maxHeight	: 290,
+							columnLines: true,
+							store: store_smt_reflow,
+							viewConfig: {
+								stripeRows: true,
+								emptyText: '<div class="empty-txt">No data to display.</div>',
+								deferEmptyText: false,
+								enableTextSelection: true
+							},
+							columns: [{
+								header: 'BOARD ID',
+								dataIndex: 'board_id',
+								flex: 1,
+								renderer: upsize
+							}, {
+								header: 'SCAN DATE',
 								dataIndex: 'scan_date',
 								flex: 1,
 								renderer: upsize
-							}, 
-							{ 	header: 'START TIME',
+							}, {
+								header: 'START TIME',
 								dataIndex: 'reflow_start_time',
 								flex: 1,
 								renderer: upsize
-							}, 
-							{ 	header: 'END TIME',
+							}, {
+								header: 'END TIME',
 								dataIndex: 'reflow_end_time',
 								flex: 1,
 								renderer: upsize
+							}],
+							//features: [filters],
+							// selModel: {
+							// 	selType: 'cellmodel'
+							// },
+							// plugins: [cellEditing]
+						});
+						var grid_smt_quality = Ext.create('Ext.grid.Panel', {
+							id 			: 'grid_smt_quality',
+							autoWidth 	: '100%',
+							maxHeight	: 295,
+							columnLines : true,
+							store 		: store_smt_quality,
+							viewConfig 	: {
+								stripeRows 	 		: true,
+								emptyText 			: '<div class="empty-txt">No data to display.</div>',
+								deferEmptyText 		: false,
+								enableTextSelection : true
+							},
+							columns 	: [
+							{ 	header 		: 'INPUTID',
+								dataIndex	: 'inputid',
+								flex 		: 1,
+								renderer 	: upsize,
+								hidden 		: true
+							},
+							{ 	header 		: 'DATEID',
+								dataIndex	: 'dateid',
+								flex 		: 1,
+								renderer 	: upsize,
+								hidden 		: true
+							},
+							{ 	header 		: 'GROUP',
+								dataIndex	: 'group',
+								flex 		: 1,
+								renderer 	: upsize,
+								hidden 		: true
+							},
+							{ 	header 		: 'SHIFT',
+								dataIndex	: 'shift',
+								flex 		: 1,
+								renderer 	: upsize,
+								hidden 		: true
+							},
+							{ 	header 		: 'MECHA',
+								dataIndex	: 'mch',
+								flex 		: 1,
+								renderer 	: upsize,
+								hidden 		: true
+							},
+							{ 	header 		: 'MODEL NAME',
+								dataIndex	: 'model_name',
+								flex 		: 1,
+								renderer 	: upsize,
+								hidden 		: true
+							},
+							{ 	header 		: 'START SERIAL',
+								dataIndex	: 'start_serial',
+								flex 		: 1,
+								renderer 	: upsize,
+								hidden 		: true
+							},
+							{ 	header 		: 'SERIAL NO',
+								dataIndex	: 'serial_no',
+								flex 		: 1,
+								renderer 	: upsize,
+								hidden 		: true
+							},
+							{ 	header 		: 'LOT NO',
+								dataIndex	: 'lot_no',
+								flex 		: 1,
+								renderer 	: upsize,
+								hidden 		: true
+							},
+							{ 	header 		: 'LOT QTY',
+								dataIndex	: 'lot_qty',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{ 	header 		: 'PCB NAME',
+								dataIndex	: 'pcb_name',
+								flex 		: 1,
+								renderer 	: upsize,
+								hidden 		: true
+							},
+							{ 	header 		: 'PWB NO',
+								dataIndex	: 'pwb_no',
+								flex 		: 1,
+								renderer 	: upsize,
+								hidden 		: true
+							},
+							{ 	header 		: 'PROCESS',
+								dataIndex	: 'process',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{ 	header 		: 'AI',
+								dataIndex	: 'ai',
+								flex 		: 1,
+								renderer 	: upsize,
+								hidden 		: true
+							},
+							{ 	header 		: 'SMT',
+								dataIndex	: 'smt',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{ 	header 		: 'LOC',
+								dataIndex	: 'loc',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{ 	header 		: 'MAGAZINE NO',
+								dataIndex	: 'magazineno',
+								flex 		: 1,
+								renderer 	: upsize,
+								hidden 		: true
+							},
+							{ 	header 		: 'STATUS',
+								dataIndex	: 'ng',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{ 	header 		: 'BOARD TO',
+								dataIndex	: 'boardke',
+								flex 		: 1,
+								renderer 	: upsize,
+								hidden 		: true
+							},
+							{ 	header 		: 'BOARD QTY',
+								dataIndex	: 'boardqty',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{ 	header 		: 'POINT QTY',
+								dataIndex	: 'pointqty',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{ 	header 		: 'DATE',
+								dataIndex	: 'inputdate',
+								flex 		: 1,
+								renderer 	: upsize
 							}
-						],
-						//features: [filters],
-						// selModel: {
-						// 	selType: 'cellmodel'
-						// },
-						// plugins: [cellEditing]
-					});
-					var grid_smt_aoi = Ext.create('Ext.grid.Panel', {
-						id: 'grid_smt_aoi',
-						autoWidth 	: '100%',
-						maxHeight	: 290,
-						columnLines: true,
-						store: store_smt_aoi,
-						viewConfig: {
-							stripeRows: true,
-							emptyText: '<div class="empty-txt">No data to display.</div>',
-							deferEmptyText: false,
-							enableTextSelection: true
-						},
-						columns: [
-
-						{ 	header: 'SERVER',
-							dataIndex: 'linkedserver',
-							flex: 1,
-							renderer: upsize
-						}, 
-						{ 	header: 'PCB ID',
-							dataIndex: 'pcbid',
-							flex: 1,
-							renderer: upsize
-						}, 
-						{ 	header: 'PCB GUID',
-							dataIndex: 'pcbguid',
-							flex: 1,
-							renderer: upsize,
-							hidden : true
-						}, 
-						{ 	header: 'COMPONENT GUID',
-							dataIndex: 'componentguid',
-							flex: 1,
-							renderer: upsize,
-							hidden: true
-						}, 
-						{ 	header: 'UNAME',
-							dataIndex: 'uname',
-							flex: 1,
-							renderer: upsize
-						}, 
-						{ 	header: 'BARCODE',
-							dataIndex: 'barcode',
-							flex: 1,
-							renderer: upsize
-						}, 
-						{ 	header: 'START DATE',
-							dataIndex: 'stdate',
-							flex: 1,
-							renderer: upsize
-						},
-						{ 	header: 'END DATE',
-							dataIndex: 'enddate',
-							flex: 1,
-							renderer: upsize,
-							filter: {
-								type: 'string'
-							}
-						}, 
-						{ 	header: 'PART NO',
-							dataIndex: 'partno',
-							flex: 1,
-							renderer: upsize,
-							filter: {
-								type: 'string'
-							}
-						}, 
-						{ 	header: 'PART NAME',
-							dataIndex: 'partname',
-							flex: 1,
-							renderer: upsize
-						}, 
-						{ 	header: 'AOI JUDGEMENT',
-							dataIndex: 'aoijudgment',
-							flex: 1,
-							renderer: upsize
-						}, 
-						{ 	header: 'USER JUDGEMENT',
-							dataIndex: 'userjudgment',
-							flex: 1,
-							renderer: upsize
-						}],
-						//features: [filters],
-						// selModel: {
-						// 	selType: 'cellmodel'
-						// },
-						// plugins: [cellEditing]
-					});
-					var grid_smt_reflow = Ext.create('Ext.grid.Panel', {
-						id: 'grid_smt_reflow',
-						autoWidth 	: '100%',
-						maxHeight	: 290,
-						columnLines: true,
-						store: store_smt_reflow,
-						viewConfig: {
-							stripeRows: true,
-							emptyText: '<div class="empty-txt">No data to display.</div>',
-							deferEmptyText: false,
-							enableTextSelection: true
-						},
-						columns: [{
-							header: 'BOARD ID',
-							dataIndex: 'board_id',
-							flex: 1,
-							renderer: upsize
-						}, {
-							header: 'SCAN DATE',
-							dataIndex: 'scan_date',
-							flex: 1,
-							renderer: upsize
-						}, {
-							header: 'START TIME',
-							dataIndex: 'reflow_start_time',
-							flex: 1,
-							renderer: upsize
-						}, {
-							header: 'END TIME',
-							dataIndex: 'reflow_end_time',
-							flex: 1,
-							renderer: upsize
-						}],
-						//features: [filters],
-						// selModel: {
-						// 	selType: 'cellmodel'
-						// },
-						// plugins: [cellEditing]
-					});
-					var grid_smt_quality = Ext.create('Ext.grid.Panel', {
-						id 			: 'grid_smt_quality',
-						autoWidth 	: '100%',
-						maxHeight	: 295,
-						columnLines : true,
-						store 		: store_smt_quality,
-						viewConfig 	: {
-							stripeRows 	 		: true,
-							emptyText 			: '<div class="empty-txt">No data to display.</div>',
-							deferEmptyText 		: false,
-							enableTextSelection : true
-						},
-						columns 	: [
-						{ 	header 		: 'INPUTID',
-							dataIndex	: 'inputid',
-							flex 		: 1,
-							renderer 	: upsize,
-							hidden 		: true
-						},
-						{ 	header 		: 'DATEID',
-							dataIndex	: 'dateid',
-							flex 		: 1,
-							renderer 	: upsize,
-							hidden 		: true
-						},
-						{ 	header 		: 'GROUP',
-							dataIndex	: 'group',
-							flex 		: 1,
-							renderer 	: upsize,
-							hidden 		: true
-						},
-						{ 	header 		: 'SHIFT',
-							dataIndex	: 'shift',
-							flex 		: 1,
-							renderer 	: upsize,
-							hidden 		: true
-						},
-						{ 	header 		: 'MECHA',
-							dataIndex	: 'mch',
-							flex 		: 1,
-							renderer 	: upsize,
-							hidden 		: true
-						},
-						{ 	header 		: 'MODEL NAME',
-							dataIndex	: 'model_name',
-							flex 		: 1,
-							renderer 	: upsize,
-							hidden 		: true
-						},
-						{ 	header 		: 'START SERIAL',
-							dataIndex	: 'start_serial',
-							flex 		: 1,
-							renderer 	: upsize,
-							hidden 		: true
-						},
-						{ 	header 		: 'SERIAL NO',
-							dataIndex	: 'serial_no',
-							flex 		: 1,
-							renderer 	: upsize,
-							hidden 		: true
-						},
-						{ 	header 		: 'LOT NO',
-							dataIndex	: 'lot_no',
-							flex 		: 1,
-							renderer 	: upsize,
-							hidden 		: true
-						},
-						{ 	header 		: 'LOT QTY',
-							dataIndex	: 'lot_qty',
-							flex 		: 1,
-							renderer 	: upsize
-						},
-						{ 	header 		: 'PCB NAME',
-							dataIndex	: 'pcb_name',
-							flex 		: 1,
-							renderer 	: upsize,
-							hidden 		: true
-						},
-						{ 	header 		: 'PWB NO',
-							dataIndex	: 'pwb_no',
-							flex 		: 1,
-							renderer 	: upsize,
-							hidden 		: true
-						},
-						{ 	header 		: 'PROCESS',
-							dataIndex	: 'process',
-							flex 		: 1,
-							renderer 	: upsize
-						},
-						{ 	header 		: 'AI',
-							dataIndex	: 'ai',
-							flex 		: 1,
-							renderer 	: upsize,
-							hidden 		: true
-						},
-						{ 	header 		: 'SMT',
-							dataIndex	: 'smt',
-							flex 		: 1,
-							renderer 	: upsize
-						},
-						{ 	header 		: 'LOC',
-							dataIndex	: 'loc',
-							flex 		: 1,
-							renderer 	: upsize
-						},
-						{ 	header 		: 'MAGAZINE NO',
-							dataIndex	: 'magazineno',
-							flex 		: 1,
-							renderer 	: upsize,
-							hidden 		: true
-						},
-						{ 	header 		: 'STATUS',
-							dataIndex	: 'ng',
-							flex 		: 1,
-							renderer 	: upsize
-						},
-						{ 	header 		: 'BOARD TO',
-							dataIndex	: 'boardke',
-							flex 		: 1,
-							renderer 	: upsize,
-							hidden 		: true
-						},
-						{ 	header 		: 'BOARD QTY',
-							dataIndex	: 'boardqty',
-							flex 		: 1,
-							renderer 	: upsize
-						},
-						{ 	header 		: 'POINT QTY',
-							dataIndex	: 'pointqty',
-							flex 		: 1,
-							renderer 	: upsize
-						},
-						{ 	header 		: 'DATE',
-							dataIndex	: 'inputdate',
-							flex 		: 1,
-							renderer 	: upsize
-						}
-						],
-						//features: [filters],
-						// selModel: {
-						// 	selType: 'cellmodel'
-						// },
-						// plugins: [cellEditing]
-					});
-					
+							],
+							//features: [filters],
+							// selModel: {
+							// 	selType: 'cellmodel'
+							// },
+							// plugins: [cellEditing]
+						});
+						
 				//	PCB & MA Department
 					var grd_ma_losttime = Ext.create('Ext.grid.Panel', {
 					 	id: 'grd_prd_losttime',
