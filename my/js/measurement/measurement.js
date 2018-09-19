@@ -5,11 +5,8 @@
 	//function untuk fontsize grid
 	function upsize(val) {
 		var x = val;
-		if (x == ''){
+		if (x == '' || x == 'NG' || x == '--'){
 			return '<font class="fontsize12" style="color:red;font-weight: bold;"> --- </font>';
-		}
-		else if (x == 'NG'){
-			return '<font class="fontsize12" style="color:red;font-weight: bold;"> ' + x + ' </font>';
 		}
 		else if (x == 'OK'){
 			return '<font class="fontsize12" style="color:green;font-weight: bold;"> ' + x + ' </font>';
@@ -52,7 +49,14 @@
 		                extend: 'Ext.data.Model',
 						fields: ['unid', 'id', 'datetimein', 'channel','mode','rotation','torque','torque']
 		           	});
-					
+					Ext.define('model_temperature_ma',{
+		                extend: 'Ext.data.Model',
+						fields: ['unid', 'id', 'faddres', 'Instid','grno','measid','settemp','datetimein','status','picupload']
+		           	});
+					Ext.define('model_temperature_smt',{
+		                extend: 'Ext.data.Model',
+						fields: ['unid', 'id', 'faddres', 'Instid','grno','measid','settemp','datetimein','status','picupload']
+		           	});
 		//	=======================================================    DATASTORE    =====================================
 
 					var store_thermo_ma = Ext.create('Ext.data.Store',{
@@ -101,6 +105,32 @@
 						proxy   : {
 							type    : 'ajax',
 							url     : 'json/measurement/json_ma_torque.php',
+							reader  : {
+								type    : 'json',
+								root    : 'rows'
+							}
+						 }				
+					});
+					var store_temperature_ma = Ext.create('Ext.data.Store',{
+						model	: 'model_temperature_ma',
+						autoLoad: true,
+						pageSize: itemperpage,
+						proxy   : {
+							type    : 'ajax',
+							url     : 'json/measurement/json_ma_temperature.php',
+							reader  : {
+								type    : 'json',
+								root    : 'rows'
+							}
+						 }				
+					});
+					var store_temperature_smt = Ext.create('Ext.data.Store',{
+						model	: 'model_temperature_smt',
+						autoLoad: true,
+						pageSize: itemperpage,
+						proxy   : {
+							type    : 'ajax',
+							url     : 'json/measurement/json_smt_temperature.php',
 							reader  : {
 								type    : 'json',
 								root    : 'rows'
@@ -290,7 +320,7 @@
 								flex 		: 1,
 								renderer 	: upsize
 							}, 
-							{ 	header 		: 'LEFT FEET ( &ohm; )',
+							{ 	header 		: 'LEFT FEET <br> ( &ohm; )',
 								dataIndex 	: 'leftfeet',
 								flex 		: 1,
 								renderer 	: upsize
@@ -300,7 +330,7 @@
 								flex 	 	: 1,
 								renderer 	: upsize
 							}, 
-							{ 	header 		: 'RIGHT FEET ( &ohm; )',
+							{ 	header 		: 'RIGHT FEET <br> ( &ohm; )',
 								dataIndex 	: 'rightfeet',
 								flex 		: 1,
 								renderer 	: upsize
@@ -385,6 +415,151 @@
 						// },
 						// plugins: [cellEditing]
 					});
+					var grid_temperature_ma = Ext.create('Ext.grid.Panel', {
+						id 				: 'grid_temperature_ma',
+						autoWidth 	 	: '100%',
+						maxHeight	 	: 290,
+						columnLines 	: true,
+						//store 			: store_temperature_ma,
+						viewConfig 		: {
+							stripeRows 			: true,
+							emptyText 		 	: '<div class="empty-txt">No data to display.</div>',
+							deferEmptyText 		: false,
+							enableTextSelection : true
+						},
+						columns: [
+							{	header 		: 'unid',
+								dataIndex 	: 'unid',
+								flex 		: 1,
+								renderer 	: upsize,
+								hidden		: true
+							},
+							{	header 		: 'id',
+								dataIndex 	: 'id',
+								flex 		: 1,
+								renderer 	: upsize,
+								hidden		: true
+							},
+							{	header 		: 'faddres',
+								dataIndex 	: 'faddres',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'Instid',
+								dataIndex 	: 'Instid',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'grno',
+								dataIndex 	: 'grno',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'measid',
+								dataIndex 	: 'measid',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'TEMPERATURE <br> ( &deg;C )',
+								dataIndex 	: 'settemp',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'TIME',
+								dataIndex 	: 'datetimein',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'STATUS',
+								dataIndex 	: 'status',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'UPLOAADED BY',
+								dataIndex 	: 'picupload',
+								flex 		: 1,
+								renderer 	: upsize
+							}
+						],
+						//features: [filters],
+						// selModel: {
+						// 	selType: 'cellmodel'
+						// },
+						// plugins: [cellEditing]
+					});
+					var grid_temperature_smt = Ext.create('Ext.grid.Panel', {
+						id 				: 'grid_temperature_smt',
+						autoWidth 	 	: '100%',
+						maxHeight	 	: 290,
+						columnLines 	: true,
+						store 			: store_temperature_smt,
+						viewConfig 		: {
+							stripeRows 			: true,
+							emptyText 		 	: '<div class="empty-txt">No data to display.</div>',
+							deferEmptyText 		: false,
+							enableTextSelection : true
+						},
+						columns: [
+							
+							{	header 		: 'unid',
+								dataIndex 	: 'unid',
+								flex 		: 1,
+								renderer 	: upsize,
+								hidden		: true
+							},
+							{	header 		: 'id',
+								dataIndex 	: 'id',
+								flex 		: 1,
+								renderer 	: upsize,
+								hidden		: true
+							},
+							{	header 		: 'faddres',
+								dataIndex 	: 'faddres',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'Instid',
+								dataIndex 	: 'Instid',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'grno',
+								dataIndex 	: 'grno',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'measid',
+								dataIndex 	: 'measid',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'TEMPERATURE <br> ( &deg;C )',
+								dataIndex 	: 'settemp',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'TIME',
+								dataIndex 	: 'datetimein',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'STATUS',
+								dataIndex 	: 'status',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'UPLOAADED BY',
+								dataIndex 	: 'picupload',
+								flex 		: 1,
+								renderer 	: upsize
+							}
+						],
+						//features: [filters],
+						// selModel: {
+						// 	selType: 'cellmodel'
+						// },
+						// plugins: [cellEditing]
+					});
 					
 		//	=======================================================    PANEL    =========================================
 			
@@ -441,7 +616,31 @@
 						},
 						items			: [grid_torque_ma]
 					});
-			
+					
+					var panel_temperature = Ext.create('Ext.tab.Panel', {
+						id 			: 'panel_temperature',
+						renderTo 	: 'panel_temperature',
+						plain 		: true,
+						activeTab 	: 0,
+						autoWidth 	: '100%',
+						height		: 290,
+						autoScroll 	: true,
+						frame 		: true,
+						//style 	: 'padding:5px;-background:#157FCC;',
+						items 		: [
+							{	title 		: 'MA',
+							 	id  		: 'show_grid_temperature_ma',
+								reorderable : false,
+								items 		: [grid_temperature_ma]
+							}, 
+							{	title 		: 'SMT',
+							 	id  		: 'show_grid_temperature_smt',
+								reorderable : false,
+								items 		: [grid_temperature_smt]
+							}
+						]
+					});
+
 		//	=======================================================    POPUP SEARCH DATA    =============================
 				Ext.create('Ext.form.field.Date',{
 					renderTo 	: src_measurement_date,
@@ -490,6 +689,13 @@
 
 										store_torque_ma.proxy.setExtraParam('measurement_date', measurement_date);
 										store_torque_ma.loadPage(1);
+										
+										store_temperature_ma.proxy.setExtraParam('measurement_date', measurement_date);
+										store_temperature_ma.loadPage(1);
+										
+										store_temperature_smt.proxy.setExtraParam('measurement_date', measurement_date);
+										store_temperature_smt.loadPage(1);
+									
 									}
 								}
 							},
@@ -510,6 +716,12 @@
 
 										store_torque_ma.proxy.setExtraParam('measurement_date', measurement_date);
 										store_torque_ma.loadPage(1);
+
+										store_temperature_ma.proxy.setExtraParam('measurement_date', measurement_date);
+										store_temperature_ma.loadPage(1);
+										
+										store_temperature_smt.proxy.setExtraParam('measurement_date', measurement_date);
+										store_temperature_smt.loadPage(1);
 									}
 							}
 						}
