@@ -142,12 +142,12 @@
 								flex 		: 1,
 								renderer 	: upsize
 							},
-							{	header 		: 'TEMPERATURE',
+							{	header 		: 'TEMPERATURE <br> ( &deg;C )',
 								dataIndex 	: 't_ch1',
-								width 		: 130,
+								width 		: 120,
 								renderer 	: upsize
 							},
-							{	header 		: 'HUMIDITY',
+							{	header 		: 'HUMIDITY <br> ( <i class="fas fa-tint"></i> )',
 								dataIndex 	: 'h_ch2',
 								flex 		: 1,
 								renderer 	: upsize
