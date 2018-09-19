@@ -8,9 +8,15 @@
 		if (x == ''){
 			return '<font class="fontsize12" style="color:red;font-weight: bold;"> --- </font>';
 		}
+		else if (x == 'NG'){
+			return '<font class="fontsize12" style="color:red;font-weight: bold;"> ' + x + ' </font>';
+		}
+		else if (x == 'OK'){
+			return '<font class="fontsize12" style="color:green;font-weight: bold;"> ' + x + ' </font>';
+		}
 		else{
 			return '<font class="fontsize12">' + x + '</font>';
-		}
+		};
 	}
 
 	// Start
@@ -39,6 +45,10 @@
 						fields: ['unid', 'id', 'model', 'serial','datetimein','alm','t_ch1','h_ch2','alm1','alm2']
 		           	});
 		           	Ext.define('model_esd_ma',{
+		                extend: 'Ext.data.Model',
+						fields: ['unid', 'id', 'datetimein', 'leftstatus','leftfeet','rightstatus','rightfeet','nik']
+		           	});
+					Ext.define('model_torque_ma',{
 		                extend: 'Ext.data.Model',
 						fields: ['unid', 'id', 'datetimein', 'leftstatus','leftfeet','rightstatus','rightfeet','nik']
 		           	});
@@ -112,42 +122,42 @@
 								renderer 	: upsize,
 								hidden		: true
 							},
-							{	header 		: 'model',
+							{	header 		: 'MODEL',
 								dataIndex 	: 'model',
 								flex 		: 1,
 								renderer 	: upsize
 							},
-							{	header 		: 'serial',
+							{	header 		: 'SERIAL',
 								dataIndex 	: 'serial',
 								flex 		: 1,
 								renderer 	: upsize
 							},
-							{	header 		: 'datetimein',
+							{	header 		: 'TIME',
 								dataIndex 	: 'datetimein',
 								flex 		: 1,
 								renderer 	: upsize
 							},
-							{	header 		: 'alm',
+							{	header 		: 'ALM',
 								dataIndex 	: 'alm',
 								flex 		: 1,
 								renderer 	: upsize
 							},
-							{	header 		: 't_ch1',
+							{	header 		: 'TEMPERATURE',
 								dataIndex 	: 't_ch1',
-								flex 		: 1,
+								width 		: 130,
 								renderer 	: upsize
 							},
-							{	header 		: 'h_ch2',
+							{	header 		: 'HUMIDITY',
 								dataIndex 	: 'h_ch2',
 								flex 		: 1,
 								renderer 	: upsize
 							},
-							{	header 		: 'alm1',
+							{	header 		: 'ALM1',
 								dataIndex	: 'alm1',
 								flex 		: 1,
 								renderer	: upsize
 							},
-							{	header 		: 'alm2',
+							{	header 		: 'ALM2',
 								dataIndex 	: 'alm2',
 								flex 		: 1,
 								renderer 	: upsize
@@ -303,7 +313,7 @@
 						plain 		: true,
 						activeTab 	: 0,
 						autoWidth 	: '100%',
-						height		: 300,
+						height		: 290,
 						autoScroll 	: true,
 						frame 		: true,
 						//style 	: 'padding:5px;-background:#157FCC;',
