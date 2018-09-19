@@ -62,7 +62,7 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="x_panel">
         <div class="x_title">
-  				<h2><i class="far fa-calendar-check"></i> TORQUE METER</h2>
+  				<h2><i class="fab fa-steam-symbol"></i> TORQUE METER</h2>
   				<ul class="nav navbar-right panel_toolbox">
   					<li>
   						<a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -82,7 +82,7 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="x_panel">
         <div class="x_title">
-          <h2><i class="far fa-calendar-check"></i> SOLDER TEMPERATURE</h2>
+          <h2><i class="fas fa-thermometer"></i> SOLDER TEMPERATURE</h2>
           <ul class="nav navbar-right panel_toolbox">
             <li>
               <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -102,7 +102,7 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="x_panel">
         <div class="x_title">
-          <h2><i class="far fa-calendar-check"></i> PARTICLE DUSTY</h2>
+          <h2><i class="fas fa-asterisk"></i> PARTICLE DUSTY</h2>
           <ul class="nav navbar-right panel_toolbox">
             <li>
               <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>

@@ -237,6 +237,7 @@
 						maxHeight	 		: 290,
 						columnLines 		: true,
 						store 				: store_esd_ma,
+						autoScroll 			: true,
 						viewConfig 			: {
 							stripeRows 			: true,
 							emptyText 			: '<div class="empty-txt">No data to display.</div>',
@@ -256,32 +257,32 @@
 								renderer 	: upsize,
 								hidden 	 	: true
 							}, 
-							{ 	header 		: 'datetimein',
+							{ 	header 		: 'TIME',
 								dataIndex 	: 'datetimein',
 								flex 		: 1,
 								renderer 	: upsize
 							}, 
-							{ 	header 		: 'leftstatus',
+							{ 	header 		: 'LEFT STATUS',
 								dataIndex 	: 'leftstatus',
 								flex 		: 1,
 								renderer 	: upsize
 							}, 
-							{ 	header 		: 'leftfeet',
+							{ 	header 		: 'LEFT FEET ( &ohm; )',
 								dataIndex 	: 'leftfeet',
 								flex 		: 1,
 								renderer 	: upsize
 							}, 
-							{ 	header 		: 'rightstatus',
+							{ 	header 		: 'RIGHT STATUS',
 								dataIndex 	: 'rightstatus',
 								flex 	 	: 1,
 								renderer 	: upsize
 							}, 
-							{ 	header 		: 'rightfeet',
+							{ 	header 		: 'RIGHT FEET ( &ohm; )',
 								dataIndex 	: 'rightfeet',
 								flex 		: 1,
 								renderer 	: upsize
 							}, 
-							{ 	header 		: 'nik',
+							{ 	header 		: 'NIK',
 								dataIndex 	: 'nik',
 								flex 		: 1,
 								renderer 	: upsize
@@ -324,7 +325,7 @@
 						id 				:'panel_esd',
 						renderTo 		: 'panel_esd',
 						autoWidth		: '100%',
-						maxHeight		: 400,
+						maxHeight		: 290,
 						border			: false,
 						frame			: true,
 						hidden			: false,
