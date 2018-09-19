@@ -79,7 +79,7 @@
 						fields: ['autoid','mjsid','sidepu','partloc','jobno','model','board','process','mode',
 		                			'compid1','compid2','compid3','compid4','compid5','input_user','input_date']
 		           	});
-	           	//	MOUNTER
+	           	//	SPI
 					Ext.define('model_smt_spi',{
 		                extend: 'Ext.data.Model',
 						fields: ['mchname','inspectiondatetime','inspectiondate','inspectiontime','filename',
@@ -172,7 +172,7 @@
 							}
 						}
 					});
-				//	MOUNTER
+				//	SPI
 					var store_smt_spi = Ext.create('Ext.data.Store',{
 						model	: 'model_smt_spi',
 						autoLoad: false,
@@ -693,6 +693,37 @@
 							},
 							{	header 		: 'DEFECT CNT',
 								dataIndex 	: 'defectcnt',
+								flex 		: 1,
+								renderer	: upsize
+							}
+						],
+						//features: [filters],
+						// selModel: {
+						// 	selType: 'cellmodel'
+						// },
+						// plugins: [cellEditing]
+					});
+			//	MA BOARD
+					var grid_ma_board = Ext.create('Ext.grid.Panel', {
+						id 				: 'grid_ma_board',
+						autoWidth 		: '100%',
+						maxHeight		: 290,
+						columnLines 	: true,
+						//store 			: store_ma_board,
+						viewConfig 		: {
+							stripeRows 			: true,
+							emptyText 	 		: '<div class="empty-txt">No data to display.</div>',
+							deferEmptyText 		: false,
+							enableTextSelection	: true
+						},
+						columns 	: [
+							{	header 		: 'MCH NAME',
+								dataIndex 	: 'mchname',
+								width 		: 80,
+								renderer	: upsize
+							},
+							{	header 		: 'INSP DATE',
+								dataIndex 	: 'inspectiondatetime',
 								flex 		: 1,
 								renderer	: upsize
 							}
