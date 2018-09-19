@@ -38,6 +38,10 @@
 		                extend: 'Ext.data.Model',
 						fields: ['unid', 'id', 'model', 'serial','datetimein','alm','t_ch1','h_ch2','alm1','alm2']
 		           	});
+		           	Ext.define('model_esd_ma',{
+		                extend: 'Ext.data.Model',
+						fields: ['unid', 'id', 'datetimein', 'leftstatus','leftfeet','rightstatus','rightfeet','nik']
+		           	});
 					
 		//	=======================================================    DATASTORE    =====================================
 
@@ -80,6 +84,19 @@
 						// 		}
 						// 	}
 						// }
+					});
+					var store_esd_ma = Ext.create('Ext.data.Store',{
+						model	: 'model_esd_ma',
+						autoLoad: false,
+						pageSize: itemperpage,
+						proxy   : {
+							type    : 'ajax',
+							url     : 'json/measurement/json_ma_esd.php',
+							reader  : {
+								type    : 'json',
+								root    : 'rows'
+							}
+						}
 					});
 					
 
@@ -228,7 +245,68 @@
 						// },
 						// plugins: [cellEditing]
 					});
-					
+					var grid_esd_ma = Ext.create('Ext.grid.Panel', {
+						id 					: 'grid_ma_esd',
+						autoWidth 	 		: '100%',
+						maxHeight	 		: 290,
+						columnLines 		: true,
+						store 				: store_esd_ma,
+						viewConfig 			: {
+							stripeRows 			: true,
+							emptyText 			: '<div class="empty-txt">No data to display.</div>',
+							deferEmptyText 		: false,
+							enableTextSelection	: true
+						},
+						columns: [
+							{ 	header 		: 'unid',
+								dataIndex 	: 'unid',
+								flex 		: 1,
+								renderer 	: upsize,
+								hidden 	 	: true
+							}, 
+							{ 	header 		: 'id',
+								dataIndex 	: 'id',
+								flex 		: 1,
+								renderer 	: upsize,
+								hidden 	 	: true
+							}, 
+							{ 	header 		: 'datetimein',
+								dataIndex 	: 'datetimein',
+								flex 		: 1,
+								renderer 	: upsize
+							}, 
+							{ 	header 		: 'leftstatus',
+								dataIndex 	: 'leftstatus',
+								flex 		: 1,
+								renderer 	: upsize
+							}, 
+							{ 	header 		: 'leftfeet',
+								dataIndex 	: 'leftfeet',
+								flex 		: 1,
+								renderer 	: upsize
+							}, 
+							{ 	header 		: 'rightstatus',
+								dataIndex 	: 'rightstatus',
+								flex 	 	: 1,
+								renderer 	: upsize
+							}, 
+							{ 	header 		: 'rightfeet',
+								dataIndex 	: 'rightfeet',
+								flex 		: 1,
+								renderer 	: upsize
+							}, 
+							{ 	header 		: 'nik',
+								dataIndex 	: 'nik',
+								flex 		: 1,
+								renderer 	: upsize
+							}
+						],
+						//features: [filters],
+						// selModel: {
+						// 	selType: 'cellmodel'
+						// },
+						// plugins: [cellEditing]
+					});
 					
 		//	=======================================================    PANEL    =========================================
 			
@@ -255,6 +333,21 @@
 							}
 						]
 					});
+
+					var panel_esd = Ext.create('Ext.panel.Panel', {
+						id 				:'panel_esd',
+						renderTo 		: 'panel_esd',
+						autoWidth		: '100%',
+						maxHeight		: 400,
+						border			: false,
+						frame			: true,
+						hidden			: false,
+						defaults		: {
+							split		: true,
+							collapsible	: false
+						},
+						items			: [grid_esd_ma]
+					});
 			
 		//	=======================================================    POPUP SEARCH DATA    =============================
 				Ext.create('Ext.form.field.Date',{
@@ -271,7 +364,7 @@
 					submitFormat: 'Y-m-d',
 					mode		: 'local',  
 					value 		: new Date(),
-					editable 	: false,
+					//editable 	: false,
 					listeners	: {
 							afterrender : function() {
 								this.inputEl.setStyle('text-align', 'center');
@@ -298,6 +391,9 @@
 
 										store_thermo_ma.proxy.setExtraParam('measurement_date', measurement_date);
 										store_thermo_ma.loadPage(1);
+
+										store_esd_ma.proxy.setExtraParam('measurement_date', measurement_date);
+										store_esd_ma.loadPage(1);
 									}
 								}
 							}
