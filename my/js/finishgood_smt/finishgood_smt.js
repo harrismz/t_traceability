@@ -85,6 +85,12 @@
 						fields: ['mchname','inspectiondatetime','inspectiondate','inspectiontime','filename',
 								'pcbid','barcode','spijudge','opjudge','defectcnt']
 		           	});
+				//	MAPROS
+					Ext.define('model_mapros_board',{
+		                extend: 'Ext.data.Model',
+		                fields: ['board_id','guid_master','guid_ticket','modelname','lotno',
+								'scanner_id','status','scan_nik','judge','created_at','updated_at','lineprocess']
+		           	});
 
 		//	=======================================================    DATASTORE    =====================================
 				//	BOARD ID GENERATOR
@@ -180,6 +186,20 @@
 						proxy   : {
 							type    : 'ajax',
 							url     : 'json/finishgood_smt/json_good_smt_spi.php',
+							reader  : {
+								type    : 'json',
+								root    : 'rows'
+							}
+						}
+					});
+				//	MAPROS
+					var store_mapros_board = Ext.create('Ext.data.Store',{
+						model	: 'model_mapros_board',
+						autoLoad: false,
+						pageSize: itemperpage,
+						proxy   : {
+							type    : 'ajax',
+							url     : 'json/finishgood_smt/json_good_smt_mapros_board.php',
 							reader  : {
 								type    : 'json',
 								root    : 'rows'
@@ -704,12 +724,12 @@
 						// plugins: [cellEditing]
 					});
 			//	MA BOARD
-					var grid_ma_board = Ext.create('Ext.grid.Panel', {
-						id 				: 'grid_ma_board',
+					var grid_mapros_board = Ext.create('Ext.grid.Panel', {
+						id 				: 'grid_mapros_board',
 						autoWidth 		: '100%',
 						maxHeight		: 290,
 						columnLines 	: true,
-						//store 			: store_ma_board,
+						store 			: store_mapros_board,
 						viewConfig 		: {
 							stripeRows 			: true,
 							emptyText 	 		: '<div class="empty-txt">No data to display.</div>',
@@ -717,15 +737,71 @@
 							enableTextSelection	: true
 						},
 						columns 	: [
-							{	header 		: 'MCH NAME',
-								dataIndex 	: 'mchname',
+							{	header 		: 'board_id',
+								dataIndex 	: 'board_id',
 								width 		: 80,
-								renderer	: upsize
+								renderer	: upsize,
+								hidden		: true
 							},
-							{	header 		: 'INSP DATE',
-								dataIndex 	: 'inspectiondatetime',
+							{	header 		: 'guid_master',
+								dataIndex 	: 'guid_master',
+								flex 		: 1,
+								renderer	: upsize,
+								hidden		: true
+							},
+							{	header 		: 'guid_ticket',
+								dataIndex 	: 'guid_ticket',
+								flex 		: 1,
+								renderer	: upsize,
+								hidden		: true
+							},
+							{	header 		: 'modelname',
+								dataIndex 	: 'modelname',
 								flex 		: 1,
 								renderer	: upsize
+							},
+							{	header 		: 'lotno',
+								dataIndex 	: 'lotno',
+								flex 		: 1,
+								renderer	: upsize,
+								hidden		: true
+							},
+							{	header 		: 'lineprocess',
+								dataIndex 	: 'lineprocess',
+								flex 		: 1,
+								renderer	: upsize
+							},
+							{	header 		: 'scanner_id',
+								dataIndex 	: 'scanner_id',
+								flex 		: 1,
+								renderer	: upsize,
+								hidden		: true
+							},
+							{	header 		: 'status',
+								dataIndex 	: 'status',
+								flex 		: 1,
+								renderer	: upsize
+							},
+							{	header 		: 'judge',
+								dataIndex 	: 'judge',
+								flex 		: 1,
+								renderer	: upsize
+							},
+							{	header 		: 'created_at',
+								dataIndex 	: 'created_at',
+								flex 		: 1,
+								renderer	: upsize
+							},
+							{	header 		: 'scan_nik',
+								dataIndex 	: 'scan_nik',
+								flex 		: 1,
+								renderer	: upsize
+							},
+							{	header 		: 'updated_at',
+								dataIndex 	: 'updated_at',
+								flex 		: 1,
+								renderer	: upsize,
+								hidden		: true
 							}
 						],
 						//features: [filters],
@@ -821,6 +897,35 @@
 						},
 						items			: [grid_smt_spi]
 					});
+			//	MAPROS
+					var panel_mapros = Ext.create('Ext.tab.Panel', {
+						id 			: 'panel_mapros',
+						renderTo 	: 'panel_mapros',
+						plain 		: true,
+						activeTab 	: 0,
+						autoWidth 	: '100%',
+						height		: 300,
+						autoScroll 	: true,
+						frame 		: true,
+						//style 	: 'padding:5px;-background:#157FCC;',
+						items 		: [
+							{	title 		: 'PCB',
+							 	id  		: 'show_grid_board',
+								reorderable : false,
+								items 		: [grid_mapros_board]
+							}, 
+							{	title 		: 'PANEL AND MECHA',
+							 	id  		: 'show_grid_ticket',
+								reorderable : false,
+								//items 		: [grid_mapros_ticket]
+							}, 
+							{	title 		: 'MASTER',
+							 	id  		: 'show_grid_master',
+								reorderable : false,
+								//items 		: [grid_mapros_master]
+							}
+						]
+					});
 		//	=======================================================    POPUP SEARCH DATA    =============================
 			//	Form Search FinishGood
 				Ext.create('Ext.form.field.Text',{
@@ -877,6 +982,10 @@
 										store_smt_spi.proxy.setExtraParam('boardid', boardid);
 										store_smt_spi.proxy.setExtraParam('smt_date', smtdate);
 										store_smt_spi.loadPage(1);
+
+										store_mapros_board.proxy.setExtraParam('boardid', boardid);
+										store_mapros_board.proxy.setExtraParam('smt_date', smtdate);
+										store_mapros_board.loadPage(1);
 									}
 								}
 							}
