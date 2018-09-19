@@ -177,6 +177,19 @@
 										store_smt_reflow.loadPage(1);
 									}
 								}
+							},
+							change : function(){
+								var reflow_date = Ext.getCmp('src_reflow_date').getValue();
+									
+								if (!reflow_date) {
+									Ext.Msg.alert('Warning', 'Reflow date cannot be null !!!');
+								} else {
+									
+									store_smt_reflow.proxy.setExtraParam('src_cat', 'fg');
+									store_smt_reflow.proxy.setExtraParam('prod_date', reflow_date);
+									store_smt_reflow.proxy.setExtraParam('model', 'nomodel');
+									store_smt_reflow.loadPage(1);
+								}
 							}
 						}
 				});

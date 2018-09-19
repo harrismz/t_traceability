@@ -361,7 +361,7 @@
 					submitFormat: 'Y-m-d',
 					mode		: 'local',  
 					value 		: new Date(),
-					//editable 	: false,
+					editable 	: false,
 					listeners	: {
 							afterrender : function() {
 								this.inputEl.setStyle('text-align', 'center');
@@ -393,6 +393,22 @@
 										store_esd_ma.loadPage(1);
 									}
 								}
+							},
+							change: function() {
+								var measurement_date = Ext.getCmp('src_measurement_date').getValue();
+									
+									if (!measurement_date) {
+										Ext.Msg.alert('Warning', 'Measurement date cannot be null !!!');
+									} else {
+										store_thermo_smt.proxy.setExtraParam('measurement_date', measurement_date);
+										store_thermo_smt.loadPage(1);
+
+										store_thermo_ma.proxy.setExtraParam('measurement_date', measurement_date);
+										store_thermo_ma.loadPage(1);
+
+										store_esd_ma.proxy.setExtraParam('measurement_date', measurement_date);
+										store_esd_ma.loadPage(1);
+									}
 							}
 						}
 				});
