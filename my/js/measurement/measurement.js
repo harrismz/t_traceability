@@ -50,7 +50,7 @@
 		           	});
 					Ext.define('model_torque_ma',{
 		                extend: 'Ext.data.Model',
-						fields: ['unid', 'id', 'datetimein', 'leftstatus','leftfeet','rightstatus','rightfeet','nik']
+						fields: ['unid', 'id', 'datetimein', 'channel','mode','rotation','torque','torque']
 		           	});
 					
 		//	=======================================================    DATASTORE    =====================================
@@ -88,6 +88,19 @@
 						proxy   : {
 							type    : 'ajax',
 							url     : 'json/measurement/json_ma_esd.php',
+							reader  : {
+								type    : 'json',
+								root    : 'rows'
+							}
+						 }				
+					});
+					var store_torque_ma = Ext.create('Ext.data.Store',{
+						model	: 'model_torque_ma',
+						autoLoad: true,
+						pageSize: itemperpage,
+						proxy   : {
+							type    : 'ajax',
+							url     : 'json/measurement/json_ma_torque.php',
 							reader  : {
 								type    : 'json',
 								root    : 'rows'
@@ -242,7 +255,7 @@
 						// plugins: [cellEditing]
 					});
 					var grid_esd_ma = Ext.create('Ext.grid.Panel', {
-						id 					: 'grid_ma_esd',
+						id 					: 'grid_esd_ma',
 						autoWidth 	 		: '100%',
 						maxHeight	 		: 290,
 						columnLines 		: true,
@@ -304,6 +317,74 @@
 						// },
 						// plugins: [cellEditing]
 					});
+					var grid_torque_ma = Ext.create('Ext.grid.Panel', {
+						id 					: 'grid_torque_ma',
+						autoWidth 	 		: '100%',
+						maxHeight	 		: 290,
+						columnLines 		: true,
+						store 				: store_torque_ma,
+						autoScroll 			: true,
+						viewConfig 			: {
+							stripeRows 			: true,
+							emptyText 			: '<div class="empty-txt">No data to display.</div>',
+							deferEmptyText 		: false,
+							enableTextSelection	: true
+						},
+						columns: [
+							{ 	header 		: 'unid',
+								dataIndex 	: 'unid',
+								flex 		: 1,
+								renderer 	: upsize,
+								hidden 	 	: true
+							}, 
+							{ 	header 		: 'id',
+								dataIndex 	: 'id',
+								flex 		: 1,
+								renderer 	: upsize,
+								hidden 	 	: true
+							}, 
+							{ 	header 		: 'TIME',
+								dataIndex 	: 'datetimein',
+								flex 		: 1,
+								renderer 	: upsize
+							}, 
+							{ 	header 		: 'CHANNEL',
+								dataIndex 	: 'channel',
+								flex 		: 1,
+								renderer 	: upsize
+							}, 
+							{ 	header 		: 'MODE',
+								dataIndex 	: 'mode',
+								flex 		: 1,
+								renderer 	: upsize
+							}, 
+							{ 	header 		: 'ROTATION',
+								dataIndex 	: 'rotation',
+								flex 		: 1,
+								renderer 	: upsize
+							}, 
+							{ 	header 		: 'TORQUE',
+								dataIndex 	: 'torque',
+								flex 		: 1,
+								renderer 	: upsize
+							}, 
+							{ 	header 		: 'UNIT',
+								dataIndex 	: 'unit',
+								flex 		: 1,
+								renderer 	: upsize
+							}, 
+							{ 	header 		: 'RESULT',
+								dataIndex 	: 'result',
+								flex 		: 1,
+								renderer 	: upsize
+							}
+						],
+						//features: [filters],
+						// selModel: {
+						// 	selType: 'cellmodel'
+						// },
+						// plugins: [cellEditing]
+					});
 					
 		//	=======================================================    PANEL    =========================================
 			
@@ -344,6 +425,21 @@
 							collapsible	: false
 						},
 						items			: [grid_esd_ma]
+					});
+
+					var panel_torque = Ext.create('Ext.panel.Panel', {
+						id 				:'panel_torque',
+						renderTo 		: 'panel_torque',
+						autoWidth		: '100%',
+						maxHeight		: 290,
+						border			: false,
+						frame			: true,
+						hidden			: false,
+						defaults		: {
+							split		: true,
+							collapsible	: false
+						},
+						items			: [grid_torque_ma]
 					});
 			
 		//	=======================================================    POPUP SEARCH DATA    =============================
@@ -391,6 +487,9 @@
 
 										store_esd_ma.proxy.setExtraParam('measurement_date', measurement_date);
 										store_esd_ma.loadPage(1);
+
+										store_torque_ma.proxy.setExtraParam('measurement_date', measurement_date);
+										store_torque_ma.loadPage(1);
 									}
 								}
 							},
@@ -408,6 +507,9 @@
 
 										store_esd_ma.proxy.setExtraParam('measurement_date', measurement_date);
 										store_esd_ma.loadPage(1);
+
+										store_torque_ma.proxy.setExtraParam('measurement_date', measurement_date);
+										store_torque_ma.loadPage(1);
 									}
 							}
 						}
