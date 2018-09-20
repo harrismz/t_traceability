@@ -13,7 +13,7 @@
 
 	//function untuk fontsize grid
 	function upsize(val) {		var x = val;
-		if (x == ''){
+		if (x == '' || x == '-'){
 			return '<font class="fontsize12" style="color:red;font-weight: bold;"> --- </font>';
 		}
 		else if (x == 'NG'){
@@ -337,6 +337,11 @@
 							enableTextSelection : true
 						},
 						columns: [
+							{ 	header 		: 'BARCODE',
+								dataIndex 	: 'barcode',
+								width 	 	: 135,
+								renderer 	: upsize
+							},
 							{ 	header 		: 'SERVER',
 								dataIndex 	: 'linkedserver',
 								width 	 	: 90,
@@ -352,12 +357,6 @@
 								flex 		: 1,
 								renderer 	: upsize,
 								hidden  	: true
-							}, 
-							{ 	header 		: 'BARCODE',
-								dataIndex 	: 'barcode',
-								width 	 	: 100,
-								renderer 	: upsize,
-								hidden		: true
 							}, 
 							{ 	header 		: 'START DATE',
 								dataIndex 	: 'stdate',
@@ -403,6 +402,11 @@
 							enableTextSelection : true
 						},
 						columns: [
+							{ 	header 		: 'BARCODE',
+								dataIndex 	: 'barcode',
+								width 	 	: 135,
+								renderer 	: upsize
+							}, 
 							{ 	header 		: 'SERVER',
 								dataIndex 	: 'linkedserver',
 								width 	 	: 90,
@@ -429,12 +433,6 @@
 								dataIndex 	: 'uname',
 								width 	 	: 75,
 								renderer 	: upsize
-							}, 
-							{ 	header 		: 'BARCODE',
-								dataIndex 	: 'barcode',
-								width 	 	: 100,
-								renderer 	: upsize,
-								hidden		: true
 							}, 
 							{ 	header 		: 'START DATE',
 								dataIndex 	: 'stdate',
@@ -654,6 +652,11 @@
 							enableTextSelection	: true
 						},
 						columns 	: [
+							{	header 		: 'BARCODE',
+								dataIndex 	: 'barcode',
+								flex 		: 1,
+								renderer	: upsize
+							},
 							{	header 		: 'MCH NAME',
 								dataIndex 	: 'mchname',
 								width 		: 80,
@@ -686,24 +689,19 @@
 								width 		: 70,
 								renderer	: upsize
 							},
-							{	header 		: 'BARCODE',
-								dataIndex 	: 'barcode',
-								flex 		: 1,
-								renderer	: upsize
-							},
 							{	header 		: 'SPI JUDGE',
 								dataIndex 	: 'spijudge',
-								flex 		: 1,
+								width 		: 80,
 								renderer	: upsize
 							},
 							{	header 		: 'OP JUDGE',
 								dataIndex 	: 'opjudge',
-								flex 		: 1,
+								width 		: 80,
 								renderer	: upsize
 							},
 							{	header 		: 'DEFECT CNT',
 								dataIndex 	: 'defectcnt',
-								flex 		: 1,
+								width 		: 80,
 								renderer	: upsize
 							}
 						],
@@ -809,7 +807,7 @@
 						renderTo 		: 'panel_bigs',
 						width			: '100%',
 						layout 			: 'fit',
-						height			: 80,
+						maxHeight		: 100,
 						border			: false,
 						frame			: true,
 						hidden			: false,
