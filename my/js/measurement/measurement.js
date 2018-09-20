@@ -346,8 +346,8 @@
 								renderer 	: upsize,
 								hidden 	 	: true
 							}, 
-							{ 	header 		: 'WIRST STRAP',
-								dataIndex 	: 'wirststrap',
+							{ 	header 		: 'WIRST STATUS',
+								dataIndex 	: 'wirststatus',
 								flex 		: 1,
 								renderer 	: upsize
 							}, 
