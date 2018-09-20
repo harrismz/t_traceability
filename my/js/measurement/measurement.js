@@ -327,6 +327,11 @@
 								flex 		: 1,
 								renderer 	: upsize
 							}, 
+							{ 	header 		: 'JUDGEMENT',
+								dataIndex 	: 'judgement',
+								flex 		: 1,
+								renderer 	: upsize
+							}, 
 							{ 	header 		: 'LEFT STATUS',
 								dataIndex 	: 'leftstatus',
 								flex 		: 1,
@@ -359,11 +364,6 @@
 								flex 		: 1,
 								renderer 	: upsize,
 								hidden 	 	: true
-							}, 
-							{ 	header 		: 'JUDGEMENT',
-								dataIndex 	: 'judgement',
-								flex 		: 1,
-								renderer 	: upsize
 							}
 						],
 						//features: [filters],
