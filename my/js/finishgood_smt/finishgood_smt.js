@@ -88,8 +88,9 @@
            	//	MOUNTER
 				Ext.define('model_smt_mounter',{
 	                extend: 'Ext.data.Model',
-					fields: ['autoid','mjsid','sidepu','partloc','jobno','model','board','process','mode',
-	                			'compid1','compid2','compid3','compid4','compid5','input_user','input_date']
+					fields: ['mjsid','puside','partloc','jobno','model','board','pwbno','process',
+	                			'mode','partno','feeder','feederserial','feederno','compid1','compid2',
+	                			'compid3','compid4','compid5','scandate']
 	           	});
            	//	SPI
 				Ext.define('model_smt_spi',{
@@ -101,7 +102,7 @@
 				Ext.define('model_mapros_board',{
 	                extend: 'Ext.data.Model',
 	                fields: ['board_id','guid_master','guid_ticket','modelname','lotno',
-							'scanner_id','status','scan_nik','judge','created_at','updated_at','lineprocess']
+							'scanner_id','status','scan_nik','judge','created_at','updated_at','lineprocess','line']
 	           	});
 
 		//	=======================================================    DATASTORE    =====================================
@@ -327,7 +328,7 @@
 						id 			: 'grid_smt_aoi_board',
 						name		: 'grid_smt_aoi_board',
 						autoWidth 	: '100%',
-						maxHeight	: 290,
+						maxHeight	: 180,
 						columnLines : true,
 						store 		: store_good_smt_aoi_board,
 						viewConfig 	: {
@@ -371,12 +372,12 @@
 									type 	: 'string'
 								}
 							}, 
-							{ 	header 		: 'AOI JUDGEMENT',
+							{ 	header 		: 'AOI JUDGE',
 								dataIndex 	: 'aoijudgment',
 								flex 		: 1,
 								renderer 	: upsize
 							}, 
-							{ 	header 		: 'USER JUDGEMENT',
+							{ 	header 		: 'USER JUDGE',
 								dataIndex 	: 'userjudgment',
 								flex 		: 1,
 								renderer 	: upsize
@@ -459,12 +460,12 @@
 								flex 		: 1,
 								renderer 	: upsize
 							}, 
-							{ 	header 		: 'AOI JUDGEMENT',
+							{ 	header 		: 'AOI JUDGE',
 								dataIndex 	: 'aoijudgment',
 								flex 		: 1,
 								renderer 	: upsize
 							}, 
-							{ 	header 		: 'USER JUDGEMENT',
+							{ 	header 		: 'USER JUDGE',
 								dataIndex 	: 'userjudgment',
 								flex 		: 1,
 								renderer 	: upsize
@@ -535,41 +536,60 @@
 							enableTextSelection	: true
 						},
 						columns 	: [
-							{	header 		: 'autoid',
-								dataIndex 	: 'autoid',
-								flex 		: 1,
-								renderer	: upsize,
-								hidden		: true
-							},
 							{ 	header 		: 'MJS ID',
 								dataIndex 	: 'mjsid',
-								flex 		: 1,
-								renderer	: upsize
-							},
-							{ 	header 		: 'SIDE PU',
-								dataIndex 	: 'sidepu',
-								width 		: 60,
+								width 		: 140,
 								renderer	: upsize
 							},
 							{ 	header 		: 'PART LOC',
 								dataIndex 	: 'partloc',
-								width 		: 60,
+								width 		: 70,
+								renderer	: upsize
+							},
+							{ 	header 		: 'BOARD',
+								dataIndex 	: 'board',
+								width 		: 100,
+								renderer	: upsize
+							},
+							{ 	header 		: 'MODE',
+								dataIndex 	: 'mode',
+								width 		: 70,
+								renderer	: upsize
+							},
+							{ 	header 		: 'PART NO',
+								dataIndex 	: 'partno',
+								width 		: 130,
+								renderer	: upsize
+							},
+							{ 	header 		: 'FEEDER',
+								dataIndex 	: 'feeder',
+								width 		: 75,
+								renderer	: upsize
+							},
+							{ 	header 		: 'FEEDER<br>SERIAL',
+								dataIndex 	: 'feederserial',
+								width 		: 130,
+								renderer	: upsize
+							},
+							{ 	header 		: 'FEEDER NO',
+								dataIndex 	: 'feederno',
+								width 		: 130,
+								renderer	: upsize
+							},
+							
+							{ 	header 		: 'SCAN DATE',
+								dataIndex 	: 'scandate',
+								width 		: 90,
 								renderer	: upsize
 							},
 							{ 	header 		: 'JOB NO',
 								dataIndex 	: 'jobno',
-								flex 		: 1,
+								width 		: 180,
 								renderer	: upsize
 							},
-							{ 	header 		: 'MODEL',
-								dataIndex 	: 'model',
-								flex 		: 1,
-								renderer	: upsize,
-								hidden		: true
-							},
-							{ 	header 		: 'BOARD',
-								dataIndex 	: 'board',
-								flex 		: 1,
+							{ 	header 		: 'puside',
+								dataIndex 	: 'puside',
+								width 		: 90,
 								renderer	: upsize,
 								hidden		: true
 							},
@@ -585,15 +605,11 @@
 								renderer	: upsize,
 								hidden		: true
 							},
-							{ 	header 		: 'MODE',
-								dataIndex 	: 'mode',
-								flex 		: 1,
-								renderer	: upsize
-							},
 							{ 	header 		: 'compid1',
 								dataIndex 	: 'compid1',
 								flex 		: 1,
-								renderer	: upsize
+								renderer	: upsize,
+								hidden		: true
 							},
 							{ 	header 		: 'compid2',
 								dataIndex 	: 'compid2',
@@ -619,16 +635,11 @@
 								renderer	: upsize,
 								hidden		: true
 							},
-							{ 	header 		: 'input_user',
-								dataIndex 	: 'input_user',
+							{ 	header 		: 'MODEL',
+								dataIndex 	: 'model',
 								flex 		: 1,
 								renderer	: upsize,
 								hidden		: true
-							},
-							{ 	header 		: 'SCAN DATE',
-								dataIndex 	: 'input_date',
-								flex 		: 1,
-								renderer	: upsize
 							}
 						],
 						//features: [filters],
@@ -724,11 +735,10 @@
 							enableTextSelection	: true
 						},
 						columns 	: [
-							{	header 		: 'board_id',
+							{	header 		: 'BOARD ID',
 								dataIndex 	: 'board_id',
-								width 		: 80,
-								renderer	: upsize,
-								hidden		: true
+								width 		: 140,
+								renderer	: upsize
 							},
 							{	header 		: 'guid_master',
 								dataIndex 	: 'guid_master',
@@ -742,9 +752,14 @@
 								renderer	: upsize,
 								hidden		: true
 							},
-							{	header 		: 'modelname',
+							{	header 		: 'MODEL',
 								dataIndex 	: 'modelname',
 								flex 		: 1,
+								renderer	: upsize
+							},
+							{	header 		: 'LINE',
+								dataIndex 	: 'line',
+								width 	 	: 90,
 								renderer	: upsize
 							},
 							{	header 		: 'lotno',
@@ -753,9 +768,9 @@
 								renderer	: upsize,
 								hidden		: true
 							},
-							{	header 		: 'lineprocess',
+							{	header 		: 'PROCESS',
 								dataIndex 	: 'lineprocess',
-								flex 		: 1,
+								width 	 	: 90,
 								renderer	: upsize
 							},
 							{	header 		: 'scanner_id',
@@ -764,22 +779,22 @@
 								renderer	: upsize,
 								hidden		: true
 							},
-							{	header 		: 'status',
+							{	header 		: 'STATUS',
 								dataIndex 	: 'status',
-								flex 		: 1,
+								width 	 	: 90,
 								renderer	: upsize
 							},
-							{	header 		: 'judge',
+							{	header 		: 'JUDGE',
 								dataIndex 	: 'judge',
-								flex 		: 1,
+								width 	 	: 90,
 								renderer	: upsize
 							},
-							{	header 		: 'created_at',
+							{	header 		: 'SCAN TIME',
 								dataIndex 	: 'created_at',
 								flex 		: 1,
 								renderer	: upsize
 							},
-							{	header 		: 'scan_nik',
+							{	header 		: 'SCAN NIK',
 								dataIndex 	: 'scan_nik',
 								flex 		: 1,
 								renderer	: upsize
@@ -828,7 +843,7 @@
 						plain 		: true,
 						//activeTab 	: 0,
 						autoWidth 	: '100%',
-						maxHeight 	: 300,
+						height 		: 200,
 						autoScroll 	: true,
 						frame 		: true,
 						style 	: 'padding:5px;-background:#157FCC;',

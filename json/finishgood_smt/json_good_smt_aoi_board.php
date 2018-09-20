@@ -11,9 +11,9 @@
 	$smt_date 	= date('Y-m-d', strtotime($getdate));
 
 	//echo "exec traceability_smt_good_aoi_board '{$boardid}','{$smt_date}'";
+
     $rs         = $db->Execute("exec traceability_smt_good_aoi_board '{$boardid}','{$smt_date}'");
     $return     = array();
-
     for($i=0;!$rs->EOF;$i++){
 		$return[$i]['linkedserver']   = trim($rs->fields['0']);
         $return[$i]['pcbid']          = trim($rs->fields['1']);
