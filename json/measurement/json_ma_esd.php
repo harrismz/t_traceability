@@ -28,6 +28,7 @@
         $return[$i]['rightfeet']    = trim($rs->fields['8']);
         $return[$i]['wirststatus']  = trim($rs->fields['9']);
         $return[$i]['wirstvalue']   = trim($rs->fields['10']);
+        $return[$i]['judgement']    = trim($rs->fields['11']);
        
         $rs->MoveNext();
     }

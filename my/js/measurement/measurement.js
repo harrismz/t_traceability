@@ -43,7 +43,7 @@
 		           	});
 		           	Ext.define('model_esd_ma',{
 		                extend: 'Ext.data.Model',
-						fields: ['id', 'dateesd', 'datetimein','mchname','nik','leftstatus','leftfeet','rightstatus','rightfeet','wirststatus','wirstvalue']
+						fields: ['id', 'dateesd', 'datetimein','mchname','nik','leftstatus','leftfeet','rightstatus','rightfeet','wirststatus','wirstvalue','judgement']
 		           	});
 					Ext.define('model_torque_ma',{
 		                extend: 'Ext.data.Model',
@@ -353,6 +353,12 @@
 							}, 
 							{ 	header 		: 'WIRST VAL',
 								dataIndex 	: 'wirstvalue',
+								flex 		: 1,
+								renderer 	: upsize,
+								hidden 	 	: true
+							}, 
+							{ 	header 		: 'JUDGEMENT',
+								dataIndex 	: 'judgement',
 								flex 		: 1,
 								renderer 	: upsize
 							}
