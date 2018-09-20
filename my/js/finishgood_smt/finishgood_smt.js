@@ -12,15 +12,14 @@
 	});
 
 	//function untuk fontsize grid
-	function upsize(val) {
-		var x = val;
+	function upsize(val) {		var x = val;
 		if (x == ''){
 			return '<font class="fontsize12" style="color:red;font-weight: bold;"> --- </font>';
 		}
 		else if (x == 'NG'){
 			return '<font class="fontsize12" style="color:red;font-weight: bold;"> ' + x + ' </font>';
 		}
-		else if (x == 'OK' || x == 'PASS'){
+		else if (x == 'OK' || x == 'PASS' || x == 'SOLDER' || x == 'GOOD'){
 			return '<font class="fontsize12" style="color:green;font-weight: bold;"> ' + x + ' </font>';
 		}
 		else{
@@ -806,9 +805,10 @@
 			
 			//	BOARD ID GENERATOR
 					var panel_bigs = Ext.create('Ext.panel.Panel', {
-						id 				:'finishgood_main',
+						id 				:'panel_bigs',
 						renderTo 		: 'panel_bigs',
 						width			: '100%',
+						layout 			: 'fit',
 						height			: 80,
 						border			: false,
 						frame			: true,
@@ -932,7 +932,8 @@
 						height 		: 30,
 						flex		: 1,
 						//value:  	'00013IA000010015',
-						value:  	'000207B000010002',
+						//value:  	'000207B000010002',
+						value:  	'000157A000010009',
 						listeners	: {
 							afterrender : function() {
 								this.inputEl.setStyle('text-align', 'center');
