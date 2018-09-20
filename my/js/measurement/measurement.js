@@ -43,7 +43,7 @@
 		           	});
 		           	Ext.define('model_esd_ma',{
 		                extend: 'Ext.data.Model',
-						fields: ['unid', 'id', 'datetimein', 'leftstatus','leftfeet','rightstatus','rightfeet','nik']
+						fields: ['id', 'dateesd', 'datetimein','mchname','nik','leftstatus','leftfeet','rightstatus','rightfeet','wirststatus','wirstvalue']
 		           	});
 					Ext.define('model_torque_ma',{
 		                extend: 'Ext.data.Model',
@@ -298,20 +298,29 @@
 							enableTextSelection	: true
 						},
 						columns: [
-							{ 	header 		: 'unid',
-								dataIndex 	: 'unid',
-								flex 		: 1,
-								renderer 	: upsize,
-								hidden 	 	: true
-							}, 
 							{ 	header 		: 'id',
 								dataIndex 	: 'id',
 								flex 		: 1,
 								renderer 	: upsize,
 								hidden 	 	: true
 							}, 
+							{ 	header 		: 'DATE ESD',
+								dataIndex 	: 'dateesd',
+								flex 		: 1,
+								renderer 	: upsize
+							}, 
 							{ 	header 		: 'TIME',
 								dataIndex 	: 'datetimein',
+								flex 		: 1,
+								renderer 	: upsize
+							}, 
+							{ 	header 		: 'MCH NAME',
+								dataIndex 	: 'mchname',
+								flex 		: 1,
+								renderer 	: upsize
+							}, 
+							{ 	header 		: 'NIK',
+								dataIndex 	: 'nik',
 								flex 		: 1,
 								renderer 	: upsize
 							}, 
@@ -323,7 +332,8 @@
 							{ 	header 		: 'LEFT FEET <br> ( &ohm; )',
 								dataIndex 	: 'leftfeet',
 								flex 		: 1,
-								renderer 	: upsize
+								renderer 	: upsize,
+								hidden 	 	: true
 							}, 
 							{ 	header 		: 'RIGHT STATUS',
 								dataIndex 	: 'rightstatus',
@@ -333,10 +343,16 @@
 							{ 	header 		: 'RIGHT FEET <br> ( &ohm; )',
 								dataIndex 	: 'rightfeet',
 								flex 		: 1,
+								renderer 	: upsize,
+								hidden 	 	: true
+							}, 
+							{ 	header 		: 'WIRST STRAP',
+								dataIndex 	: 'wirststrap',
+								flex 		: 1,
 								renderer 	: upsize
 							}, 
-							{ 	header 		: 'NIK',
-								dataIndex 	: 'nik',
+							{ 	header 		: 'WIRST VAL',
+								dataIndex 	: 'wirstvalue',
 								flex 		: 1,
 								renderer 	: upsize
 							}

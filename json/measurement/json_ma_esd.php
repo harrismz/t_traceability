@@ -17,14 +17,17 @@
     $return = array();
     
     for($i=0;!$rs->EOF;$i++){
-        $return[$i]['unid']         = trim($rs->fields['0']);
-        $return[$i]['id']           = trim($rs->fields['1']);
+        $return[$i]['id']           = trim($rs->fields['0']);
+        $return[$i]['dateesd']      = trim($rs->fields['1']);
         $return[$i]['datetimein']   = trim($rs->fields['2']);
-        $return[$i]['leftstatus']   = trim($rs->fields['3']);
-        $return[$i]['leftfeet']     = trim($rs->fields['4']);
-        $return[$i]['rightstatus']  = trim($rs->fields['5']);
-        $return[$i]['rightfeet']    = trim($rs->fields['6']);
-        $return[$i]['nik']          = trim($rs->fields['7']);
+        $return[$i]['mchname']      = trim($rs->fields['3']);
+        $return[$i]['nik']          = trim($rs->fields['4']);
+        $return[$i]['leftstatus']   = trim($rs->fields['5']);
+        $return[$i]['leftfeet']     = trim($rs->fields['6']);
+        $return[$i]['rightstatus']  = trim($rs->fields['7']);
+        $return[$i]['rightfeet']    = trim($rs->fields['8']);
+        $return[$i]['wirststatus']  = trim($rs->fields['9']);
+        $return[$i]['wirstvalue']   = trim($rs->fields['10']);
        
         $rs->MoveNext();
     }
