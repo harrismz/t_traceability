@@ -779,10 +779,11 @@
 								flex 		: 1,
 								renderer 	: upsize
 							},
-							{	header 		: 'UPLOAADED BY',
+							{	header 		: 'UPLOADED BY',
 								dataIndex 	: 'picupload',
 								flex 		: 1,
-								renderer 	: upsize
+								renderer 	: upsize,
+								hidden		: true
 							}
 						],
 						//features: [filters],
@@ -877,6 +878,13 @@
 						autoScroll 	: true,
 						frame 		: true,
 						//style 	: 'padding:5px;-background:#157FCC;',
+						tabBar		: {
+							flex	: 1,
+							layout	: {
+								pack 	: 'center',
+								align 	: 'stretch'
+							}
+						},
 						items 		: [
 							{	title 		: 'MA',
 							 	id  		: 'show_grid_thermo_ma',
@@ -951,6 +959,13 @@
 						autoScroll 	: true,
 						frame 		: true,
 						//style 	: 'padding:5px;-background:#157FCC;',
+						tabBar		: {
+							flex	: 1,
+							layout	: {
+								pack 	: 'center',
+								align 	: 'stretch'
+							}
+						},
 						items 		: [
 							{	title 		: 'MA',
 							 	id  		: 'show_grid_temperature_ma',
