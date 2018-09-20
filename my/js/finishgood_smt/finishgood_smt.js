@@ -225,14 +225,14 @@
 					var grid_bigs = Ext.create('Ext.grid.Panel', {
 						id 			: 'grid_bigs',
 						columnLines	: true,
-						width 		: '100%',
-						height 		: '100%',
+						// width 		: '100%',
+						// height 		: '100%',
 						store 		: store_bigs,
 						viewConfig	: {
-							stripeRows: true,
-							emptyText: '<div class="empty-txt-main">No data to display.</div>',
-							deferEmptyText: false,
-							enableTextSelection: true
+							stripeRows 			: true,
+							emptyText 			: '<div class="empty-txt">No data to display.</div>',
+							deferEmptyText 		: false,
+							enableTextSelection : true
 						},
 						columns 	: [
 							{	header 	 : 'schedule_id',
@@ -390,9 +390,8 @@
 					});
 					var grid_smt_aoi_point = Ext.create('Ext.grid.Panel', {
 						id 				: 'grid_smt_aoi_point',
-						name			: 'grid_smt_aoi_point',
 						autoWidth 	 	: '100%',
-						maxHeight		: 290,
+						maxHeight		: 295,
 						columnLines 	: true,
 						store 			: store_good_smt_aoi_point,
 						viewConfig 		: {
@@ -799,15 +798,19 @@
 						// plugins: [cellEditing]
 					});
 						
-		//	=======================================================    PANEL    =========================================
+		//	=======================================================  TAB  PANEL    =========================================
 			
 			//	BOARD ID GENERATOR
 					var panel_bigs = Ext.create('Ext.panel.Panel', {
 						id 				:'panel_bigs',
 						renderTo 		: 'panel_bigs',
 						width			: '100%',
-						layout 			: 'fit',
-						maxHeight		: 100,
+						layout 			: {
+							type: 'fit',
+							align: 'stretch',
+							pack: 'center'	
+						},
+						height			: 90,
 						border			: false,
 						frame			: true,
 						hidden			: false,
@@ -821,22 +824,32 @@
 					var panel_aoi = Ext.create('Ext.tab.Panel', {
 						id 			: 'panel_aoi',
 						renderTo 	: 'panel_aoi',
+						//autoHeight	: true,
 						plain 		: true,
-						activeTab 	: 0,
+						//activeTab 	: 0,
 						autoWidth 	: '100%',
-						height		: 300,
+						maxHeight 	: 300,
 						autoScroll 	: true,
 						frame 		: true,
-						//style 	: 'padding:5px;-background:#157FCC;',
+						style 	: 'padding:5px;-background:#157FCC;',
+						tabBar: {
+							flex: 1,
+							layout: {
+								pack: 'center',
+								align: 'stretch'
+							}
+						},
 						items 		: [
 							{	title 		: 'BOARD',
 							 	id  		: 'show_grid_aoi_board',
 								reorderable : false,
+								layout		: 'fit',
 								items 		: [grid_smt_aoi_board]
 							}, 
 							{	title 		: 'POINT',
 							 	id  		: 'show_grid_aoi_point',
 								reorderable	: false,
+								layout		: 'fit',
 								items 		: [grid_smt_aoi_point]
 							}
 						]
@@ -846,10 +859,9 @@
 						id 				:'panel_reflow',
 						renderTo 		: 'panel_reflow',
 						autoWidth		: '100%',
-						maxHeight		: 820,
+						maxHeight		: 300,
 						border			: false,
-						frame			: true,
-						hidden			: false,
+						frame			: false,
 						defaults		: {
 							split		: true,
 							collapsible	: false
@@ -897,6 +909,13 @@
 						autoScroll 	: true,
 						frame 		: true,
 						//style 	: 'padding:5px;-background:#157FCC;',
+						tabBar		: {
+							flex 	: 1,
+							layout	: {
+								pack 	: 'center',
+								align 	: 'stretch'
+							}
+						},
 						items 		: [
 							{	title 		: 'PCB',
 							 	id  		: 'show_grid_board',
