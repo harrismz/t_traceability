@@ -17,16 +17,18 @@
     $return = array();
 
     for($i=0;!$rs->EOF;$i++){
-        $return[$i]['unid']         = trim($rs->fields['0']);
-        $return[$i]['id']           = trim($rs->fields['1']);
-        $return[$i]['model']        = trim($rs->fields['2']);
-        $return[$i]['serial']       = trim($rs->fields['3']);
-        $return[$i]['datetimein']   = trim($rs->fields['4']);
-        $return[$i]['alm']          = trim($rs->fields['5']);
-        $return[$i]['t_ch1']        = round(trim($rs->fields['6']),2);
-        $return[$i]['h_ch2']        = round(trim($rs->fields['7']),2);
-        $return[$i]['alm1']         = trim($rs->fields['8']);
-        $return[$i]['alm2']         = trim($rs->fields['9']);
+        $return[$i]['id']               = trim($rs->fields['0']);
+        $return[$i]['mchname']          = trim($rs->fields['1']);
+        $return[$i]['model']            = trim($rs->fields['2']);
+        $return[$i]['dateinspection']   = trim($rs->fields['3']);
+        $return[$i]['datetimein']       = trim($rs->fields['4']);
+        $return[$i]['serial']           = trim($rs->fields['5']);
+        $return[$i]['alm']              = trim($rs->fields['6']);
+        $return[$i]['t_ch1']            = round(trim($rs->fields['7']),2);
+        $return[$i]['h_ch2']            = round(trim($rs->fields['8']),2);
+        $return[$i]['alm1']             = trim($rs->fields['9']);
+        $return[$i]['alm2']             = trim($rs->fields['10']);
+        $return[$i]['inputdate']        = trim($rs->fields['11']);
        
         $rs->MoveNext();
     }

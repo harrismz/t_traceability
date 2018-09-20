@@ -17,16 +17,16 @@
     $return = array();
     
     for($i=0;!$rs->EOF;$i++){
-
-        $return[$i]['unid']         = trim($rs->fields['0']);
-        $return[$i]['id']           = trim($rs->fields['1']);
-        $return[$i]['datetimein']   = trim($rs->fields['2']);
-        $return[$i]['channel']      = trim($rs->fields['3']);
-        $return[$i]['mode']         = trim($rs->fields['4']);
-        $return[$i]['rotation']     = trim($rs->fields['5']);
-        $return[$i]['torque']       = round(trim($rs->fields['6']),3);
-        $return[$i]['unit']         = trim($rs->fields['7']);
-        $return[$i]['result']       = trim($rs->fields['8']);
+        $return[$i]['id']              = trim($rs->fields['0']);
+        $return[$i]['mchname']         = trim($rs->fields['1']);
+        $return[$i]['dateinspection']  = trim($rs->fields['2']);
+        $return[$i]['datetimein']      = trim($rs->fields['3']);
+        $return[$i]['channel']         = trim($rs->fields['4']);
+        $return[$i]['mode']            = trim($rs->fields['5']);
+        $return[$i]['rotation']        = trim($rs->fields['6']);
+        $return[$i]['torque']          = round(trim($rs->fields['7']),3);
+        $return[$i]['unit']            = trim($rs->fields['8']);
+        $return[$i]['result']          = trim($rs->fields['9']);
        
         $rs->MoveNext();
     }
