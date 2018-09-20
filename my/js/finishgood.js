@@ -3184,6 +3184,13 @@
 						autoScroll 	: true,
 						frame 		: true,
 						style: 'padding:5px;-background:#157FCC;',
+						tabBar 		: {
+							flex	: 1,
+							layout 	: {
+								pack 	: 'center',
+								align 	: 'stretch'
+							}
+						},
 						items: [
 							{	title 	 	: 'MC Issue to MA',
 							 	id  	 	: 'show_grid_mc_ma',
