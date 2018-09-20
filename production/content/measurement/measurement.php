@@ -12,7 +12,7 @@
   </div> -->
   <!-- ============================================================================== -->
   <!-- THERMOHUMIDITY   -->
-        <div class="row">
+        <div  id="thermo_tab" class="row">
           <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
               <div class="x_title">
@@ -42,12 +42,12 @@
           </div>
         </div>
   <!-- ESD   -->
-        <div class="row">
+        <div  id="esd_tab" class="row">
           <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
               <div class="x_title">
         				<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                  <h2><i class="far fa-calendar-check"></i> ESD</h2>
+                  <h2><i class="far fa-calendar-check"></i> ESD  <small>MA Department</small></h2>
         				</div>
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                   <div id="src_esd"></div>
@@ -72,12 +72,12 @@
           </div>
         </div>
   <!-- TORQUE METER   -->
-        <div class="row">
+        <div  id="torque_tab" class="row">
           <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
               <div class="x_title">
         				<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                  <h2><i class="fab fa-steam-symbol"></i> TORQUE METER</h2>
+                  <h2><i class="fab fa-steam-symbol"></i> TORQUE METER <small>MA Department</small></h2>
         				</div>
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                   <div id="src_torque"></div>
@@ -102,7 +102,7 @@
           </div>
         </div>
   <!-- TEMPERATURE   -->
-       <div class="row">
+       <div id="temperature_tab" class="row">
           <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
               <div class="x_title">
@@ -132,7 +132,7 @@
           </div> 
         </div>
   <!-- PARTICLE   -->
-        <div class="row">
+        <div id="particle_tab" class="row">
           <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
               <div class="x_title">
@@ -161,4 +161,9 @@
             </div>
           </div>
         </div>
+
+
+  <!-- ============================================================================== -->
+  <!-- Return to Top -->
+  <a href="javascript:" id="return-to-top"><i class="fas fa-chevron-up"></i></a>
 </section>
