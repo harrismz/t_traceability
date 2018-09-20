@@ -12,8 +12,7 @@
   </div>
   <!--  END OF Searching Traceability -->
   <!-- ============================================================================== -->
-  <!--  MAIN OCS Finishgood Model -->
-  <div class="row">
+  <div id="big_tab" class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="x_panel">
         <div class="x_title">
@@ -35,10 +34,7 @@
       </div>
     </div>
   </div>
-  <!--  END OF MAIN OCS Finishgood Model -->
-  <!-- ============================================================================== -->
-  <!-- Plan and Actual Data -->
-  <div class="row">
+  <div id="aoi_tab" class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="x_panel">
         <div class="x_title">
@@ -59,6 +55,8 @@
         </div>
       </div>
     </div>
+  </div>
+  <div id="reflow_tab" class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="x_panel">
         <div class="x_title">
@@ -79,6 +77,8 @@
         </div>
       </div>
     </div>
+  </div>
+  <div id="mounter_tab" class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="x_panel">
         <div class="x_title">
@@ -99,6 +99,8 @@
         </div>
       </div>
     </div>
+  </div>
+  <div id="spi_tab" class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="x_panel">
         <div class="x_title">
@@ -119,6 +121,8 @@
         </div>
       </div>
     </div>
+  </div>
+  <div id="ma_tab" class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="x_panel">
         <div class="x_title">
@@ -140,4 +144,7 @@
       </div>
     </div>
   </div>
+  <!-- ============================================================================== -->
+  <!-- Return to Top -->
+  <a href="javascript:" id="return-to-top"><i class="fas fa-chevron-up"></i></a>
 </section>
