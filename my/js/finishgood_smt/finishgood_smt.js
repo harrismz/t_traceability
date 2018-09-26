@@ -148,6 +148,20 @@
 							type    : 'json',
 							root    : 'rows'
 						}
+					},
+					listeners : {
+						load : function(store, records){
+							if(records){
+								aoidate = store.getAt(0).get('stdate');
+								get_boardid = Ext.getCmp('boardid_scan').getValue();
+
+								store_smt_reflow.proxy.setExtraParam('boardid', get_boardid);
+								store_smt_reflow.proxy.setExtraParam('smt_date', aoidate);
+								store_smt_reflow.loadPage(1);
+							}
+							
+
+						} 
 					}
 				});
 				var store_good_smt_aoi_point = Ext.create('Ext.data.Store',{
@@ -225,9 +239,10 @@
 			//	BOARD ID GENERATOR
 					var grid_bigs = Ext.create('Ext.grid.Panel', {
 						id 			: 'grid_bigs',
+						renderTo 	: 'panel_bigs',
 						columnLines	: true,
-						// width 		: '100%',
-						// height 		: '100%',
+						// width 	: '100%',
+						maxHeight 	: 130,
 						store 		: store_bigs,
 						viewConfig	: {
 							stripeRows 			: true,
@@ -479,7 +494,7 @@
 					});
 			//	REFLOW
 					var grid_smt_reflow = Ext.create('Ext.grid.Panel', {
-						id: 'grid_smt_reflow',
+						id 			: 'grid_smt_reflow',
 						autoWidth 	: '100%',
 						maxHeight	: 290,
 						columnLines: true,
@@ -721,7 +736,7 @@
 						// },
 						// plugins: [cellEditing]
 					});
-			//	MA BOARD
+			//	MAPROS
 					var grid_mapros_board = Ext.create('Ext.grid.Panel', {
 						id 				: 'grid_mapros_board',
 						autoWidth 		: '100%',
@@ -812,29 +827,119 @@
 						// },
 						// plugins: [cellEditing]
 					});
+					var grid_mapros_panel = Ext.create('Ext.grid.Panel', {
+						id 				: 'grid_mapros_panel',
+						autoWidth 		: '100%',
+						maxHeight		: 290,
+						columnLines 	: true,
+						//	store 			: store_mapros_panel,
+						viewConfig 		: {
+							stripeRows 			: true,
+							emptyText 	 		: '<div class="empty-txt">No data to display.</div>',
+							deferEmptyText 		: false,
+							enableTextSelection	: true
+						},
+						columns 	: [
+							{	header 		: 'BOARD ID',
+								dataIndex 	: 'board_id',
+								width 		: 140,
+								renderer	: upsize
+							},
+							{	header 		: 'guid_master',
+								dataIndex 	: 'guid_master',
+								flex 		: 1,
+								renderer	: upsize,
+								hidden		: true
+							},
+							{	header 		: 'guid_ticket',
+								dataIndex 	: 'guid_ticket',
+								flex 		: 1,
+								renderer	: upsize,
+								hidden		: true
+							},
+							{	header 		: 'MODEL',
+								dataIndex 	: 'modelname',
+								flex 		: 1,
+								renderer	: upsize
+							},
+							{	header 		: 'LINE',
+								dataIndex 	: 'line',
+								width 	 	: 90,
+								renderer	: upsize
+							},
+							{	header 		: 'lotno',
+								dataIndex 	: 'lotno',
+								flex 		: 1,
+								renderer	: upsize,
+								hidden		: true
+							},
+							{	header 		: 'PROCESS',
+								dataIndex 	: 'lineprocess',
+								width 	 	: 90,
+								renderer	: upsize
+							},
+							{	header 		: 'scanner_id',
+								dataIndex 	: 'scanner_id',
+								flex 		: 1,
+								renderer	: upsize,
+								hidden		: true
+							},
+							{	header 		: 'STATUS',
+								dataIndex 	: 'status',
+								width 	 	: 90,
+								renderer	: upsize
+							},
+							{	header 		: 'JUDGE',
+								dataIndex 	: 'judge',
+								width 	 	: 90,
+								renderer	: upsize
+							},
+							{	header 		: 'SCAN TIME',
+								dataIndex 	: 'created_at',
+								flex 		: 1,
+								renderer	: upsize
+							},
+							{	header 		: 'SCAN NIK',
+								dataIndex 	: 'scan_nik',
+								flex 		: 1,
+								renderer	: upsize
+							},
+							{	header 		: 'updated_at',
+								dataIndex 	: 'updated_at',
+								flex 		: 1,
+								renderer	: upsize,
+								hidden		: true
+							}
+						],
+						//features: [filters],
+						// selModel: {
+						// 	selType: 'cellmodel'
+						// },
+						// plugins: [cellEditing]
+					});
 						
 		//	=======================================================  TAB  PANEL    =========================================
 			
 			//	BOARD ID GENERATOR
-					var panel_bigs = Ext.create('Ext.panel.Panel', {
-						id 				:'panel_bigs',
-						renderTo 		: 'panel_bigs',
-						width			: '100%',
-						layout 			: {
-							type: 'fit',
-							align: 'stretch',
-							pack: 'center'	
-						},
-						height			: 90,
-						border			: false,
-						frame			: true,
-						hidden			: false,
-						defaults		: {
-							split		: true,
-							collapsible	: false
-						},
-						items			: [grid_bigs]
-					});
+					// var panel_bigs = Ext.create('Ext.panel.Panel', {
+					// 	id 				:'panel_bigs',
+					// 	renderTo 		: 'panel_bigs',
+					// 	width			: '100%',
+					// 	layout 			: {
+					// 		type: 'fit',
+					// 		align: 'stretch',
+					// 		pack: 'center'	
+					// 	},
+					// 	height			: 100,
+					// 	border			: false,
+					// 	frame			: true,
+					// 	hidden			: false,
+					// 	defaults		: {
+					// 		split		: true,
+					// 		collapsible	: false
+					// 	},
+					// 	items			: [grid_bigs]
+					// });
 			//	AOI
 					var panel_aoi = Ext.create('Ext.tab.Panel', {
 						id 			: 'panel_aoi',
@@ -983,86 +1088,82 @@
 							specialkey : function(field, e) {
 								if (e.getKey() == 13) {
 									var boardid = Ext.getCmp('boardid_scan').getValue();
-									var smtdate = Ext.getCmp('smt_date').getValue();
+									//var smtdate = Ext.getCmp('smt_date').getValue();
 
 									if (!boardid) {
 										Ext.Msg.alert('Warning', 'PCB ID cannot be null !!!');
 									} 
 									else {
 										store_bigs.proxy.setExtraParam('boardid', boardid);
-										store_bigs.proxy.setExtraParam('smt_date', smtdate);
+										store_bigs.proxy.setExtraParam('smt_date', '');
 										store_bigs.loadPage(1);
 										
 										store_good_smt_aoi_board.proxy.setExtraParam('boardid', boardid);
-										store_good_smt_aoi_board.proxy.setExtraParam('smt_date', smtdate);
+										store_good_smt_aoi_board.proxy.setExtraParam('smt_date', '');
 										store_good_smt_aoi_board.loadPage(1);
 										
 										store_good_smt_aoi_point.proxy.setExtraParam('boardid', boardid);
-										store_good_smt_aoi_point.proxy.setExtraParam('smt_date', smtdate);
+										store_good_smt_aoi_point.proxy.setExtraParam('smt_date', '');
 										store_good_smt_aoi_point.loadPage(1);
 										
-										store_smt_reflow.proxy.setExtraParam('boardid', boardid);
-										store_smt_reflow.proxy.setExtraParam('smt_date', smtdate);
-										store_smt_reflow.loadPage(1);
-										
 										store_smt_spi.proxy.setExtraParam('boardid', boardid);
-										store_smt_spi.proxy.setExtraParam('smt_date', smtdate);
+										store_smt_spi.proxy.setExtraParam('smt_date', '');
 										store_smt_spi.loadPage(1);
 
 										store_mapros_board.proxy.setExtraParam('boardid', boardid);
-										store_mapros_board.proxy.setExtraParam('smt_date', smtdate);
+										store_mapros_board.proxy.setExtraParam('smt_date', '');
 										store_mapros_board.loadPage(1);
 									}
 								}
 							}
 						}
 				});
-				Ext.create('Ext.form.field.Date',{
-					//renderTo 	: src_reflow_date,
-					width 		: '100%',
-					id 			: 'smt_date',
-					name 		: 'smt_date',
-					fieldCls	: 'biggertext',
-					emptyText	: 'Search Date',
-					margins		: '0 6 0 0',
-					height 		: 30,
-					flex		: 1,
-					format		: 'd F Y',
-					submitFormat: 'Y-m-d',
-					mode		: 'local',  
-					value 		: new Date(),
-					editable 	: false,
-					listeners	: {
-							afterrender : function() {
-								this.inputEl.setStyle('text-align', 'center');
-								this.inputEl.setStyle('backgroundColor', '#0067AE');
-								this.inputEl.setStyle('color', '#fff');
-								this.inputEl.setStyle('fontSize', '20px');
-								var me = this,
-						            inputElement = me.inputElement;
+				// Ext.create('Ext.form.field.Date',{
+				// 	//renderTo 	: src_reflow_date,
+				// 	width 		: '100%',
+				// 	id 			: 'smt_date',
+				// 	name 		: 'smt_date',
+				// 	fieldCls	: 'biggertext',
+				// 	emptyText	: 'Search Date',
+				// 	margins		: '0 6 0 0',
+				// 	height 		: 30,
+				// 	flex		: 1,
+				// 	format		: 'd F Y',
+				// 	submitFormat: 'Y-m-d',
+				// 	mode		: 'local',  
+				// 	value 		: new Date(),
+				// 	editable 	: false,
+				// 	listeners	: {
+				// 			afterrender : function() {
+				// 				this.inputEl.setStyle('text-align', 'center');
+				// 				this.inputEl.setStyle('backgroundColor', '#0067AE');
+				// 				this.inputEl.setStyle('color', '#fff');
+				// 				this.inputEl.setStyle('fontSize', '20px');
+				// 				var me = this,
+				// 		            inputElement = me.inputElement;
 						 
-						        if (inputElement && inputElement.dom.focus) {
-						            inputElement.dom.focus();
-						        }
-						        return me;
-							},
-							specialkey : function(field, e) {
-								if (e.getKey() == 13) {
-									var reflow_date = Ext.getCmp('src_reflow_date').getValue();
+				// 		        if (inputElement && inputElement.dom.focus) {
+				// 		            inputElement.dom.focus();
+				// 		        }
+				// 		        return me;
+				// 			},
+				// 			specialkey : function(field, e) {
+				// 				if (e.getKey() == 13) {
+				// 					var reflow_date = Ext.getCmp('src_reflow_date').getValue();
 									
-									if (!reflow_date) {
-										Ext.Msg.alert('Warning', 'Reflow date cannot be null !!!');
-									} else {
+				// 					if (!reflow_date) {
+				// 						Ext.Msg.alert('Warning', 'Reflow date cannot be null !!!');
+				// 					} else {
 										
-										store_smt_reflow.proxy.setExtraParam('src_cat', 'fg');
-										store_smt_reflow.proxy.setExtraParam('prod_date', reflow_date);
-										store_smt_reflow.proxy.setExtraParam('model', 'nomodel');
-										store_smt_reflow.loadPage(1);
-									}
-								}
-							}
-						}
-				});
+				// 						store_smt_reflow.proxy.setExtraParam('src_cat', 'fg');
+				// 						store_smt_reflow.proxy.setExtraParam('prod_date', reflow_date);
+				// 						store_smt_reflow.proxy.setExtraParam('model', 'nomodel');
+				// 						store_smt_reflow.loadPage(1);
+				// 					}
+				// 				}
+				// 			}
+				// 		}
+				// });
 		
 		//	==** end **==
 
