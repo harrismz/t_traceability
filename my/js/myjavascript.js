@@ -22,6 +22,13 @@ $('#return-to-top').click(function() {      // When arrow is clicked
 	}, 500);
 });
 
+$('.scroll-to').click(function(){
+    $('html, body').animate({
+        scrollTop: $( $(this).attr('href') ).offset().top
+    }, 500);
+    return false;
+});
+
 //===== scroll tog et ID ======
 // ------------------------------
 // https://twitter.com/mattsince87
