@@ -5,13 +5,15 @@
     //$page 		= @$_REQUEST["page"];
 	//$limit 		= @$_REQUEST["limit"];
 	//$start		= (($page*$limit)-$limit)+1;
-	
-    $boardid    = $_REQUEST['boardid'];
-    $getdate    = substr($_REQUEST['smt_date'],0,10);
-	$smt_date 	= date('Y-m-d', strtotime($getdate));
+	//  $getdate    = substr($_REQUEST['smt_date'],0,10);
+    //  $smt_date   = date('Y-m-d', strtotime($getdate));
 
-	//echo "call traceability_goodsmt_board ('{$boardid}')";
-    $rs    = $db->Execute("call traceability_goodsmt_board ('{$boardid}')");
+    $boardid    = @$_REQUEST['boardid'];
+    $cavity     = @$_REQUEST['cavity'];
+
+
+	// echo "call traceability_goodsmt_board ('{$boardid}','{$cavity}')";
+    $rs    = $db->Execute("call traceability_goodsmt_board ('{$boardid}','{$cavity}')");
     $return = array();
  
     for($i=0;!$rs->EOF;$i++){
