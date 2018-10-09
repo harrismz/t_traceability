@@ -12,7 +12,8 @@
 	});
 
 	//function untuk fontsize grid
-	function upsize(val) {		var x = val;
+	function upsize(val) {		
+		var x = val;
 		if (x == '' || x == '-'){
 			return '<font class="fontsize12" style="color:red;font-weight: bold;"> --- </font>';
 		}
@@ -104,6 +105,21 @@
 	                fields: ['board_id','guid_master','guid_ticket','modelname','lotno',
 							'scanner_id','status','scan_nik','judge','created_at','updated_at','lineprocess','line']
 	           	});
+				Ext.define('model_mapros_panel',{
+	                extend: 'Ext.data.Model',
+	                fields: ['ticket_no','guid_master','guid_ticket','modelname',
+							'scanner_id','status','scan_nik','judge','created_at','updated_at','lineprocess','line']
+	           	});
+				Ext.define('model_mapros_master',{
+	                extend: 'Ext.data.Model',
+	                fields: ['ticket_no_master','guid_master','modelname',
+							'scanner_id','status','scan_nik','judge','created_at','updated_at','lineprocess','line']
+	           	});
+				Ext.define('model_mapros_avmt',{
+	                extend: 'Ext.data.Model',
+	                fields: ['ticket_no_master','guid_master','modelname',
+							'scanner_id','status','scan_nik','judge','created_at','updated_at','lineprocess','line']
+	           	});
 
 		//	=======================================================    DATASTORE    =====================================
 			//	BOARD ID GENERATOR
@@ -124,11 +140,25 @@
 								model 	= store.getAt(0).get('model');
 								proces	= store.getAt(0).get('process');
 								pwbno	= store.getAt(0).get('pwbno');
+								cavity 	= store.getAt(0).get('cavity');
+								boardid = Ext.getCmp('boardid_scan').getValue();
 								
 								store_smt_mounter.proxy.setExtraParam('model', model);
 								store_smt_mounter.proxy.setExtraParam('process', proces);
 								store_smt_mounter.proxy.setExtraParam('pwbno', pwbno);
 								store_smt_mounter.loadPage(1);
+
+								store_mapros_board.proxy.setExtraParam('boardid', boardid);
+								store_mapros_board.proxy.setExtraParam('cavity', cavity);
+								store_mapros_board.loadPage(1);
+
+								store_mapros_master.proxy.setExtraParam('boardid', boardid);
+								store_mapros_master.proxy.setExtraParam('cavity', cavity);
+								store_mapros_master.loadPage(1);
+
+								store_mapros_panel.proxy.setExtraParam('boardid', boardid);
+								store_mapros_panel.proxy.setExtraParam('cavity', cavity);
+								store_mapros_panel.loadPage(1);
 								
 							} else {
 								Ext.Msg.alert('Warning', 'No Data Found ! <br> Please try again with the correct PCB ID.');
@@ -151,7 +181,7 @@
 					},
 					listeners : {
 						load : function(store, records){
-							if(records){
+							if (records != 0) {
 								aoidate = store.getAt(0).get('stdate');
 								get_boardid = Ext.getCmp('boardid_scan').getValue();
 
@@ -227,6 +257,45 @@
 					proxy   : {
 						type    : 'ajax',
 						url     : 'json/finishgood_smt/json_good_smt_mapros_board.php',
+						reader  : {
+							type    : 'json',
+							root    : 'rows'
+						}
+					}
+				});
+				var store_mapros_panel = Ext.create('Ext.data.Store',{
+					model	: 'model_mapros_panel',
+					autoLoad: false,
+					pageSize: itemperpage,
+					proxy   : {
+						type    : 'ajax',
+						url     : 'json/finishgood_smt/json_good_smt_mapros_panel.php',
+						reader  : {
+							type    : 'json',
+							root    : 'rows'
+						}
+					}
+				});
+				var store_mapros_master = Ext.create('Ext.data.Store',{
+					model	: 'model_mapros_master',
+					autoLoad: false,
+					pageSize: itemperpage,
+					proxy   : {
+						type    : 'ajax',
+						url     : 'json/finishgood_smt/json_good_smt_mapros_master.php',
+						reader  : {
+							type    : 'json',
+							root    : 'rows'
+						}
+					}
+				});
+				var store_mapros_avmt = Ext.create('Ext.data.Store',{
+					model	: 'model_mapros_avmt',
+					autoLoad: false,
+					pageSize: itemperpage,
+					proxy   : {
+						type    : 'ajax',
+						url     : 'json/finishgood_smt/json_good_smt_mapros_avmt.php',
 						reader  : {
 							type    : 'json',
 							root    : 'rows'
@@ -745,9 +814,13 @@
 						store 			: store_mapros_board,
 						viewConfig 		: {
 							stripeRows 			: true,
-							emptyText 	 		: '<div class="empty-txt">No data to display.</div>',
 							deferEmptyText 		: false,
-							enableTextSelection	: true
+							enableTextSelection	: true,
+							getRowClass			: function(record, rowIndex, rowParams, store) {
+								if (record.get('status')==='IN') return 'colorin';
+								else if (record.get('status')==='OUT') return 'colorout';
+							},
+							emptyText 	 		: '<div class="empty-txt">No data to display.</div>',
 						},
 						columns 	: [
 							{	header 		: 'BOARD ID',
@@ -832,16 +905,21 @@
 						autoWidth 		: '100%',
 						maxHeight		: 290,
 						columnLines 	: true,
-						//	store 			: store_mapros_panel,
+						store 			: store_mapros_panel,
 						viewConfig 		: {
 							stripeRows 			: true,
 							emptyText 	 		: '<div class="empty-txt">No data to display.</div>',
 							deferEmptyText 		: false,
-							enableTextSelection	: true
+							enableTextSelection	: true,
+							getRowClass			: function(record, rowIndex, rowParams, store) {
+								if (record.get('status')==='IN') return 'colorin';
+								else if (record.get('status')==='OUT') return 'colorout';
+							}
+							
 						},
 						columns 	: [
-							{	header 		: 'BOARD ID',
-								dataIndex 	: 'board_id',
+							{	header 		: 'PANLE NO',
+								dataIndex 	: 'ticket_no',
 								width 		: 140,
 								renderer	: upsize
 							},
@@ -867,11 +945,165 @@
 								width 	 	: 90,
 								renderer	: upsize
 							},
-							{	header 		: 'lotno',
-								dataIndex 	: 'lotno',
+							{	header 		: 'PROCESS',
+								dataIndex 	: 'lineprocess',
+								width 	 	: 90,
+								renderer	: upsize
+							},
+							{	header 		: 'scanner_id',
+								dataIndex 	: 'scanner_id',
 								flex 		: 1,
 								renderer	: upsize,
 								hidden		: true
+							},
+							{	header 		: 'STATUS',
+								dataIndex 	: 'status',
+								width 	 	: 90,
+								renderer	: upsize
+							},
+							{	header 		: 'JUDGE',
+								dataIndex 	: 'judge',
+								width 	 	: 90,
+								renderer	: upsize
+							},
+							{	header 		: 'SCAN TIME',
+								dataIndex 	: 'created_at',
+								flex 		: 1,
+								renderer	: upsize
+							},
+							{	header 		: 'SCAN NIK',
+								dataIndex 	: 'scan_nik',
+								flex 		: 1,
+								renderer	: upsize
+							},
+							{	header 		: 'updated_at',
+								dataIndex 	: 'updated_at',
+								flex 		: 1,
+								renderer	: upsize,
+								hidden		: true
+							}
+						],
+						//features: [filters],
+						// selModel: {
+						// 	selType: 'cellmodel'
+						// },
+						// plugins: [cellEditing]
+					});
+					var grid_mapros_master = Ext.create('Ext.grid.Panel', {
+						id 				: 'grid_mapros_master',
+						autoWidth 		: '100%',
+						maxHeight		: 290,
+						columnLines 	: true,
+						store 			: store_mapros_master,
+						viewConfig 		: {
+							stripeRows 			: true,
+							emptyText 	 		: '<div class="empty-txt">No data to display.</div>',
+							deferEmptyText 		: false,
+							enableTextSelection	: true,
+							getRowClass			: function(record, rowIndex, rowParams, store) {
+								if (record.get('status')==='IN') return 'colorin';
+								else if (record.get('status')==='OUT') return 'colorout';
+							}
+						},
+						columns 	: [
+							{	header 		: 'MASTER NO',
+								dataIndex 	: 'ticket_no_master',
+								width 		: 140,
+								renderer	: upsize
+							},
+							{	header 		: 'guid_master',
+								dataIndex 	: 'guid_master',
+								flex 		: 1,
+								renderer	: upsize,
+								hidden		: true
+							},
+							{	header 		: 'MODEL',
+								dataIndex 	: 'modelname',
+								flex 		: 1,
+								renderer	: upsize
+							},
+							{	header 		: 'LINE',
+								dataIndex 	: 'line',
+								width 	 	: 90,
+								renderer	: upsize
+							},
+							{	header 		: 'PROCESS',
+								dataIndex 	: 'lineprocess',
+								width 	 	: 90,
+								renderer	: upsize
+							},
+							{	header 		: 'scanner_id',
+								dataIndex 	: 'scanner_id',
+								flex 		: 1,
+								renderer	: upsize,
+								hidden		: true
+							},
+							{	header 		: 'STATUS',
+								dataIndex 	: 'status',
+								width 	 	: 90,
+								renderer	: upsize
+							},
+							{	header 		: 'JUDGE',
+								dataIndex 	: 'judge',
+								width 	 	: 90,
+								renderer	: upsize
+							},
+							{	header 		: 'SCAN TIME',
+								dataIndex 	: 'created_at',
+								flex 		: 1,
+								renderer	: upsize
+							},
+							{	header 		: 'SCAN NIK',
+								dataIndex 	: 'scan_nik',
+								flex 		: 1,
+								renderer	: upsize
+							},
+							{	header 		: 'updated_at',
+								dataIndex 	: 'updated_at',
+								flex 		: 1,
+								renderer	: upsize,
+								hidden		: true
+							}
+						],
+						//features: [filters],
+						// selModel: {
+						// 	selType: 'cellmodel'
+						// },
+						// plugins: [cellEditing]
+					});
+					var grid_mapros_avmt = Ext.create('Ext.grid.Panel', {
+						id 				: 'grid_mapros_avmt',
+						autoWidth 		: '100%',
+						maxHeight		: 290,
+						columnLines 	: true,
+						store 			: store_mapros_avmt,
+						viewConfig 		: {
+							stripeRows 			: true,
+							emptyText 	 		: '<div class="empty-txt">No data to display.</div>',
+							deferEmptyText 		: false,
+							enableTextSelection	: true
+						},
+						columns 	: [
+							{	header 		: 'MASTER NO',
+								dataIndex 	: 'ticket_no_master',
+								width 		: 140,
+								renderer	: upsize
+							},
+							{	header 		: 'guid_master',
+								dataIndex 	: 'guid_master',
+								flex 		: 1,
+								renderer	: upsize,
+								hidden		: true
+							},
+							{	header 		: 'MODEL',
+								dataIndex 	: 'modelname',
+								flex 		: 1,
+								renderer	: upsize
+							},
+							{	header 		: 'LINE',
+								dataIndex 	: 'line',
+								width 	 	: 90,
+								renderer	: upsize
 							},
 							{	header 		: 'PROCESS',
 								dataIndex 	: 'lineprocess',
@@ -1025,7 +1257,7 @@
 						plain 		: true,
 						activeTab 	: 0,
 						autoWidth 	: '100%',
-						height		: 300,
+						height		: 330,
 						autoScroll 	: true,
 						frame 		: true,
 						//style 	: 'padding:5px;-background:#157FCC;',
@@ -1045,10 +1277,25 @@
 							{	title 		: 'PANEL AND MECHA',
 							 	id  		: 'show_grid_ticket',
 								reorderable : false,
-								//items 		: [grid_mapros_ticket]
+								items 		: [grid_mapros_panel]
 							}, 
 							{	title 		: 'MASTER',
 							 	id  		: 'show_grid_master',
+								reorderable : false,
+								items 		: [grid_mapros_master]
+							}, 
+							{	title 		: 'AVMT',
+							 	id  		: 'show_grid_avmt',
+								reorderable : false,
+								items 		: [grid_mapros_avmt]
+							}, 
+							{	title 		: 'AVN TEST',
+							 	id  		: 'show_grid_avntest',
+								reorderable : false,
+								//items 		: [grid_mapros_master]
+							}, 
+							{	title 		: 'AUTO LINE ZERO',
+							 	id  		: 'show_grid_zero',
 								reorderable : false,
 								//items 		: [grid_mapros_master]
 							}
@@ -1110,59 +1357,56 @@
 										store_smt_spi.proxy.setExtraParam('smt_date', '');
 										store_smt_spi.loadPage(1);
 
-										store_mapros_board.proxy.setExtraParam('boardid', boardid);
-										store_mapros_board.proxy.setExtraParam('smt_date', '');
-										store_mapros_board.loadPage(1);
 									}
 								}
 							}
 						}
 				});
 				// Ext.create('Ext.form.field.Date',{
-				// 	//renderTo 	: src_reflow_date,
-				// 	width 		: '100%',
-				// 	id 			: 'smt_date',
-				// 	name 		: 'smt_date',
-				// 	fieldCls	: 'biggertext',
-				// 	emptyText	: 'Search Date',
-				// 	margins		: '0 6 0 0',
-				// 	height 		: 30,
-				// 	flex		: 1,
-				// 	format		: 'd F Y',
-				// 	submitFormat: 'Y-m-d',
-				// 	mode		: 'local',  
-				// 	value 		: new Date(),
-				// 	editable 	: false,
-				// 	listeners	: {
-				// 			afterrender : function() {
-				// 				this.inputEl.setStyle('text-align', 'center');
-				// 				this.inputEl.setStyle('backgroundColor', '#0067AE');
-				// 				this.inputEl.setStyle('color', '#fff');
-				// 				this.inputEl.setStyle('fontSize', '20px');
-				// 				var me = this,
-				// 		            inputElement = me.inputElement;
-						 
-				// 		        if (inputElement && inputElement.dom.focus) {
-				// 		            inputElement.dom.focus();
-				// 		        }
-				// 		        return me;
-				// 			},
-				// 			specialkey : function(field, e) {
-				// 				if (e.getKey() == 13) {
-				// 					var reflow_date = Ext.getCmp('src_reflow_date').getValue();
-									
-				// 					if (!reflow_date) {
-				// 						Ext.Msg.alert('Warning', 'Reflow date cannot be null !!!');
-				// 					} else {
+					// 	//renderTo 	: src_reflow_date,
+					// 	width 		: '100%',
+					// 	id 			: 'smt_date',
+					// 	name 		: 'smt_date',
+					// 	fieldCls	: 'biggertext',
+					// 	emptyText	: 'Search Date',
+					// 	margins		: '0 6 0 0',
+					// 	height 		: 30,
+					// 	flex		: 1,
+					// 	format		: 'd F Y',
+					// 	submitFormat: 'Y-m-d',
+					// 	mode		: 'local',  
+					// 	value 		: new Date(),
+					// 	editable 	: false,
+					// 	listeners	: {
+					// 			afterrender : function() {
+					// 				this.inputEl.setStyle('text-align', 'center');
+					// 				this.inputEl.setStyle('backgroundColor', '#0067AE');
+					// 				this.inputEl.setStyle('color', '#fff');
+					// 				this.inputEl.setStyle('fontSize', '20px');
+					// 				var me = this,
+					// 		            inputElement = me.inputElement;
+							 
+					// 		        if (inputElement && inputElement.dom.focus) {
+					// 		            inputElement.dom.focus();
+					// 		        }
+					// 		        return me;
+					// 			},
+					// 			specialkey : function(field, e) {
+					// 				if (e.getKey() == 13) {
+					// 					var reflow_date = Ext.getCmp('src_reflow_date').getValue();
 										
-				// 						store_smt_reflow.proxy.setExtraParam('src_cat', 'fg');
-				// 						store_smt_reflow.proxy.setExtraParam('prod_date', reflow_date);
-				// 						store_smt_reflow.proxy.setExtraParam('model', 'nomodel');
-				// 						store_smt_reflow.loadPage(1);
-				// 					}
-				// 				}
-				// 			}
-				// 		}
+					// 					if (!reflow_date) {
+					// 						Ext.Msg.alert('Warning', 'Reflow date cannot be null !!!');
+					// 					} else {
+											
+					// 						store_smt_reflow.proxy.setExtraParam('src_cat', 'fg');
+					// 						store_smt_reflow.proxy.setExtraParam('prod_date', reflow_date);
+					// 						store_smt_reflow.proxy.setExtraParam('model', 'nomodel');
+					// 						store_smt_reflow.loadPage(1);
+					// 					}
+					// 				}
+					// 			}
+					// 		}
 				// });
 		
 		//	==** end **==
