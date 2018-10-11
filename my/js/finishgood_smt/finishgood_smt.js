@@ -12,7 +12,7 @@
 	});
 
 	//function untuk fontsize grid
-	function upsize(val) {		
+	function upsize(val) {
 		var x = val;
 		if (x == '' || x == '-'){
 			return '<font class="fontsize12" style="color:red;font-weight: bold;"> --- </font>';
@@ -22,6 +22,33 @@
 		}
 		else if (x == 'OK' || x == 'PASS' || x == 'SOLDER' || x == 'GOOD'){
 			return '<font class="fontsize12" style="color:green;font-weight: bold;"> ' + x + ' </font>';
+		}
+		else{
+			return '<font class="fontsize12">' + x + '</font>';
+		};
+	}
+	function spimchjudge(val) {
+		var x = val;
+		if (x == '' || x == '-'){
+			return '<font class="fontsize12" style="color:red;font-weight: bold;"> --- </font>';
+		}
+		else if (x == '2'){
+			return '<font class="fontsize12" style="color:red;font-weight: bold;"> NG </font>';
+		}
+		else if (x == '0'){
+			return '<font class="fontsize12" style="color:green;font-weight: bold;"> OK </font>';
+		}
+		else{
+			return '<font class="fontsize12">' + x + '</font>';
+		};
+	}
+	function spiopjudge(val) {
+		var x = val;
+		if (x != '0'){
+			return '<font class="fontsize12" style="color:red;font-weight: bold;"> Unknown </font>';
+		}
+		else if (x == '0'){
+			return '<font class="fontsize12" style="color:green;font-weight: bold;"> OK </font>';
 		}
 		else{
 			return '<font class="fontsize12">' + x + '</font>';
@@ -132,7 +159,8 @@
 							type: 'json',
 							root: 'rows',
 							totalProperty: 'totalCount'
-						}
+						},
+						load: false
 					},
 					listeners: {
 						load: function(store, records) {
@@ -427,7 +455,7 @@
 								width 	 	: 135,
 								renderer 	: upsize
 							},
-							{ 	header 		: 'SERVER',
+							{ 	header 		: 'MCH NAME',
 								dataIndex 	: 'linkedserver',
 								width 	 	: 90,
 								renderer 	: upsize
@@ -435,7 +463,8 @@
 							{ 	header 		: 'PCB ID',
 								dataIndex 	: 'pcbid',
 								width 	 	: 75,
-								renderer 	: upsize
+								renderer 	: upsize,
+								hidden  	: true
 							}, 
 							{ 	header 		: 'PCB GUID',
 								dataIndex 	: 'pcbguid',
@@ -456,17 +485,36 @@
 									type 	: 'string'
 								}
 							}, 
-							{ 	header 		: 'AOI JUDGE',
+							{ 	header 		: 'MCH JUDGE',
 								dataIndex 	: 'aoijudgment',
 								flex 		: 1,
 								renderer 	: upsize
 							}, 
-							{ 	header 		: 'USER JUDGE',
+							{ 	header 		: 'OP JUDGE',
 								dataIndex 	: 'userjudgment',
 								flex 		: 1,
 								renderer 	: upsize
 							}
 						],
+						bbar	: Ext.create('Ext.PagingToolbar', {
+							pageSize		: itemperpage,
+							store			: store_good_smt_aoi_board,
+							displayInfo		: true,
+							displayMsg		: 'Data {0} - {1} from {2} data',
+							emptyMsg		: "Page not found",
+							beforePageText  : 'Page',
+							afterPageText   : 'from {0} Pages',
+							firstText       : 'First Page',
+							prevText        : 'Previous Page',
+							nextText        : 'Next page',
+							lastText        : 'Last Page',
+							plugins       	: Ext.create('Ext.ux.ProgressBarPager', {}),
+							listeners 		: {
+								afterrender: function (cmp) {
+									cmp.getComponent("refresh").hide();
+								}
+							}
+						})
 						//features: [filters],
 						// selModel: {
 						// 	selType: 'cellmodel'
@@ -491,7 +539,7 @@
 								width 	 	: 135,
 								renderer 	: upsize
 							}, 
-							{ 	header 		: 'SERVER',
+							{ 	header 		: 'MCH NAME',
 								dataIndex 	: 'linkedserver',
 								width 	 	: 90,
 								renderer 	: upsize
@@ -499,7 +547,8 @@
 							{ 	header 		: 'PCB ID',
 								dataIndex 	: 'pcbid',
 								width 	 	: 75,
-								renderer 	: upsize
+								renderer 	: upsize,
+								hidden  	: true
 							}, 
 							{ 	header 		: 'PCB GUID',
 								dataIndex 	: 'pcbguid',
@@ -516,14 +565,15 @@
 							{ 	header 		: 'UNAME',
 								dataIndex 	: 'uname',
 								width 	 	: 75,
-								renderer 	: upsize
+								renderer 	: upsize,
+								hidden  	: true
 							}, 
-							{ 	header 		: 'START DATE',
+							{ 	header 		: 'INSP START',
 								dataIndex 	: 'stdate',
 								flex 		: 1,
 								renderer 	: upsize
 							},
-							{ 	header 		: 'END DATE',
+							{ 	header 		: 'INSP END',
 								dataIndex 	: 'enddate',
 								flex 		: 1,
 								renderer 	: upsize,
@@ -544,12 +594,12 @@
 								flex 		: 1,
 								renderer 	: upsize
 							}, 
-							{ 	header 		: 'AOI JUDGE',
+							{ 	header 		: 'MCH JUDGE',
 								dataIndex 	: 'aoijudgment',
 								flex 		: 1,
 								renderer 	: upsize
 							}, 
-							{ 	header 		: 'USER JUDGE',
+							{ 	header 		: 'OP JUDGE',
 								dataIndex 	: 'userjudgment',
 								flex 		: 1,
 								renderer 	: upsize
@@ -580,17 +630,17 @@
 							flex: 1,
 							renderer: upsize
 						}, {
-							header: 'SCAN DATE',
+							header: 'REFLOW DATE',
 							dataIndex: 'scan_date',
 							flex: 1,
 							renderer: upsize
 						}, {
-							header: 'START TIME',
+							header: 'MOUNTER IN',
 							dataIndex: 'reflow_start_time',
 							flex: 1,
 							renderer: upsize
 						}, {
-							header: 'END TIME',
+							header: 'MOUNTER OUT',
 							dataIndex: 'reflow_end_time',
 							flex: 1,
 							renderer: upsize
@@ -612,7 +662,7 @@
 						autoWidth 		: '100%',
 						maxHeight		: 290,
 						columnLines 	: true,
-						store 			: store_smt_mounter,
+						//store 			: store_smt_mounter,
 						viewConfig 		: {
 							stripeRows 			: true,
 							emptyText 	 		: '<div class="empty-txt">No data to display.</div>',
@@ -783,15 +833,15 @@
 								width 		: 70,
 								renderer	: upsize
 							},
-							{	header 		: 'SPI JUDGE',
+							{	header 		: 'MCH JUDGE',
 								dataIndex 	: 'spijudge',
 								width 		: 80,
-								renderer	: upsize
+								renderer	: spimchjudge
 							},
 							{	header 		: 'OP JUDGE',
 								dataIndex 	: 'opjudge',
 								width 		: 80,
-								renderer	: upsize
+								renderer	: spiopjudge
 							},
 							{	header 		: 'DEFECT CNT',
 								dataIndex 	: 'defectcnt',
@@ -1079,7 +1129,157 @@
 						store 			: store_mapros_avmt,
 						viewConfig 		: {
 							stripeRows 			: true,
-							emptyText 	 		: '<div class="empty-txt">No data to display.</div>',
+							emptyText 	 		: '<div class="empty-txt">Under Development</div>',
+							deferEmptyText 		: false,
+							enableTextSelection	: true
+						},
+						columns 	: [
+							{	header 		: 'BARCODE',
+								dataIndex 	: 'barcode',
+								width 		: 140,
+								renderer	: upsize
+							},
+							{	header 		: 'SERIAL',
+								dataIndex 	: 'modelname',
+								flex 		: 1,
+								renderer	: upsize
+							},
+							{	header 		: 'LINE',
+								dataIndex 	: 'line',
+								width 	 	: 90,
+								renderer	: upsize
+							},
+							{	header 		: 'PROCESS',
+								dataIndex 	: 'lineprocess',
+								width 	 	: 90,
+								renderer	: upsize
+							},
+							{	header 		: 'scanner_id',
+								dataIndex 	: 'scanner_id',
+								flex 		: 1,
+								renderer	: upsize,
+								hidden		: true
+							},
+							{	header 		: 'STATUS',
+								dataIndex 	: 'status',
+								width 	 	: 90,
+								renderer	: upsize
+							},
+							{	header 		: 'JUDGE',
+								dataIndex 	: 'judge',
+								width 	 	: 90,
+								renderer	: upsize
+							},
+							{	header 		: 'SCAN TIME',
+								dataIndex 	: 'created_at',
+								flex 		: 1,
+								renderer	: upsize
+							},
+							{	header 		: 'SCAN NIK',
+								dataIndex 	: 'scan_nik',
+								flex 		: 1,
+								renderer	: upsize
+							},
+							{	header 		: 'updated_at',
+								dataIndex 	: 'updated_at',
+								flex 		: 1,
+								renderer	: upsize,
+								hidden		: true
+							}
+						],
+						//features: [filters],
+						// selModel: {
+						// 	selType: 'cellmodel'
+						// },
+						// plugins: [cellEditing]
+					});
+					var grid_mapros_avntest = Ext.create('Ext.grid.Panel', {
+						id 				: 'grid_mapros_avntest',
+						autoWidth 		: '100%',
+						maxHeight		: 290,
+						columnLines 	: true,
+						//store 			: store_mapros_avmt,
+						viewConfig 		: {
+							stripeRows 			: true,
+							emptyText 	 		: '<div class="empty-txt">Under Development</div>',
+							deferEmptyText 		: false,
+							enableTextSelection	: true
+						},
+						columns 	: [
+							{	header 		: 'MASTER NO',
+								dataIndex 	: 'ticket_no_master',
+								width 		: 140,
+								renderer	: upsize
+							},
+							{	header 		: 'guid_master',
+								dataIndex 	: 'guid_master',
+								flex 		: 1,
+								renderer	: upsize,
+								hidden		: true
+							},
+							{	header 		: 'MODEL',
+								dataIndex 	: 'modelname',
+								flex 		: 1,
+								renderer	: upsize
+							},
+							{	header 		: 'LINE',
+								dataIndex 	: 'line',
+								width 	 	: 90,
+								renderer	: upsize
+							},
+							{	header 		: 'PROCESS',
+								dataIndex 	: 'lineprocess',
+								width 	 	: 90,
+								renderer	: upsize
+							},
+							{	header 		: 'scanner_id',
+								dataIndex 	: 'scanner_id',
+								flex 		: 1,
+								renderer	: upsize,
+								hidden		: true
+							},
+							{	header 		: 'STATUS',
+								dataIndex 	: 'status',
+								width 	 	: 90,
+								renderer	: upsize
+							},
+							{	header 		: 'JUDGE',
+								dataIndex 	: 'judge',
+								width 	 	: 90,
+								renderer	: upsize
+							},
+							{	header 		: 'SCAN TIME',
+								dataIndex 	: 'created_at',
+								flex 		: 1,
+								renderer	: upsize
+							},
+							{	header 		: 'SCAN NIK',
+								dataIndex 	: 'scan_nik',
+								flex 		: 1,
+								renderer	: upsize
+							},
+							{	header 		: 'updated_at',
+								dataIndex 	: 'updated_at',
+								flex 		: 1,
+								renderer	: upsize,
+								hidden		: true
+							}
+						],
+						//features: [filters],
+						// selModel: {
+						// 	selType: 'cellmodel'
+						// },
+						// plugins: [cellEditing]
+					});
+					var grid_mapros_auto0 = Ext.create('Ext.grid.Panel', {
+						id 				: 'grid_mapros_auto0',
+						autoWidth 		: '100%',
+						maxHeight		: 290,
+						columnLines 	: true,
+						//store 			: store_mapros_avmt,
+						viewConfig 		: {
+							stripeRows 			: true,
+							emptyText 	 		: '<div class="empty-txt">Under Development</div>',
 							deferEmptyText 		: false,
 							enableTextSelection	: true
 						},
@@ -1292,12 +1492,12 @@
 							{	title 		: 'AVN TEST',
 							 	id  		: 'show_grid_avntest',
 								reorderable : false,
-								//items 		: [grid_mapros_master]
+								items 		: [grid_mapros_avntest]
 							}, 
 							{	title 		: 'AUTO LINE ZERO',
 							 	id  		: 'show_grid_zero',
 								reorderable : false,
-								//items 		: [grid_mapros_master]
+								items 		: [grid_mapros_auto0]
 							}
 						]
 					});
@@ -1317,7 +1517,8 @@
 						flex		: 1,
 						//value:  	'00013IA000010015',
 						//value:  	'000207B000010002',
-						value:  	'000157A000010009',
+						//value:  	'000157A000010009',
+						value:  	'000177A020010012',
 						listeners	: {
 							afterrender : function() {
 								this.inputEl.setStyle('text-align', 'center');
@@ -1356,7 +1557,6 @@
 										store_smt_spi.proxy.setExtraParam('boardid', boardid);
 										store_smt_spi.proxy.setExtraParam('smt_date', '');
 										store_smt_spi.loadPage(1);
-
 									}
 								}
 							}
