@@ -16,8 +16,8 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="x_panel">
         <div class="x_title">
-  				<h2><i class="fab fa-hubspot"></i> BOARD ID GENERATOR </h2>
-  				<ul class="nav navbar-right panel_toolbox">
+  				<h2><i class="fab fa-hubspot"></i> Board ID Generator <small> ( SMT ) </small></h2>
+        	<ul class="nav navbar-right panel_toolbox">
   					<li>
   						<a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
   					</li>
@@ -38,7 +38,7 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="x_panel">
         <div class="x_title">
-  				<h2><i class="far fa-clipboard"></i> AOI</h2>
+  				<h2><i class="far fa-clipboard"></i> AOI  <small> ( SMT ) </small></h2>
   				<ul class="nav navbar-right panel_toolbox">
   					<li>
   						<a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -60,7 +60,7 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="x_panel">
         <div class="x_title">
-  				<h2><i class="far fa-calendar-check"></i> REFLOW</h2>
+  				<h2><i class="far fa-calendar-check"></i> REFLOW  <small> ( SMT ) </small></h2>
   				<ul class="nav navbar-right panel_toolbox">
   					<li>
   						<a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -82,7 +82,7 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="x_panel">
         <div class="x_title">
-          <h2><i class="far fa-calendar-check"></i> MOUNTER</h2>
+          <h2><i class="far fa-calendar-check"></i> MOUNTER  <small> ( SMT ) </small></h2>
           <ul class="nav navbar-right panel_toolbox">
             <li>
               <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -104,7 +104,7 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="x_panel">
         <div class="x_title">
-          <h2><i class="far fa-calendar-check"></i> SPI</h2>
+          <h2><i class="far fa-calendar-check"></i> SPI  <small> ( SMT ) </small></h2>
           <ul class="nav navbar-right panel_toolbox">
             <li>
               <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -126,7 +126,7 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="x_panel">
         <div class="x_title">
-          <h2><i class="far fa-calendar-check"></i> MA LINE</h2>
+          <h2><i class="far fa-calendar-check"></i> Production <small> ( MA & MECHA ) </small></h2>
           <ul class="nav navbar-right panel_toolbox">
             <li>
               <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -139,6 +139,32 @@
         </div>
         <div class="x_content">
           <div  id="panel_mapros" class="extjs_border">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="finishgood_tab" class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="x_panel fixed_height_500">
+        <div class="x_title">
+          <h2><i class="fas fa-warehouse"></i> Warehouse <small> ( Logistic ) </small></h2>
+          <ul class="nav navbar-right panel_toolbox">
+            <li>
+              <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+            </li>
+            <li>
+              <a class="close-link"><i class="fas fa-times"></i></a>
+            </li>
+          </ul>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+          <div class="well" style="overflow: auto">
+            <div class="col-md-12">
+              <div id="panel_warehouse" class="extjs_border">
+              </div>
+            </div>
           </div>
         </div>
       </div>
