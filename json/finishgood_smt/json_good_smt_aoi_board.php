@@ -2,9 +2,9 @@
 	date_default_timezone_set('Asia/jakarta');
     include '../../../adodb/con_smtpros.php';
 
-    //$page 	= @$_REQUEST["page"];
-	//$limit 	= @$_REQUEST["limit"];
-	//$start	= (($page*$limit)-$limit)+1;
+    $page       = @$_REQUEST["page"];
+    $limit      = @$_REQUEST["limit"];
+    $start      = (($page*$limit)-$limit)+1;
 	
     $boardid    = @$_REQUEST['boardid'];
     $smt_date2  = @$_REQUEST['smt_date'];
@@ -18,9 +18,12 @@
     else {
         $smt_date   = '';
     }
-    
-	//echo "exec traceability_smt_good_aoi_board '{$boardid}','{$smt_date}'";
-    $rs         = $db->Execute("exec traceability_smt_good_aoi_board '{$boardid}','{$smt_date}'");
+
+    //echo "declare @totalcount as int; exec traceability_smt_good_aoi_board $start, $limit, '{$boardid}', '{$smt_date}', @totalcount=@totalcount out";
+    //$rs         = $db->Execute("exec traceability_smt_good_aoi_board '{$boardid}','{$smt_date}'");
+    $rs         = $db->Execute("declare @totalcount as int; exec traceability_smt_good_aoi_board $start, $limit, '{$boardid}', '{$smt_date}', @totalcount=@totalcount out");
+   $totalcount = $rs->fields['8'];
+
     $return     = array();
 
     for($i=0;!$rs->EOF;$i++){
