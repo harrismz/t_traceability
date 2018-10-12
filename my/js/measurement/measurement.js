@@ -37,14 +37,47 @@
 		//	=======================================================    MODEL    =========================================
 				
 				// THERMOHUMIDITY
-					Ext.define('model_thermo_ma',{
+					Ext.define('model_thermo_smt1',{
 		                extend: 'Ext.data.Model',
 						fields: ['id', 'mchname', 'model', 'dateinspection','datetimein','serial','alm','t_ch1','h_ch2','alm1','alm2','inputdate']
 		           	});
-					Ext.define('model_thermo_smt',{
+					Ext.define('model_thermo_smt2',{
 		                extend: 'Ext.data.Model',
 						fields: ['id', 'mchname', 'model', 'dateinspection','datetimein','serial','alm','t_ch1','h_ch2','alm1','alm2','inputdate']
-	           		});
+		           	});
+					Ext.define('model_thermo_smt3',{
+		                extend: 'Ext.data.Model',
+						fields: ['id', 'mchname', 'model', 'dateinspection','datetimein','serial','alm','t_ch1','h_ch2','alm1','alm2','inputdate']
+		           	});
+					Ext.define('model_thermo_smtsparepart',{
+		                extend: 'Ext.data.Model',
+						fields: ['id', 'mchname', 'model', 'dateinspection','datetimein','serial','alm','t_ch1','h_ch2','alm1','alm2','inputdate']
+		           	});
+					Ext.define('model_thermo_mc_ictray',{
+		                extend: 'Ext.data.Model',
+						fields: ['id', 'mchname', 'model', 'dateinspection','datetimein','serial','alm','t_ch1','h_ch2','alm1','alm2','inputdate']
+		           	});
+					Ext.define('model_thermo_mc_warehouse',{
+		                extend: 'Ext.data.Model',
+						fields: ['id', 'mchname', 'model', 'dateinspection','datetimein','serial','alm','t_ch1','h_ch2','alm1','alm2','inputdate']
+		           	});
+					Ext.define('model_thermo_maline16',{
+		                extend: 'Ext.data.Model',
+						fields: ['id', 'mchname', 'model', 'dateinspection','datetimein','serial','alm','t_ch1','h_ch2','alm1','alm2','inputdate']
+		           	});
+					Ext.define('model_thermo_maline17',{
+		                extend: 'Ext.data.Model',
+						fields: ['id', 'mchname', 'model', 'dateinspection','datetimein','serial','alm','t_ch1','h_ch2','alm1','alm2','inputdate']
+		           	});
+
+					// Ext.define('model_thermo_ma',{
+		   //              extend: 'Ext.data.Model',
+					// 	fields: ['id', 'mchname', 'model', 'dateinspection','datetimein','serial','alm','t_ch1','h_ch2','alm1','alm2','inputdate']
+		   //         	});
+					// Ext.define('model_thermo_smt',{
+		   //              extend: 'Ext.data.Model',
+					// 	fields: ['id', 'mchname', 'model', 'dateinspection','datetimein','serial','alm','t_ch1','h_ch2','alm1','alm2','inputdate']
+	    //        		});
 		        // ESD
 		           	Ext.define('model_esd_ma',{
 		                extend: 'Ext.data.Model',
@@ -67,29 +100,139 @@
 		//	=======================================================    DATASTORE    =====================================
 				
 				// THERMOHUMIDITY
-		        	var store_thermo_ma = Ext.create('Ext.data.Store',{
-						model	: 'model_thermo_ma',
+					var store_thermo_smt1 = Ext.create('Ext.data.Store',{
+						model	: 'model_thermo_smt1',
 						autoLoad: true,
 						pageSize: itemperpage,
 						proxy   : {
 							type    : 'ajax',
 							url     : 'json/measurement/json_ma_thermohumidity.php',
+							extraParams: {
+								loc: 'smt1'
+							},
 							reader  : {
 								type    : 'json',
-								root    : 'rows'
+								root    : 'rows',
+								totalProperty : 'totalCount'
 							}
 						}
 					});
-					var store_thermo_smt = Ext.create('Ext.data.Store',{
-						model	: 'model_thermo_smt',
+					var store_thermo_smt2 = Ext.create('Ext.data.Store',{
+						model	: 'model_thermo_smt2',
 						autoLoad: true,
 						pageSize: itemperpage,
 						proxy   : {
 							type    : 'ajax',
-							url     : 'json/measurement/json_smt_thermohumidity.php',
+							url     : 'json/measurement/json_ma_thermohumidity.php',
+							extraParams: {
+								loc: 'smt2'
+							},
 							reader  : {
 								type    : 'json',
-								root    : 'rows'
+								root    : 'rows',
+								totalProperty : 'totalCount'
+							}
+						}
+					});
+					var store_thermo_smt3 = Ext.create('Ext.data.Store',{
+						model	: 'model_thermo_smt3',
+						autoLoad: true,
+						pageSize: itemperpage,
+						proxy   : {
+							type    : 'ajax',
+							url     : 'json/measurement/json_ma_thermohumidity.php',
+							extraParams: {
+								loc: 'smt3'
+							},
+							reader  : {
+								type    : 'json',
+								root    : 'rows',
+								totalProperty : 'totalCount'
+							}
+						}
+					});
+					var store_thermo_smtsparepart = Ext.create('Ext.data.Store',{
+						model	: 'model_thermo_smtsparepart',
+						autoLoad: true,
+						pageSize: itemperpage,
+						proxy   : {
+							type    : 'ajax',
+							url     : 'json/measurement/json_ma_thermohumidity.php',
+							extraParams: {
+								loc: 'smtsparepart'
+							},
+							reader  : {
+								type    : 'json',
+								root    : 'rows',
+								totalProperty : 'totalCount'
+							}
+						}
+					});
+					var store_thermo_mc_ictray = Ext.create('Ext.data.Store',{
+						model	: 'model_thermo_mc_ictray',
+						autoLoad: true,
+						pageSize: itemperpage,
+						proxy   : {
+							type    : 'ajax',
+							url     : 'json/measurement/json_ma_thermohumidity.php',
+							extraParams: {
+								loc: 'mc_ictray'
+							},
+							reader  : {
+								type    : 'json',
+								root    : 'rows',
+								totalProperty : 'totalCount'
+							}
+						}
+					});
+					var store_thermo_mc_warehouse = Ext.create('Ext.data.Store',{
+						model	: 'model_thermo_mc_warehouse',
+						autoLoad: true,
+						pageSize: itemperpage,
+						proxy   : {
+							type    : 'ajax',
+							url     : 'json/measurement/json_ma_thermohumidity.php',
+							extraParams: {
+								loc: 'mc_warehouse'
+							},
+							reader  : {
+								type    : 'json',
+								root    : 'rows',
+								totalProperty : 'totalCount'
+							}
+						}
+					});
+					var store_thermo_maline16 = Ext.create('Ext.data.Store',{
+						model	: 'model_thermo_maline16',
+						autoLoad: true,
+						pageSize: itemperpage,
+						proxy   : {
+							type    : 'ajax',
+							url     : 'json/measurement/json_ma_thermohumidity.php',
+							extraParams: {
+								loc: 'maline16'
+							},
+							reader  : {
+								type    : 'json',
+								root    : 'rows',
+								totalProperty : 'totalCount'
+							}
+						}
+					});
+					var store_thermo_maline17 = Ext.create('Ext.data.Store',{
+						model	: 'model_thermo_maline17',
+						autoLoad: true,
+						pageSize: itemperpage,
+						proxy   : {
+							type    : 'ajax',
+							url     : 'json/measurement/json_ma_thermohumidity.php',
+							extraParams: {
+								loc: 'maline17'
+							},
+							reader  : {
+								type    : 'json',
+								root    : 'rows',
+								totalProperty : 'totalCount'
 							}
 						}
 					});
@@ -153,176 +296,12 @@
 		//	=======================================================    GRID    ==========================================
 				
 				// THERMOHUMIDITY
-		        	var grid_thermo_ma = Ext.create('Ext.grid.Panel', {
-						id 				: 'grid_thermo_ma',
-						autoWidth 	 	: '100%',
-						maxHeight	 	: 290,
-						columnLines 	: true,
-						store 			: store_thermo_ma,
-						viewConfig 		: {
-							stripeRows 			: true,
-							emptyText 		 	: '<div class="empty-txt">No data to display.</div>',
-							deferEmptyText 		: false,
-							enableTextSelection : true
-						},
-						columns: [
-							{	header 		: 'id',
-								dataIndex 	: 'id',
-								flex 		: 1,
-								renderer 	: upsize,
-								hidden		: true
-							},
-							{	header 		: 'DATE INSP',
-								dataIndex 	: 'dateinspection',
-								flex 		: 1,
-								renderer 	: upsize
-							},
-							{	header 		: 'TIME',
-								dataIndex 	: 'datetimein',
-								flex 		: 1,
-								renderer 	: upsize
-							},
-							{	header 		: 'MCH NAME',
-								dataIndex 	: 'mchname',
-								flex 		: 1,
-								renderer 	: upsize
-							},
-							{	header 		: 'MODEL',
-								dataIndex 	: 'model',
-								flex 		: 1,
-								renderer 	: upsize
-							},
-							{	header 		: 'SERIAL',
-								dataIndex 	: 'serial',
-								flex 		: 1,
-								renderer 	: upsize
-							},
-							{	header 		: 'ALM',
-								dataIndex 	: 'alm',
-								flex 		: 1,
-								renderer 	: upsize
-							},
-							{	header 		: 'TEMPERATURE <br> ( &deg;C )',
-								dataIndex 	: 't_ch1',
-								width 		: 120,
-								renderer 	: upsize
-							},
-							{	header 		: 'HUMIDITY <br> ( <i class="fas fa-tint"></i> )',
-								dataIndex 	: 'h_ch2',
-								flex 		: 1,
-								renderer 	: upsize
-							},
-							{	header 		: 'ALM1',
-								dataIndex	: 'alm1',
-								flex 		: 1,
-								renderer	: upsize
-							},
-							{	header 		: 'ALM2',
-								dataIndex 	: 'alm2',
-								flex 		: 1,
-								renderer 	: upsize
-							},
-							{	header 		: 'inputdate',
-								dataIndex 	: 'inputdate',
-								flex 		: 1,
-								renderer 	: upsize,
-								hidden		: true
-							}
-						],
-						//features: [filters],
-						// selModel: {
-						// 	selType: 'cellmodel'
-						// },
-						// plugins: [cellEditing]
-					});
-					var grid_thermo_smt = Ext.create('Ext.grid.Panel', {
-						id 				: 'grid_thermo_smt',
-						autoWidth 	 	: '100%',
-						maxHeight	 	: 290,
-						columnLines 	: true,
-						store 			: store_thermo_smt,
-						viewConfig 		: {
-							stripeRows 			: true,
-							emptyText 		 	: '<div class="empty-txt">No data to display.</div>',
-							deferEmptyText 		: false,
-							enableTextSelection : true
-						},
-						columns: [
-							{	header 		: 'id',
-								dataIndex 	: 'id',
-								flex 		: 1,
-								renderer 	: upsize,
-								hidden		: true
-							},
-							{	header 		: 'DATE INSP',
-								dataIndex 	: 'dateinspection',
-								flex 		: 1,
-								renderer 	: upsize
-							},
-							{	header 		: 'TIME',
-								dataIndex 	: 'datetimein',
-								flex 		: 1,
-								renderer 	: upsize
-							},
-							{	header 		: 'MCH NAME',
-								dataIndex 	: 'mchname',
-								flex 		: 1,
-								renderer 	: upsize
-							},
-							{	header 		: 'MODEL',
-								dataIndex 	: 'model',
-								flex 		: 1,
-								renderer 	: upsize
-							},
-							{	header 		: 'SERIAL',
-								dataIndex 	: 'serial',
-								flex 		: 1,
-								renderer 	: upsize
-							},
-							{	header 		: 'ALM',
-								dataIndex 	: 'alm',
-								flex 		: 1,
-								renderer 	: upsize
-							},
-							{	header 		: 'TEMPERATURE <br> ( &deg;C )',
-								dataIndex 	: 't_ch1',
-								width 		: 120,
-								renderer 	: upsize
-							},
-							{	header 		: 'HUMIDITY <br> ( <i class="fas fa-tint"></i> )',
-								dataIndex 	: 'h_ch2',
-								flex 		: 1,
-								renderer 	: upsize
-							},
-							{	header 		: 'ALM1',
-								dataIndex	: 'alm1',
-								flex 		: 1,
-								renderer	: upsize
-							},
-							{	header 		: 'ALM2',
-								dataIndex 	: 'alm2',
-								flex 		: 1,
-								renderer 	: upsize
-							},
-							{	header 		: 'inputdate',
-								dataIndex 	: 'inputdate',
-								flex 		: 1,
-								renderer 	: upsize,
-								hidden		: true
-							}
-						],
-						//features: [filters],
-						// selModel: {
-						// 	selType: 'cellmodel'
-						// },
-						// plugins: [cellEditing]
-					});
-					var grid_thermo_smt1 = Ext.create('Ext.grid.Panel', {
+		        	var grid_thermo_smt1 = Ext.create('Ext.grid.Panel', {
 						id 				: 'grid_thermo_smt1',
 						autoWidth 	 	: '100%',
-						maxHeight	 	: 290,
+						maxHeight	 	: 330,
 						columnLines 	: true,
-						//store 			: store_thermo_smt1,
+						store 			: store_thermo_smt1,
 						viewConfig 		: {
 							stripeRows 			: true,
 							emptyText 		 	: '<div class="empty-txt">No data to display.</div>',
@@ -393,6 +372,25 @@
 								hidden		: true
 							}
 						],
+						bbar	: Ext.create('Ext.PagingToolbar', {
+							pageSize		: itemperpage,
+							store			: store_thermo_smt1,
+							displayInfo		: true,
+							displayMsg		: 'Data {0} - {1} from {2} data',
+							emptyMsg		: "Page not found",
+							beforePageText  : 'Page',
+							afterPageText   : 'from {0} Pages',
+							firstText       : 'First Page',
+							prevText        : 'Previous Page',
+							nextText        : 'Next page',
+							lastText        : 'Last Page',
+							plugins       	: Ext.create('Ext.ux.ProgressBarPager', {}),
+							listeners 		: {
+								afterrender: function (cmp) {
+									cmp.getComponent("refresh").hide();
+								}
+							}
+						}),
 						//features: [filters],
 						// selModel: {
 						// 	selType: 'cellmodel'
@@ -404,7 +402,7 @@
 						autoWidth 	 	: '100%',
 						maxHeight	 	: 290,
 						columnLines 	: true,
-						//store 			: store_thermo_smt2,
+						store 			: store_thermo_smt2,
 						viewConfig 		: {
 							stripeRows 			: true,
 							emptyText 		 	: '<div class="empty-txt">No data to display.</div>',
@@ -475,18 +473,37 @@
 								hidden		: true
 							}
 						],
+						bbar	: Ext.create('Ext.PagingToolbar', {
+							pageSize		: itemperpage,
+							store			: store_thermo_smt2,
+							displayInfo		: true,
+							displayMsg		: 'Data {0} - {1} from {2} data',
+							emptyMsg		: "Page not found",
+							beforePageText  : 'Page',
+							afterPageText   : 'from {0} Pages',
+							firstText       : 'First Page',
+							prevText        : 'Previous Page',
+							nextText        : 'Next page',
+							lastText        : 'Last Page',
+							plugins       	: Ext.create('Ext.ux.ProgressBarPager', {}),
+							listeners 		: {
+								afterrender: function (cmp) {
+									cmp.getComponent("refresh").hide();
+								}
+							}
+						}),
 						//features: [filters],
 						// selModel: {
 						// 	selType: 'cellmodel'
 						// },
 						// plugins: [cellEditing]
 					});
-					var grid_thermo_smt_store = Ext.create('Ext.grid.Panel', {
-						id 				: 'grid_thermo_smt_store',
+					var grid_thermo_smt3 = Ext.create('Ext.grid.Panel', {
+						id 				: 'grid_thermo_smt3',
 						autoWidth 	 	: '100%',
 						maxHeight	 	: 290,
 						columnLines 	: true,
-						//store 			: store_thermo_smt_store,
+						store 			: store_thermo_smt3,
 						viewConfig 		: {
 							stripeRows 			: true,
 							emptyText 		 	: '<div class="empty-txt">No data to display.</div>',
@@ -557,6 +574,530 @@
 								hidden		: true
 							}
 						],
+						bbar	: Ext.create('Ext.PagingToolbar', {
+							pageSize		: itemperpage,
+							store			: store_thermo_smt3,
+							displayInfo		: true,
+							displayMsg		: 'Data {0} - {1} from {2} data',
+							emptyMsg		: "Page not found",
+							beforePageText  : 'Page',
+							afterPageText   : 'from {0} Pages',
+							firstText       : 'First Page',
+							prevText        : 'Previous Page',
+							nextText        : 'Next page',
+							lastText        : 'Last Page',
+							plugins       	: Ext.create('Ext.ux.ProgressBarPager', {}),
+							listeners 		: {
+								afterrender: function (cmp) {
+									cmp.getComponent("refresh").hide();
+								}
+							}
+						}),
+						//features: [filters],
+						// selModel: {
+						// 	selType: 'cellmodel'
+						// },
+						// plugins: [cellEditing]
+					});
+					var grid_thermo_smtsparepart = Ext.create('Ext.grid.Panel', {
+						id 				: 'grid_thermo_smt_sparepart',
+						autoWidth 	 	: '100%',
+						maxHeight	 	: 290,
+						columnLines 	: true,
+						store 			: store_thermo_smtsparepart,
+						viewConfig 		: {
+							stripeRows 			: true,
+							emptyText 		 	: '<div class="empty-txt">No data to display.</div>',
+							deferEmptyText 		: false,
+							enableTextSelection : true
+						},
+						columns: [
+							{	header 		: 'id',
+								dataIndex 	: 'id',
+								flex 		: 1,
+								renderer 	: upsize,
+								hidden		: true
+							},
+							{	header 		: 'DATE INSP',
+								dataIndex 	: 'dateinspection',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'TIME',
+								dataIndex 	: 'datetimein',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'MCH NAME',
+								dataIndex 	: 'mchname',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'MODEL',
+								dataIndex 	: 'model',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'SERIAL',
+								dataIndex 	: 'serial',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'ALM',
+								dataIndex 	: 'alm',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'TEMPERATURE <br> ( &deg;C )',
+								dataIndex 	: 't_ch1',
+								width 		: 120,
+								renderer 	: upsize
+							},
+							{	header 		: 'HUMIDITY <br> ( <i class="fas fa-tint"></i> )',
+								dataIndex 	: 'h_ch2',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'ALM1',
+								dataIndex	: 'alm1',
+								flex 		: 1,
+								renderer	: upsize
+							},
+							{	header 		: 'ALM2',
+								dataIndex 	: 'alm2',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'inputdate',
+								dataIndex 	: 'inputdate',
+								flex 		: 1,
+								renderer 	: upsize,
+								hidden		: true
+							}
+						],
+						bbar	: Ext.create('Ext.PagingToolbar', {
+							pageSize		: itemperpage,
+							store			: store_thermo_smtsparepart,
+							displayInfo		: true,
+							displayMsg		: 'Data {0} - {1} from {2} data',
+							emptyMsg		: "Page not found",
+							beforePageText  : 'Page',
+							afterPageText   : 'from {0} Pages',
+							firstText       : 'First Page',
+							prevText        : 'Previous Page',
+							nextText        : 'Next page',
+							lastText        : 'Last Page',
+							plugins       	: Ext.create('Ext.ux.ProgressBarPager', {}),
+							listeners 		: {
+								afterrender: function (cmp) {
+									cmp.getComponent("refresh").hide();
+								}
+							}
+						}),
+						//features: [filters],
+						// selModel: {
+						// 	selType: 'cellmodel'
+						// },
+						// plugins: [cellEditing]
+					});
+					var grid_thermo_mc_ictray = Ext.create('Ext.grid.Panel', {
+						id 				: 'grid_thermo_mc_ictray',
+						autoWidth 	 	: '100%',
+						maxHeight	 	: 290,
+						columnLines 	: true,
+						store 			: store_thermo_mc_ictray,
+						viewConfig 		: {
+							stripeRows 			: true,
+							emptyText 		 	: '<div class="empty-txt">No data to display.</div>',
+							deferEmptyText 		: false,
+							enableTextSelection : true
+						},
+						columns: [
+							{	header 		: 'id',
+								dataIndex 	: 'id',
+								flex 		: 1,
+								renderer 	: upsize,
+								hidden		: true
+							},
+							{	header 		: 'DATE INSP',
+								dataIndex 	: 'dateinspection',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'TIME',
+								dataIndex 	: 'datetimein',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'MCH NAME',
+								dataIndex 	: 'mchname',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'MODEL',
+								dataIndex 	: 'model',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'SERIAL',
+								dataIndex 	: 'serial',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'ALM',
+								dataIndex 	: 'alm',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'TEMPERATURE <br> ( &deg;C )',
+								dataIndex 	: 't_ch1',
+								width 		: 120,
+								renderer 	: upsize
+							},
+							{	header 		: 'HUMIDITY <br> ( <i class="fas fa-tint"></i> )',
+								dataIndex 	: 'h_ch2',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'ALM1',
+								dataIndex	: 'alm1',
+								flex 		: 1,
+								renderer	: upsize
+							},
+							{	header 		: 'ALM2',
+								dataIndex 	: 'alm2',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'inputdate',
+								dataIndex 	: 'inputdate',
+								flex 		: 1,
+								renderer 	: upsize,
+								hidden		: true
+							}
+						],
+						bbar	: Ext.create('Ext.PagingToolbar', {
+							pageSize		: itemperpage,
+							store			: store_thermo_mc_ictray,
+							displayInfo		: true,
+							displayMsg		: 'Data {0} - {1} from {2} data',
+							emptyMsg		: "Page not found",
+							beforePageText  : 'Page',
+							afterPageText   : 'from {0} Pages',
+							firstText       : 'First Page',
+							prevText        : 'Previous Page',
+							nextText        : 'Next page',
+							lastText        : 'Last Page',
+							plugins       	: Ext.create('Ext.ux.ProgressBarPager', {}),
+							listeners 		: {
+								afterrender: function (cmp) {
+									cmp.getComponent("refresh").hide();
+								}
+							}
+						}),
+						//features: [filters],
+						// selModel: {
+						// 	selType: 'cellmodel'
+						// },
+						// plugins: [cellEditing]
+					});
+					var grid_thermo_mc_warehouse = Ext.create('Ext.grid.Panel', {
+						id 				: 'grid_thermo_mc_warehouse',
+						autoWidth 	 	: '100%',
+						maxHeight	 	: 290,
+						columnLines 	: true,
+						store 			: store_thermo_mc_warehouse,
+						viewConfig 		: {
+							stripeRows 			: true,
+							emptyText 		 	: '<div class="empty-txt">No data to display.</div>',
+							deferEmptyText 		: false,
+							enableTextSelection : true
+						},
+						columns: [
+							{	header 		: 'id',
+								dataIndex 	: 'id',
+								flex 		: 1,
+								renderer 	: upsize,
+								hidden		: true
+							},
+							{	header 		: 'DATE INSP',
+								dataIndex 	: 'dateinspection',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'TIME',
+								dataIndex 	: 'datetimein',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'MCH NAME',
+								dataIndex 	: 'mchname',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'MODEL',
+								dataIndex 	: 'model',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'SERIAL',
+								dataIndex 	: 'serial',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'ALM',
+								dataIndex 	: 'alm',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'TEMPERATURE <br> ( &deg;C )',
+								dataIndex 	: 't_ch1',
+								width 		: 120,
+								renderer 	: upsize
+							},
+							{	header 		: 'HUMIDITY <br> ( <i class="fas fa-tint"></i> )',
+								dataIndex 	: 'h_ch2',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'ALM1',
+								dataIndex	: 'alm1',
+								flex 		: 1,
+								renderer	: upsize
+							},
+							{	header 		: 'ALM2',
+								dataIndex 	: 'alm2',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'inputdate',
+								dataIndex 	: 'inputdate',
+								flex 		: 1,
+								renderer 	: upsize,
+								hidden		: true
+							}
+						],
+						bbar	: Ext.create('Ext.PagingToolbar', {
+							pageSize		: itemperpage,
+							store			: store_thermo_mc_warehouse,
+							displayInfo		: true,
+							displayMsg		: 'Data {0} - {1} from {2} data',
+							emptyMsg		: "Page not found",
+							beforePageText  : 'Page',
+							afterPageText   : 'from {0} Pages',
+							firstText       : 'First Page',
+							prevText        : 'Previous Page',
+							nextText        : 'Next page',
+							lastText        : 'Last Page',
+							plugins       	: Ext.create('Ext.ux.ProgressBarPager', {}),
+							listeners 		: {
+								afterrender: function (cmp) {
+									cmp.getComponent("refresh").hide();
+								}
+							}
+						}),
+						//features: [filters],
+						// selModel: {
+						// 	selType: 'cellmodel'
+						// },
+						// plugins: [cellEditing]
+					});
+					var grid_thermo_maline16 = Ext.create('Ext.grid.Panel', {
+						id 				: 'grid_thermo_maline16',
+						autoWidth 	 	: '100%',
+						maxHeight	 	: 290,
+						columnLines 	: true,
+						store 			: store_thermo_maline16,
+						viewConfig 		: {
+							stripeRows 			: true,
+							emptyText 		 	: '<div class="empty-txt">No data to display.</div>',
+							deferEmptyText 		: false,
+							enableTextSelection : true
+						},
+						columns: [
+							{	header 		: 'id',
+								dataIndex 	: 'id',
+								flex 		: 1,
+								renderer 	: upsize,
+								hidden		: true
+							},
+							{	header 		: 'DATE INSP',
+								dataIndex 	: 'dateinspection',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'TIME',
+								dataIndex 	: 'datetimein',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'MCH NAME',
+								dataIndex 	: 'mchname',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'MODEL',
+								dataIndex 	: 'model',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'SERIAL',
+								dataIndex 	: 'serial',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'ALM',
+								dataIndex 	: 'alm',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'TEMPERATURE <br> ( &deg;C )',
+								dataIndex 	: 't_ch1',
+								width 		: 120,
+								renderer 	: upsize
+							},
+							{	header 		: 'HUMIDITY <br> ( <i class="fas fa-tint"></i> )',
+								dataIndex 	: 'h_ch2',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'ALM1',
+								dataIndex	: 'alm1',
+								flex 		: 1,
+								renderer	: upsize
+							},
+							{	header 		: 'ALM2',
+								dataIndex 	: 'alm2',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'inputdate',
+								dataIndex 	: 'inputdate',
+								flex 		: 1,
+								renderer 	: upsize,
+								hidden		: true
+							}
+						],
+						bbar	: Ext.create('Ext.PagingToolbar', {
+							pageSize		: itemperpage,
+							store			: store_thermo_maline16,
+							displayInfo		: true,
+							displayMsg		: 'Data {0} - {1} from {2} data',
+							emptyMsg		: "Page not found",
+							beforePageText  : 'Page',
+							afterPageText   : 'from {0} Pages',
+							firstText       : 'First Page',
+							prevText        : 'Previous Page',
+							nextText        : 'Next page',
+							lastText        : 'Last Page',
+							plugins       	: Ext.create('Ext.ux.ProgressBarPager', {}),
+							listeners 		: {
+								afterrender: function (cmp) {
+									cmp.getComponent("refresh").hide();
+								}
+							}
+						}),
+						//features: [filters],
+						// selModel: {
+						// 	selType: 'cellmodel'
+						// },
+						// plugins: [cellEditing]
+					});
+					var grid_thermo_maline17 = Ext.create('Ext.grid.Panel', {
+						id 				: 'grid_thermo_maline17',
+						autoWidth 	 	: '100%',
+						maxHeight	 	: 290,
+						columnLines 	: true,
+						store 			: store_thermo_maline17,
+						viewConfig 		: {
+							stripeRows 			: true,
+							emptyText 		 	: '<div class="empty-txt">No data to display.</div>',
+							deferEmptyText 		: false,
+							enableTextSelection : true
+						},
+						columns: [
+							{	header 		: 'id',
+								dataIndex 	: 'id',
+								flex 		: 1,
+								renderer 	: upsize,
+								hidden		: true
+							},
+							{	header 		: 'DATE INSP',
+								dataIndex 	: 'dateinspection',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'TIME',
+								dataIndex 	: 'datetimein',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'MCH NAME',
+								dataIndex 	: 'mchname',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'MODEL',
+								dataIndex 	: 'model',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'SERIAL',
+								dataIndex 	: 'serial',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'ALM',
+								dataIndex 	: 'alm',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'TEMPERATURE <br> ( &deg;C )',
+								dataIndex 	: 't_ch1',
+								width 		: 120,
+								renderer 	: upsize
+							},
+							{	header 		: 'HUMIDITY <br> ( <i class="fas fa-tint"></i> )',
+								dataIndex 	: 'h_ch2',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'ALM1',
+								dataIndex	: 'alm1',
+								flex 		: 1,
+								renderer	: upsize
+							},
+							{	header 		: 'ALM2',
+								dataIndex 	: 'alm2',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'inputdate',
+								dataIndex 	: 'inputdate',
+								flex 		: 1,
+								renderer 	: upsize,
+								hidden		: true
+							}
+						],
+						bbar	: Ext.create('Ext.PagingToolbar', {
+							pageSize		: itemperpage,
+							store			: store_thermo_maline17,
+							displayInfo		: true,
+							displayMsg		: 'Data {0} - {1} from {2} data',
+							emptyMsg		: "Page not found",
+							beforePageText  : 'Page',
+							afterPageText   : 'from {0} Pages',
+							firstText       : 'First Page',
+							prevText        : 'Previous Page',
+							nextText        : 'Next page',
+							lastText        : 'Last Page',
+							plugins       	: Ext.create('Ext.ux.ProgressBarPager', {}),
+							listeners 		: {
+								afterrender: function (cmp) {
+									cmp.getComponent("refresh").hide();
+								}
+							}
+						}),
 						//features: [filters],
 						// selModel: {
 						// 	selType: 'cellmodel'
@@ -874,7 +1415,7 @@
 						plain 		: true,
 						activeTab 	: 0,
 						autoWidth 	: '100%',
-						height		: 290,
+						height		: 350,
 						autoScroll 	: true,
 						frame 		: true,
 						//style 	: 'padding:5px;-background:#157FCC;',
@@ -886,35 +1427,53 @@
 							}
 						},
 						items 		: [
-							{	title 		: 'MA',
-							 	id  		: 'show_grid_thermo_ma',
-								reorderable : false,
-								layout 		: 'fit',
-								items 		: [grid_thermo_ma]
-							}, 
-							{	title 		: 'SMT',
-							 	id  		: 'show_grid_thermo_smt',
-								reorderable : false,
-								layout 		: 'fit',
-								items 		: [grid_thermo_smt]
-							}, 
-							{	title 		: 'SMT LINE 1',
+							{	title 		: 'SMT LINE 1-3',
 							 	id  		: 'show_grid_thermo_smt1',
 								reorderable : false,
 								layout 		: 'fit',
 								items 		: [grid_thermo_smt1]
 							}, 
-							{	title 		: 'SMT LINE 2',
+							{	title 		: 'SMT LINE 4-8',
 							 	id  		: 'show_grid_thermo_smt2',
 								reorderable : false,
 								layout 		: 'fit',
 								items 		: [grid_thermo_smt2]
 							}, 
-							{	title 		: 'SMT STORE',
-							 	id  		: 'show_grid_thermo_smt_store',
+							{	title 		: 'SMT LINE 09-13',
+							 	id  		: 'show_grid_thermo_smt3',
 								reorderable : false,
 								layout 		: 'fit',
-								items 		: [grid_thermo_smt_store]
+								items 		: [grid_thermo_smt3]
+							}, 
+							{	title 		: 'SMT SPAREPART',
+							 	id  		: 'show_grid_thermo_smtsparepart',
+								reorderable : false,
+								layout 		: 'fit',
+								items 		: [grid_thermo_smtsparepart]
+							}, 
+							{	title 		: 'MC IC TRAY',
+							 	id  		: 'show_grid_thermo_mc_ictray',
+								reorderable : false,
+								layout 		: 'fit',
+								items 		: [grid_thermo_mc_ictray]
+							}, 
+							{	title 		: 'MC WAREHOUSE',
+							 	id  		: 'show_grid_thermo_mc_warehouse',
+								reorderable : false,
+								layout 		: 'fit',
+								items 		: [grid_thermo_mc_warehouse]
+							}, 
+							{	title 		: 'MA LINE 16',
+							 	id  		: 'show_grid_thermo_mc_maline16',
+								reorderable : false,
+								layout 		: 'fit',
+								items 		: [grid_thermo_maline16]
+							}, 
+							{	title 		: 'MA LINE 17',
+							 	id  		: 'show_grid_thermo_mc_maline17',
+								reorderable : false,
+								layout 		: 'fit',
+								items 		: [grid_thermo_maline17]
 							}
 						]
 					});
@@ -982,89 +1541,89 @@
 
 		//	=======================================================    POPUP SEARCH DATA    =============================
 				// Ext.create('Ext.form.field.Date',{
-				// 	renderTo 	: src_measurement_date,
-				// 	width 		: '100%',
-				// 	id 			: 'src_measurement_date',
-				// 	name 		: 'src_measurement_date',
-				// 	fieldCls	: 'biggertext',
-				// 	emptyText	: 'Search Date',
-				// 	margins		: '0 6 0 0',
-				// 	height 		: 30,
-				// 	flex		: 1,
-				// 	format		: 'd F Y',
-				// 	submitFormat: 'Y-m-d',
-				// 	mode		: 'local',  
-				// 	value 		: new Date(),
-				// 	editable 	: false,
-				// 	listeners	: {
-				// 			afterrender : function() {
-				// 				this.inputEl.setStyle('text-align', 'center');
-				// 				this.inputEl.setStyle('backgroundColor', '#0067AE');
-				// 				this.inputEl.setStyle('color', '#fff');
-				// 				this.inputEl.setStyle('fontSize', '20px');
-				// 				var me = this,
-				// 		            inputElement = me.inputElement;
-						 
-				// 		        if (inputElement && inputElement.dom.focus) {
-				// 		            inputElement.dom.focus();
-				// 		        }
-				// 		        return me;
-				// 			},
-				// 			specialkey : function(field, e) {
-				// 				if (e.getKey() == 13) {
-				// 					var measurement_date = Ext.getCmp('src_measurement_date').getValue();
-									
-				// 					if (!measurement_date) {
-				// 						Ext.Msg.alert('Warning', 'Measurement date cannot be null !!!');
-				// 					} else {
-				// 						store_thermo_smt.proxy.setExtraParam('measurement_date', measurement_date);
-				// 						store_thermo_smt.loadPage(1);
-
-				// 						store_thermo_ma.proxy.setExtraParam('measurement_date', measurement_date);
-				// 						store_thermo_ma.loadPage(1);
-
-				// 						store_esd_ma.proxy.setExtraParam('measurement_date', measurement_date);
-				// 						store_esd_ma.loadPage(1);
-
-				// 						store_torque_ma.proxy.setExtraParam('measurement_date', measurement_date);
-				// 						store_torque_ma.loadPage(1);
+					// 	renderTo 	: src_measurement_date,
+					// 	width 		: '100%',
+					// 	id 			: 'src_measurement_date',
+					// 	name 		: 'src_measurement_date',
+					// 	fieldCls	: 'biggertext',
+					// 	emptyText	: 'Search Date',
+					// 	margins		: '0 6 0 0',
+					// 	height 		: 30,
+					// 	flex		: 1,
+					// 	format		: 'd F Y',
+					// 	submitFormat: 'Y-m-d',
+					// 	mode		: 'local',  
+					// 	value 		: new Date(),
+					// 	editable 	: false,
+					// 	listeners	: {
+					// 			afterrender : function() {
+					// 				this.inputEl.setStyle('text-align', 'center');
+					// 				this.inputEl.setStyle('backgroundColor', '#0067AE');
+					// 				this.inputEl.setStyle('color', '#fff');
+					// 				this.inputEl.setStyle('fontSize', '20px');
+					// 				var me = this,
+					// 		            inputElement = me.inputElement;
+							 
+					// 		        if (inputElement && inputElement.dom.focus) {
+					// 		            inputElement.dom.focus();
+					// 		        }
+					// 		        return me;
+					// 			},
+					// 			specialkey : function(field, e) {
+					// 				if (e.getKey() == 13) {
+					// 					var measurement_date = Ext.getCmp('src_measurement_date').getValue();
 										
-				// 						store_temperature_ma.proxy.setExtraParam('measurement_date', measurement_date);
-				// 						store_temperature_ma.loadPage(1);
+					// 					if (!measurement_date) {
+					// 						Ext.Msg.alert('Warning', 'Measurement date cannot be null !!!');
+					// 					} else {
+					// 						store_thermo_smt.proxy.setExtraParam('measurement_date', measurement_date);
+					// 						store_thermo_smt.loadPage(1);
+
+					// 						store_thermo_ma.proxy.setExtraParam('measurement_date', measurement_date);
+					// 						store_thermo_ma.loadPage(1);
+
+					// 						store_esd_ma.proxy.setExtraParam('measurement_date', measurement_date);
+					// 						store_esd_ma.loadPage(1);
+
+					// 						store_torque_ma.proxy.setExtraParam('measurement_date', measurement_date);
+					// 						store_torque_ma.loadPage(1);
+											
+					// 						store_temperature_ma.proxy.setExtraParam('measurement_date', measurement_date);
+					// 						store_temperature_ma.loadPage(1);
+											
+					// 						store_temperature_smt.proxy.setExtraParam('measurement_date', measurement_date);
+					// 						store_temperature_smt.loadPage(1);
 										
-				// 						store_temperature_smt.proxy.setExtraParam('measurement_date', measurement_date);
-				// 						store_temperature_smt.loadPage(1);
-									
-				// 					}
-				// 				}
-				// 			},
-				// 			change: function() {
-				// 				var measurement_date = Ext.getCmp('src_measurement_date').getValue();
-									
-				// 					if (!measurement_date) {
-				// 						Ext.Msg.alert('Warning', 'Measurement date cannot be null !!!');
-				// 					} else {
-				// 						store_thermo_smt.proxy.setExtraParam('measurement_date', measurement_date);
-				// 						store_thermo_smt.loadPage(1);
-
-				// 						store_thermo_ma.proxy.setExtraParam('measurement_date', measurement_date);
-				// 						store_thermo_ma.loadPage(1);
-
-				// 						store_esd_ma.proxy.setExtraParam('measurement_date', measurement_date);
-				// 						store_esd_ma.loadPage(1);
-
-				// 						store_torque_ma.proxy.setExtraParam('measurement_date', measurement_date);
-				// 						store_torque_ma.loadPage(1);
-
-				// 						store_temperature_ma.proxy.setExtraParam('measurement_date', measurement_date);
-				// 						store_temperature_ma.loadPage(1);
+					// 					}
+					// 				}
+					// 			},
+					// 			change: function() {
+					// 				var measurement_date = Ext.getCmp('src_measurement_date').getValue();
 										
-				// 						store_temperature_smt.proxy.setExtraParam('measurement_date', measurement_date);
-				// 						store_temperature_smt.loadPage(1);
-				// 					}
-				// 			}
-				// 		}
-				// });
+					// 					if (!measurement_date) {
+					// 						Ext.Msg.alert('Warning', 'Measurement date cannot be null !!!');
+					// 					} else {
+					// 						store_thermo_smt.proxy.setExtraParam('measurement_date', measurement_date);
+					// 						store_thermo_smt.loadPage(1);
+
+					// 						store_thermo_ma.proxy.setExtraParam('measurement_date', measurement_date);
+					// 						store_thermo_ma.loadPage(1);
+
+					// 						store_esd_ma.proxy.setExtraParam('measurement_date', measurement_date);
+					// 						store_esd_ma.loadPage(1);
+
+					// 						store_torque_ma.proxy.setExtraParam('measurement_date', measurement_date);
+					// 						store_torque_ma.loadPage(1);
+
+					// 						store_temperature_ma.proxy.setExtraParam('measurement_date', measurement_date);
+					// 						store_temperature_ma.loadPage(1);
+											
+					// 						store_temperature_smt.proxy.setExtraParam('measurement_date', measurement_date);
+					// 						store_temperature_smt.loadPage(1);
+					// 					}
+					// 			}
+					// 		}
+					// });
 				
 				// THERMOHUMIDITY
 		        	Ext.create('Ext.form.field.Date',{
@@ -1103,11 +1662,37 @@
 										if (!measurement_date) {
 											Ext.Msg.alert('Warning', 'Measurement date cannot be null !!!');
 										} else {
-											store_thermo_smt.proxy.setExtraParam('measurement_date', measurement_date);
-											store_thermo_smt.loadPage(1);
+											store_thermo_smt1.proxy.setExtraParam('measurement_date', measurement_date);
+											store_thermo_smt1.proxy.setExtraParam('loc', 'smt1');
+											store_thermo_smt1.loadPage(1);
 
-											store_thermo_ma.proxy.setExtraParam('measurement_date', measurement_date);
-											store_thermo_ma.loadPage(1);
+											store_thermo_smt2.proxy.setExtraParam('measurement_date', measurement_date);
+											store_thermo_smt2.proxy.setExtraParam('loc', 'smt2');
+											store_thermo_smt2.loadPage(1);
+											
+											store_thermo_smt3.proxy.setExtraParam('measurement_date', measurement_date);
+											store_thermo_smt3.proxy.setExtraParam('loc', 'smt3');
+											store_thermo_smt3.loadPage(1);
+											
+											store_thermo_smtsparepart.proxy.setExtraParam('measurement_date', measurement_date);
+											store_thermo_smtsparepart.proxy.setExtraParam('loc', 'smtsparepart');
+											store_thermo_smtsparepart.loadPage(1);
+											
+											store_thermo_mc_ictray.proxy.setExtraParam('measurement_date', measurement_date);
+											store_thermo_mc_ictray.proxy.setExtraParam('loc', 'mc_ictray');
+											store_thermo_mc_ictray.loadPage(1);
+
+											store_thermo_mc_warehouse.proxy.setExtraParam('measurement_date', measurement_date);
+											store_thermo_mc_warehouse.proxy.setExtraParam('loc', 'mc_warehouse');
+											store_thermo_mc_warehouse.loadPage(1);
+
+											store_thermo_maline16.proxy.setExtraParam('measurement_date', measurement_date);
+											store_thermo_maline16.proxy.setExtraParam('loc', 'maline16');
+											store_thermo_maline16.loadPage(1);
+
+											store_thermo_maline17.proxy.setExtraParam('measurement_date', measurement_date);
+											store_thermo_maline17.proxy.setExtraParam('loc', 'maline17');
+											store_thermo_maline17.loadPage(1);
 										}
 									}
 								},
@@ -1117,11 +1702,38 @@
 										if (!measurement_date) {
 											Ext.Msg.alert('Warning', 'Measurement date cannot be null !!!');
 										} else {
-											store_thermo_smt.proxy.setExtraParam('measurement_date', measurement_date);
-											store_thermo_smt.loadPage(1);
 
-											store_thermo_ma.proxy.setExtraParam('measurement_date', measurement_date);
-											store_thermo_ma.loadPage(1);
+											store_thermo_smt1.proxy.setExtraParam('measurement_date', measurement_date);
+											store_thermo_smt1.proxy.setExtraParam('loc', 'smt1');
+											store_thermo_smt1.loadPage(1);
+
+											store_thermo_smt2.proxy.setExtraParam('measurement_date', measurement_date);
+											store_thermo_smt2.proxy.setExtraParam('loc', 'smt2');
+											store_thermo_smt2.loadPage(1);
+											
+											store_thermo_smt3.proxy.setExtraParam('measurement_date', measurement_date);
+											store_thermo_smt3.proxy.setExtraParam('loc', 'smt3');
+											store_thermo_smt3.loadPage(1);
+											
+											store_thermo_smtsparepart.proxy.setExtraParam('measurement_date', measurement_date);
+											store_thermo_smtsparepart.proxy.setExtraParam('loc', 'smtsparepart');
+											store_thermo_smtsparepart.loadPage(1);
+											
+											store_thermo_mc_ictray.proxy.setExtraParam('measurement_date', measurement_date);
+											store_thermo_mc_ictray.proxy.setExtraParam('loc', 'mc_ictray');
+											store_thermo_mc_ictray.loadPage(1);
+
+											store_thermo_mc_warehouse.proxy.setExtraParam('measurement_date', measurement_date);
+											store_thermo_mc_warehouse.proxy.setExtraParam('loc', 'mc_warehouse');
+											store_thermo_mc_warehouse.loadPage(1);
+
+											store_thermo_maline16.proxy.setExtraParam('measurement_date', measurement_date);
+											store_thermo_maline16.proxy.setExtraParam('loc', 'maline16');
+											store_thermo_maline16.loadPage(1);
+
+											store_thermo_maline17.proxy.setExtraParam('measurement_date', measurement_date);
+											store_thermo_maline17.proxy.setExtraParam('loc', 'maline17');
+											store_thermo_maline17.loadPage(1);
 										}
 								}
 							}
