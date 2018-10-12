@@ -25,8 +25,8 @@
       <!-- <h3>General</h3> -->
       <ul class="nav side-menu">
         <!-- <li><a href="home.php"><i class="fas fa-home"></i> Home </a></li> -->
-        <li><a href="home.php?content=finishgood"><i class="fas fa-box"></i> MA Finished Goods </a></li>
         <li><a href="home.php?content=finishgood_smt"><i class="fas fa-microchip"></i> SMT Finished Goods </a></li>
+        <li><a href="home.php?content=finishgood"><i class="fas fa-box"></i> MA Finished Goods </a></li>
         <!-- <li><a href="home.php?content=finishgood_smt"><i class="fas fa-code-branch"></i> Finished Goods SMT </a></li> -->
         <!-- <li><a href="home.php?content=singlepart"><i class="fas fa-microchip"></i> Part </a></li> -->
         <!-- <li><a href="home.php?content=symptom"><i class="fas fa-stethoscope"></i> Symptom </a></li> -->

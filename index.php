@@ -1,1 +1,1 @@
-<?php header('location:home.php?content=finishgood'); ?>
+<?php header('location:home.php?content=finishgood_smt'); ?>
