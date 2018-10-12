@@ -683,12 +683,12 @@
 								flex: 1,
 								renderer: upsize
 							}, {
-								header: 'MOUNTER IN',
+								header: 'IN',
 								dataIndex: 'reflow_start_time',
 								flex: 1,
 								renderer: upsize
 							}, {
-								header: 'MOUNTER OUT',
+								header: 'OUT',
 								dataIndex: 'reflow_end_time',
 								flex: 1,
 								renderer: upsize
