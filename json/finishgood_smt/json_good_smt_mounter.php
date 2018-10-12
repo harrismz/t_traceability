@@ -2,21 +2,22 @@
 	date_default_timezone_set('Asia/jakarta');
     include '../../../adodb/con_mounter.php';
 
-    //$page 		= @$_REQUEST["page"];
-	//$limit 		= @$_REQUEST["limit"];
-	//$start		= (($page*$limit)-$limit)+1;
+    $page       = @$_REQUEST["page"];
+    $limit      = @$_REQUEST["limit"];
+    $model      = @$_REQUEST['model'];
+    $process    = @$_REQUEST['process'];
+    $pwbno      = @$_REQUEST['pwbno'];
+    $start      = (($page*$limit)-$limit)+1;
 	
-    $model      = $_REQUEST['model'];
-    $process    = $_REQUEST['process'];
-	$pwbno      = $_REQUEST['pwbno'];
-	
-    //$getdate    = substr($_REQUEST['smt_date'],0,10);
-	//$proddate 	= date('Y-m-d', strtotime($getdate));
-
+    //$getdate  = substr($_REQUEST['smt_date'],0,10);
+	//$proddate = date('Y-m-d', strtotime($getdate));
 	//echo "exec [traceability_good_smt_mounter] '{$model}','{$process}','{$pwbno}'";
-    $rs    = $db->Execute("exec [traceability_good_smt_mounter] '{$model}','{$process}','{$pwbno}'");
-    $return = array();
-    
+    //$rs       = $db->Execute("exec [traceability_good_smt_mounter] '{$model}','{$process}','{$pwbno}'");
+
+    $rs         = $db->Execute("declare @totalcount as int; exec traceability_good_smt_mounter $start, $limit, '{$model}','{$process}','{$pwbno}', @totalcount=@totalcount out");
+    $totalcount = $rs->fields['19'];
+    $return     = array();
+
     for($i=0;!$rs->EOF;$i++){
         $return[$i]['mjsid']        = trim($rs->fields['0']);
         $return[$i]['puside']       = trim($rs->fields['1']);
@@ -42,10 +43,8 @@
     }
     $x = array(
         "success"=>true,
-        //"totalCount"=>$totalcount,
+        "totalCount"=>$totalcount,
         "rows"=>$return);
-
     echo json_encode($x);
-
     $db->Close();
 ?>

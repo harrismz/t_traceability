@@ -144,7 +144,7 @@
       </div>
     </div>
   </div>
-  <div id="finishgood_tab" class="row">
+  <!-- <div id="finishgood_tab" class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="x_panel fixed_height_500">
         <div class="x_title">
@@ -169,7 +169,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
   <!-- ============================================================================== -->
   <!-- Return to Top -->
   <a href="javascript:" id="return-to-top"><i class="fas fa-chevron-up"></i></a>

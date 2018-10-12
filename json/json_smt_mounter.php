@@ -13,6 +13,8 @@
 
 	//echo "exec traceability_reflow '{$model}','{$proddate}'";
     $rs    = $db->Execute("exec traceability_reflow '{$model}','{$proddate}'");
+    
+   // $rs         = $db->Execute("declare @totalcount as int; exec traceability_reflow $start, $limit, '{$model}','{$proddate}', @totalcount=@totalcount out");
     $return = array();
 
     for($i=0;!$rs->EOF;$i++){

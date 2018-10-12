@@ -772,7 +772,19 @@
 								//hideGroupedHeader: true,
 								//enableGroupingMenu: false
 							}
-						]
+						],
+						listeners: {
+							select: function( grid, rowIndex, colIndex) {
+								var rec = this.getSelectionModel().getSelection();
+
+
+								var proddate = rec[0].data.prod_date;
+								var modelname = rec[0].data.model_name;
+								var output = rec[0].data.output;
+
+								console.log(proddate);
+							}
+						}
 					});
 			//	Part Handling
 				//Receiving Part

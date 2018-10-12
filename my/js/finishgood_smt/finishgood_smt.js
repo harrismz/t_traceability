@@ -44,10 +44,10 @@
 	}
 	function spiopjudge(val) {
 		var x = val;
-		if (x != '0'){
+		if (x > '0'){
 			return '<font class="fontsize12" style="color:red;font-weight: bold;"> Unknown </font>';
 		}
-		else if (x == '0'){
+		else if (x == '0' || x == ''){
 			return '<font class="fontsize12" style="color:green;font-weight: bold;"> OK </font>';
 		}
 		else{
@@ -152,6 +152,7 @@
 			//	BOARD ID GENERATOR
 				var store_bigs = Ext.create('Ext.data.Store', {
 					model: 'model_bigs',
+					pageSize : itemperpage,
 					proxy: {
 						type: 'ajax',
 						url: 'json/json_finishgood_smt_bigs.php',
@@ -231,7 +232,8 @@
 						url     : 'json/finishgood_smt/json_good_smt_aoi_point.php',
 						reader  : {
 							type    : 'json',
-							root    : 'rows'
+							root    : 'rows',
+							totalProperty: 'totalCount'
 						}
 					}
 				});
@@ -245,7 +247,8 @@
 						url     : 'json/finishgood_smt/json_good_smt_reflow.php',
 						reader  : {
 							type    : 'json',
-							root    : 'rows'
+							root    : 'rows',
+							totalProperty: 'totalCount'
 						}
 					}
 				});
@@ -259,7 +262,8 @@
 						url     : 'json/finishgood_smt/json_good_smt_mounter.php',
 						reader  : {
 							type    : 'json',
-							root    : 'rows'
+							root    : 'rows',
+							totalProperty: 'totalCount'
 						}
 					}
 				});
@@ -273,7 +277,8 @@
 						url     : 'json/finishgood_smt/json_good_smt_spi.php',
 						reader  : {
 							type    : 'json',
-							root    : 'rows'
+							root    : 'rows',
+							totalProperty: 'totalCount'
 						}
 					}
 				});
@@ -338,8 +343,7 @@
 						id 			: 'grid_bigs',
 						renderTo 	: 'panel_bigs',
 						columnLines	: true,
-						// width 	: '100%',
-						maxHeight 	: 130,
+						maxHeight 	: 300,
 						store 		: store_bigs,
 						viewConfig	: {
 							stripeRows 			: true,
@@ -433,7 +437,26 @@
 								flex 	 : 1,
 								renderer : upsize
 							}
-						]
+						],
+						bbar	: Ext.create('Ext.PagingToolbar', {
+							pageSize		: itemperpage,
+							store			: store_bigs,
+							displayInfo		: true,
+							displayMsg		: 'Data {0} - {1} from {2} data',
+							emptyMsg		: "Page not found",
+							beforePageText  : 'Page',
+							afterPageText   : 'from {0} Pages',
+							firstText       : 'First Page',
+							prevText        : 'Previous Page',
+							nextText        : 'Next page',
+							lastText        : 'Last Page',
+							plugins       	: Ext.create('Ext.ux.ProgressBarPager', {}),
+							listeners 		: {
+								afterrender: function (cmp) {
+									cmp.getComponent("refresh").hide();
+								}
+							}
+						})
 					});
 			//	AOI
 					var grid_smt_aoi_board = Ext.create('Ext.grid.Panel', {
@@ -524,7 +547,7 @@
 					var grid_smt_aoi_point = Ext.create('Ext.grid.Panel', {
 						id 				: 'grid_smt_aoi_point',
 						autoWidth 	 	: '100%',
-						maxHeight		: 295,
+						maxHeight		: 180,
 						columnLines 	: true,
 						store 			: store_good_smt_aoi_point,
 						viewConfig 		: {
@@ -594,6 +617,11 @@
 								flex 		: 1,
 								renderer 	: upsize
 							}, 
+							{ 	header 		: 'IMAGE',
+								dataIndex 	: 'image2d',
+								flex 		: 1,
+								renderer 	: upsize
+							}, 
 							{ 	header 		: 'MCH JUDGE',
 								dataIndex 	: 'aoijudgment',
 								flex 		: 1,
@@ -605,6 +633,25 @@
 								renderer 	: upsize
 							}
 						],
+						bbar	: Ext.create('Ext.PagingToolbar', {
+							pageSize		: itemperpage,
+							store			: store_good_smt_aoi_point,
+							displayInfo		: true,
+							displayMsg		: 'Data {0} - {1} from {2} data',
+							emptyMsg		: "Page not found",
+							beforePageText  : 'Page',
+							afterPageText   : 'from {0} Pages',
+							firstText       : 'First Page',
+							prevText        : 'Previous Page',
+							nextText        : 'Next page',
+							lastText        : 'Last Page',
+							plugins       	: Ext.create('Ext.ux.ProgressBarPager', {}),
+							listeners 		: {
+								afterrender: function (cmp) {
+									cmp.getComponent("refresh").hide();
+								}
+							}
+						})
 						//features: [filters],
 						// selModel: {
 						// 	selType: 'cellmodel'
@@ -616,40 +663,61 @@
 						id 			: 'grid_smt_reflow',
 						autoWidth 	: '100%',
 						maxHeight	: 290,
-						columnLines: true,
-						store: store_smt_reflow,
-						viewConfig: {
-							stripeRows: true,
-							emptyText: '<div class="empty-txt">No data to display.</div>',
-							deferEmptyText: false,
-							enableTextSelection: true
+						columnLines : true,
+						store 		: store_smt_reflow,
+						viewConfig 	: {
+							stripeRows 			: true,
+							emptyText 			: '<div class="empty-txt">No data to display.</div>',
+							deferEmptyText 		: false,
+							enableTextSelection : true
 						},
-						columns: [{
-							header: 'BOARD ID',
-							dataIndex: 'board_id',
-							flex: 1,
-							renderer: upsize
-						}, {
-							header: 'REFLOW DATE',
-							dataIndex: 'scan_date',
-							flex: 1,
-							renderer: upsize
-						}, {
-							header: 'MOUNTER IN',
-							dataIndex: 'reflow_start_time',
-							flex: 1,
-							renderer: upsize
-						}, {
-							header: 'MOUNTER OUT',
-							dataIndex: 'reflow_end_time',
-							flex: 1,
-							renderer: upsize
-						}, {
-							header: 'PCB ID',
-							dataIndex: 'pcbid',
-							flex: 1,
-							renderer: upsize
-						}],
+						columns: [
+							{
+								header: 'BOARD ID',
+								dataIndex: 'board_id',
+								flex: 1,
+								renderer: upsize
+							}, {
+								header: 'REFLOW DATE',
+								dataIndex: 'scan_date',
+								flex: 1,
+								renderer: upsize
+							}, {
+								header: 'MOUNTER IN',
+								dataIndex: 'reflow_start_time',
+								flex: 1,
+								renderer: upsize
+							}, {
+								header: 'MOUNTER OUT',
+								dataIndex: 'reflow_end_time',
+								flex: 1,
+								renderer: upsize
+							}, {
+								header: 'PCB ID',
+								dataIndex: 'pcbid',
+								flex: 1,
+								renderer: upsize
+							}
+						],
+						bbar	: Ext.create('Ext.PagingToolbar', {
+							pageSize		: itemperpage,
+							store			: store_smt_reflow,
+							displayInfo		: true,
+							displayMsg		: 'Data {0} - {1} from {2} data',
+							emptyMsg		: "Page not found",
+							beforePageText  : 'Page',
+							afterPageText   : 'from {0} Pages',
+							firstText       : 'First Page',
+							prevText        : 'Previous Page',
+							nextText        : 'Next page',
+							lastText        : 'Last Page',
+							plugins       	: Ext.create('Ext.ux.ProgressBarPager', {}),
+							listeners 		: {
+								afterrender: function (cmp) {
+									cmp.getComponent("refresh").hide();
+								}
+							}
+						})
 						//features: [filters],
 						// selModel: {
 						// 	selType: 'cellmodel'
@@ -662,7 +730,7 @@
 						autoWidth 		: '100%',
 						maxHeight		: 290,
 						columnLines 	: true,
-						//store 			: store_smt_mounter,
+						store 			: store_smt_mounter,
 						viewConfig 		: {
 							stripeRows 			: true,
 							emptyText 	 		: '<div class="empty-txt">No data to display.</div>',
@@ -776,6 +844,25 @@
 								hidden		: true
 							}
 						],
+						bbar	: Ext.create('Ext.PagingToolbar', {
+							pageSize		: itemperpage,
+							store			: store_smt_mounter,
+							displayInfo		: true,
+							displayMsg		: 'Data {0} - {1} from {2} data',
+							emptyMsg		: "Page not found",
+							beforePageText  : 'Page',
+							afterPageText   : 'from {0} Pages',
+							firstText       : 'First Page',
+							prevText        : 'Previous Page',
+							nextText        : 'Next page',
+							lastText        : 'Last Page',
+							plugins       	: Ext.create('Ext.ux.ProgressBarPager', {}),
+							listeners 		: {
+								afterrender: function (cmp) {
+									cmp.getComponent("refresh").hide();
+								}
+							}
+						})
 						//features: [filters],
 						// selModel: {
 						// 	selType: 'cellmodel'
@@ -826,12 +913,14 @@
 							{	header 		: 'FILE NAME',
 								dataIndex 	: 'filename',
 								flex 		: 1,
-								renderer	: upsize
+								renderer	: upsize,
+								hidden 		: true
 							},
 							{	header 		: 'PCB ID',
 								dataIndex 	: 'pcbid',
 								width 		: 70,
-								renderer	: upsize
+								renderer	: upsize,
+								hidden 		: true
 							},
 							{	header 		: 'MCH JUDGE',
 								dataIndex 	: 'spijudge',
@@ -849,6 +938,25 @@
 								renderer	: upsize
 							}
 						],
+						bbar	: Ext.create('Ext.PagingToolbar', {
+							pageSize		: itemperpage,
+							store			: store_smt_spi,
+							displayInfo		: true,
+							displayMsg		: 'Data {0} - {1} from {2} data',
+							emptyMsg		: "Page not found",
+							beforePageText  : 'Page',
+							afterPageText   : 'from {0} Pages',
+							firstText       : 'First Page',
+							prevText        : 'Previous Page',
+							nextText        : 'Next page',
+							lastText        : 'Last Page',
+							plugins       	: Ext.create('Ext.ux.ProgressBarPager', {}),
+							listeners 		: {
+								afterrender: function (cmp) {
+									cmp.getComponent("refresh").hide();
+								}
+							}
+						})
 						//features: [filters],
 						// selModel: {
 						// 	selType: 'cellmodel'
@@ -1518,7 +1626,8 @@
 						//value:  	'00013IA000010015',
 						//value:  	'000207B000010002',
 						//value:  	'000157A000010009',
-						value:  	'000177A020010012',
+						//value:  	'000177A020010012',
+						value:  	'000267B000010001',
 						listeners	: {
 							afterrender : function() {
 								this.inputEl.setStyle('text-align', 'center');

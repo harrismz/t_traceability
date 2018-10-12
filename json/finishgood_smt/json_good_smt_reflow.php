@@ -2,17 +2,28 @@
 	date_default_timezone_set('Asia/jakarta');
     include '../../../adodb/con_mounter.php';
 
-    //$page 		= @$_REQUEST["page"];
-	//$limit 		= @$_REQUEST["limit"];
-	//$start		= (($page*$limit)-$limit)+1;
-	
-	$model      = $_REQUEST['boardid'];
-	$getdate    = substr($_REQUEST['smt_date'],0,10);
-	$proddate 	= date('Y-m-d', strtotime($getdate));
+    $page       = @$_REQUEST["page"];
+    $limit      = @$_REQUEST["limit"];
+    $start      = (($page*$limit)-$limit)+1;
+    $boardid    = @$_REQUEST['boardid'];
+    $smt_date2  = @$_REQUEST['smt_date'];
+    $getdate    = '';
+    $smt_date   = '';
+
+    if ($smt_date2) {
+        $getdate    = substr($_REQUEST['smt_date'],0,10);
+        $smt_date   = date('Y-m-d', strtotime($getdate));
+    }
+    else {
+        $smt_date   = '';
+    }
 
 	//echo "exec traceability_good_smt_reflow '{$model}','{$proddate}'";
-    $rs    = $db->Execute("exec [traceability_good_smt_reflow] '{$model}','{$proddate}'");
-    $return = array();
+    //$rs    = $db->Execute("exec [traceability_good_smt_reflow] '{$model}','{$proddate}'");
+    $sql        = "declare @totalcount as int; exec traceability_good_smt_reflow $start, $limit, '{$boardid}', '{$smt_date}', @totalcount=@totalcount out";
+    $rs         = $db->Execute($sql);
+    $return     = array();
+    $totalcount = $rs->fields['7'];
 
     for($i=0;!$rs->EOF;$i++){
         $return[$i]['board_id']          = trim($rs->fields['0']);
@@ -27,7 +38,7 @@
     }
     $x = array(
         "success"=>true,
-        //"totalCount"=>$totalcount,
+        "totalCount"=>$totalcount,
         "rows"=>$return);
 
     echo json_encode($x);

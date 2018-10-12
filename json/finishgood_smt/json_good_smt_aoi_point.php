@@ -2,16 +2,26 @@
 	date_default_timezone_set('Asia/jakarta');
     include '../../../adodb/con_smtpros.php';
 
-    //$page 		= @$_REQUEST["page"];
-	//$limit 		= @$_REQUEST["limit"];
-	//$start		= (($page*$limit)-$limit)+1;
-	
-    $boardid      = $_REQUEST['boardid'];
-    $getdate    = substr($_REQUEST['smt_date'],0,10);
-	$smt_date 	= date('Y-m-d', strtotime($getdate));
+    $page 		= @$_REQUEST["page"];
+	$limit 		= @$_REQUEST["limit"];
+	$start		= (($page*$limit)-$limit)+1;
+	$boardid    = @$_REQUEST['boardid'];
+    $smt_date2  = @$_REQUEST['smt_date'];
+    $getdate    = '';
+    $smt_date   = '';
 
-	//echo "exec traceability_smt_good_aoi_point '{$boardid}','{$smt_date}'";
-    $rs         = $db->Execute("exec traceability_smt_good_aoi_point '{$boardid}','{$smt_date}'");
+    if ($smt_date2) {
+        $getdate    = substr($_REQUEST['smt_date'],0,10);
+        $smt_date   = date('Y-m-d', strtotime($getdate));
+    }
+    else {
+        $smt_date   = '';
+    }
+
+    //$rs         = $db->Execute("exec traceability_smt_good_aoi_point '{$boardid}','{$smt_date}'");
+    $sql        = "declare @totalcount as int; exec traceability_smt_good_aoi_point $start, $limit, '{$boardid}', '{$smt_date}', @totalcount=@totalcount out";
+    $rs         = $db->Execute($sql);
+    $totalcount = $rs->fields['12'];
     $return     = array();
 
     for($i=0;!$rs->EOF;$i++){
@@ -27,12 +37,13 @@
         $return[$i]['partname']       = trim($rs->fields['9']);
         $return[$i]['aoijudgment']    = trim($rs->fields['10']);
         $return[$i]['userjudgment']   = trim($rs->fields['11']);
+        //$return[$i]['image2d']        = $rs->fields['12'];
        
         $rs->MoveNext();
     }
     $x = array(
         "success"=>true,
-        //"totalCount"=>$totalcount,
+        "totalCount"=>$totalcount,
         "rows"=>$return);
 
     echo json_encode($x);
