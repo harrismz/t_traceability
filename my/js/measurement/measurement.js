@@ -91,11 +91,11 @@
 				// TEMPERATURE
 		        	Ext.define('model_temperature_ma',{
 		                extend: 'Ext.data.Model',
-						fields: ['unid', 'id', 'faddres', 'Instid','grno','measid','settemp','datetimein','status','picupload']
+						fields: ['unid', 'id', 'faddres', 'Instid','grno','measid','temp','settemp','datetimein','status','picupload']
 		           	});
 					Ext.define('model_temperature_smt',{
 		                extend: 'Ext.data.Model',
-						fields: ['unid', 'id', 'faddres', 'Instid','grno','measid','settemp','datetimein','status','picupload']
+						fields: ['unid', 'id', 'faddres', 'Instid','grno','measid','temp','settemp','datetimein','status','picupload']
 		           	});
 		//	=======================================================    DATASTORE    =====================================
 				
@@ -246,7 +246,8 @@
 							url     : 'json/measurement/json_ma_esd.php',
 							reader  : {
 								type    : 'json',
-								root    : 'rows'
+								root    : 'rows',
+								totalProperty : 'totalCount'
 							}
 						 }				
 					});
@@ -260,7 +261,8 @@
 							url     : 'json/measurement/json_ma_torque.php',
 							reader  : {
 								type    : 'json',
-								root    : 'rows'
+								root    : 'rows',
+								totalProperty : 'totalCount'
 							}
 						 }				
 					});
@@ -274,7 +276,8 @@
 							url     : 'json/measurement/json_ma_temperature.php',
 							reader  : {
 								type    : 'json',
-								root    : 'rows'
+								root    : 'rows',
+								totalProperty : 'totalCount'
 							}
 						 }				
 					});
@@ -287,7 +290,8 @@
 							url     : 'json/measurement/json_smt_temperature.php',
 							reader  : {
 								type    : 'json',
-								root    : 'rows'
+								root    : 'rows',
+								totalProperty : 'totalCount'
 							}
 						 }				
 					});
@@ -400,7 +404,7 @@
 					var grid_thermo_smt2 = Ext.create('Ext.grid.Panel', {
 						id 				: 'grid_thermo_smt2',
 						autoWidth 	 	: '100%',
-						maxHeight	 	: 290,
+						maxHeight	 	: 330,
 						columnLines 	: true,
 						store 			: store_thermo_smt2,
 						viewConfig 		: {
@@ -501,7 +505,7 @@
 					var grid_thermo_smt3 = Ext.create('Ext.grid.Panel', {
 						id 				: 'grid_thermo_smt3',
 						autoWidth 	 	: '100%',
-						maxHeight	 	: 290,
+						maxHeight	 	: 330,
 						columnLines 	: true,
 						store 			: store_thermo_smt3,
 						viewConfig 		: {
@@ -602,7 +606,7 @@
 					var grid_thermo_smtsparepart = Ext.create('Ext.grid.Panel', {
 						id 				: 'grid_thermo_smt_sparepart',
 						autoWidth 	 	: '100%',
-						maxHeight	 	: 290,
+						maxHeight	 	: 330,
 						columnLines 	: true,
 						store 			: store_thermo_smtsparepart,
 						viewConfig 		: {
@@ -703,7 +707,7 @@
 					var grid_thermo_mc_ictray = Ext.create('Ext.grid.Panel', {
 						id 				: 'grid_thermo_mc_ictray',
 						autoWidth 	 	: '100%',
-						maxHeight	 	: 290,
+						maxHeight	 	: 330,
 						columnLines 	: true,
 						store 			: store_thermo_mc_ictray,
 						viewConfig 		: {
@@ -804,7 +808,7 @@
 					var grid_thermo_mc_warehouse = Ext.create('Ext.grid.Panel', {
 						id 				: 'grid_thermo_mc_warehouse',
 						autoWidth 	 	: '100%',
-						maxHeight	 	: 290,
+						maxHeight	 	: 330,
 						columnLines 	: true,
 						store 			: store_thermo_mc_warehouse,
 						viewConfig 		: {
@@ -905,7 +909,7 @@
 					var grid_thermo_maline16 = Ext.create('Ext.grid.Panel', {
 						id 				: 'grid_thermo_maline16',
 						autoWidth 	 	: '100%',
-						maxHeight	 	: 290,
+						maxHeight	 	: 330,
 						columnLines 	: true,
 						store 			: store_thermo_maline16,
 						viewConfig 		: {
@@ -1006,7 +1010,7 @@
 					var grid_thermo_maline17 = Ext.create('Ext.grid.Panel', {
 						id 				: 'grid_thermo_maline17',
 						autoWidth 	 	: '100%',
-						maxHeight	 	: 290,
+						maxHeight	 	: 330,
 						columnLines 	: true,
 						store 			: store_thermo_maline17,
 						viewConfig 		: {
@@ -1108,16 +1112,16 @@
 		        	var grid_esd_ma = Ext.create('Ext.grid.Panel', {
 						id 					: 'grid_esd_ma',
 						autoWidth 	 		: '100%',
-						maxHeight	 		: 290,
-						columnLines 		: true,
+						maxHeight	 		: 330,
+						// columnLines 		: true,
 						store 				: store_esd_ma,
-						autoScroll 			: true,
-						viewConfig 			: {
-							stripeRows 			: true,
-							emptyText 			: '<div class="empty-txt">No data to display.</div>',
-							deferEmptyText 		: false,
-							enableTextSelection	: true
-						},
+						// autoScroll 			: true,
+						// viewConfig 			: {
+						// 	stripeRows 			: true,
+						// 	emptyText 			: '<div class="empty-txt">No data to display.</div>',
+						// 	deferEmptyText 		: false,
+						// 	enableTextSelection	: true
+						// },
 						columns: [
 							{ 	header 		: 'id',
 								dataIndex 	: 'id',
@@ -1184,6 +1188,25 @@
 								hidden 	 	: true
 							}
 						],
+						bbar	: Ext.create('Ext.PagingToolbar', {
+							pageSize		: itemperpage,
+							store			: store_esd_ma,
+							displayInfo		: true,
+							displayMsg		: 'Data {0} - {1} from {2} data',
+							emptyMsg		: "Page not found",
+							beforePageText  : 'Page',
+							afterPageText   : 'from {0} Pages',
+							firstText       : 'First Page',
+							prevText        : 'Previous Page',
+							nextText        : 'Next page',
+							lastText        : 'Last Page',
+							plugins       	: Ext.create('Ext.ux.ProgressBarPager', {}),
+							listeners 		: {
+								afterrender: function (cmp) {
+									cmp.getComponent("refresh").hide();
+								}
+							}
+						}),
 						//features: [filters],
 						// selModel: {
 						// 	selType: 'cellmodel'
@@ -1253,6 +1276,25 @@
 								renderer 	: upsize
 							}
 						],
+						bbar	: Ext.create('Ext.PagingToolbar', {
+							pageSize		: itemperpage,
+							store			: store_torque_ma,
+							displayInfo		: true,
+							displayMsg		: 'Data {0} - {1} from {2} data',
+							emptyMsg		: "Page not found",
+							beforePageText  : 'Page',
+							afterPageText   : 'from {0} Pages',
+							firstText       : 'First Page',
+							prevText        : 'Previous Page',
+							nextText        : 'Next page',
+							lastText        : 'Last Page',
+							plugins       	: Ext.create('Ext.ux.ProgressBarPager', {}),
+							listeners 		: {
+								afterrender: function (cmp) {
+									cmp.getComponent("refresh").hide();
+								}
+							}
+						}),
 						//features: [filters],
 						// selModel: {
 						// 	selType: 'cellmodel'
@@ -1265,7 +1307,7 @@
 						autoWidth 	 	: '100%',
 						maxHeight	 	: 290,
 						columnLines 	: true,
-						//store 			: store_temperature_ma,
+						store 			: store_temperature_ma,
 						viewConfig 		: {
 							stripeRows 			: true,
 							emptyText 		 	: '<div class="empty-txt">No data to display.</div>',
@@ -1285,7 +1327,7 @@
 								renderer 	: upsize,
 								hidden		: true
 							},
-							{	header 		: 'faddres',
+							{	header 		: 'MCH NAME',
 								dataIndex 	: 'faddres',
 								flex 		: 1,
 								renderer 	: upsize
@@ -1293,20 +1335,23 @@
 							{	header 		: 'Instid',
 								dataIndex 	: 'Instid',
 								flex 		: 1,
-								renderer 	: upsize
+								renderer 	: upsize,
+								hidden		: true
 							},
 							{	header 		: 'grno',
 								dataIndex 	: 'grno',
 								flex 		: 1,
-								renderer 	: upsize
+								renderer 	: upsize,
+								hidden		: true
 							},
 							{	header 		: 'measid',
 								dataIndex 	: 'measid',
 								flex 		: 1,
-								renderer 	: upsize
+								renderer 	: upsize,
+								hidden		: true
 							},
 							{	header 		: 'TEMPERATURE <br> ( &deg;C )',
-								dataIndex 	: 'settemp',
+								dataIndex 	: 'temp',
 								flex 		: 1,
 								renderer 	: upsize
 							},
@@ -1327,6 +1372,25 @@
 								hidden		: true
 							}
 						],
+						bbar	: Ext.create('Ext.PagingToolbar', {
+							pageSize		: itemperpage,
+							store			: store_temperature_ma,
+							displayInfo		: true,
+							displayMsg		: 'Data {0} - {1} from {2} data',
+							emptyMsg		: "Page not found",
+							beforePageText  : 'Page',
+							afterPageText   : 'from {0} Pages',
+							firstText       : 'First Page',
+							prevText        : 'Previous Page',
+							nextText        : 'Next page',
+							lastText        : 'Last Page',
+							plugins       	: Ext.create('Ext.ux.ProgressBarPager', {}),
+							listeners 		: {
+								afterrender: function (cmp) {
+									cmp.getComponent("refresh").hide();
+								}
+							}
+						}),
 						//features: [filters],
 						// selModel: {
 						// 	selType: 'cellmodel'
@@ -1359,7 +1423,7 @@
 								renderer 	: upsize,
 								hidden		: true
 							},
-							{	header 		: 'faddres',
+							{	header 		: 'MCH NAME',
 								dataIndex 	: 'faddres',
 								flex 		: 1,
 								renderer 	: upsize
@@ -1367,20 +1431,23 @@
 							{	header 		: 'Instid',
 								dataIndex 	: 'Instid',
 								flex 		: 1,
-								renderer 	: upsize
+								renderer 	: upsize,
+								hidden		: true
 							},
 							{	header 		: 'grno',
 								dataIndex 	: 'grno',
 								flex 		: 1,
-								renderer 	: upsize
+								renderer 	: upsize,
+								hidden		: true
 							},
 							{	header 		: 'measid',
 								dataIndex 	: 'measid',
 								flex 		: 1,
-								renderer 	: upsize
+								renderer 	: upsize,
+								hidden		: true
 							},
 							{	header 		: 'TEMPERATURE <br> ( &deg;C )',
-								dataIndex 	: 'settemp',
+								dataIndex 	: 'temp',
 								flex 		: 1,
 								renderer 	: upsize
 							},
@@ -1394,12 +1461,32 @@
 								flex 		: 1,
 								renderer 	: upsize
 							},
-							{	header 		: 'UPLOAADED BY',
+							{	header 		: 'UPLOADED BY',
 								dataIndex 	: 'picupload',
 								flex 		: 1,
-								renderer 	: upsize
+								renderer 	: upsize,
+								hidden		: true
 							}
 						],
+						bbar	: Ext.create('Ext.PagingToolbar', {
+							pageSize		: itemperpage,
+							store			: store_temperature_smt,
+							displayInfo		: true,
+							displayMsg		: 'Data {0} - {1} from {2} data',
+							emptyMsg		: "Page not found",
+							beforePageText  : 'Page',
+							afterPageText   : 'from {0} Pages',
+							firstText       : 'First Page',
+							prevText        : 'Previous Page',
+							nextText        : 'Next page',
+							lastText        : 'Last Page',
+							plugins       	: Ext.create('Ext.ux.ProgressBarPager', {}),
+							listeners 		: {
+								afterrender: function (cmp) {
+									cmp.getComponent("refresh").hide();
+								}
+							}
+						}),
 						//features: [filters],
 						// selModel: {
 						// 	selType: 'cellmodel'
@@ -1482,14 +1569,14 @@
 						id 				:'panel_esd',
 						renderTo 		: 'panel_esd',
 						autoWidth		: '100%',
-						maxHeight		: 290,
-						border			: false,
-						frame			: true,
-						hidden			: false,
-						defaults		: {
-							split		: true,
-							collapsible	: false
-						},
+						maxHeight		: 450,
+						// border			: false,
+						// frame			: true,
+						// hidden			: false,
+						// defaults		: {
+						// 	split		: true,
+						// 	collapsible	: false
+						// },
 						items			: [grid_esd_ma]
 					});
 
