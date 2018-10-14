@@ -463,7 +463,7 @@
 						id 			: 'grid_smt_aoi_board',
 						name		: 'grid_smt_aoi_board',
 						autoWidth 	: '100%',
-						maxHeight	: 180,
+						maxHeight	: 330,
 						columnLines : true,
 						store 		: store_good_smt_aoi_board,
 						viewConfig 	: {
@@ -547,7 +547,7 @@
 					var grid_smt_aoi_point = Ext.create('Ext.grid.Panel', {
 						id 				: 'grid_smt_aoi_point',
 						autoWidth 	 	: '100%',
-						maxHeight		: 180,
+						maxHeight		: 330,
 						columnLines 	: true,
 						store 			: store_good_smt_aoi_point,
 						viewConfig 		: {
@@ -619,8 +619,16 @@
 							}, 
 							{ 	header 		: 'IMAGE',
 								dataIndex 	: 'image2d',
-								flex 		: 1,
-								renderer 	: upsize
+								text 		: this.i18nColIconBmp,
+								width 		: 100,
+								renderer 	: function(value) {
+									if ( !value ){
+										return '<font class="fontsize12" style="color:red;font-weight: bold;"> No Image </font>';
+									}
+									else{
+										return '<img src="data:image/jpg;base64,' + value +  '" width="50" height="50"/>';
+									}
+								}
 							}, 
 							{ 	header 		: 'MCH JUDGE',
 								dataIndex 	: 'aoijudgment',
@@ -1488,7 +1496,7 @@
 						plain 		: true,
 						//activeTab 	: 0,
 						autoWidth 	: '100%',
-						height 		: 200,
+						height 		: 350,
 						autoScroll 	: true,
 						frame 		: true,
 						style 	: 'padding:5px;-background:#157FCC;',

@@ -19,9 +19,11 @@
     }
 
     //$rs         = $db->Execute("exec traceability_smt_good_aoi_point '{$boardid}','{$smt_date}'");
+    // $getimage        = $db->Execute("select cast((select image2d as '*' for xml path('')) as varchar(max)) as images from tblAOIResultPoint where barcode = '{$boardid}'");
+
     $sql        = "declare @totalcount as int; exec traceability_smt_good_aoi_point $start, $limit, '{$boardid}', '{$smt_date}', @totalcount=@totalcount out";
     $rs         = $db->Execute($sql);
-    $totalcount = $rs->fields['12'];
+    $totalcount = $rs->fields['13'];
     $return     = array();
 
     for($i=0;!$rs->EOF;$i++){
@@ -37,6 +39,12 @@
         $return[$i]['partname']       = trim($rs->fields['9']);
         $return[$i]['aoijudgment']    = trim($rs->fields['10']);
         $return[$i]['userjudgment']   = trim($rs->fields['11']);
+        $return[$i]['rowid']          = trim($rs->fields['12']);
+        
+        $getimage = $db->Execute("select cast((select image2d as '*' for xml path('')) as varchar(max)) as images from tblAOIResultPoint where rowid = '{$rs->fields[12]}'");
+        $return[$i]['image2d'] = $getimage->fields['0'];
+
+        //$return[$i]['image2d']        = $getimage->fields[0];
         //$return[$i]['image2d']        = $rs->fields['12'];
        
         $rs->MoveNext();
@@ -48,5 +56,6 @@
 
     echo json_encode($x);
 
+    //$getimage->Close();
     $db->Close();
 ?>
