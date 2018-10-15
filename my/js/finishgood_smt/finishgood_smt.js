@@ -95,7 +95,7 @@
 			//	BOARD ID GENERATOR
 				Ext.define('model_bigs', {
 					extend: 'Ext.data.Model',
-					fields: ['schedule_id', 'lot_size', 'model_code', 'prod_no_code', 'side', 'cavity', 'seq_start', 'seq_end', 'line', 'model', 'pwbname', 'pwbno', 'process', 'rev_date', 'qty']
+					fields: ['schedule_id', 'lot_size', 'model_code', 'prod_no_code', 'side', 'cavity', 'seq_start', 'seq_end', 'line', 'model', 'pwbname', 'pwbno', 'process', 'rev_date', 'qty', 'ynumber', 'start_serial']
 				});
 			//	AOI
 				Ext.define('model_good_smt_aoi_board',{
@@ -155,7 +155,7 @@
 					pageSize : itemperpage,
 					proxy: {
 						type: 'ajax',
-						url: 'json/json_finishgood_smt_bigs.php',
+						url: 'json/finishgood_smt/json_finishgood_smt_bigs.php',
 						reader: {
 							type: 'json',
 							root: 'rows',
@@ -375,6 +375,11 @@
 								width 	 : 70,
 								renderer : upsize,
 								hidden	 : true
+							},
+							{ 	header 	 : 'YNUMBER',
+								dataIndex: 'ynumber',
+								width 	 : 70,
+								renderer : upsize
 							}, 
 							{ 	header 	 : 'SIDE',
 								dataIndex: 'side',
@@ -621,13 +626,14 @@
 								dataIndex 	: 'image2d',
 								text 		: this.i18nColIconBmp,
 								width 		: 100,
-								renderer 	: function(value) {
+								renderer 	: function(value, metaData, record, rowIndex, colIndex, store) {
 									if ( !value ){
 										return '<font class="fontsize12" style="color:red;font-weight: bold;"> No Image </font>';
 									}
 									else{
-										return '<img src="data:image/jpg;base64,' + value +  '" width="50" height="50"/>';
+										return '<img src="data:image/jpg;base64,' + value +  '" width="80"/>';
 									}
+									
 								}
 							}, 
 							{ 	header 		: 'MCH JUDGE',
@@ -1237,6 +1243,150 @@
 						// },
 						// plugins: [cellEditing]
 					});
+					var grid_mapros_fwdn = Ext.create('Ext.grid.Panel', {
+						id 				: 'grid_mapros_fwdn',
+						autoWidth 		: '100%',
+						maxHeight		: 290,
+						columnLines 	: true,
+						//store 			: store_mapros_fwdn,
+						viewConfig 		: {
+							stripeRows 			: true,
+							emptyText 	 		: '<div class="empty-txt">Under Development</div>',
+							deferEmptyText 		: false,
+							enableTextSelection	: true
+						},
+						columns 	: [
+							{	header 		: 'BARCODE',
+								dataIndex 	: 'barcode',
+								width 		: 140,
+								renderer	: upsize
+							},
+							{	header 		: 'SERIAL',
+								dataIndex 	: 'modelname',
+								flex 		: 1,
+								renderer	: upsize
+							},
+							{	header 		: 'LINE',
+								dataIndex 	: 'line',
+								width 	 	: 90,
+								renderer	: upsize
+							},
+							{	header 		: 'PROCESS',
+								dataIndex 	: 'lineprocess',
+								width 	 	: 90,
+								renderer	: upsize
+							},
+							{	header 		: 'scanner_id',
+								dataIndex 	: 'scanner_id',
+								flex 		: 1,
+								renderer	: upsize,
+								hidden		: true
+							},
+							{	header 		: 'STATUS',
+								dataIndex 	: 'status',
+								width 	 	: 90,
+								renderer	: upsize
+							},
+							{	header 		: 'JUDGE',
+								dataIndex 	: 'judge',
+								width 	 	: 90,
+								renderer	: upsize
+							},
+							{	header 		: 'SCAN TIME',
+								dataIndex 	: 'created_at',
+								flex 		: 1,
+								renderer	: upsize
+							},
+							{	header 		: 'SCAN NIK',
+								dataIndex 	: 'scan_nik',
+								flex 		: 1,
+								renderer	: upsize
+							},
+							{	header 		: 'updated_at',
+								dataIndex 	: 'updated_at',
+								flex 		: 1,
+								renderer	: upsize,
+								hidden		: true
+							}
+						],
+						//features: [filters],
+						// selModel: {
+						// 	selType: 'cellmodel'
+						// },
+						// plugins: [cellEditing]
+					});
+					var grid_mapros_flash = Ext.create('Ext.grid.Panel', {
+						id 				: 'grid_mapros_flash',
+						autoWidth 		: '100%',
+						maxHeight		: 290,
+						columnLines 	: true,
+						//store 			: store_mapros_flash,
+						viewConfig 		: {
+							stripeRows 			: true,
+							emptyText 	 		: '<div class="empty-txt">Under Development</div>',
+							deferEmptyText 		: false,
+							enableTextSelection	: true
+						},
+						columns 	: [
+							{	header 		: 'BARCODE',
+								dataIndex 	: 'barcode',
+								width 		: 140,
+								renderer	: upsize
+							},
+							{	header 		: 'SERIAL',
+								dataIndex 	: 'modelname',
+								flex 		: 1,
+								renderer	: upsize
+							},
+							{	header 		: 'LINE',
+								dataIndex 	: 'line',
+								width 	 	: 90,
+								renderer	: upsize
+							},
+							{	header 		: 'PROCESS',
+								dataIndex 	: 'lineprocess',
+								width 	 	: 90,
+								renderer	: upsize
+							},
+							{	header 		: 'scanner_id',
+								dataIndex 	: 'scanner_id',
+								flex 		: 1,
+								renderer	: upsize,
+								hidden		: true
+							},
+							{	header 		: 'STATUS',
+								dataIndex 	: 'status',
+								width 	 	: 90,
+								renderer	: upsize
+							},
+							{	header 		: 'JUDGE',
+								dataIndex 	: 'judge',
+								width 	 	: 90,
+								renderer	: upsize
+							},
+							{	header 		: 'SCAN TIME',
+								dataIndex 	: 'created_at',
+								flex 		: 1,
+								renderer	: upsize
+							},
+							{	header 		: 'SCAN NIK',
+								dataIndex 	: 'scan_nik',
+								flex 		: 1,
+								renderer	: upsize
+							},
+							{	header 		: 'updated_at',
+								dataIndex 	: 'updated_at',
+								flex 		: 1,
+								renderer	: upsize,
+								hidden		: true
+							}
+						],
+						//features: [filters],
+						// selModel: {
+						// 	selType: 'cellmodel'
+						// },
+						// plugins: [cellEditing]
+					});
 					var grid_mapros_avmt = Ext.create('Ext.grid.Panel', {
 						id 				: 'grid_mapros_avmt',
 						autoWidth 		: '100%',
@@ -1600,15 +1750,25 @@
 								reorderable : false,
 								items 		: [grid_mapros_master]
 							}, 
-							{	title 		: 'AVMT',
-							 	id  		: 'show_grid_avmt',
+							{	title 		: 'FWDN',
+							 	id  		: 'show_grid_fwdn',
 								reorderable : false,
-								items 		: [grid_mapros_avmt]
+								items 		: [grid_mapros_fwdn]
+							}, 
+							{	title 		: 'FLASH',
+							 	id  		: 'show_grid_flash',
+								reorderable : false,
+								items 		: [grid_mapros_flash]
 							}, 
 							{	title 		: 'AVN TEST',
 							 	id  		: 'show_grid_avntest',
 								reorderable : false,
 								items 		: [grid_mapros_avntest]
+							}, 
+							{	title 		: 'AVMT',
+							 	id  		: 'show_grid_avmt',
+								reorderable : false,
+								items 		: [grid_mapros_avmt]
 							}, 
 							{	title 		: 'AUTO LINE ZERO',
 							 	id  		: 'show_grid_zero',
@@ -1653,6 +1813,7 @@
 							specialkey : function(field, e) {
 								if (e.getKey() == 13) {
 									var boardid = Ext.getCmp('boardid_scan').getValue();
+
 									//var smtdate = Ext.getCmp('smt_date').getValue();
 
 									if (!boardid) {
