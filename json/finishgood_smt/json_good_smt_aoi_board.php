@@ -1,5 +1,5 @@
 <?php
-	date_default_timezone_set('Asia/jakarta');
+	date_default_timezone_set('Asia/jakarta'); 
     include '../../../adodb/con_smtpros.php';
 
     $page       = @$_REQUEST["page"];
