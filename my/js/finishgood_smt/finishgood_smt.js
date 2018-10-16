@@ -97,6 +97,10 @@
 					extend: 'Ext.data.Model',
 					fields: ['schedule_id', 'lot_size', 'model_code', 'prod_no_code', 'side', 'cavity', 'seq_start', 'seq_end', 'line', 'model', 'pwbname', 'pwbno', 'process', 'rev_date', 'qty', 'ynumber', 'start_serial']
 				});
+				// 	Ext.define('model_bigs', {
+				// 		extend: 'Ext.data.Model',
+				// 		fields: ['id', 'cavity', 'model', 'model_code', 'process', 'prod_no', 'prod_no_code', 'pwbname', 'pwbno', 'ynumber', 'side', 'model_id', 'start_serial', 'lot_size', 'seq_start', 'seq_end', 'qty', 'history_id', 'schedule_id', 'line', 'rev_date' ]
+				// 	});
 			//	AOI
 				Ext.define('model_good_smt_aoi_board',{
 	                extend: 'Ext.data.Model',
@@ -195,6 +199,52 @@
 						}
 					}
 				});
+				// var store_bigs = Ext.create('Ext.data.Store', {
+					// 	model 		: 'model_bigs',
+					// 	pageSize  	: itemperpage,
+					// 	singleton  	: true,
+					//     alternateClassName : 'AppBaseUrl',
+					//     requires 	:['Ext.Ajax'],
+					//  	disableChacing:false,
+					//     config 		: {
+					//         baseUrl 	:'http://svrdbn/big24/public/api/dashboards'
+					//     },
+					 
+					//     constructor  : function(config) {
+					//             this.initConfig(config);
+					//             Ext.Ajax.on('beforerequest', this.onBeforeAjaxRequest, this);
+					//     },
+					 
+					//     onBeforeAjaxRequest : function(connection, options) {
+					//               options.url = this.getBaseUrl() + options.url;
+					//     }
+					// });
+				
+				// var store_bigs = Ext.create('Ext.data.Store', {
+					// 	model      :  "model_bigs",
+					//          id          :  "store_bigs",
+					//          autoLoad    :  false,
+					//          remoteSort  :  true,
+					//          pageSize    :  10,
+					//          proxy       :  {
+					// 		type            : "ajax",
+					// 		url             : "http://136.198.117.48/big24/public/api/dashboards",
+					// 		limitParam      : undefined,
+					// 		startParam      : undefined,
+					// 		simpleSortMode  : true,
+					// 		pageParam       : undefined,
+					// 		noCache         : false,
+					// 		actionMethods   : {
+					// 		   method  : "POST"
+					// 		},
+					// 		reader           : {
+					// 		   type            : "json",
+					// 		   root            : "data",
+					// 		   totalProperty   : "total"
+					// 		}
+					//         	}
+					// });
+				
 			//	AOI
 				var store_good_smt_aoi_board = Ext.create('Ext.data.Store',{
 					model	: 'model_good_smt_aoi_board',
@@ -809,7 +859,11 @@
 								width 		: 130,
 								renderer	: upsize
 							},
-							
+							{ 	header 		: 'COMPID 1',
+								dataIndex 	: 'compid1',
+								width 		: 130,
+								renderer	: upsize
+							},
 							{ 	header 		: 'SCAN DATE',
 								dataIndex 	: 'scandate',
 								width 		: 90,
@@ -834,12 +888,6 @@
 							},
 							{ 	header 		: 'PROCESS',
 								dataIndex 	: 'process',
-								flex 		: 1,
-								renderer	: upsize,
-								hidden		: true
-							},
-							{ 	header 		: 'compid1',
-								dataIndex 	: 'compid1',
 								flex 		: 1,
 								renderer	: upsize,
 								hidden		: true
@@ -1840,7 +1888,12 @@
 										store_bigs.proxy.setExtraParam('boardid', boardid);
 										store_bigs.proxy.setExtraParam('smt_date', '');
 										store_bigs.loadPage(1);
+
+										// store_bigs.proxy.setExtraParam('boardid', boardid);
+										// store_bigs.loadPage(1);
 										
+
+
 										store_good_smt_aoi_board.proxy.setExtraParam('boardid', boardid);
 										store_good_smt_aoi_board.proxy.setExtraParam('smt_date', '');
 										store_good_smt_aoi_board.loadPage(1);
