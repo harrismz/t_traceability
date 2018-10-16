@@ -19,10 +19,19 @@
     }
 	//echo "exec [traceability_good_smt_spi] '{$boardid}','{$smt_date}'";
     
-    $sql    = "declare @totalcount as int; exec traceability_good_smt_spi $start, $limit, '{$boardid}', '{$smt_date}', @totalcount=@totalcount out";
+    //$sql    = "exec traceability_good_smt_spi $start, $limit, '{$boardid}', '{$smt_date}'";
+    $sql    = "DECLARE  @return_value int,
+                        @totalcount int
+
+                EXEC    @return_value = [dbo].[traceability_good_smt_spi]
+                        @start = 0,
+                        @maxct = 100,
+                        @boardid = N'{$boardid}',
+                        @smt_date = '{$smt_date}',
+                        @totalcount = @totalcount OUTPUT";
     $rs    = $db->Execute($sql);
-    $return = array();
     $totalcount = $rs->fields['10'];
+    $return = array();
     
     for($i=0;!$rs->EOF;$i++){
         $return[$i]['mchname']              = trim($rs->fields['0']);
@@ -35,7 +44,6 @@
         $return[$i]['spijudge']             = trim($rs->fields['7']);
         $return[$i]['opjudge']              = trim($rs->fields['8']);
         $return[$i]['defectcnt']            = trim($rs->fields['9']);
-        
        
         $rs->MoveNext();
     }

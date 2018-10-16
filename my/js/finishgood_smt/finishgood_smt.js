@@ -207,21 +207,21 @@
 							type    : 'json',
 							root    : 'rows'
 						}
-					},
-					listeners : {
-						load : function(store, records){
-							if (records != 0) {
-								aoidate = store.getAt(0).get('stdate');
-								get_boardid = Ext.getCmp('boardid_scan').getValue();
+					}
+					// ,listeners : {
+					// 	load : function(store, records){
+					// 		if (records != 0) {
+					// 			aoidate = store.getAt(0).get('stdate');
+					// 			get_boardid = Ext.getCmp('boardid_scan').getValue();
 
-								store_smt_reflow.proxy.setExtraParam('boardid', get_boardid);
-								store_smt_reflow.proxy.setExtraParam('smt_date', aoidate);
-								store_smt_reflow.loadPage(1);
-							}
+					// 			store_smt_reflow.proxy.setExtraParam('boardid', get_boardid);
+					// 			store_smt_reflow.proxy.setExtraParam('smt_date', aoidate);
+					// 			store_smt_reflow.loadPage(1);
+					// 		}
 							
 
-						} 
-					}
+					// 	} 
+					// }
 				});
 				var store_good_smt_aoi_point = Ext.create('Ext.data.Store',{
 					model	: 'model_good_smt_aoi_point',
@@ -280,7 +280,24 @@
 							root    : 'rows',
 							totalProperty: 'totalCount'
 						}
+					},
+					listeners : {
+						load : function(store, records){
+							if (records != 0) {
+								//alert (store.getAt(0).get('inspectiondate'));
+								 get_boardid = Ext.getCmp('boardid_scan').getValue();
+								 spidate = store.getAt(0).get('inspectiondate');
+
+								 //alert (get_boardid + spidate);
+								store_smt_reflow.proxy.setExtraParam('boardid', get_boardid);
+								store_smt_reflow.proxy.setExtraParam('smt_date', spidate);
+								store_smt_reflow.loadPage(1);
+							}
+							
+
+						} 
 					}
+				
 				});
 			//	MAPROS
 				var store_mapros_board = Ext.create('Ext.data.Store',{
@@ -378,7 +395,7 @@
 							},
 							{ 	header 	 : 'YNUMBER',
 								dataIndex: 'ynumber',
-								width 	 : 70,
+								width 	 : 90,
 								renderer : upsize
 							}, 
 							{ 	header 	 : 'SIDE',
@@ -742,7 +759,7 @@
 					var grid_smt_mounter = Ext.create('Ext.grid.Panel', {
 						id 				: 'grid_smt_mounter',
 						autoWidth 		: '100%',
-						maxHeight		: 290,
+						maxHeight		: 350,
 						columnLines 	: true,
 						store 			: store_smt_mounter,
 						viewConfig 		: {
