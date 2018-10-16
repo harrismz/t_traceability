@@ -382,7 +382,7 @@
 						pageSize: itemperpage,
 						proxy   : {
 		                    type    : 'ajax',
-		                    url     : 'json/json_part_smt_picking.php',
+		                    url     : 'json/finishgood_ma/json_part_smt_picking.php',
 		                    reader  : {
 		                        type    : 'json',
 		                        root    : 'rows',
@@ -1385,7 +1385,7 @@
 					var grid_part_smt_picking = Ext.create('Ext.grid.Panel', {
 						id: 'grid_part_smt_picking',
 						autoWidth 	: '100%',
-						maxHeight	: 295,
+						maxHeight	: 290,
 						columnLines: true,
 						store: store_part_smt_picking,
 						viewConfig: {
@@ -1394,97 +1394,122 @@
 							deferEmptyText: false,
 							enableTextSelection: true
 						},
-						columns: [{
-							header: 'Req. Date',
-							dataIndex: 'jobdate',
-							flex: 1,
-							renderer: upsize
-						}, {
-							header: 'Req. Time',
-							dataIndex: 'jobtime',
-							flex: 1,
-							renderer: upsize
-						}, {
-							header: 'Line',
-							dataIndex: 'line',
-							flex: 1,
-							renderer: upsize
-						}, {
-							header: 'Model Name',
-							dataIndex: 'model_name',
-							flex: 1,
-							renderer: upsize,
-							hidden: true
-						}, {
-							header: 'PWB Name',
-							dataIndex: 'pwb_name',
-							flex: 1,
-							renderer: upsize,
-							hidden: true
-						}, {
-							header: 'Start Serial',
-							dataIndex: 'start_serial',
-							flex: 1,
-							renderer: upsize,
-							hidden: true
-						}, {
-							header: 'Lot',
-							dataIndex: 'lot',
-							flex: 1,
-							renderer: upsize,
-							hidden: true
-						}, {
-							header: 'Zfeeder',
-							dataIndex: 'zfeeder',
-							flex: 1,
-							renderer: upsize,
-							filter: {
-								type: 'string'
+						columns: [
+							{
+								header: 'DATE',
+								dataIndex: 'jobdate',
+								width : 100,
+								renderer: upsize
+							}, {
+								header: 'TIME',
+								dataIndex: 'jobtime',
+								width : 100,
+								renderer: upsize
+							}, {
+								header: 'LINE',
+								dataIndex: 'line',
+								width : 100,
+								renderer: upsize
+							}, {
+								header: 'MODEL',
+								dataIndex: 'model_name',
+								width : 100,
+								renderer: upsize,
+								hidden: true
+							}, {
+								header: 'PWB NAME',
+								dataIndex: 'pwb_name',
+								width : 100,
+								renderer: upsize,
+								hidden: true
+							}, {
+								header: 'START SERIAL',
+								dataIndex: 'start_serial',
+								width : 100,
+								renderer: upsize,
+								hidden: true
+							}, {
+								header: '',
+								dataIndex: 'lot',
+								width : 100,
+								renderer: upsize,
+								hidden: true
+							}, {
+								header: 'Zfeeder',
+								dataIndex: 'zfeeder',
+								width : 150,
+								renderer: upsize,
+								filter: {
+									type: 'string'
+								}
+							}, {
+								header: 'Part Number',
+								dataIndex: 'part_no',
+								width : 150,
+								renderer: upsize,
+								filter: {
+									type: 'string'
+								}
+							}, {
+								header: 'Demand Qty',
+								dataIndex: 'demand',
+								width : 100,
+								renderer: upsize
+							}, {
+								header: 'Loose Reel',
+								dataIndex: 'loose_reel',
+								width : 100,
+								renderer: upsize
+							}, {
+								header: 'Loose NIK',
+								dataIndex: 'loose_nik',
+								width : 100,
+								renderer: upsize,
+								hidden: true
+							}, {
+								header: 'Loose Time',
+								dataIndex: 'loose_time',
+								width : 100,
+								renderer: upsize,
+								hidden: true
+							}, {
+								header: 'Full Reel',
+								dataIndex: 'full_reel',
+								width : 100,
+								renderer: upsize
+							}, {
+								header: 'Full NIK',
+								dataIndex: 'full_nik',
+								width : 100,
+								renderer: upsize,
+								hidden: true
+							}, {
+								header: 'Full time',
+								dataIndex: 'full_time',
+								width : 100,
+								renderer: upsize,
+								hidden: true
 							}
-						}, {
-							header: 'Part Number',
-							dataIndex: 'part_no',
-							flex: 1,
-							renderer: upsize,
-							filter: {
-								type: 'string'
+						],
+						bbar	: Ext.create('Ext.PagingToolbar', {
+							pageSize		: itemperpage,
+							store			: store_part_smt_picking,
+							displayInfo		: true,
+							displayMsg		: 'Data {0} - {1} from {2} data',
+							emptyMsg		: "Page not found",
+							beforePageText  : 'Page',
+							afterPageText   : 'from {0} Pages',
+							firstText       : 'First Page',
+							prevText        : 'Previous Page',
+							nextText        : 'Next page',
+							lastText        : 'Last Page',
+							plugins       	: Ext.create('Ext.ux.ProgressBarPager', {}),
+							listeners 		: {
+								afterrender: function (cmp) {
+									cmp.getComponent("refresh").hide();
+								}
 							}
-						}, {
-							header: 'Demand Qty',
-							dataIndex: 'demand',
-							flex: 1,
-							renderer: upsize
-						}, {
-							header: 'Loose Reel',
-							dataIndex: 'loose_reel',
-							flex: 1,
-							renderer: upsize
-						}, {
-							header: 'Loose NIK',
-							dataIndex: 'loose_nik',
-							flex: 1,
-							renderer: upsize
-						}, {
-							header: 'Loose Time',
-							dataIndex: 'loose_time',
-							flex: 1,
-							renderer: upsize
-						}, {
-							header: 'Full Reel',
-							dataIndex: 'full_reel',
-							flex: 1,
-							renderer: upsize
-						}, {
-							header: 'Full NIK',
-							dataIndex: 'full_nik',
-							flex: 1,
-							renderer: upsize
-						}, {
-							header: 'Full time',
-							dataIndex: 'full_time',
-							flex: 1,
-							renderer: upsize
-						}],
+						}),
 						//features: [filters],
 						// selModel: {
 						// 	selType: 'cellmodel'
@@ -3224,7 +3249,7 @@
 						plain 		: true,
 						activeTab 	: 0,
 						autoWidth 	: '100%',
-						maxHeight	: 300,
+						maxHeight	: 320,
 						autoScroll 	: true,
 						frame 		: true,
 						//style 	: 'padding:5px;-background:#157FCC;',
@@ -3377,7 +3402,7 @@
 					//Warehouse Management ( Stock Control )
 					var part_log = Ext.create('Ext.tab.Panel', {
 						id 			: 'part_log',
-						renderTo 	: 'finishgood_logistic',
+						//renderTo 	: 'finishgood_logistic',
 						autoHeight	: true,
 						plain		: true,
 						activeTab	: 0,
@@ -3435,6 +3460,7 @@
 						//value: 'DPX5000BTITA9N',
 						//value: 'A9K4-V6-650JN',
 						value: 'DPXGT700RA9N',
+						//value: 'DDXGT502LA9N',
 						listeners	: {
 							afterrender : function() {
 								this.inputEl.setStyle('text-align', 'center');
@@ -3558,6 +3584,7 @@
 					//value : '151X0001',
 					//value : '103X0251',
 					value : '143X0011',
+					//value : 'PA9X0003',
 					listeners	: {
 						afterrender : function() {
 							this.inputEl.setStyle('text-align', 'center');
