@@ -22,8 +22,9 @@
     //$rs    = $db->Execute("exec [traceability_good_smt_reflow] '{$model}','{$proddate}'");
     $sql        = "declare @totalcount as int; exec traceability_good_smt_reflow $start, $limit, '{$boardid}', '{$smt_date}', @totalcount=@totalcount out";
     $rs         = $db->Execute($sql);
-    $return     = array();
     $totalcount = $rs->fields['7'];
+    
+    $return     = array();
 
     for($i=0;!$rs->EOF;$i++){
         $return[$i]['board_id']          = trim($rs->fields['0']);
