@@ -36,7 +36,7 @@
 			
 		//	=======================================================    MODEL    =========================================
 				
-				// THERMOHUMIDITY
+				//	THERMOHUMIDITY
 					Ext.define('model_thermo_smt1',{
 		                extend: 'Ext.data.Model',
 						fields: ['id', 'mchname', 'model', 'dateinspection','datetimein','serial','alm','t_ch1','h_ch2','alm1','alm2','inputdate']
@@ -71,24 +71,24 @@
 		           	});
 
 					// Ext.define('model_thermo_ma',{
-		   //              extend: 'Ext.data.Model',
+		   			//              extend: 'Ext.data.Model',
 					// 	fields: ['id', 'mchname', 'model', 'dateinspection','datetimein','serial','alm','t_ch1','h_ch2','alm1','alm2','inputdate']
-		   //         	});
+		   			//         	});
 					// Ext.define('model_thermo_smt',{
-		   //              extend: 'Ext.data.Model',
+		  			 //              extend: 'Ext.data.Model',
 					// 	fields: ['id', 'mchname', 'model', 'dateinspection','datetimein','serial','alm','t_ch1','h_ch2','alm1','alm2','inputdate']
-	    //        		});
-		        // ESD
+	    			//        		});
+		        //	ESD
 		           	Ext.define('model_esd_ma',{
 		                extend: 'Ext.data.Model',
 						fields: ['id', 'dateesd', 'datetimein','mchname','nik','leftstatus','leftfeet','rightstatus','rightfeet','wirststatus','wirstvalue','judgement']
 		           	});
-				// TORQUE
+				//	TORQUE
 		        	Ext.define('model_torque_ma',{
 		                extend: 'Ext.data.Model',
 						fields: ['unid', 'id', 'datetimein', 'channel','mode','rotation','torque','torque']
 		           	});
-				// TEMPERATURE
+				//	TEMPERATURE
 		        	Ext.define('model_temperature_ma',{
 		                extend: 'Ext.data.Model',
 						fields: ['unid', 'id', 'faddres', 'Instid','grno','measid','temp','settemp','datetimein','status','picupload']
@@ -97,6 +97,12 @@
 		                extend: 'Ext.data.Model',
 						fields: ['unid', 'id', 'faddres', 'Instid','grno','measid','temp','settemp','datetimein','status','picupload']
 		           	});
+		        //	PARTICLE DUSTY
+		        	Ext.define('model_particle',{
+		                extend: 'Ext.data.Model',
+						fields: ['id', 'mchname', 'model', 'dateinspection','datetimein','serial','alm','t_ch1','h_ch2','h_ch2','alm1','alm2','inputdate']
+		           	});
+					
 		//	=======================================================    DATASTORE    =====================================
 				
 				// THERMOHUMIDITY
@@ -295,7 +301,25 @@
 							}
 						 }				
 					});
-					
+				// THERMOHUMIDITY
+					var store_particle = Ext.create('Ext.data.Store',{
+						model	: 'model_particle',
+						autoLoad: true,
+						pageSize: itemperpage,
+						proxy   : {
+							type    : 'ajax',
+							url     : 'json/measurement/json_ma_particledusty.php',
+							extraParams: {
+								loc: 'smt1'
+							},
+							reader  : {
+								type    : 'json',
+								root    : 'rows',
+								totalProperty : 'totalCount'
+							}
+						}
+					});
+				
 
 		//	=======================================================    GRID    ==========================================
 				
@@ -1372,25 +1396,25 @@
 								hidden		: true
 							}
 						],
-						bbar	: Ext.create('Ext.PagingToolbar', {
-							pageSize		: itemperpage,
-							store			: store_temperature_ma,
-							displayInfo		: true,
-							displayMsg		: 'Data {0} - {1} from {2} data',
-							emptyMsg		: "Page not found",
-							beforePageText  : 'Page',
-							afterPageText   : 'from {0} Pages',
-							firstText       : 'First Page',
-							prevText        : 'Previous Page',
-							nextText        : 'Next page',
-							lastText        : 'Last Page',
-							plugins       	: Ext.create('Ext.ux.ProgressBarPager', {}),
-							listeners 		: {
-								afterrender: function (cmp) {
-									cmp.getComponent("refresh").hide();
-								}
-							}
-						}),
+						// bbar	: Ext.create('Ext.PagingToolbar', {
+						// 	pageSize		: itemperpage,
+						// 	store			: store_temperature_ma,
+						// 	displayInfo		: true,
+						// 	displayMsg		: 'Data {0} - {1} from {2} data',
+						// 	emptyMsg		: "Page not found",
+						// 	beforePageText  : 'Page',
+						// 	afterPageText   : 'from {0} Pages',
+						// 	firstText       : 'First Page',
+						// 	prevText        : 'Previous Page',
+						// 	nextText        : 'Next page',
+						// 	lastText        : 'Last Page',
+						// 	plugins       	: Ext.create('Ext.ux.ProgressBarPager', {}),
+						// 	listeners 		: {
+						// 		afterrender: function (cmp) {
+						// 			cmp.getComponent("refresh").hide();
+						// 		}
+						// 	}
+						// }),
 						//features: [filters],
 						// selModel: {
 						// 	selType: 'cellmodel'
@@ -1468,9 +1492,117 @@
 								hidden		: true
 							}
 						],
+						// bbar	: Ext.create('Ext.PagingToolbar', {
+						// 	pageSize		: itemperpage,
+						// 	store			: store_temperature_smt,
+						// 	displayInfo		: true,
+						// 	displayMsg		: 'Data {0} - {1} from {2} data',
+						// 	emptyMsg		: "Page not found",
+						// 	beforePageText  : 'Page',
+						// 	afterPageText   : 'from {0} Pages',
+						// 	firstText       : 'First Page',
+						// 	prevText        : 'Previous Page',
+						// 	nextText        : 'Next page',
+						// 	lastText        : 'Last Page',
+						// 	plugins       	: Ext.create('Ext.ux.ProgressBarPager', {}),
+						// 	listeners 		: {
+						// 		afterrender: function (cmp) {
+						// 			cmp.getComponent("refresh").hide();
+						// 		}
+						// 	}
+						// }),
+						//features: [filters],
+						// selModel: {
+						// 	selType: 'cellmodel'
+						// },
+						// plugins: [cellEditing]
+					});
+				//	PARTICLEDUSTY
+					var grid_particle = Ext.create('Ext.grid.Panel', {
+						id 				: 'grid_particle',
+						autoWidth 	 	: '100%',
+						maxHeight	 	: 330,
+						columnLines 	: true,
+						store 			: store_particle,
+						viewConfig 		: {
+							stripeRows 			: true,
+							emptyText 		 	: '<div class="empty-txt">No data to display.</div>',
+							deferEmptyText 		: false,
+							enableTextSelection : true
+						},
+						columns: [
+							{	header 		: 'id',
+								dataIndex 	: 'id',
+								flex 		: 1,
+								renderer 	: upsize,
+								hidden		: true
+							},
+							{	header 		: 'DATE INSP',
+								dataIndex 	: 'dateinspection',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'TIME',
+								dataIndex 	: 'datetimein',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'MCH NAME',
+								dataIndex 	: 'mchname',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'MODEL',
+								dataIndex 	: 'model',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'SERIAL',
+								dataIndex 	: 'serial',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'ALM',
+								dataIndex 	: 'alm',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'TEMPERATURE <br> ( &deg;C )',
+								dataIndex 	: 't_ch1',
+								width 		: 120,
+								renderer 	: upsize
+							},
+							{	header 		: 'PARTICLE <br> ( <i class="fas fa-tint"></i> )',
+								dataIndex 	: 'h_ch2',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'PARTICLE <br> ( <i class="fas fa-tint"></i> )',
+								dataIndex 	: 'h_ch3',
+								flex 		: 1,
+								renderer 	: upsize,
+								hidden		: true
+							},
+							{	header 		: 'ALM1',
+								dataIndex	: 'alm1',
+								flex 		: 1,
+								renderer	: upsize
+							},
+							{	header 		: 'ALM2',
+								dataIndex 	: 'alm2',
+								flex 		: 1,
+								renderer 	: upsize
+							},
+							{	header 		: 'inputdate',
+								dataIndex 	: 'inputdate',
+								flex 		: 1,
+								renderer 	: upsize,
+								hidden		: true
+							}
+						],
 						bbar	: Ext.create('Ext.PagingToolbar', {
 							pageSize		: itemperpage,
-							store			: store_temperature_smt,
+							store			: store_particle,
 							displayInfo		: true,
 							displayMsg		: 'Data {0} - {1} from {2} data',
 							emptyMsg		: "Page not found",
@@ -1493,7 +1625,7 @@
 						// },
 						// plugins: [cellEditing]
 					});
-					
+						
 		//	=======================================================    PANEL    =========================================
 			
 					var panel_thermo = Ext.create('Ext.tab.Panel', {
@@ -1625,6 +1757,22 @@
 							}
 						]
 					});
+
+					var panel_dusty = Ext.create('Ext.panel.Panel', {
+						id 				:'panel_dusty',
+						renderTo 		: 'panel_dusty',
+						autoWidth		: '100%',
+						maxHeight		: 360,
+						border			: false,
+						frame			: true,
+						hidden			: false,
+						defaults		: {
+							split		: true,
+							collapsible	: false
+						},
+						items			: [grid_particle]
+					});
+
 
 		//	=======================================================    POPUP SEARCH DATA    =============================
 				// Ext.create('Ext.form.field.Date',{
@@ -2031,8 +2179,8 @@
 										if (!measurement_date) {
 											Ext.Msg.alert('Warning', 'Measurement date cannot be null !!!');
 										} else {
-											
-										
+											store_particle.proxy.setExtraParam('measurement_date', measurement_date);
+											store_particle.loadPage(1);
 										}
 									}
 								},
