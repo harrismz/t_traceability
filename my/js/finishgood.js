@@ -396,7 +396,7 @@
 						pageSize: itemperpage,
 						proxy   : {
 		                    type    : 'ajax',
-		                    url     : 'json/json_part_smt_install.php',
+		                    url     : 'json/finishgood_ma/json_part_smt_install.php',
 		                    reader  : {
 		                        type    : 'json',
 		                        root    : 'rows',
@@ -410,7 +410,7 @@
 						pageSize: itemperpage,
 						proxy   : {
 							type    : 'ajax',
-							url     : 'json/json_part_smtzdbs.php',
+							url     : 'json/finishgood_ma/json_part_smtzdbs.php',
 							reader  : {
 								type    : 'json',
 								root    : 'rows'
@@ -1519,7 +1519,7 @@
 					var grid_part_smt_install = Ext.create('Ext.grid.Panel', {
 						id: 'grid_part_smt_install',
 						autoWidth 	: '100%',
-						maxHeight	: 295,
+						maxHeight	: 290,
 						columnLines: true,
 						store: store_part_smt_install,
 						viewConfig: {
@@ -1528,82 +1528,103 @@
 							deferEmptyText: false,
 							enableTextSelection: true
 						},
-						columns: [{
-							header: 'Req. Date',
-							dataIndex: 'jobdate',
-							flex: 1,
-							renderer: upsize
-						}, {
-							header: 'Req. Time',
-							dataIndex: 'jobtime',
-							flex: 1,
-							renderer: upsize
-						}, {
-							header: 'Line',
-							dataIndex: 'line',
-							flex: 1,
-							renderer: upsize
-						}, {
-							header: 'Model Name',
-							dataIndex: 'model_name',
-							flex: 1,
-							renderer: upsize,
-							hidden: true
-						}, {
-							header: 'PWB Name',
-							dataIndex: 'pwb_name',
-							flex: 1,
-							renderer: upsize,
-							hidden: true
-						}, {
-							header: 'Start Serial',
-							dataIndex: 'start_serial',
-							flex: 1,
-							renderer: upsize,
-							hidden: true
-						}, {
-							header: 'Lot',
-							dataIndex: 'lot',
-							flex: 1,
-							renderer: upsize,
-							hidden: true
-						}, {
-							header: 'Zfeeder',
-							dataIndex: 'zfeeder',
-							flex: 1,
-							renderer: upsize,
-							filter: {
-								type: 'string'
+						columns: [
+							{
+								header: 'Req. Date',
+								dataIndex: 'jobdate',
+								width : 100,
+								renderer: upsize
+							}, {
+								header: 'Req. Time',
+								dataIndex: 'jobtime',
+								width : 100,
+								renderer: upsize
+							}, {
+								header: 'Line',
+								dataIndex: 'line',
+								width : 100,
+								renderer: upsize
+							}, {
+								header: 'Model Name',
+								dataIndex: 'model_name',
+								flex: 1,
+								renderer: upsize,
+								hidden: true
+							}, {
+								header: 'PWB Name',
+								dataIndex: 'pwb_name',
+								flex: 1,
+								renderer: upsize,
+								hidden: true
+							}, {
+								header: 'Start Serial',
+								dataIndex: 'start_serial',
+								flex: 1,
+								renderer: upsize,
+								hidden: true
+							}, {
+								header: 'Lot',
+								dataIndex: 'lot',
+								flex: 1,
+								renderer: upsize,
+								hidden: true
+							}, {
+								header: 'Zfeeder',
+								dataIndex: 'zfeeder',
+								width : 150,
+								renderer: upsize,
+								filter: {
+									type: 'string'
+								}
+							}, {
+								header: 'Part Number',
+								dataIndex: 'part_no',
+								width : 150,
+								renderer: upsize,
+								filter: {
+									type: 'string'
+								}
+							}, {
+								header: 'Demand Qty',
+								dataIndex: 'demand',
+								width : 100,
+								renderer: upsize
+							}, {
+								header: 'Status',
+								dataIndex: 'install',
+								width : 100,
+								renderer: upsize
+							}, {
+								header: 'PIC',
+								dataIndex: 'install_nik',
+								width : 100,
+								renderer: upsize
+							}, {
+								header: 'Scan Date',
+								dataIndex: 'install_time',
+								width : 100,
+								renderer: upsize
 							}
-						}, {
-							header: 'Part Number',
-							dataIndex: 'part_no',
-							flex: 1,
-							renderer: upsize,
-							filter: {
-								type: 'string'
+						],
+						bbar	: Ext.create('Ext.PagingToolbar', {
+							pageSize		: itemperpage,
+							store			: store_part_smt_install,
+							displayInfo		: true,
+							displayMsg		: 'Data {0} - {1} from {2} data',
+							emptyMsg		: "Page not found",
+							beforePageText  : 'Page',
+							afterPageText   : 'from {0} Pages',
+							firstText       : 'First Page',
+							prevText        : 'Previous Page',
+							nextText        : 'Next page',
+							lastText        : 'Last Page',
+							plugins       	: Ext.create('Ext.ux.ProgressBarPager', {}),
+							listeners 		: {
+								afterrender: function (cmp) {
+									cmp.getComponent("refresh").hide();
+								}
 							}
-						}, {
-							header: 'Demand Qty',
-							dataIndex: 'demand',
-							flex: 1,
-							renderer: upsize
-						}, {
-							header: 'Status',
-							dataIndex: 'install',
-							flex: 1,
-							renderer: upsize
-						}, {
-							header: 'PIC',
-							dataIndex: 'install_nik',
-							flex: 1,
-							renderer: upsize
-						}, {
-							header: 'Scan Date',
-							dataIndex: 'install_time',
-							flex: 1,
-							renderer: upsize
-						}],
+						}),
 						//features: [filters],
 						// selModel: {
 						// 	selType: 'cellmodel'
@@ -3249,7 +3270,7 @@
 						plain 		: true,
 						activeTab 	: 0,
 						autoWidth 	: '100%',
-						maxHeight	: 320,
+						height		: 330,
 						autoScroll 	: true,
 						frame 		: true,
 						//style 	: 'padding:5px;-background:#157FCC;',
@@ -3269,7 +3290,7 @@
 								reorderable : false,
 								items		: [grid_part_smt_zdbs]
 							}, 
-							{	title 		: 'FEEDER SCANNING',
+							/*{	title 		: 'FEEDER SCANNING',
 							 	id  		: 'show_grid_feeder',
 								reorderable : false,
 								items 		: [grid_smt_feeder]
@@ -3278,7 +3299,7 @@
 							 	id  		: 'show_grid_critical',
 								reorderable : false,
 								//items	 	: [grid_smt_critical]
-							},
+							},*/
 							{	title 		: 'REFLOW',
 							 	id  		: 'show_grid_reflow',
 								reorderable : false,

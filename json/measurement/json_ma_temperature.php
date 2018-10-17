@@ -2,18 +2,19 @@
     date_default_timezone_set('Asia/jakarta');
     include '../../../adodb/con_mapros_SQL.php';
 
-    $page     = @$_REQUEST["page"];
-    $limit    = @$_REQUEST["limit"];
-    $start    = (($page*$limit)-$limit)+1;
+    // $page     = @$_REQUEST["page"];
+    // $limit    = @$_REQUEST["limit"];
+    // $start    = (($page*$limit)-$limit)+1;
     $today    = date("Y-m-d");
     $getdate1 = isset($_REQUEST['measurement_date']) ? $_REQUEST['measurement_date'] : $today;
     $getdate  = substr($getdate1,0,10);
     $measurement_date   = date('Y-m-d', strtotime($getdate));
 
     //echo "EXEC [traceability_ma_themperature] '{$measurement_date}'";
-    $sql    = "declare @totalcount as int; exec traceability_ma_themperature $start, $limit, '{$measurement_date}', @totalcount=@totalcount out";
+    // $sql    = "declare @totalcount as int; exec traceability_ma_themperature $start, $limit, '{$measurement_date}', @totalcount=@totalcount out";
+    $sql    = "exec traceability_ma_themperature '{$measurement_date}'";
     $rs     = $db->Execute($sql);
-    $totalcount = $rs->fields['11'];
+    //$totalcount = $rs->fields['11'];
    
     $return = array();
 
@@ -34,7 +35,7 @@
     }
     $x = array(
         "success"=>true,
-        "totalCount"=>$totalcount,
+        //"totalCount"=>$totalcount,
         "rows"=>$return);
 
     echo json_encode($x);
