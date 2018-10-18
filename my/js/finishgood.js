@@ -81,7 +81,8 @@
 				//Part Inspection
 					Ext.define('model_part_insp', {
 						extend: 'Ext.data.Model',
-						fields: ['noid', 'deliv_date', 'tbslppartno', 'partname', 'supplier', 'suppcode', 'inspect_level', 'pic', 'shift', 'qty_sampling', 'qty_rejection', 'do', 'bc', 'po', 'qty_delivery', 'lot_out', 'pr_name', 'time_finish', 'fld_remark']
+						fields: ['deliv_date', 'partno', 'supplier', 'pic', 'qty_sampling', 'qty_rejection', 'po', 
+						'qty_delivery', 'lot_out', 'time_finish', 'fld_remark', 'date_input']
 					});
 				//Part Issuing
 					Ext.define('part_mc_issue_ma', {
@@ -997,7 +998,6 @@
 							enableTextSelection	: true
 						},
 						columns			: [
-						{ header: 'noid', dataIndex: 'noid', minwidth:10, renderer: upsize, hidden:true },
 						{ header: 'Delivery', dataIndex: 'deliv_date', width: 90, renderer: upsize },
 						{ header: 'Time Finish', dataIndex: 'time_finish', width: 80, renderer: upsize },
 						{ header: 'Part Number', dataIndex: 'partno', flex: 1, renderer: upsize,
@@ -1006,21 +1006,15 @@
 								dataIndex: 'partno'
 							}
 						},
-						{ header: 'Part Name', dataIndex: 'partname', width: 80, renderer: upsize, hidden:true },
-					    { header: 'Supplier', dataIndex: 'supplier', width: 100, renderer: upsize },
-						{ header: 'SuppCode', dataIndex: 'suppcode', flex:1, renderer: upsize,  hidden:true },
-						{ header: 'Inspect Level', dataIndex: 'inspect_level', width: 80, hidden:true },
+						{ header: 'Supplier', dataIndex: 'supplier', width: 100, renderer: upsize },
 						{ header: 'PIC', dataIndex: 'pic', width: 60, renderer: upsize },
-						{ header: 'Shift', dataIndex: 'shift', width: 80, renderer: upsize, hidden:true },
-					    { header: 'Sampling', dataIndex: 'qty_sampling', width: 80, renderer: upsize },
+						{ header: 'Sampling', dataIndex: 'qty_sampling', width: 80, renderer: upsize },
 						{ header: 'Rejection', dataIndex: 'qty_rejection', width: 80, renderer: upsize },
-						{ header: 'DO', dataIndex: 'do', flex: 1, renderer: upsize, hidden:true },
-						{ header: 'BC', dataIndex: 'bc', flex: 1, renderer: upsize, hidden:true },
 						{ header: 'PO', dataIndex: 'po', width: 80, renderer: upsize },
 						{ header: 'Qty Delivery', dataIndex: 'qty_delivery', width: 80, renderer: upsize },
 						{ header: 'Lot Out', dataIndex: 'lot_out', width: 80, renderer: upsize },
-						{ header: 'PR Name', dataIndex: 'pr_name', flex: 1, renderer: upsize, hidden:true },
-						{ header: 'Remark', dataIndex: 'fld_remark', width: 80, renderer: upsize }
+						{ header: 'Remark', dataIndex: 'fld_remark', width: 80, renderer: upsize },
+						{ header: 'Remark', dataIndex: 'date_input', width: 80, renderer: upsize }
 							//
 							//
 						  	// {

@@ -13,46 +13,43 @@
 	// $sdate = date('Y-m-d', strtotime($getdate."- 7 days"));
 	// $edate = date('Y-m-d', strtotime($getdate."+ 15 days"));
 	$query = $conn->prepare("declare @totalcount as int 
-								exec traceability_partinsp_dispsc $start, $limit, '{$model}','{$lot}','{$proddate}', @totalcount=@totalcount out");
+								exec traceability_partinsp_dispsc_2 $start, $limit, '{$model}','{$lot}','{$proddate}', @totalcount=@totalcount out");
 
 	// echo "declare @totalcount as int 
 	// 							exec traceability_partinsp_dispsc $start, $limit, '{$model}','{$lot}','{$proddate}', @totalcount=@totalcount out";
 								
-	$conn->SetFetchMode(ADODB_FETCH_ASSOC);
+	// $conn->SetFetchMode(ADODB_FETCH_ASSOC);
+	// $result = $conn->Execute($query);
+	// $return = array();
+
 	$result = $conn->Execute($query);
+	$totalcount 	= $result->fields['12'];
 	$return = array();
 
 	for ($i=0; !$result->EOF;$i++){
 		//	var_dump($result->fields); //check hasil query
 		//	$return[] = $result->fields; // menampilkan semua hasil query
 
-	 	$return[$i]['noid']          = trim($result->fields['noid']);
-		$return[$i]['deliv_date']    = trim(date('Y-m-d', strtotime($result->fields['deliv_date'])));
-		$return[$i]['partno']        = trim($result->fields['tbslppartno']);
-		$return[$i]['partname']      = trim($result->fields['partname']);
-		$return[$i]['supplier']      = trim($result->fields['supplier']);
-		$return[$i]['suppcode']      = trim($result->fields['suppcode']);
-		$return[$i]['inspect_level'] = trim($result->fields['inspect_level']);
-		$return[$i]['pic']           = trim($result->fields['pic']);
-		$return[$i]['shift']         = trim($result->fields['shift']);
-		$return[$i]['qty_sampling']  = (float)trim($result->fields['qty_sampling']);
-		$return[$i]['qty_rejection'] = (float)trim($result->fields['qty_rejection']);
-		$return[$i]['bc']            = trim($result->fields['bc']);
-		$return[$i]['do']            = trim($result->fields['do']);
-		$return[$i]['po']            = trim($result->fields['po']);
-		$return[$i]['qty_delivery']  = (float)trim($result->fields['qty_delivery']);
-		$return[$i]['lot_out']       = trim($result->fields['lot_out']);
-		$return[$i]['pr_name']       = trim($result->fields['pr_name']);
-		$return[$i]['time_finish']   = trim(date('H:i:s', strtotime($result->fields['time_finish'])));
-		$return[$i]['fld_remark']    = trim($result->fields['fld_remark']);
+		$return[$i]['deliv_date']    = trim(date('Y-m-d', strtotime($result->fields['0'])));
+		$return[$i]['partno']        = trim($result->fields['1']);
+		$return[$i]['supplier']      = trim($result->fields['2']);
+		$return[$i]['pic']           = trim($result->fields['3']);
+		$return[$i]['qty_sampling']  = (float)trim($result->fields['4']);
+		$return[$i]['qty_rejection'] = (float)trim($result->fields['5']);
+		$return[$i]['po']            = trim($result->fields['6']);
+		$return[$i]['qty_delivery']  = (float)trim($result->fields['7']);
+		$return[$i]['lot_out']       = trim($result->fields['8']);
+		$return[$i]['time_finish']   = trim(date('H:i:s', strtotime($result->fields['9'])));
+		$return[$i]['fld_remark']    = trim($result->fields['10']);
+		$return[$i]['date_input']    = trim($result->fields['11']);
 
 		$result->MoveNext();
 	}
 
   $o = array(
     "success"=>true,
-    "rows"=>$return
-	);
+    "totalCount"=>$totalcount,
+    "rows"=>$return);
 
   echo json_encode($o);
 
