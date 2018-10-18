@@ -2,13 +2,22 @@
 
 	date_default_timezone_set('Asia/jakarta');
   include '../../adodb/con_wiqci.php';
-  $model 	= $_REQUEST['model'];
-  $lot		= $_REQUEST['prod_no'];
-  $getdate	= substr($_REQUEST['prod_date'],0,10);
-  $proddate = date('Y-m-d', strtotime($getdate));
-  // $sdate = date('Y-m-d', strtotime($getdate."- 7 days"));
-  // $edate = date('Y-m-d', strtotime($getdate."+ 15 days"));
-	$query = $conn->prepare("exec traceability_partinsp_dispsc '{$model}','{$lot}','{$proddate}'");
+
+  	$page 		= @$_REQUEST["page"];
+	$limit 		= @$_REQUEST["limit"];
+	$start		= (($page*$limit)-$limit)+1;
+	$model 		= $_REQUEST['model'];
+	$lot		= $_REQUEST['prod_no'];
+	$getdate	= substr($_REQUEST['prod_date'],0,10);
+	$proddate 	= date('Y-m-d', strtotime($getdate));
+	// $sdate = date('Y-m-d', strtotime($getdate."- 7 days"));
+	// $edate = date('Y-m-d', strtotime($getdate."+ 15 days"));
+	$query = $conn->prepare("declare @totalcount as int 
+								exec traceability_partinsp_dispsc $start, $limit, '{$model}','{$lot}','{$proddate}', @totalcount=@totalcount out");
+
+	// echo "declare @totalcount as int 
+	// 							exec traceability_partinsp_dispsc $start, $limit, '{$model}','{$lot}','{$proddate}', @totalcount=@totalcount out";
+								
 	$conn->SetFetchMode(ADODB_FETCH_ASSOC);
 	$result = $conn->Execute($query);
 	$return = array();

@@ -339,7 +339,7 @@
 					var store_part_insp = Ext.create('Ext.data.Store', {
 						model 	: 'model_part_insp',
 						autoLoad: false,
-						//pageSize: itemperpage,
+						pageSize: itemperpage,
 						proxy 	: {
 							type 	: 'ajax',
 							url 	: 'json/json_part_insp.php',
@@ -1043,6 +1043,25 @@
 							// 	renderer: upsize
 							// }
 						],
+						bbar	: Ext.create('Ext.PagingToolbar', {
+							pageSize		: itemperpage,
+							store			: store_part_insp,
+							displayInfo		: true,
+							displayMsg		: 'Data {0} - {1} from {2} data',
+							emptyMsg		: "Page not found",
+							beforePageText  : 'Page',
+							afterPageText   : 'from {0} Pages',
+							firstText       : 'First Page',
+							prevText        : 'Previous Page',
+							nextText        : 'Next page',
+							lastText        : 'Last Page',
+							plugins       	: Ext.create('Ext.ux.ProgressBarPager', {}),
+							listeners 		: {
+								afterrender: function (cmp) {
+									cmp.getComponent("refresh").hide();
+								}
+							}
+						}),
 						// features: [{
 						// 	ftype: 'filters',
 						// 	encode: encode, // json encode the filter query
