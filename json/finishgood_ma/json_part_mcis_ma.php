@@ -19,9 +19,9 @@
         $proddate   = '';
     }
 
-    echo $sql		= "declare @totalcount as int; exec traceability_partiss  $start, $limit, '{$model}','{$lot}','{$proddate}','ma', @totalcount=@totalcount out";
+    $sql		= "declare @totalcount as int; exec traceability_partiss  $start, $limit, '{$model}','{$lot}','{$proddate}','ma', @totalcount=@totalcount out";
 	$rs 		= $db->Execute($sql);
-	$totalcount = $rs->fields['8'];
+	$totalcount = $rs->fields['12'];
 
   	$return 	= array();
 
@@ -36,14 +36,15 @@
 		$return[$i]['line']		  = trim($rs->fields['7']);
 		$return[$i]['so']    	  = trim($rs->fields['8']);
 	    $return[$i]['reqqty']	  = (float)trim($rs->fields['9']);
-	    $return[$i]['prodnosupp'] = trim($rs->fields['10']);
+	    $return[$i]['proddatesupp'] = trim($rs->fields['10']);
 	    $return[$i]['lotnosupp']  = trim($rs->fields['11']);
 	    $rs->MoveNext();
   	}
 
   	$o = array(
 	    "success"=>true,
-	    "rows"=>$return
+        "totalCount"=>$totalcount,
+        "rows"=>$return
 	);
 
   	echo json_encode($o);

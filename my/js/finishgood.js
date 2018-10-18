@@ -86,7 +86,7 @@
 				//Part Issuing
 					Ext.define('part_mc_issue_ma', {
 						extend: 'Ext.data.Model',
-						fields: ['issdate', 'partno', 'partname', 'scanqty', 'po', 'model_name', 'lot', 'line', 'so', 'reqqty']
+						fields: ['issdate', 'partno', 'partname', 'scanqty', 'po', 'model_name', 'lot', 'line', 'so', 'reqqty','proddatesupp','lotnosupp']
 					});
 					Ext.define('part_mc_issue_mecha', {
 						extend: 'Ext.data.Model',
@@ -1151,8 +1151,37 @@
 								dataIndex	: 'so',
 								minWidth	: 90,
 								renderer	: upsize
+							},
+							{ header		: 'PROD DATE',
+								dataIndex	: 'proddatesupp',
+								minWidth	: 90,
+								renderer	: upsize
+							},
+							{ header		: 'LOTNO SUPPLIER',
+								dataIndex	: 'lotnosupp',
+								minWidth	: 90,
+								renderer	: upsize
 							}
 						],
+						bbar	: Ext.create('Ext.PagingToolbar', {
+							pageSize		: itemperpage,
+							store			: store_part_mc_issue_ma,
+							displayInfo		: true,
+							displayMsg		: 'Data {0} - {1} from {2} data',
+							emptyMsg		: "Page not found",
+							beforePageText  : 'Page',
+							afterPageText   : 'from {0} Pages',
+							firstText       : 'First Page',
+							prevText        : 'Previous Page',
+							nextText        : 'Next page',
+							lastText        : 'Last Page',
+							plugins       	: Ext.create('Ext.ux.ProgressBarPager', {}),
+							listeners 		: {
+								afterrender: function (cmp) {
+									cmp.getComponent("refresh").hide();
+								}
+							}
+						}),
 						// features		: [
 						// 	{
 						// 		ftype	: 'filters',
@@ -4120,7 +4149,7 @@
 						plain 		: true,
 						//activeTab 	: 0,
 						autoWidth 	: '100%',
-						maxHeight 	: 300,
+						height 	: 340,
 						autoScroll 	: true,
 						frame 		: true,
 						style: 'padding:5px;-background:#157FCC;',
