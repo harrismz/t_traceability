@@ -1733,7 +1733,7 @@
 						plain 		: true,
 						activeTab 	: 0,
 						autoWidth 	: '100%',
-						height		: 290,
+						height		: 340,
 						autoScroll 	: true,
 						frame 		: true,
 						//style 	: 'padding:5px;-background:#157FCC;',
