@@ -183,7 +183,7 @@
                 </div>
               </div>
             </div>
-            <!-- SMT Department -->
+            <!-- SMT Department -
             <div class="panel">
               <a class="panel-heading" role="tab" id="headingOne2" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne2" aria-expanded="true" aria-controls="collapseOne">
                 <h4 class="panel-title">SMT Department</h4>
@@ -191,15 +191,15 @@
               <div id="collapseOne2" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                 <div class="panel-body">
 
-                  <!--  Extjs Grid Part smt -->
+                    Extjs Grid Part smt -
                   <div id="finishgood_part_smt" class="extjs_border">
                   </div>
-                  <!--  END OF Extjs Grid Part smt -->
+                    END OF Extjs Grid Part smt 
                 </div>
               </div>
             </div>
           </div>
-          <!-- END OF collapsible -->
+           END OF collapsible -->
         </div>
       </div>
     </div>
@@ -268,7 +268,7 @@
               </div>
             </div>
             <!--  END OF Part Inspection -->
-            
+
             <!--  Receiving Part -->
             <div class="panel">
               <a class="panel-heading" role="tab" id="headingOne1" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne1" aria-expanded="true" aria-controls="collapseOne1">

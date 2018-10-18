@@ -7,13 +7,14 @@
 	//$start		= (($page*$limit)-$limit)+1;
 	//  $getdate    = substr($_REQUEST['smt_date'],0,10);
     //  $smt_date   = date('Y-m-d', strtotime($getdate));
-
-    $boardid    = @$_REQUEST['boardid'];
-    $cavity     = @$_REQUEST['cavity'];
+    $model          = @$_REQUEST['model'];
+    $serial_no      = @$_REQUEST['serial_no'];
 
 
 	// echo "call traceability_goodsmt_board ('{$boardid}','{$cavity}')";
-    $rs    = $db->Execute("call traceability_goodsmt_board ('{$boardid}','{$cavity}')");
+    $sql    = "call traceability_mapros_board_fg ('{$model}','{$serial_no}');";
+    $rs    = $db->Execute($sql);
+
     $return = array();
  
     for($i=0;!$rs->EOF;$i++){
