@@ -129,10 +129,31 @@
 		            });
 
 				//PCB & MA DEPARTMENT
-					Ext.define('model_mapros_board',{
-					    extend: 'Ext.data.Model',
-		                fields: ['board_id','guid_master','guid_ticket','modelname','lotno','scanner_id','status']
-		            })
+					// Ext.define('model_mapros_board',{
+					//     extend: 'Ext.data.Model',
+		   //              fields: ['board_id','guid_master','guid_ticket','modelname','lotno','scanner_id','status']
+		   			//	})
+
+		   			// 			Ext.define('model_mapros_board',{
+				   //              extend: 'Ext.data.Model',
+				   //              fields: ['board_id','guid_master','guid_ticket','modelname','lotno',
+					// 			'scanner_id','status','scan_nik','judge','created_at','updated_at','lineprocess','line']
+				   //         	});
+					Ext.define('model_mapros_panel_fg',{
+				                extend: 'Ext.data.Model',
+				                fields: ['ticket_no','guid_master','guid_ticket','modelname',
+								'scanner_id','status','scan_nik','judge','created_at','updated_at','lineprocess','line']
+		   			        	});
+					Ext.define('model_mapros_master_fg',{
+		                extend: 'Ext.data.Model',
+		                fields: ['ticket_no_master','guid_master','modelname',
+								'scanner_id','status','scan_nik','judge','created_at','updated_at','lineprocess','line']
+		           	});
+					// Ext.define('model_mapros_avmt',{
+		   			//	extend: 'Ext.data.Model',
+		   			//              fields: ['ticket_no_master','guid_master','modelname',
+					// 			'scanner_id','status','scan_nik','judge','created_at','updated_at','lineprocess','line']
+		   			//         	});
 			 	//Mecha DEPARTMENT
 				
 			//	Outgoing Quality Control
@@ -150,7 +171,7 @@
 						autoLoad: false,
 						proxy	: {
 							type  : 'ajax',
-							url	  : 'json/json_sched.php',
+							url	  : 'json/finishgood_ma/json_sched.php',
 							reader: {
 								type 		  : 'json',
 								root 		  : 'rows',
@@ -337,7 +358,7 @@
 						pageSize: itemperpage,
 						proxy 	: {
 							type 	: 'ajax',
-							url 	: 'json/json_part_mcis_ma.php',
+							url 	: 'json/finishgood_ma/json_part_mcis_ma.php',
 							reader 	: {
 								type 		 : 'json',
 								root 		 : 'rows',
@@ -473,20 +494,86 @@
 					});
 
 				//PCB & MA Department
-					var store_mapros_board = Ext.create('Ext.data.Store',{
-						model	: 'model_mapros_board',
+					// var store_mapros_board = Ext.create('Ext.data.Store',{
+					// 	model	: 'model_mapros_board',
+					// 	autoLoad: false,
+					// 	pageSize: itemperpage,
+					// 	proxy   : {
+		   //                  type    : 'ajax',
+		   //                  url     : 'json/json_mapros_board.php',
+		   //                  reader  : {
+		   //                      type    : 'json',
+		   //                      root    : 'rows',
+		   //                      totalProperty  : 'totalCount'
+		   //                  }
+		   //              }
+					// });
+
+					// var store_mapros_board_fg = Ext.create('Ext.data.Store',{
+					// 	model	: 'model_mapros_board_fg',
+					// 	autoLoad: false,
+					// 	pageSize: itemperpage,
+					// 	proxy   : {
+					// 		type    : 'ajax',
+					// 		url     : 'json/finishgood_ma/json_good_smt_mapros_board.php',
+					// 		reader  : {
+					// 			type    : 'json',
+					// 			root    : 'rows'
+					// 		}
+					// 	}
+					// });
+					var store_mapros_panel_fg = Ext.create('Ext.data.Store',{
+						model	: 'model_mapros_panel_fg',
 						autoLoad: false,
 						pageSize: itemperpage,
 						proxy   : {
-		                    type    : 'ajax',
-		                    url     : 'json/json_mapros_board.php',
-		                    reader  : {
-		                        type    : 'json',
-		                        root    : 'rows',
-		                        totalProperty  : 'totalCount'
-		                    }
-		                }
+							type    : 'ajax',
+							url     : 'json/finishgood_ma/json_mapros_panel.php',
+							reader  : {
+								type    : 'json',
+								root    : 'rows'
+							}
+						}
 					});
+					var store_mapros_master_fg = Ext.create('Ext.data.Store',{
+						model	: 'model_mapros_master_fg',
+						autoLoad: false,
+						pageSize: itemperpage,
+						proxy   : {
+							type    : 'ajax',
+							url     : 'json/finishgood_ma/json_mapros_master.php',
+							reader  : {
+								type    : 'json',
+								root    : 'rows'
+							}
+						},
+						// listeners: {
+						// 	load: function(store, records) {
+						// 		if (records != "") {
+
+						// 			store_mapros_board_fg.proxy.setExtraParam('model', boardid);
+						// 			store_mapros_board_fg.proxy.setExtraParam('serial_no', cavity);
+						// 			store_mapros_board_fg.loadPage(1);
+						// 			store_mapros_panel_fg.proxy.setExtraParam('boardid', boardid);
+						// 			store_mapros_panel_fg.proxy.setExtraParam('cavity', cavity);
+						// 			store_mapros_panel_fg.loadPage(1);
+						// 		} 
+						// 	}
+						// }
+					});
+					// var store_mapros_avmt_fg = Ext.create('Ext.data.Store',{
+					// 	model	: 'model_mapros_avmt_fg',
+					// 	autoLoad: false,
+					// 	pageSize: itemperpage,
+					// 	proxy   : {
+					// 		type    : 'ajax',
+					// 		url     : 'json/finishgood_ma/json_good_smt_mapros_avmt.php',
+					// 		reader  : {
+					// 			type    : 'json',
+					// 			root    : 'rows'
+					// 		}
+					// 	}
+					// });
 
 			// 	Warehouse
 
@@ -513,6 +600,7 @@
 									lot_size 	= store.getAt(0).get('lot_size');
 									serial_no 	= store.getAt(0).get('start_serial');
 									serial_id 	= store.getAt(0).get('serial_id');
+									serialcode	= Ext.getCmp('finishgood_serial').getValue();
 									
 									store_part_receiving.proxy.setExtraParam('prod_date', prod_date);
 									store_part_receiving.proxy.setExtraParam('prod_no', prodno);
@@ -524,6 +612,7 @@
 									store_sched.proxy.setExtraParam('prod_no', prodno);
 									store_sched.proxy.setExtraParam('serial_no', serial_no);
 									store_sched.proxy.setExtraParam('serial_id', serial_id);
+									store_sched.proxy.setExtraParam('serialcode', serialcode);
 									store_sched.loadPage(1);
 									
 									store_output.proxy.setExtraParam('model', model);
@@ -2392,159 +2481,802 @@
 						});
 						
 				//	PCB & MA Department
-					var grd_ma_losttime = Ext.create('Ext.grid.Panel', {
-					 	id: 'grd_prd_losttime',
-					 	autoWidth 	: '100%',
-						maxHeight	: 295,
-						columnLines: true,
-					 	// store: prd_lost_time,
-					 	viewConfig: {
-					 		stripeRows: true,
-					 		emptyText: '<div class="empty-txt">No data to display.</div>',
-					 		deferEmptyText: false,
-					 		enableTextSelection: true
-					 	},
-					 	columns: [{
-					 		header: 'Date ID',
-					 		dataIndex: 'date_id',
-					 		width: 120,
-					 		renderer: upsize
-					 	}, {
-					 		header: 'Line Name',
-					 		dataIndex: 'line_name',
-					 		width: 85,
-					 		renderer: upsize
-					 	}, {
-					 		header: 'Shift',
-					 		dataIndex: 'shift',
-					 		width: 50,
-					 		renderer: upsize
-					 	}, {
-					 		header: 'Prod No',
-					 		dataIndex: 'prod_no',
-					 		width: 80,
-					 		renderer: upsize
-					 	}, {
-					 		header: 'Start Time',
-					 		dataIndex: 'time_start',
-					 		width: 90,
-					 		renderer: upsize
-					 	}, {
-					 		header: 'End Time',
-					 		dataIndex: 'time_end',
-					 		width: 90,
-					 		renderer: upsize
-					 	}, {
-					 		header: 'Model Name',
-					 		dataIndex: 'model_name',
-					 		width: 130,
-					 		renderer: upsize,
-					 		hidden: true
-					 	}, {
-					 		header: 'Lost Detail',
-					 		dataIndex: 'lost_detail',
-					 		flex: 1,
-					 		renderer: upsize
-					 	}, {
-					 		header: 'Responsible',
-					 		dataIndex: 'responsible',
-					 		width: 95,
-					 		renderer: upsize
-					 	}, {
-					 		header: 'Department',
-					 		dataIndex: 'dept',
-					 		width: 95,
-					 		renderer: upsize
-					 	}],
-					 	/*bbar        : Ext.create('Ext.PagingToolbar',{
-					               pageSize    : itemperpage,
-					               store       : prd_lost_time,
-					               displayInfo : true,
-					               plugins     : Ext.create('Ext.ux.ProgressBarPager',{}),
-					               listeners   : {
-					                   afterrender : function(cmp){
-					                       this.getComponent("refresh").hide();
-					                   }
-					               }
-					           })*/
-					});
-					var grid_ma_pcb = Ext.create('Ext.grid.Panel', {
-					 	id: 'grid_ma_pcb',
-					 	autoWidth 	: '100%',
-						maxHeight	: 295,
-						columnLines: true,
-					 	store: store_mapros_board,
-					 	viewConfig: {
-					 		stripeRows: true,
-					 		emptyText: '<div class="empty-txt">No data to display.</div>',
-					 		deferEmptyText: false,
-					 		enableTextSelection: true
-					 	},
-					 	columns: [{
-					 		header: 'Date ID',
-					 		dataIndex: 'date_id',
-					 		width: 120,
-					 		renderer: upsize
-					 	}, {
-					 		header: 'Line Name',
-					 		dataIndex: 'line_name',
-					 		width: 85,
-					 		renderer: upsize
-					 	}, {
-					 		header: 'Shift',
-					 		dataIndex: 'shift',
-					 		width: 50,
-					 		renderer: upsize
-					 	}, {
-					 		header: 'Prod No',
-					 		dataIndex: 'prod_no',
-					 		width: 80,
-					 		renderer: upsize
-					 	}, {
-					 		header: 'Start Time',
-					 		dataIndex: 'time_start',
-					 		width: 90,
-					 		renderer: upsize
-					 	}, {
-					 		header: 'End Time',
-					 		dataIndex: 'time_end',
-					 		width: 90,
-					 		renderer: upsize
-					 	}, {
-					 		header: 'Model Name',
-					 		dataIndex: 'model_name',
-					 		width: 130,
-					 		renderer: upsize,
-					 		hidden: true
-					 	}, {
-					 		header: 'Lost Detail',
-					 		dataIndex: 'lost_detail',
-					 		flex: 1,
-					 		renderer: upsize
-					 	}, {
-					 		header: 'Responsible',
-					 		dataIndex: 'responsible',
-					 		width: 95,
-					 		renderer: upsize
-					 	}, {
-					 		header: 'Department',
-					 		dataIndex: 'dept',
-					 		width: 95,
-					 		renderer: upsize
-					 	}],
-					 	/*bbar        : Ext.create('Ext.PagingToolbar',{
-					               pageSize    : itemperpage,
-					               store       : prd_lost_time,
-					               displayInfo : true,
-					               plugins     : Ext.create('Ext.ux.ProgressBarPager',{}),
-					               listeners   : {
-					                   afterrender : function(cmp){
-					                       this.getComponent("refresh").hide();
-					                   }
-					               }
-					           })*/
-					});
+					// var grd_ma_losttime = Ext.create('Ext.grid.Panel', {
+					//  	id: 'grd_prd_losttime',
+					//  	autoWidth 	: '100%',
+					// 	maxHeight	: 295,
+					// 	columnLines: true,
+					//  	// store: prd_lost_time,
+					//  	viewConfig: {
+					//  		stripeRows: true,
+					//  		emptyText: '<div class="empty-txt">No data to display.</div>',
+					//  		deferEmptyText: false,
+					//  		enableTextSelection: true
+					//  	},
+					//  	columns: [{
+					//  		header: 'Date ID',
+					//  		dataIndex: 'date_id',
+					//  		width: 120,
+					//  		renderer: upsize
+					//  	}, {
+					//  		header: 'Line Name',
+					//  		dataIndex: 'line_name',
+					//  		width: 85,
+					//  		renderer: upsize
+					//  	}, {
+					//  		header: 'Shift',
+					//  		dataIndex: 'shift',
+					//  		width: 50,
+					//  		renderer: upsize
+					//  	}, {
+					//  		header: 'Prod No',
+					//  		dataIndex: 'prod_no',
+					//  		width: 80,
+					//  		renderer: upsize
+					//  	}, {
+					//  		header: 'Start Time',
+					//  		dataIndex: 'time_start',
+					//  		width: 90,
+					//  		renderer: upsize
+					//  	}, {
+					//  		header: 'End Time',
+					//  		dataIndex: 'time_end',
+					//  		width: 90,
+					//  		renderer: upsize
+					//  	}, {
+					//  		header: 'Model Name',
+					//  		dataIndex: 'model_name',
+					//  		width: 130,
+					//  		renderer: upsize,
+					//  		hidden: true
+					//  	}, {
+					//  		header: 'Lost Detail',
+					//  		dataIndex: 'lost_detail',
+					//  		flex: 1,
+					//  		renderer: upsize
+					//  	}, {
+					//  		header: 'Responsible',
+					//  		dataIndex: 'responsible',
+					//  		width: 95,
+					//  		renderer: upsize
+					//  	}, {
+					//  		header: 'Department',
+					//  		dataIndex: 'dept',
+					//  		width: 95,
+					//  		renderer: upsize
+					//  	}],
+					//  	/*bbar        : Ext.create('Ext.PagingToolbar',{
+					//                pageSize    : itemperpage,
+					//                store       : prd_lost_time,
+					//                displayInfo : true,
+					//                plugins     : Ext.create('Ext.ux.ProgressBarPager',{}),
+					//                listeners   : {
+					//                    afterrender : function(cmp){
+					//                        this.getComponent("refresh").hide();
+					//                    }
+					//                }
+					//            })*/
+					// });
+					// var grid_ma_pcb = Ext.create('Ext.grid.Panel', {
+					//  	id: 'grid_ma_pcb',
+					//  	autoWidth 	: '100%',
+					// 	maxHeight	: 295,
+					// 	columnLines: true,
+					//  	store: store_mapros_board,
+					//  	viewConfig: {
+					//  		stripeRows: true,
+					//  		emptyText: '<div class="empty-txt">No data to display.</div>',
+					//  		deferEmptyText: false,
+					//  		enableTextSelection: true
+					//  	},
+					//  	columns: [{
+					//  		header: 'Date ID',
+					//  		dataIndex: 'date_id',
+					//  		width: 120,
+					//  		renderer: upsize
+					//  	}, {
+					//  		header: 'Line Name',
+					//  		dataIndex: 'line_name',
+					//  		width: 85,
+					//  		renderer: upsize
+					//  	}, {
+					//  		header: 'Shift',
+					//  		dataIndex: 'shift',
+					//  		width: 50,
+					//  		renderer: upsize
+					//  	}, {
+					//  		header: 'Prod No',
+					//  		dataIndex: 'prod_no',
+					//  		width: 80,
+					//  		renderer: upsize
+					//  	}, {
+					//  		header: 'Start Time',
+					//  		dataIndex: 'time_start',
+					//  		width: 90,
+					//  		renderer: upsize
+					//  	}, {
+					//  		header: 'End Time',
+					//  		dataIndex: 'time_end',
+					//  		width: 90,
+					//  		renderer: upsize
+					//  	}, {
+					//  		header: 'Model Name',
+					//  		dataIndex: 'model_name',
+					//  		width: 130,
+					//  		renderer: upsize,
+					//  		hidden: true
+					//  	}, {
+					//  		header: 'Lost Detail',
+					//  		dataIndex: 'lost_detail',
+					//  		flex: 1,
+					//  		renderer: upsize
+					//  	}, {
+					//  		header: 'Responsible',
+					//  		dataIndex: 'responsible',
+					//  		width: 95,
+					//  		renderer: upsize
+					//  	}, {
+					//  		header: 'Department',
+					//  		dataIndex: 'dept',
+					//  		width: 95,
+					//  		renderer: upsize
+					//  	}],
+					//  	/*bbar        : Ext.create('Ext.PagingToolbar',{
+					//                pageSize    : itemperpage,
+					//                store       : prd_lost_time,
+					//                displayInfo : true,
+					//                plugins     : Ext.create('Ext.ux.ProgressBarPager',{}),
+					//                listeners   : {
+					//                    afterrender : function(cmp){
+					//                        this.getComponent("refresh").hide();
+					//                    }
+					//                }
+					//            })*/
+					// });
 				
+					var grid_mapros_board = Ext.create('Ext.grid.Panel', {
+						id 				: 'grid_mapros_board',
+						autoWidth 		: '100%',
+						maxHeight		: 290,
+						columnLines 	: true,
+						//store 			: store_mapros_board_fg,
+						viewConfig 		: {
+							stripeRows 			: true,
+							deferEmptyText 		: false,
+							enableTextSelection	: true,
+							getRowClass			: function(record, rowIndex, rowParams, store) {
+								if (record.get('status')==='IN') return 'colorin';
+								else if (record.get('status')==='OUT') return 'colorout';
+							},
+							emptyText 	 		: '<div class="empty-txt">No data to display.</div>',
+						},
+						columns 	: [
+							{	header 		: 'BOARD ID',
+								dataIndex 	: 'board_id',
+								width 		: 140,
+								renderer	: upsize
+							},
+							{	header 		: 'guid_master',
+								dataIndex 	: 'guid_master',
+								flex 		: 1,
+								renderer	: upsize,
+								hidden		: true
+							},
+							{	header 		: 'guid_ticket',
+								dataIndex 	: 'guid_ticket',
+								flex 		: 1,
+								renderer	: upsize,
+								hidden		: true
+							},
+							{	header 		: 'MODEL',
+								dataIndex 	: 'modelname',
+								flex 		: 1,
+								renderer	: upsize
+							},
+							{	header 		: 'LINE',
+								dataIndex 	: 'line',
+								width 	 	: 90,
+								renderer	: upsize
+							},
+							{	header 		: 'lotno',
+								dataIndex 	: 'lotno',
+								flex 		: 1,
+								renderer	: upsize,
+								hidden		: true
+							},
+							{	header 		: 'PROCESS',
+								dataIndex 	: 'lineprocess',
+								width 	 	: 90,
+								renderer	: upsize
+							},
+							{	header 		: 'scanner_id',
+								dataIndex 	: 'scanner_id',
+								flex 		: 1,
+								renderer	: upsize,
+								hidden		: true
+							},
+							{	header 		: 'STATUS',
+								dataIndex 	: 'status',
+								width 	 	: 90,
+								renderer	: upsize
+							},
+							{	header 		: 'JUDGE',
+								dataIndex 	: 'judge',
+								width 	 	: 90,
+								renderer	: upsize
+							},
+							{	header 		: 'SCAN TIME',
+								dataIndex 	: 'created_at',
+								flex 		: 1,
+								renderer	: upsize
+							},
+							{	header 		: 'SCAN NIK',
+								dataIndex 	: 'scan_nik',
+								flex 		: 1,
+								renderer	: upsize
+							},
+							{	header 		: 'updated_at',
+								dataIndex 	: 'updated_at',
+								flex 		: 1,
+								renderer	: upsize,
+								hidden		: true
+							}
+						],
+						//features: [filters],
+						// selModel: {
+						// 	selType: 'cellmodel'
+						// },
+						// plugins: [cellEditing]
+					});
+					var grid_mapros_panel = Ext.create('Ext.grid.Panel', {
+						id 				: 'grid_mapros_panel',
+						autoWidth 		: '100%',
+						maxHeight		: 290,
+						columnLines 	: true,
+						store 			: store_mapros_panel_fg,
+						viewConfig 		: {
+							stripeRows 			: true,
+							emptyText 	 		: '<div class="empty-txt">No data to display.</div>',
+							deferEmptyText 		: false,
+							enableTextSelection	: true,
+							getRowClass			: function(record, rowIndex, rowParams, store) {
+								if (record.get('status')==='IN') return 'colorin';
+								else if (record.get('status')==='OUT') return 'colorout';
+							}
+							
+						},
+						columns 	: [
+							{	header 		: 'PANLE NO',
+								dataIndex 	: 'ticket_no',
+								width 		: 140,
+								renderer	: upsize
+							},
+							{	header 		: 'guid_master',
+								dataIndex 	: 'guid_master',
+								flex 		: 1,
+								renderer	: upsize,
+								hidden		: true
+							},
+							{	header 		: 'guid_ticket',
+								dataIndex 	: 'guid_ticket',
+								flex 		: 1,
+								renderer	: upsize,
+								hidden		: true
+							},
+							{	header 		: 'MODEL',
+								dataIndex 	: 'modelname',
+								flex 		: 1,
+								renderer	: upsize
+							},
+							{	header 		: 'LINE',
+								dataIndex 	: 'line',
+								width 	 	: 90,
+								renderer	: upsize
+							},
+							{	header 		: 'PROCESS',
+								dataIndex 	: 'lineprocess',
+								width 	 	: 90,
+								renderer	: upsize
+							},
+							{	header 		: 'scanner_id',
+								dataIndex 	: 'scanner_id',
+								flex 		: 1,
+								renderer	: upsize,
+								hidden		: true
+							},
+							{	header 		: 'STATUS',
+								dataIndex 	: 'status',
+								width 	 	: 90,
+								renderer	: upsize
+							},
+							{	header 		: 'JUDGE',
+								dataIndex 	: 'judge',
+								width 	 	: 90,
+								renderer	: upsize
+							},
+							{	header 		: 'SCAN TIME',
+								dataIndex 	: 'created_at',
+								flex 		: 1,
+								renderer	: upsize
+							},
+							{	header 		: 'SCAN NIK',
+								dataIndex 	: 'scan_nik',
+								flex 		: 1,
+								renderer	: upsize
+							},
+							{	header 		: 'updated_at',
+								dataIndex 	: 'updated_at',
+								flex 		: 1,
+								renderer	: upsize,
+								hidden		: true
+							}
+						],
+						//features: [filters],
+						// selModel: {
+						// 	selType: 'cellmodel'
+						// },
+						// plugins: [cellEditing]
+					});
+					var grid_mapros_master = Ext.create('Ext.grid.Panel', {
+						id 				: 'grid_mapros_master',
+						autoWidth 		: '100%',
+						maxHeight		: 290,
+						columnLines 	: true,
+						store 			: store_mapros_master_fg,
+						viewConfig 		: {
+							stripeRows 			: true,
+							emptyText 	 		: '<div class="empty-txt">No data to display.</div>',
+							deferEmptyText 		: false,
+							enableTextSelection	: true,
+							getRowClass			: function(record, rowIndex, rowParams, store) {
+								if (record.get('status')==='IN') return 'colorin';
+								else if (record.get('status')==='OUT') return 'colorout';
+							}
+						},
+						columns 	: [
+							{	header 		: 'MASTER NO',
+								dataIndex 	: 'ticket_no_master',
+								width 		: 140,
+								renderer	: upsize
+							},
+							{	header 		: 'guid_master',
+								dataIndex 	: 'guid_master',
+								flex 		: 1,
+								renderer	: upsize,
+								hidden		: true
+							},
+							{	header 		: 'MODEL',
+								dataIndex 	: 'modelname',
+								flex 		: 1,
+								renderer	: upsize
+							},
+							{	header 		: 'LINE',
+								dataIndex 	: 'line',
+								width 	 	: 90,
+								renderer	: upsize
+							},
+							{	header 		: 'PROCESS',
+								dataIndex 	: 'lineprocess',
+								width 	 	: 90,
+								renderer	: upsize
+							},
+							{	header 		: 'scanner_id',
+								dataIndex 	: 'scanner_id',
+								flex 		: 1,
+								renderer	: upsize,
+								hidden		: true
+							},
+							{	header 		: 'STATUS',
+								dataIndex 	: 'status',
+								width 	 	: 90,
+								renderer	: upsize
+							},
+							{	header 		: 'JUDGE',
+								dataIndex 	: 'judge',
+								width 	 	: 90,
+								renderer	: upsize
+							},
+							{	header 		: 'SCAN TIME',
+								dataIndex 	: 'created_at',
+								flex 		: 1,
+								renderer	: upsize
+							},
+							{	header 		: 'SCAN NIK',
+								dataIndex 	: 'scan_nik',
+								flex 		: 1,
+								renderer	: upsize
+							},
+							{	header 		: 'updated_at',
+								dataIndex 	: 'updated_at',
+								flex 		: 1,
+								renderer	: upsize,
+								hidden		: true
+							}
+						],
+						//features: [filters],
+						// selModel: {
+						// 	selType: 'cellmodel'
+						// },
+						// plugins: [cellEditing]
+					});
+					var grid_mapros_fwdn = Ext.create('Ext.grid.Panel', {
+						id 				: 'grid_mapros_fwdn',
+						autoWidth 		: '100%',
+						maxHeight		: 290,
+						columnLines 	: true,
+						//store 			: store_mapros_fwdn_fg,
+						viewConfig 		: {
+							stripeRows 			: true,
+							emptyText 	 		: '<div class="empty-txt">Under Development</div>',
+							deferEmptyText 		: false,
+							enableTextSelection	: true
+						},
+						columns 	: [
+							{	header 		: 'BARCODE',
+								dataIndex 	: 'barcode',
+								width 		: 140,
+								renderer	: upsize
+							},
+							{	header 		: 'SERIAL',
+								dataIndex 	: 'modelname',
+								flex 		: 1,
+								renderer	: upsize
+							},
+							{	header 		: 'LINE',
+								dataIndex 	: 'line',
+								width 	 	: 90,
+								renderer	: upsize
+							},
+							{	header 		: 'PROCESS',
+								dataIndex 	: 'lineprocess',
+								width 	 	: 90,
+								renderer	: upsize
+							},
+							{	header 		: 'scanner_id',
+								dataIndex 	: 'scanner_id',
+								flex 		: 1,
+								renderer	: upsize,
+								hidden		: true
+							},
+							{	header 		: 'STATUS',
+								dataIndex 	: 'status',
+								width 	 	: 90,
+								renderer	: upsize
+							},
+							{	header 		: 'JUDGE',
+								dataIndex 	: 'judge',
+								width 	 	: 90,
+								renderer	: upsize
+							},
+							{	header 		: 'SCAN TIME',
+								dataIndex 	: 'created_at',
+								flex 		: 1,
+								renderer	: upsize
+							},
+							{	header 		: 'SCAN NIK',
+								dataIndex 	: 'scan_nik',
+								flex 		: 1,
+								renderer	: upsize
+							},
+							{	header 		: 'updated_at',
+								dataIndex 	: 'updated_at',
+								flex 		: 1,
+								renderer	: upsize,
+								hidden		: true
+							}
+						],
+						//features: [filters],
+						// selModel: {
+						// 	selType: 'cellmodel'
+						// },
+						// plugins: [cellEditing]
+					});
+					var grid_mapros_flash = Ext.create('Ext.grid.Panel', {
+						id 				: 'grid_mapros_flash',
+						autoWidth 		: '100%',
+						maxHeight		: 290,
+						columnLines 	: true,
+						//store 			: store_mapros_flash_fg,
+						viewConfig 		: {
+							stripeRows 			: true,
+							emptyText 	 		: '<div class="empty-txt">Under Development</div>',
+							deferEmptyText 		: false,
+							enableTextSelection	: true
+						},
+						columns 	: [
+							{	header 		: 'BARCODE',
+								dataIndex 	: 'barcode',
+								width 		: 140,
+								renderer	: upsize
+							},
+							{	header 		: 'SERIAL',
+								dataIndex 	: 'modelname',
+								flex 		: 1,
+								renderer	: upsize
+							},
+							{	header 		: 'LINE',
+								dataIndex 	: 'line',
+								width 	 	: 90,
+								renderer	: upsize
+							},
+							{	header 		: 'PROCESS',
+								dataIndex 	: 'lineprocess',
+								width 	 	: 90,
+								renderer	: upsize
+							},
+							{	header 		: 'scanner_id',
+								dataIndex 	: 'scanner_id',
+								flex 		: 1,
+								renderer	: upsize,
+								hidden		: true
+							},
+							{	header 		: 'STATUS',
+								dataIndex 	: 'status',
+								width 	 	: 90,
+								renderer	: upsize
+							},
+							{	header 		: 'JUDGE',
+								dataIndex 	: 'judge',
+								width 	 	: 90,
+								renderer	: upsize
+							},
+							{	header 		: 'SCAN TIME',
+								dataIndex 	: 'created_at',
+								flex 		: 1,
+								renderer	: upsize
+							},
+							{	header 		: 'SCAN NIK',
+								dataIndex 	: 'scan_nik',
+								flex 		: 1,
+								renderer	: upsize
+							},
+							{	header 		: 'updated_at',
+								dataIndex 	: 'updated_at',
+								flex 		: 1,
+								renderer	: upsize,
+								hidden		: true
+							}
+						],
+						//features: [filters],
+						// selModel: {
+						// 	selType: 'cellmodel'
+						// },
+						// plugins: [cellEditing]
+					});
+					var grid_mapros_avmt = Ext.create('Ext.grid.Panel', {
+						id 				: 'grid_mapros_avmt',
+						autoWidth 		: '100%',
+						maxHeight		: 290,
+						columnLines 	: true,
+						//store 			: store_mapros_avmt_fg,
+						viewConfig 		: {
+							stripeRows 			: true,
+							emptyText 	 		: '<div class="empty-txt">Under Development</div>',
+							deferEmptyText 		: false,
+							enableTextSelection	: true
+						},
+						columns 	: [
+							{	header 		: 'BARCODE',
+								dataIndex 	: 'barcode',
+								width 		: 140,
+								renderer	: upsize
+							},
+							{	header 		: 'SERIAL',
+								dataIndex 	: 'modelname',
+								flex 		: 1,
+								renderer	: upsize
+							},
+							{	header 		: 'LINE',
+								dataIndex 	: 'line',
+								width 	 	: 90,
+								renderer	: upsize
+							},
+							{	header 		: 'PROCESS',
+								dataIndex 	: 'lineprocess',
+								width 	 	: 90,
+								renderer	: upsize
+							},
+							{	header 		: 'scanner_id',
+								dataIndex 	: 'scanner_id',
+								flex 		: 1,
+								renderer	: upsize,
+								hidden		: true
+							},
+							{	header 		: 'STATUS',
+								dataIndex 	: 'status',
+								width 	 	: 90,
+								renderer	: upsize
+							},
+							{	header 		: 'JUDGE',
+								dataIndex 	: 'judge',
+								width 	 	: 90,
+								renderer	: upsize
+							},
+							{	header 		: 'SCAN TIME',
+								dataIndex 	: 'created_at',
+								flex 		: 1,
+								renderer	: upsize
+							},
+							{	header 		: 'SCAN NIK',
+								dataIndex 	: 'scan_nik',
+								flex 		: 1,
+								renderer	: upsize
+							},
+							{	header 		: 'updated_at',
+								dataIndex 	: 'updated_at',
+								flex 		: 1,
+								renderer	: upsize,
+								hidden		: true
+							}
+						],
+						//features: [filters],
+						// selModel: {
+						// 	selType: 'cellmodel'
+						// },
+						// plugins: [cellEditing]
+					});
+					var grid_mapros_avntest = Ext.create('Ext.grid.Panel', {
+						id 				: 'grid_mapros_avntest',
+						autoWidth 		: '100%',
+						maxHeight		: 290,
+						columnLines 	: true,
+						//store 			: store_mapros_avmt_fg,
+						viewConfig 		: {
+							stripeRows 			: true,
+							emptyText 	 		: '<div class="empty-txt">Under Development</div>',
+							deferEmptyText 		: false,
+							enableTextSelection	: true
+						},
+						columns 	: [
+							{	header 		: 'MASTER NO',
+								dataIndex 	: 'ticket_no_master',
+								width 		: 140,
+								renderer	: upsize
+							},
+							{	header 		: 'guid_master',
+								dataIndex 	: 'guid_master',
+								flex 		: 1,
+								renderer	: upsize,
+								hidden		: true
+							},
+							{	header 		: 'MODEL',
+								dataIndex 	: 'modelname',
+								flex 		: 1,
+								renderer	: upsize
+							},
+							{	header 		: 'LINE',
+								dataIndex 	: 'line',
+								width 	 	: 90,
+								renderer	: upsize
+							},
+							{	header 		: 'PROCESS',
+								dataIndex 	: 'lineprocess',
+								width 	 	: 90,
+								renderer	: upsize
+							},
+							{	header 		: 'scanner_id',
+								dataIndex 	: 'scanner_id',
+								flex 		: 1,
+								renderer	: upsize,
+								hidden		: true
+							},
+							{	header 		: 'STATUS',
+								dataIndex 	: 'status',
+								width 	 	: 90,
+								renderer	: upsize
+							},
+							{	header 		: 'JUDGE',
+								dataIndex 	: 'judge',
+								width 	 	: 90,
+								renderer	: upsize
+							},
+							{	header 		: 'SCAN TIME',
+								dataIndex 	: 'created_at',
+								flex 		: 1,
+								renderer	: upsize
+							},
+							{	header 		: 'SCAN NIK',
+								dataIndex 	: 'scan_nik',
+								flex 		: 1,
+								renderer	: upsize
+							},
+							{	header 		: 'updated_at',
+								dataIndex 	: 'updated_at',
+								flex 		: 1,
+								renderer	: upsize,
+								hidden		: true
+							}
+						],
+						//features: [filters],
+						// selModel: {
+						// 	selType: 'cellmodel'
+						// },
+						// plugins: [cellEditing]
+					});
+					var grid_mapros_auto0 = Ext.create('Ext.grid.Panel', {
+						id 				: 'grid_mapros_auto0',
+						autoWidth 		: '100%',
+						maxHeight		: 290,
+						columnLines 	: true,
+						//store 			: store_mapros_avmt_fg,
+						viewConfig 		: {
+							stripeRows 			: true,
+							emptyText 	 		: '<div class="empty-txt">Under Development</div>',
+							deferEmptyText 		: false,
+							enableTextSelection	: true
+						},
+						columns 	: [
+							{	header 		: 'MASTER NO',
+								dataIndex 	: 'ticket_no_master',
+								width 		: 140,
+								renderer	: upsize
+							},
+							{	header 		: 'guid_master',
+								dataIndex 	: 'guid_master',
+								flex 		: 1,
+								renderer	: upsize,
+								hidden		: true
+							},
+							{	header 		: 'MODEL',
+								dataIndex 	: 'modelname',
+								flex 		: 1,
+								renderer	: upsize
+							},
+							{	header 		: 'LINE',
+								dataIndex 	: 'line',
+								width 	 	: 90,
+								renderer	: upsize
+							},
+							{	header 		: 'PROCESS',
+								dataIndex 	: 'lineprocess',
+								width 	 	: 90,
+								renderer	: upsize
+							},
+							{	header 		: 'scanner_id',
+								dataIndex 	: 'scanner_id',
+								flex 		: 1,
+								renderer	: upsize,
+								hidden		: true
+							},
+							{	header 		: 'STATUS',
+								dataIndex 	: 'status',
+								width 	 	: 90,
+								renderer	: upsize
+							},
+							{	header 		: 'JUDGE',
+								dataIndex 	: 'judge',
+								width 	 	: 90,
+								renderer	: upsize
+							},
+							{	header 		: 'SCAN TIME',
+								dataIndex 	: 'created_at',
+								flex 		: 1,
+								renderer	: upsize
+							},
+							{	header 		: 'SCAN NIK',
+								dataIndex 	: 'scan_nik',
+								flex 		: 1,
+								renderer	: upsize
+							},
+							{	header 		: 'updated_at',
+								dataIndex 	: 'updated_at',
+								flex 		: 1,
+								renderer	: upsize,
+								hidden		: true
+							}
+						],
+						//features: [filters],
+						// selModel: {
+						// 	selType: 'cellmodel'
+						// },
+						// plugins: [cellEditing]
+					});
+
+
+
+
+
+
 				//	Outgoing Quality Control
 					//	Quality Sampling ( QA )
 					//	*******
@@ -3097,13 +3829,13 @@
 					});
 			//	Plan & Actual Panel
 					var finishgood_plan   = Ext.create('Ext.panel.Panel', {
-						id 				:'finishgood_plan',
+						id 			:'finishgood_plan',
 						renderTo 	: 'finishgood_plan',
 						border		: false,
-						width			: '100%',
+						width		: '100%',
 						height		: 150,
 						defaults	: {
-							split				: true,
+							split		: true,
 							collapsible	: false
 						},
 						items			: [schedule]
@@ -3368,17 +4100,17 @@
 							{	title 		: 'PCB BOARD ID SCANNING',
 							 	id  	 	: 'show_grid_pcb_boardid',
 								reorderable : false,
-								items 		: [grid_ma_pcb]
+								items 		: [grid_mapros_board]
 							},
 							{	title 		: 'PANEL SCANNING',
 							 	id  		: 'show_grid_ma_panel',
 								reorderable : false,
-								//items 		: [grid_ma_panel]
+								items 		: [grid_mapros_panel]
 							},
 							{	title 		: 'MASTER SCANNING',
 							 	id  		: 'show_grid_ma_master',
 								reorderable : false,
-								//items 		: [grid_ma_master]
+								items 		: [grid_mapros_master]
 							},
 							{	title 		: 'CRITICAL SCANNING',
 							 	id  		: 'show_grid_ma_critical',
@@ -3480,8 +4212,8 @@
 						flex		: 1,
 						//value: 'DPX5000BTITA9N',
 						//value: 'A9K4-V6-650JN',
-						value: 'DPXGT700RA9N',
-						//value: 'DDXGT502LA9N',
+						//value: 'DPXGT700RA9N',
+						value: 'DDXGT700RA9N',
 						listeners	: {
 							afterrender : function() {
 								this.inputEl.setStyle('text-align', 'center');
@@ -3518,6 +4250,14 @@
 										part_mchcal.proxy.setExtraParam('src_cat', 'fg');
 										part_mchcal.loadPage(1);	
 										
+										sstore_mapros_master_fg.proxy.setExtraParam('model', model);
+										store_mapros_master_fg.proxy.setExtraParam('serial_no', s_no);
+										store_mapros_master_fg.loadPage(1);
+
+										store_mapros_panel_fg.proxy.setExtraParam('model', model);
+										store_mapros_panel_fg.proxy.setExtraParam('serial_no', s_no);
+										store_mapros_panel_fg.loadPage(1);
+
 
 										// store_proc_smt_output.proxy.setExtraParam('src_cat', 'fg');
 										// store_proc_smt_downtime.proxy.setExtraParam('src_cat', 'fg');
@@ -3604,8 +4344,8 @@
 					flex		: 1,
 					//value : '151X0001',
 					//value : '103X0251',
-					value : '143X0011',
-					//value : 'PA9X0003',
+					//value : '143X0011',
+					value : 'PA9X0028',
 					listeners	: {
 						afterrender : function() {
 							this.inputEl.setStyle('text-align', 'center');
@@ -3621,7 +4361,7 @@
 									Ext.Msg.alert('Warning', 'Model or Serial Number cannot be null !!!');
 									//alert(model + s_no);
 								} else {
-					 						//Ext.Msg.alert('Model',model);
+					 				//Ext.Msg.alert('Model',model);
 									//var x = Ext.getCmp('rb').getValue()['src_cat'];
 									main_store.proxy.setExtraParam('model', model);
 									main_store.proxy.setExtraParam('serial_no', s_no);
@@ -3633,8 +4373,18 @@
 									part_mchcal.proxy.setExtraParam('src_cat', 'fg'); // _Z_ by zaki 20161031
 									part_mchcal.loadPage(1); // _Z_ by zaki 20161031
 
-									//	store_proc_smt_output.proxy.setExtraParam('src_cat', 'fg');
-									//	store_proc_smt_downtime.proxy.setExtraParam('src_cat', 'fg');
+									store_mapros_master_fg.proxy.setExtraParam('model', model);
+									store_mapros_master_fg.proxy.setExtraParam('serial_no', s_no);
+									store_mapros_master_fg.loadPage(1);
+
+									store_mapros_panel_fg.proxy.setExtraParam('model', model);
+									store_mapros_panel_fg.proxy.setExtraParam('serial_no', s_no);
+									store_mapros_panel_fg.loadPage(1);
+
+
+
+									// 	store_proc_smt_output.proxy.setExtraParam('src_cat', 'fg');
+									// 	store_proc_smt_downtime.proxy.setExtraParam('src_cat', 'fg');
 									// store_proc_smt_quality.proxy.setExtraParam('model', model); // _Z_ by zaki20161017
 									// store_proc_smt_quality.proxy.setExtraParam('serial_no', s_no); // _Z_ by zaki20161017
 									// store_proc_smt_quality.proxy.setExtraParam('src_cat', 'fg'); // _Z_ by zaki20161017
@@ -3683,6 +4433,8 @@
 									// scanin_store.loadPage(1);
 									// scanout_store.proxy.setExtraParam('serial_no', s_no);
 									// scanout_store.loadPage(1);
+
+
 								}
 							}
 						}

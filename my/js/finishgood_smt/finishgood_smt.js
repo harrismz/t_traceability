@@ -1860,7 +1860,8 @@
 						//value:  	'000207B000010002',
 						//value:  	'000157A000010009',
 						//value:  	'000177A020010012',
-						value:  	'000267B000010001',
+						//value:  	'000267B000010001',
+						value:  	'YJ5224A00VT_01B7002A0001',
 						listeners	: {
 							afterrender : function() {
 								this.inputEl.setStyle('text-align', 'center');

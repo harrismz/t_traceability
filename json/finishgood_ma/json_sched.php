@@ -1,24 +1,25 @@
 <?php
     //error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
-    include '../../adodb/con_ocs.php';
+    include '../../../adodb/con_ocs.php';
     
     //$page 		= @$_REQUEST["page"];
 	//$limit 		= @$_REQUEST["limit"];
 	//$start		= (($page*$limit)-$limit)+1;
-	$src_cat	= $_REQUEST['src_cat'];
+	$src_cat	= @$_REQUEST['src_cat'];
+    $sn         = @$_REQUEST['serialcode'];
 	if($src_cat == "sp"){
-		$model      = $_REQUEST['model'];
-		$prodno     = $_REQUEST['prod_no'];
+		$model      = @$_REQUEST['model'];
+		$prodno     = @$_REQUEST['prod_no'];
 		$s_no       = 0;
 		$serialid   = 0;
 	} else {
-		$model      = $_REQUEST['model'];
-		$prodno     = $_REQUEST['prod_no'];
-		$s_no       = (int)$_REQUEST['serial_no'];
-		$serialid   = (int)$_REQUEST['serial_id'];
+		$model      = @$_REQUEST['model'];
+		$prodno     = @$_REQUEST['prod_no'];
+		$s_no       = (int)@$_REQUEST['serial_no'];
+		$serialid   = (int)@$_REQUEST['serial_id'];
 	}
 	
-    $rs    = $db->Execute("select * from show_schedule_new('{$model}', '{$prodno}', '{$s_no}', '{$serialid}', '{$src_cat}')");
+    $rs    = $db->Execute("select * from show_schedule_new('{$model}', '{$prodno}', '{$s_no}', '{$serialid}', '{$src_cat}','{$sn}')");
     $return = array();
 
     for($i=0;!$rs->EOF;$i++){
