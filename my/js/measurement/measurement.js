@@ -2190,7 +2190,8 @@
 										if (!measurement_date) {
 											Ext.Msg.alert('Warning', 'Measurement date cannot be null !!!');
 										} else {
-											
+											store_particle.proxy.setExtraParam('measurement_date', measurement_date);
+											store_particle.loadPage(1);
 										}
 								}
 							}
