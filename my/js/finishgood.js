@@ -12,7 +12,7 @@
 		}
 	});
 
-	//function untuk fontsize grid
+	//	function untuk fontsize grid
 	function upsize(val) {
 		return '<font class="fontsize12">' + val + '</font>';
 	}
@@ -131,35 +131,33 @@
 
 				//PCB & MA DEPARTMENT
 					// Ext.define('model_mapros_board',{
-					//     extend: 'Ext.data.Model',
-		   //              fields: ['board_id','guid_master','guid_ticket','modelname','lotno','scanner_id','status']
-		   			//	})
-
+						// 		extend: 'Ext.data.Model',
+		   				//    	fields: ['board_id','guid_master','guid_ticket','modelname','lotno','scanner_id','status']
+			   			//	})
 					Ext.define('model_mapros_board_fg',{
-				                extend: 'Ext.data.Model',
-				                fields: ['board_id','guid_master','guid_ticket','modelname','lotno',
-								'scanner_id','status','scan_nik','judge','created_at','updated_at','lineprocess','line']
-				           	});
+		                extend: 'Ext.data.Model',
+		                fields: ['board_id','guid_master','guid_ticket','modelname','lotno',
+									'scanner_id','status','scan_nik','judge','created_at','updated_at','lineprocess','line']
+       				});
 					Ext.define('model_mapros_panel_fg',{
-				                extend: 'Ext.data.Model',
-				                fields: ['ticket_no','guid_master','guid_ticket','modelname',
+		                extend: 'Ext.data.Model',
+		                fields: ['ticket_no','guid_master','guid_ticket','modelname',
 								'scanner_id','status','scan_nik','judge','created_at','updated_at','lineprocess','line']
-		   			        	});
+		        	});
 					Ext.define('model_mapros_master_fg',{
 		                extend: 'Ext.data.Model',
 		                fields: ['ticket_no_master','guid_master','modelname',
 								'scanner_id','status','scan_nik','judge','created_at','updated_at','lineprocess','line']
-		           	});
+	           		});
 		           	Ext.define('model_ma_qualityreport',{
-		                extend: 'Ext.data.Model',
-		                fields: ['tgl','bln','thn','date','line_name','shift','model_name','lot','prod_no','st_serial','serial_output','symptom','def_cause','p_disposal','responsible']
-		            });
-					
+		            	extend: 'Ext.data.Model',
+		             	fields: ['tgl','bln','thn','date','line_name','shift','model_name','lot','prod_no','st_serial','serial_output','symptom','def_cause','p_disposal','responsible']
+            		});
 					// Ext.define('model_mapros_avmt',{
-		   			//	extend: 'Ext.data.Model',
-		   			//              fields: ['ticket_no_master','guid_master','modelname',
-					// 			'scanner_id','status','scan_nik','judge','created_at','updated_at','lineprocess','line']
-		   			//         	});
+			   			//	extend: 'Ext.data.Model',
+			   			//              fields: ['ticket_no_master','guid_master','modelname',
+						// 			'scanner_id','status','scan_nik','judge','created_at','updated_at','lineprocess','line']
+			   			//         	});
 			 	//Mecha DEPARTMENT
 				
 			//	Outgoing Quality Control
@@ -332,7 +330,7 @@
 						//pageSize: itemperpage,
 						proxy 	: {
 							type   : 'ajax',
-							url    : 'json/json_part_receive.php',
+							url    : 'json/finishgood_ma/json_part_receive.php',
 							reader : {
 								type 		 : 'json',
 								root		 : 'rows',
@@ -457,7 +455,6 @@
 							}
 						}
 					});
-					
 					var store_smt_reflow = Ext.create('Ext.data.Store',{
 						model	: 'model_smt_reflow',
 						autoLoad: false,
@@ -484,7 +481,6 @@
 							}
 						}
 					});
-					
 					var store_smt_quality = Ext.create('Ext.data.Store',{
 						model	: 'model_smt_quality',
 						autoLoad: false,
@@ -505,16 +501,15 @@
 						// 	autoLoad: false,
 						// 	pageSize: itemperpage,
 						// 	proxy   : {
-					   //                  type    : 'ajax',
-					   //                  url     : 'json/json_mapros_board.php',
-					   //                  reader  : {
-					   //                      type    : 'json',
-					   //                      root    : 'rows',
-					   //                      totalProperty  : 'totalCount'
-					   //                  }
-					   //              }
+						//                  type    : 'ajax',
+						//                  url     : 'json/json_mapros_board.php',
+						//                  reader  : {
+						//                      type    : 'json',
+						//                      root    : 'rows',
+						//                      totalProperty  : 'totalCount'
+						//                  }
+						//              }
 								// });
-
 					var store_mapros_board_fg = Ext.create('Ext.data.Store',{
 						model	: 'model_mapros_board_fg',
 						autoLoad: false,
@@ -568,19 +563,18 @@
 						// }
 					});
 					// var store_mapros_avmt_fg = Ext.create('Ext.data.Store',{
-					// 	model	: 'model_mapros_avmt_fg',
-					// 	autoLoad: false,
-					// 	pageSize: itemperpage,
-					// 	proxy   : {
-					// 		type    : 'ajax',
-					// 		url     : 'json/finishgood_ma/json_good_smt_mapros_avmt.php',
-					// 		reader  : {
-					// 			type    : 'json',
-					// 			root    : 'rows'
-					// 		}
-					// 	}
-					// });
-
+						// 	model	: 'model_mapros_avmt_fg',
+						// 	autoLoad: false,
+						// 	pageSize: itemperpage,
+						// 	proxy   : {
+						// 		type    : 'ajax',
+						// 		url     : 'json/finishgood_ma/json_good_smt_mapros_avmt.php',
+						// 		reader  : {
+						// 			type    : 'json',
+						// 			root    : 'rows'
+						// 		}
+						// 	}
+						// });
 					var store_ma_qualityreport = Ext.create('Ext.data.Store',{
 						model	: 'model_ma_qualityreport',
 						autoLoad: false,
@@ -595,8 +589,7 @@
 		                    }
 		                }
 					});
-					
-
+				
 			// 	Warehouse
 
 			//	Traceability model
@@ -3465,10 +3458,6 @@
 		                })*/
 		            });
 		            
-
-
-
-
 				//	Outgoing Quality Control
 					//	Quality Sampling ( QA )
 					//	*******
@@ -4405,7 +4394,8 @@
 						//value: 'DPX5000BTITA9N',
 						//value: 'A9K4-V6-650JN',
 						//value: 'DPXGT700RA9N',
-						value: 'DDXGT700RA9N',
+						//value: 'DDXGT700RA9N',
+						value: 'DDXGT701RA9N',
 						listeners	: {
 							afterrender : function() {
 								this.inputEl.setStyle('text-align', 'center');
@@ -4442,7 +4432,7 @@
 										part_mchcal.proxy.setExtraParam('src_cat', 'fg');
 										part_mchcal.loadPage(1);	
 										
-										sstore_mapros_master_fg.proxy.setExtraParam('model', model);
+										store_mapros_master_fg.proxy.setExtraParam('model', model);
 										store_mapros_master_fg.proxy.setExtraParam('serial_no', s_no);
 										store_mapros_master_fg.loadPage(1);
 
@@ -4541,7 +4531,8 @@
 					//value : '151X0001',
 					//value : '103X0251',
 					//value : '143X0011',
-					value : 'PA9X0028',
+					//value : 'PA9X0028',
+					value : 'PA9X0021',
 					listeners	: {
 						afterrender : function() {
 							this.inputEl.setStyle('text-align', 'center');
