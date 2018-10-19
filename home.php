@@ -42,7 +42,6 @@
 	           include_once($page_dir1.'/'.$page.'.js');
 	          } else {
 	           echo 'Page not found! :( finishgood js';
-
 	          }
 	        }
 	        elseif($page == 'singlepart'){

@@ -15,7 +15,8 @@
     if ( $pjgboard == 16 ){
          include '../../../adodb/con_big.php';
 
-        $rs    = $db->Execute("exec traceability_smt_big '{$boardid}','{$proddate}'");
+        $sql = "exec traceability_smt_big '{$boardid}','{$proddate}'";
+        $rs    = $db->Execute($sql);
         $return = array();
 
         for($i=0;!$rs->EOF;$i++){
