@@ -1,27 +1,29 @@
 <?php
-	/*
-	****	create by Mohamad Yunus
-	****	on 06 Sept 2016
-	****	remark:
-
-	****	Modify By Harris
-	****	on 09 Feb 2018
-	****	remark:  menambahkan status lotout, prname,fldremark
-	*/
-
-	include '../../adodb/con_qrinvoice.php';
+	include '../../../adodb/con_qrinvoice.php';
+	
+	$page    = @$_REQUEST["page"];
+    $limit   = @$_REQUEST["limit"];
+    $start   = (($page*$limit)-$limit)+1;
 	$model   = $_REQUEST['model'];
 	$lot	 = $_REQUEST['prod_no'];
-	$getdate = substr($_REQUEST['prod_date'],0,10);
-	$proddate= date('Y-m-d', strtotime($getdate));
-	
+	$getdate2= @$_REQUEST['prod_date'];
+	$proddate= '';
+   
+    if ($getdate2) {
+        $getdate1	= substr($getdate2,0,10);
+        $proddate 	= date('Y-m-d', strtotime($getdate1));
+    }
+    else {
+        $proddate   = '';
+    }
 	//$sdate   = date('Y-m-d', strtotime($getdate."- 7 days"));
 	//$edate   = date('Y-m-d', strtotime($getdate."+ 10 days"));
 	//$edate   = date('Y-m-d', strtotime($getdate));
 	
-	$sql	 = "exec traceability_receivepart '{$model}','{$lot}','{$proddate}'";
-	$rs2 	 = $db_qrinvoice->Execute($sql);
-	$return  = array();
+	$sql	 	= "declare @totalcount as int; exec traceability_receivepart $start, $limit, '{$model}','{$lot}','{$proddate}', @totalcount=@totalcount out";
+	$rs2 	 	= $db_qrinvoice->Execute($sql);
+	$totalcount = $rs2->fields['9'];
+	$return  	= array();
 
 	//echo "exec traceability_receivepart '{$model}','{$lot}','{$sdate}','{$edate}'";
 
@@ -36,19 +38,13 @@
 		$return[$i]['rcvdate'] 		= trim($rs2->fields['6']);
 		$return[$i]['custom'] 		= trim($rs2->fields['7']);
 		$return[$i]['category'] 	= trim($rs2->fields['8']);
-		// $return[$i]['lot_out']  	= trim($rs2->fields['9']);
-		// $return[$i]['pr_name']  	= trim($rs2->fields['10']);
-		// $return[$i]['fld_remark']  	= trim($rs2->fields['11']);
-		//$return[$i]['pr_name']		= trim($rs2->fields['10']);
-		//$return[$i]['lot_out']  	= ucwords(strtolower(trim($rs2->fields['9'])));
-		//$return[$i]['pr_name']		= ucwords(strtolower(trim($rs2->fields['10'])));
 
 		$rs2->MoveNext();
 	}
 
   $x = array(
         "success"=>true,
-        //"totalCount"=>$totalcount,
+        "totalCount"=>$totalcount,
         "rows"=>$return);
 
     echo json_encode($x);

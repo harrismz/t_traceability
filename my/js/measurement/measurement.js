@@ -1696,7 +1696,6 @@
 							}
 						]
 					});
-
 					var panel_esd = Ext.create('Ext.panel.Panel', {
 						id 				:'panel_esd',
 						renderTo 		: 'panel_esd',
@@ -1711,7 +1710,6 @@
 						// },
 						items			: [grid_esd_ma]
 					});
-
 					var panel_torque = Ext.create('Ext.panel.Panel', {
 						id 				:'panel_torque',
 						renderTo 		: 'panel_torque',
@@ -1726,7 +1724,6 @@
 						},
 						items			: [grid_torque_ma]
 					});
-					
 					var panel_temperature = Ext.create('Ext.tab.Panel', {
 						id 			: 'panel_temperature',
 						renderTo 	: 'panel_temperature',
@@ -1757,7 +1754,6 @@
 							}
 						]
 					});
-
 					var panel_dusty = Ext.create('Ext.panel.Panel', {
 						id 				:'panel_dusty',
 						renderTo 		: 'panel_dusty',
