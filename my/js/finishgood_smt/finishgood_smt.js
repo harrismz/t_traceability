@@ -17,7 +17,7 @@
 		if (x == '' || x == '-' || x == '---'){
 			return '<font class="fontsize12" style="color:red;font-weight: bold;"> --- </font>';
 		}
-		else if (x == 'NG'){
+		else if (x == 'NG' || x == 'STOP'){
 			return '<font class="fontsize12" style="color:red;font-weight: bold;"> ' + x + ' </font>';
 		}
 		else if (x == 'OK' || x == 'PASS' || x == 'SOLDER' || x == 'GOOD'){
@@ -168,6 +168,21 @@
 					extend: 'Ext.data.Model',
 	                fields: ['idavmt','barcode','sn', 'program','stdate','endate','lap',
 	                		'judgment','input_user','input_date','update_user','update_date']
+	           	});
+	          	Ext.define('model_mapros_avmt_detail',{
+					extend: 'Ext.data.Model',
+					fields: ['autoid','idavmt','barcode', 'step','type','name','judgment',
+	                		'volt','curr','freq','lvll','dstl','dstr','rell','relr','snl','snr','remark','input_user'
+	                		,'input_date','update_user','update_date']
+	           	});
+	          	Ext.define('model_mapros_line0',{
+	                extend: 'Ext.data.Model',
+	                fields: ['idlinezero','dateinspec','serial', 'sn','jigno','judge','inspectime',
+	                		'artfilename','ngcontent','input_user','input_date']
+	           	});
+	          	Ext.define('model_mapros_line0_detail',{
+	                extend: 'Ext.data.Model',
+	                fields: ['idlinezero','rownumber','step','stepdata', 'measure','measuredata','input_user','input_date']
 	           	});
 	          	
 
@@ -473,6 +488,46 @@
 							type    : 'json',
 							root    : 'rows',
 							totalProperty: 'totalCount'
+						}
+					}
+				});
+				var store_mapros_avmt_detail = Ext.create('Ext.data.Store',{
+					model	: 'model_mapros_avmt_detail',
+					autoLoad: false,
+					pageSize: itemperpage,
+					proxy   : {
+						type    : 'ajax',
+						url     : 'json/finishgood_smt/json_good_smt_mapros_avmt_detail.php',
+						reader  : {
+							type    : 'json',
+							root    : 'rows'
+						}
+					}
+				});
+				var store_mapros_line0 = Ext.create('Ext.data.Store',{
+					model	: 'model_mapros_line0',
+					autoLoad: false,
+					pageSize: itemperpage,
+					proxy   : {
+						type    : 'ajax',
+						url     : 'json/finishgood_smt/json_good_smt_mapros_line0.php',
+						reader  : {
+							type    : 'json',
+							root    : 'rows',
+							totalProperty: 'totalCount'
+						}
+					}
+				});
+				var store_mapros_line0_detail = Ext.create('Ext.data.Store',{
+					model	: 'model_mapros_line0_detail',
+					autoLoad: false,
+					pageSize: itemperpage,
+					proxy   : {
+						type    : 'ajax',
+						url     : 'json/finishgood_smt/json_good_smt_mapros_line0_detail.php',
+						reader  : {
+							type    : 'json',
+							root    : 'rows'
 						}
 					}
 				});
@@ -1396,7 +1451,7 @@
 						enableTextSelection	: true
 					},
 					columns 		: [
-						{	header 		: 'FWDN',
+						{ header : 'FWDN',
 							dataIndex 	: 'idfwdn',
 							width 		: 200,
 							renderer	: upsize
@@ -1441,7 +1496,7 @@
 							width 		: 80,
 							renderer	: upsize
 						},
-						{	header 		: 'OPERATOR',
+						{	header 		: 'MCH CODE',
 							dataIndex 	: 'input_user',
 							width 		: 120,
 							renderer	: upsize
@@ -1449,67 +1504,61 @@
 						{	header 		: 'OPT SCAN',
 							dataIndex 	: 'input_date',
 							width 		: 120,
-							renderer	: upsize
+							renderer	: upsize,
+							hidden 		: true
 						}
 					],
-					plugins			: [{
+					plugins			: [
+						{
 	        				ptype	: 'rowwidget',
 	        				widget	: {
-				            xtype	: 'grid',
-				            autoLoad: true,
-				            store 	: store_mapros_fwdn_detail,
-				            bind	: {
-				                title : 'Orders for ( {record.idfwdn} )'
-				            },
-				            columns : [
-				            			{	header 		: 'FWDN',
-											dataIndex 	: 'idfwdn',
-											flex 		: 1,
-											renderer	: upsize,
-											hidden 		: true
-										},
-										{	header 		: 'STEP',
-											dataIndex 	: 'step',
-											flex 		: 1,
-											renderer	: upsize
-										},
-										{	header 		: 'STEP DATA',
-											dataIndex 	: 'stepdata',
-											flex 		: 1,
-											renderer	: upsize
-										},
-										{	header 		: 'MEASURE',
-											dataIndex 	: 'measure',
-											flex 		: 1,
-											renderer	: upsize
-										},
-										{	header 		: 'MEASURE DATA',
-											dataIndex 	: 'measuredata',
-											flex 		: 1,
-											renderer	: upsize
-										},
-										{	header 		: 'OPERATOR',
-											dataIndex 	: 'input_user',
-											flex 		: 1,
-											renderer	: upsize
-										},
-										{	header 		: 'INSP DATE',
-											dataIndex 	: 'input_date',
-											flex 		: 1,
-											renderer	: upsize
-										}
-							],
-							listeners : function(record) {
-								alert('fuck');
-								//var idcellfwdn = grid.getSelectionModel().getSelection();
-								//alert(idcellfwdn[0].record.idfwdn);
-								// console.log(idfwdn);
-								// store_mapros_fwdn_detail.proxy.setExtraParam('idfwdn',);
-								// store_mapros_fwdn_detail.loadPage(0);
-
+					            xtype	: 'grid',
+					            autoLoad: true,
+					            store 	: store_mapros_fwdn_detail,
+					            bind	: {
+					                title : 'Orders for ( {record.idfwdn} )'
+					            },
+					            columns : [
+					            			{	header 		: 'FWDN',
+												dataIndex 	: 'idfwdn',
+												flex 		: 1,
+												renderer	: upsize,
+												hidden 		: true
+											},
+											{	header 		: 'STEP',
+												dataIndex 	: 'step',
+												flex 		: 1,
+												renderer	: upsize
+											},
+											{	header 		: 'STEP DATA',
+												dataIndex 	: 'stepdata',
+												flex 		: 1,
+												renderer	: upsize
+											},
+											{	header 		: 'MEASURE',
+												dataIndex 	: 'measure',
+												flex 		: 1,
+												renderer	: upsize
+											},
+											{	header 		: 'MEASURE DATA',
+												dataIndex 	: 'measuredata',
+												flex 		: 1,
+												renderer	: upsize
+											},
+											{	header 		: 'OPERATOR',
+												dataIndex 	: 'input_user',
+												flex 		: 1,
+												renderer	: upsize
+											},
+											{	header 		: 'INSP DATE',
+												dataIndex 	: 'input_date',
+												flex 		: 1,
+												renderer	: upsize
+											}
+								]
 							}
-				        }
-				    }],
+				    	}
+			    	],
 					bbar			: Ext.create('Ext.PagingToolbar', {
 						pageSize		: itemperpage,
 						store			: store_mapros_fwdn,
@@ -1662,59 +1711,216 @@
 						enableTextSelection	: true
 					},
 					columns 	: [
-						{	header 		: 'BARCODE',
+						{ 	header 		: 'AVMT',
+							dataIndex 	: 'idavmt',
+							width 		: 200,
+							renderer	: upsize
+						},
+						{	header 		: 'barcode',
 							dataIndex 	: 'barcode',
+							width 		: 100,
+							renderer	: upsize
+						},
+						{	header 		: 'sn',
+							dataIndex 	: 'sn',
+							width 		: 80,
+							renderer	: upsize
+						},
+						{	header 		: 'program',
+							dataIndex 	: 'program',
 							width 		: 140,
 							renderer	: upsize
 						},
-						{	header 		: 'SERIAL',
-							dataIndex 	: 'modelname',
-							flex 		: 1,
+						{	header 		: 'stdate',
+							dataIndex 	: 'stdate',
+							width 		: 80,
 							renderer	: upsize
 						},
-						{	header 		: 'LINE',
-							dataIndex 	: 'line',
-							width 	 	: 90,
+						{	header 		: 'endate',
+							dataIndex 	: 'endate',
+							width 		: 80,
 							renderer	: upsize
 						},
-						{	header 		: 'PROCESS',
-							dataIndex 	: 'lineprocess',
-							width 	 	: 90,
+						{	header 		: 'lap',
+							dataIndex 	: 'lap',
+							width 		: 90,
 							renderer	: upsize
 						},
-						{	header 		: 'scanner_id',
-							dataIndex 	: 'scanner_id',
-							flex 		: 1,
-							renderer	: upsize,
-							hidden		: true
-						},
-						{	header 		: 'STATUS',
-							dataIndex 	: 'status',
-							width 	 	: 90,
+						{	header 		: 'judgment',
+							dataIndex 	: 'judgment',
+							width 		: 80,
 							renderer	: upsize
 						},
-						{	header 		: 'JUDGE',
-							dataIndex 	: 'judge',
-							width 	 	: 90,
+						{	header 		: 'input_user',
+							dataIndex 	: 'input_user',
+							width 		: 80,
 							renderer	: upsize
 						},
-						{	header 		: 'SCAN TIME',
-							dataIndex 	: 'created_at',
-							flex 		: 1,
+						{	header 		: 'input_date',
+							dataIndex 	: 'input_date',
+							width 		: 120,
 							renderer	: upsize
 						},
-						{	header 		: 'SCAN NIK',
-							dataIndex 	: 'scan_nik',
-							flex 		: 1,
+						{	header 		: 'update_user',
+							dataIndex 	: 'update_user',
+							width 		: 120,
 							renderer	: upsize
 						},
-						{	header 		: 'updated_at',
-							dataIndex 	: 'updated_at',
-							flex 		: 1,
-							renderer	: upsize,
-							hidden		: true
+						{	header 		: 'update_date',
+							dataIndex 	: 'update_date',
+							width 		: 120,
+							renderer	: upsize
 						}
 					],
+					plugins			: [
+						{
+	        				ptype	: 'rowwidget',
+	        				widget	: {
+					            xtype	: 'grid',
+					            autoLoad: true,
+					            store 	: store_mapros_avmt_detail,
+					            bind	: {
+					                title : 'Orders for ( {record.idavmt} )'
+					            },
+					            columns : [
+					           
+					       	    			{	header 		: 'autoid',
+												dataIndex 	: 'autoid',
+												flex 		: 1,
+												renderer	: upsize,
+												hidden 		: true
+											},
+											{	header 		: 'idavmt',
+												dataIndex 	: 'idavmt',
+												flex 		: 1,
+												renderer	: upsize
+											},
+											{	header 		: 'barcode',
+												dataIndex 	: 'barcode',
+												flex 		: 1,
+												renderer	: upsize
+											},
+											{	header 		: 'step',
+												dataIndex 	: 'step',
+												flex 		: 1,
+												renderer	: upsize
+											},
+											{	header 		: 'type',
+												dataIndex 	: 'type',
+												flex 		: 1,
+												renderer	: upsize
+											},
+											{	header 		: 'name',
+												dataIndex 	: 'name',
+												flex 		: 1,
+												renderer	: upsize
+											},
+											{	header 		: 'judgment',
+												dataIndex 	: 'judgment',
+												flex 		: 1,
+												renderer	: upsize
+											},
+
+
+
+											{	header 		: 'volt',
+												dataIndex 	: 'volt',
+												flex 		: 1,
+												renderer	: upsize
+											},
+											{	header 		: 'curr',
+												dataIndex 	: 'curr',
+												flex 		: 1,
+												renderer	: upsize
+											},
+											{	header 		: 'freq',
+												dataIndex 	: 'freq',
+												flex 		: 1,
+												renderer	: upsize
+											},
+											{	header 		: 'lvll',
+												dataIndex 	: 'lvll',
+												flex 		: 1,
+												renderer	: upsize
+											},
+											{	header 		: 'dstl',
+												dataIndex 	: 'dstl',
+												flex 		: 1,
+												renderer	: upsize
+											},
+											{	header 		: 'dstr',
+												dataIndex 	: 'dstr',
+												flex 		: 1,
+												renderer	: upsize
+											},
+											{	header 		: 'rell',
+												dataIndex 	: 'rell',
+												flex 		: 1,
+												renderer	: upsize
+											},
+											{	header 		: 'relr',
+												dataIndex 	: 'relr',
+												flex 		: 1,
+												renderer	: upsize
+											},
+											{	header 		: 'snl',
+												dataIndex 	: 'snl',
+												flex 		: 1,
+												renderer	: upsize
+											},
+											{	header 		: 'snr',
+												dataIndex 	: 'snr',
+												flex 		: 1,
+												renderer	: upsize
+											},
+											{	header 		: 'remark',
+												dataIndex 	: 'remark',
+												flex 		: 1,
+												renderer	: upsize
+											},
+											{	header 		: 'input_user',
+												dataIndex 	: 'input_user',
+												flex 		: 1,
+												renderer	: upsize
+											},
+											{	header 		: 'input_date',
+												dataIndex 	: 'input_date',
+												flex 		: 1,
+												renderer	: upsize
+											},
+											{	header 		: 'update_user',
+												dataIndex 	: 'update_user',
+												flex 		: 1,
+												renderer	: upsize
+											},
+											{	header 		: 'update_date',
+												dataIndex 	: 'update_date',
+												flex 		: 1,
+												renderer	: upsize
+											}
+								]
+							}
+				    	}
+			    	],
+					bbar			: Ext.create('Ext.PagingToolbar', {
+						pageSize		: itemperpage,
+						store			: store_mapros_fwdn,
+						displayInfo		: true,
+						displayMsg		: 'Data {0} - {1} from {2} data',
+						emptyMsg		: "Page not found",
+						beforePageText  : 'Page',
+						afterPageText   : 'from {0} Pages',
+						firstText       : 'First Page',
+						prevText        : 'Previous Page',
+						nextText        : 'Next page',
+						lastText        : 'Last Page',
+						plugins       	: Ext.create('Ext.ux.ProgressBarPager', {}),
+						listeners 		: {
+							afterrender : function (cmp) {
+								cmp.getComponent("refresh").hide();
+							}
+						}
+					}),
 					//features: [filters],
 					// selModel: {
 					// 	selType: 'cellmodel'
@@ -1868,73 +2074,147 @@
 					autoWidth 		: '100%',
 					maxHeight		: 290,
 					columnLines 	: true,
-					//store 			: store_mapros_avmt,
+					store 			: store_mapros_line0,
 					viewConfig 		: {
 						stripeRows 			: true,
-						emptyText 	 		: '<div class="empty-txt">Under Development</div>',
+						emptyText 	 		: '<div class="empty-txt">No data to display.</div>',
 						deferEmptyText 		: false,
 						enableTextSelection	: true
 					},
 					columns 	: [
-						{	header 		: 'MASTER NO',
-							dataIndex 	: 'ticket_no_master',
+						{ 	header 		: 'ID',
+							dataIndex 	: 'idlinezero',
+							width 		: 200,
+							renderer	: upsize
+						},
+						{	header 		: 'INSP DATE',
+							dataIndex 	: 'dateinspec',
+							width 		: 100,
+							renderer	: upsize
+						},
+						{	header 		: 'TOTAL TIME',
+							dataIndex 	: 'inspectime',
+							width 		: 80,
+							renderer	: upsize
+						},
+						{	header 		: 'SERIAL',
+							dataIndex 	: 'serial',
 							width 		: 140,
 							renderer	: upsize
 						},
-						{	header 		: 'guid_master',
-							dataIndex 	: 'guid_master',
-							flex 		: 1,
-							renderer	: upsize,
-							hidden		: true
-						},
-						{	header 		: 'MODEL',
-							dataIndex 	: 'modelname',
-							flex 		: 1,
+						{	header 		: 'SN',
+							dataIndex 	: 'sn',
+							width 		: 80,
 							renderer	: upsize
 						},
-						{	header 		: 'LINE',
-							dataIndex 	: 'line',
-							width 	 	: 90,
-							renderer	: upsize
-						},
-						{	header 		: 'PROCESS',
-							dataIndex 	: 'lineprocess',
-							width 	 	: 90,
-							renderer	: upsize
-						},
-						{	header 		: 'scanner_id',
-							dataIndex 	: 'scanner_id',
-							flex 		: 1,
-							renderer	: upsize,
-							hidden		: true
-						},
-						{	header 		: 'STATUS',
-							dataIndex 	: 'status',
-							width 	 	: 90,
+						{	header 		: 'JIG NO',
+							dataIndex 	: 'jigno',
+							width 		: 80,
 							renderer	: upsize
 						},
 						{	header 		: 'JUDGE',
 							dataIndex 	: 'judge',
-							width 	 	: 90,
+							width 		: 90,
 							renderer	: upsize
 						},
-						{	header 		: 'SCAN TIME',
-							dataIndex 	: 'created_at',
-							flex 		: 1,
+						{	header 		: 'FILE',
+							dataIndex 	: 'artfilename',
+							width 		: 80,
 							renderer	: upsize
 						},
-						{	header 		: 'SCAN NIK',
-							dataIndex 	: 'scan_nik',
-							flex 		: 1,
+						{	header 		: 'NG',
+							dataIndex 	: 'ngcontent',
+							width 		: 80,
 							renderer	: upsize
 						},
-						{	header 		: 'updated_at',
-							dataIndex 	: 'updated_at',
-							flex 		: 1,
+						{	header 		: 'MCH CODE',
+							dataIndex 	: 'input_user',
+							width 		: 120,
+							renderer	: upsize
+						},
+						{	header 		: 'OPT SCAN',
+							dataIndex 	: 'input_date',
+							width 		: 120,
 							renderer	: upsize,
-							hidden		: true
+							hidden 		: true
 						}
 					],
+					plugins			: [
+						{
+	        				ptype	: 'rowwidget',
+	        				widget	: {
+					            xtype	: 'grid',
+					            autoLoad: true,
+					            store 	: store_mapros_line0_detail,
+					            bind	: {
+					                title : 'Orders for ( {record.idline0} )'
+					            },
+					            columns : [
+					            			{	header 		: 'ID',
+												dataIndex 	: 'idlinezero',
+												flex 		: 1,
+												renderer	: upsize,
+												hidden 		: true
+											},
+											{	header 		: 'Row Number',
+												dataIndex 	: 'rownumber',
+												flex 		: 1,
+												renderer	: upsize,
+												hidden 		: true
+											},
+											{	header 		: 'STEP',
+												dataIndex 	: 'step',
+												flex 		: 1,
+												renderer	: upsize
+											},
+											{	header 		: 'STEP DATA',
+												dataIndex 	: 'stepdata',
+												flex 		: 1,
+												renderer	: upsize
+											},
+											{	header 		: 'MEASURE',
+												dataIndex 	: 'measure',
+												flex 		: 1,
+												renderer	: upsize
+											},
+											{	header 		: 'MEASURE DATA',
+												dataIndex 	: 'measuredata',
+												flex 		: 1,
+												renderer	: upsize
+											},
+											{	header 		: 'OPERATOR',
+												dataIndex 	: 'input_user',
+												flex 		: 1,
+												renderer	: upsize
+											},
+											{	header 		: 'INSP DATE',
+												dataIndex 	: 'input_date',
+												flex 		: 1,
+												renderer	: upsize
+											}
+								]
+							}
+				    	}
+			    	],
+					bbar			: Ext.create('Ext.PagingToolbar', {
+						pageSize		: itemperpage,
+						store			: store_mapros_line0,
+						displayInfo		: true,
+						displayMsg		: 'Data {0} - {1} from {2} data',
+						emptyMsg		: "Page not found",
+						beforePageText  : 'Page',
+						afterPageText   : 'from {0} Pages',
+						firstText       : 'First Page',
+						prevText        : 'Previous Page',
+						nextText        : 'Next page',
+						lastText        : 'Last Page',
+						plugins       	: Ext.create('Ext.ux.ProgressBarPager', {}),
+						listeners 		: {
+							afterrender : function (cmp) {
+								cmp.getComponent("refresh").hide();
+							}
+						}
+					}),
 					//features: [filters],
 					// selModel: {
 					// 	selType: 'cellmodel'
@@ -2164,6 +2444,9 @@
 															store_mapros_avntest.loadPage(1);
 															store_mapros_avmt.proxy.setExtraParam('boardid', boardid);
 															store_mapros_avmt.loadPage(1);
+															store_mapros_line0.proxy.setExtraParam('boardid', boardid);
+															store_mapros_line0.loadPage(1);
+															
 														}
 													}
 												}
