@@ -94,7 +94,8 @@
 			//	BOARD ID GENERATOR
 				Ext.define('model_bigs', {
 					extend: 'Ext.data.Model',
-					fields: ['schedule_id', 'lot_size', 'model_code', 'prod_no_code', 'side', 'cavity', 'seq_start', 'seq_end', 'line', 'model', 'pwbname', 'pwbno', 'process', 'rev_date', 'qty', 'ynumber', 'start_serial']
+					//fields: ['schedule_id', 'lot_size', 'model_code', 'prod_no_code', 'side', 'cavity', 'seq_start', 'seq_end', 'line', 'model', 'pwbname', 'pwbno', 'process', 'rev_date', 'qty', 'ynumber', 'start_serial']
+					fields: [ 'side', 'cavity', 'seq_start', 'seq_end', 'line', 'model', 'pwbname', 'pwbno', 'process', 'qty', 'ynumber', 'start_serial']
 				});
 				// 	Ext.define('model_bigs', {
 					// 		extend: 'Ext.data.Model',
