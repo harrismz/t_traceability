@@ -951,7 +951,7 @@
 					columns 	: [
 						{ 	header 		: 'MJS ID',
 							dataIndex 	: 'mjsid',
-							width 		: 140,
+							width 		: 150,
 							renderer	: upsize
 						},
 						{ 	header 		: 'PART LOC',
@@ -1820,9 +1820,6 @@
 												flex 		: 1,
 												renderer	: upsize
 											},
-
-
-
 											{	header 		: 'volt',
 												dataIndex 	: 'volt',
 												flex 		: 1,
@@ -2147,7 +2144,7 @@
 					            autoLoad: true,
 					            store 	: store_mapros_line0_detail,
 					            bind	: {
-					                title : 'Orders for ( {record.idline0} )'
+					                title : 'Orders for ( {record.idlinezero} )'
 					            },
 					            columns : [
 					            			{	header 		: 'ID',
