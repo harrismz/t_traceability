@@ -5,7 +5,7 @@
     // $page       = @$_REQUEST["page"];
     // $limit      = @$_REQUEST["limit"];
     // $start      = (($page*$limit)-$limit)+1;
-    $idavmt     = @$_REQUEST['idavmt'];
+    $idavmt     = @$_REQUEST['avmt'];
 	
     $sql        = "EXEC traceability_smt_avmt_detail '{$idavmt}'";
     $rs         = $db->Execute($sql);
