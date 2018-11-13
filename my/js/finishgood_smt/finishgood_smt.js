@@ -95,7 +95,7 @@
 				Ext.define('model_bigs', {
 					extend: 'Ext.data.Model',
 					//fields: ['schedule_id', 'lot_size', 'model_code', 'prod_no_code', 'side', 'cavity', 'seq_start', 'seq_end', 'line', 'model', 'pwbname', 'pwbno', 'process', 'rev_date', 'qty', 'ynumber', 'start_serial']
-					fields: [ 'side', 'cavity', 'seq_start', 'seq_end', 'line', 'model', 'pwbname', 'pwbno', 'process', 'qty', 'ynumber', 'start_serial']
+					fields: [ 'side', 'cavity', 'seq_start', 'seq_end', 'line', 'model', 'pwbname', 'process', 'qty', 'ynumber', 'start_serial']
 				});
 				// 	Ext.define('model_bigs', {
 					// 		extend: 'Ext.data.Model',
@@ -120,9 +120,12 @@
            	//	MOUNTER
 				Ext.define('model_smt_mounter',{
 	                extend: 'Ext.data.Model',
-					fields: ['mjsid','puside','partloc','jobno','model','board','pwbno','process',
-	                			'mode','partno','feeder','feederserial','feederno','compid1','compid2',
-	                			'compid3','compid4','compid5','scandate']
+					// fields: ['mjsid','puside','partloc','jobno','model','board','pwbno','process',
+	    			//  		'mode','partno','feeder','feederserial','feederno','compid1','compid2',
+	    			//  		'compid3','compid4','compid5','scandate']
+					fields: ['row','line','boardid','model','pwbno','pwbname','process','lotno',
+	                			'datein','dateout','jobno','partloc','mode','partno','feeder',
+	                			'feederserial','feederno','compid1','scandate']
 	           	});
            	//	SPI
 				Ext.define('model_smt_spi',{
@@ -211,9 +214,7 @@
 								cavity 	= store.getAt(0).get('cavity');
 								boardid = Ext.getCmp('boardid_scan').getValue();
 								
-								store_smt_mounter.proxy.setExtraParam('model', model);
-								store_smt_mounter.proxy.setExtraParam('process', proces);
-								store_smt_mounter.proxy.setExtraParam('pwbno', pwbno);
+								store_smt_mounter.proxy.setExtraParam('boardid', boardid);
 								store_smt_mounter.loadPage(1);
 
 								store_mapros_board.proxy.setExtraParam('boardid', boardid);
@@ -375,10 +376,8 @@
 								 //alert (get_boardid + spidate);
 								store_smt_reflow.proxy.setExtraParam('boardid', get_boardid);
 								store_smt_reflow.proxy.setExtraParam('smt_date', spidate);
-								store_smt_reflow.loadPage(1);
+								store_smt_reflow.loadPage(1);								
 							}
-							
-
 						} 
 					}
 				
@@ -614,11 +613,6 @@
 							flex 	 : 1,
 							renderer : upsize
 						}, 
-						{ 	header 	 : 'PWB NO',
-							dataIndex: 'pwbno',
-							flex 	 : 1,
-							renderer : upsize
-						}, 
 						{ 	header 	 : 'PROD NO',
 							dataIndex: 'prod_no',
 							flex 	 : 1,
@@ -762,7 +756,7 @@
 					columns: [
 						{ 	header 		: 'BARCODE',
 							dataIndex 	: 'barcode',
-							width 	 	: 135,
+							width 	 	: 200,
 							renderer 	: upsize
 						}, 
 						{ 	header 		: 'MCH NAME',
@@ -809,7 +803,7 @@
 						}, 
 						{ 	header 		: 'PART NO',
 							dataIndex 	: 'partno',
-							width 		: 180,
+							width 		: 150,
 							renderer 	: upsize,
 							filter 		: {
 								type 	: 'string'
@@ -950,109 +944,25 @@
 						enableTextSelection	: true
 					},
 					columns 	: [
-						{ 	header 		: 'MJS ID',
-							dataIndex 	: 'mjsid',
-							width 		: 150,
-							renderer	: upsize
-						},
-						{ 	header 		: 'PART LOC',
-							dataIndex 	: 'partloc',
-							width 		: 70,
-							renderer	: upsize
-						},
-						{ 	header 		: 'BOARD',
-							dataIndex 	: 'board',
-							width 		: 100,
-							renderer	: upsize
-						},
-						{ 	header 		: 'MODE',
-							dataIndex 	: 'mode',
-							width 		: 70,
-							renderer	: upsize
-						},
-						{ 	header 		: 'PART NO',
-							dataIndex 	: 'partno',
-							width 		: 130,
-							renderer	: upsize
-						},
-						{ 	header 		: 'FEEDER',
-							dataIndex 	: 'feeder',
-							width 		: 75,
-							renderer	: upsize
-						},
-						{ 	header 		: 'FEEDER<br>SERIAL',
-							dataIndex 	: 'feederserial',
-							width 		: 130,
-							renderer	: upsize
-						},
-						{ 	header 		: 'FEEDER NO',
-							dataIndex 	: 'feederno',
-							width 		: 130,
-							renderer	: upsize
-						},
-						{ 	header 		: 'COMPID 1',
-							dataIndex 	: 'compid1',
-							width 		: 130,
-							renderer	: upsize
-						},
-						{ 	header 		: 'SCAN DATE',
-							dataIndex 	: 'scandate',
-							width 		: 90,
-							renderer	: upsize
-						},
-						{ 	header 		: 'JOB NO',
-							dataIndex 	: 'jobno',
-							width 		: 180,
-							renderer	: upsize
-						},
-						{ 	header 		: 'puside',
-							dataIndex 	: 'puside',
-							width 		: 90,
-							renderer	: upsize,
-							hidden		: true
-						},
-						{ 	header 		: 'PWB NO',
-							dataIndex 	: 'pwbno',
-							flex 		: 1,
-							renderer	: upsize,
-							hidden		: true
-						},
-						{ 	header 		: 'PROCESS',
-							dataIndex 	: 'process',
-							flex 		: 1,
-							renderer	: upsize,
-							hidden		: true
-						},
-						{ 	header 		: 'compid2',
-							dataIndex 	: 'compid2',
-							flex 		: 1,
-							renderer	: upsize,
-							hidden		: true
-						},
-						{ 	header 		: 'compid3',
-							dataIndex 	: 'compid3',
-							flex 		: 1,
-							renderer	: upsize,
-							hidden		: true
-						},
-						{ 	header 		: 'compid4',
-							dataIndex 	: 'compid4',
-							flex 		: 1,
-							renderer	: upsize,
-							hidden		: true
-						},
-						{ 	header 		: 'compid5',
-							dataIndex 	: 'compid5',
-							flex 		: 1,
-							renderer	: upsize,
-							hidden		: true
-						},
-						{ 	header 		: 'MODEL',
-							dataIndex 	: 'model',
-							flex 		: 1,
-							renderer	: upsize,
-							hidden		: true
-						}
+						{ 	header : 'NO',				dataIndex : 'row', 			width : 50,		renderer : upsize },
+						{ 	header : 'LINE',			dataIndex : 'line', 		width : 60, 	renderer : upsize },
+						{ 	header : 'BOARD',			dataIndex : 'boardid',		width : 200,	renderer : upsize,	hidden : true },
+						{ 	header : 'MODEL',			dataIndex : 'model',		width : 120,	renderer : upsize,	hidden : true },
+						{ 	header : 'PWB NO', 			dataIndex : 'pwbno', 		width : 100, 	renderer : upsize,	hidden : true },
+						{ 	header : 'PWV NAME', 		dataIndex : 'pwbname', 		width : 75, 	renderer : upsize,	hidden : true },
+						{ 	header : 'PROCESS', 		dataIndex : 'process', 		width : 90, 	renderer : upsize },
+						{ 	header : 'LOT NO', 			dataIndex : 'lotno', 		width : 75, 	renderer : upsize,	hidden : true },
+						{ 	header : 'START', 			dataIndex : 'datein', 		width : 90, 	renderer : upsize },
+						{ 	header : 'END', 			dataIndex : 'dateout', 		width : 90, 	renderer : upsize },
+						{ 	header : 'JOBNO', 			dataIndex : 'jobno', 		width : 150, 	renderer : upsize },
+						{ 	header : 'LOCATION', 		dataIndex : 'partloc', 		width : 90, 	renderer : upsize },
+						{ 	header : 'MODE',			dataIndex : 'mode', 		width : 75,		renderer : upsize },
+						{ 	header : 'PARTNO', 			dataIndex : 'partno', 		width : 120, 	renderer : upsize },
+						{ 	header : 'FEEDER', 			dataIndex : 'feeder', 		width : 75, 	renderer : upsize },
+						{ 	header : 'FEEDER SERIAL', 	dataIndex : 'feederserial',	width : 130,	renderer : upsize },
+						{ 	header : 'FEEDER NO', 		dataIndex : 'feederno', 	width : 100,	renderer : upsize },
+						{ 	header : 'SCANNING', 		dataIndex : 'compid1', 		width : 140,	renderer : upsize },
+						{ 	header : 'SCAN DATE', 		dataIndex : 'scandate', 	width : 90,		renderer : upsize }
 					],
 					bbar	: Ext.create('Ext.PagingToolbar', {
 						pageSize		: itemperpage,
@@ -1073,11 +983,7 @@
 							}
 						}
 					})
-					//features: [filters],
-					// selModel: {
-					// 	selType: 'cellmodel'
-					// },
-					// plugins: [cellEditing]
+					//features: [filters], selModel: { selType: 'cellmodel' }, plugins: [cellEditing]
 				});
 			//	SPI
 				var grid_smt_spi = Ext.create('Ext.grid.Panel', {
@@ -1177,7 +1083,7 @@
 				var grid_mapros_board = Ext.create('Ext.grid.Panel', {
 					id 				: 'grid_mapros_board',
 					autoWidth 		: '100%',
-					maxHeight		: 290,
+					maxHeight		: 400,
 					columnLines 	: true,
 					store 			: store_mapros_board,
 					viewConfig 		: {
@@ -1701,8 +1607,8 @@
 				});
 				var grid_mapros_avmt = Ext.create('Ext.grid.Panel', {
 					id 				: 'grid_mapros_avmt',
-					autoWidth 		: '100%',
-					maxHeight		: 290,
+					autoWidth 		: '80%',
+					height			: 270,
 					columnLines 	: true,
 					store 			: store_mapros_avmt,
 					viewConfig 		: {
@@ -1714,50 +1620,50 @@
 					columns 	: [
 						{ 	header 		: 'AVMT',
 							dataIndex 	: 'idavmt',
-							width 		: 200,
+							width 		: 170,
 							renderer	: upsize
 						},
-						{	header 		: 'barcode',
+						{	header 		: 'DUMMY MASTER',
 							dataIndex 	: 'barcode',
-							width 		: 100,
+							width 		: 130,
 							renderer	: upsize
 						},
-						{	header 		: 'sn',
+						{	header 		: 'SERIAL NO',
 							dataIndex 	: 'sn',
-							width 		: 80,
+							width 		: 130,
 							renderer	: upsize
 						},
-						{	header 		: 'program',
+						{	header 		: 'MODEL PROG',
 							dataIndex 	: 'program',
 							width 		: 140,
 							renderer	: upsize
 						},
-						{	header 		: 'stdate',
+						{	header 		: 'START',
 							dataIndex 	: 'stdate',
-							width 		: 80,
+							width 		: 90,
 							renderer	: upsize
 						},
-						{	header 		: 'endate',
+						{	header 		: 'END',
 							dataIndex 	: 'endate',
-							width 		: 80,
+							width 		: 90,
 							renderer	: upsize
 						},
-						{	header 		: 'lap',
+						{	header 		: 'LAP',
 							dataIndex 	: 'lap',
 							width 		: 90,
 							renderer	: upsize
 						},
-						{	header 		: 'judgment',
+						{	header 		: 'JUDGE',
 							dataIndex 	: 'judgment',
 							width 		: 80,
 							renderer	: upsize
 						},
-						{	header 		: 'input_user',
+						{	header 		: 'MCHNAME',
 							dataIndex 	: 'input_user',
-							width 		: 80,
+							width 		: 100,
 							renderer	: upsize
 						},
-						{	header 		: 'input_date',
+						{	header 		: 'DATE',
 							dataIndex 	: 'input_date',
 							width 		: 120,
 							renderer	: upsize
@@ -1765,12 +1671,14 @@
 						{	header 		: 'update_user',
 							dataIndex 	: 'update_user',
 							width 		: 120,
-							renderer	: upsize
+							renderer	: upsize,
+							hidden		: true
 						},
 						{	header 		: 'update_date',
 							dataIndex 	: 'update_date',
 							width 		: 120,
-							renderer	: upsize
+							renderer	: upsize,
+							hidden		: true
 						}
 					],
 					plugins			: [
@@ -1784,104 +1692,105 @@
 					                title : 'Orders for ( {record.idavmt} )'
 					            },
 					            columns : [
-					           
 					       	    			{	header 		: 'autoid',
 												dataIndex 	: 'autoid',
 												flex 		: 1,
 												renderer	: upsize,
 												hidden 		: true
 											},
-											{	header 		: 'idavmt',
+											{	header 		: 'ID AVMT',
 												dataIndex 	: 'idavmt',
 												flex 		: 1,
-												renderer	: upsize
+												renderer	: upsize,
+												hidden 		: true
 											},
-											{	header 		: 'barcode',
+											{	header 		: 'DUMMY MASTER',
 												dataIndex 	: 'barcode',
 												flex 		: 1,
-												renderer	: upsize
+												renderer	: upsize,
+												hidden 		: true
 											},
-											{	header 		: 'step',
+											{	header 		: 'STEP',
 												dataIndex 	: 'step',
 												flex 		: 1,
 												renderer	: upsize
 											},
-											{	header 		: 'type',
+											{	header 		: 'TYPE',
 												dataIndex 	: 'type',
 												flex 		: 1,
 												renderer	: upsize
 											},
-											{	header 		: 'name',
+											{	header 		: 'NAME',
 												dataIndex 	: 'name',
 												flex 		: 1,
 												renderer	: upsize
 											},
-											{	header 		: 'judgment',
+											{	header 		: 'JUDGE',
 												dataIndex 	: 'judgment',
 												flex 		: 1,
 												renderer	: upsize
 											},
-											{	header 		: 'volt',
+											{	header 		: 'VOLT',
 												dataIndex 	: 'volt',
 												flex 		: 1,
 												renderer	: upsize
 											},
-											{	header 		: 'curr',
+											{	header 		: 'CURR',
 												dataIndex 	: 'curr',
 												flex 		: 1,
 												renderer	: upsize
 											},
-											{	header 		: 'freq',
+											{	header 		: 'FREQ',
 												dataIndex 	: 'freq',
 												flex 		: 1,
 												renderer	: upsize
 											},
-											{	header 		: 'lvll',
+											{	header 		: 'LVLL',
 												dataIndex 	: 'lvll',
 												flex 		: 1,
 												renderer	: upsize
 											},
-											{	header 		: 'dstl',
+											{	header 		: 'DSTL',
 												dataIndex 	: 'dstl',
 												flex 		: 1,
 												renderer	: upsize
 											},
-											{	header 		: 'dstr',
+											{	header 		: 'DSTR',
 												dataIndex 	: 'dstr',
 												flex 		: 1,
 												renderer	: upsize
 											},
-											{	header 		: 'rell',
+											{	header 		: 'RELL',
 												dataIndex 	: 'rell',
 												flex 		: 1,
 												renderer	: upsize
 											},
-											{	header 		: 'relr',
+											{	header 		: 'RELR',
 												dataIndex 	: 'relr',
 												flex 		: 1,
 												renderer	: upsize
 											},
-											{	header 		: 'snl',
+											{	header 		: 'SNL',
 												dataIndex 	: 'snl',
 												flex 		: 1,
 												renderer	: upsize
 											},
-											{	header 		: 'snr',
+											{	header 		: 'SNR',
 												dataIndex 	: 'snr',
 												flex 		: 1,
 												renderer	: upsize
 											},
-											{	header 		: 'remark',
+											{	header 		: 'REMARK',
 												dataIndex 	: 'remark',
 												flex 		: 1,
 												renderer	: upsize
 											},
-											{	header 		: 'input_user',
+											{	header 		: 'MCH NAME',
 												dataIndex 	: 'input_user',
 												flex 		: 1,
 												renderer	: upsize
 											},
-											{	header 		: 'input_date',
+											{	header 		: 'DATE',
 												dataIndex 	: 'input_date',
 												flex 		: 1,
 												renderer	: upsize
@@ -1889,20 +1798,187 @@
 											{	header 		: 'update_user',
 												dataIndex 	: 'update_user',
 												flex 		: 1,
-												renderer	: upsize
+												renderer	: upsize,
+												hidden 		: true
 											},
 											{	header 		: 'update_date',
 												dataIndex 	: 'update_date',
 												flex 		: 1,
-												renderer	: upsize
+												renderer	: upsize,
+												hidden 		: true
 											}
 								]
 							}
 				    	}
 			    	],
+			    	listeners: {
+			    		select: function(grid, rowIndex, colIndex) {
+			    			var rec = this.getSelectionModel().getSelection();
+			    			var avmt = rec[0].data.idavmt;
+			    			
+			    			store_mapros_avmt_detail.proxy.setExtraParam('avmt',avmt);
+			    			store_mapros_avmt_detail.loadPage(1);
+
+			    		}
+			    	},
 					bbar			: Ext.create('Ext.PagingToolbar', {
 						pageSize		: itemperpage,
-						store			: store_mapros_fwdn,
+						store			: store_mapros_avmt,
+						displayInfo		: true,
+						displayMsg		: 'Data {0} - {1} from {2} data',
+						emptyMsg		: "Page not found",
+						beforePageText  : 'Page',
+						afterPageText   : 'from {0} Pages',
+						firstText       : 'First Page',
+						prevText        : 'Previous Page',
+						nextText        : 'Next page',
+						lastText        : 'Last Page',
+						plugins       	: Ext.create('Ext.ux.ProgressBarPager', {}),
+						listeners 		: {
+							afterrender : function (cmp) {
+								cmp.getComponent("refresh").hide();
+							}
+						}
+					}),
+					//features: [filters],
+					// selModel: {
+					// 	selType: 'cellmodel'
+					// },
+					// plugins: [cellEditing]
+				});
+				var grid_mapros_avmt_detail = Ext.create('Ext.grid.Panel', {
+					id 				: 'grid_mapros_avmt_detail',
+					title 			: '<div style="text-align:center;">== &nbsp; DETAIL &nbsp; ==</div>',
+					autoWidth 		: '80%',
+					Height			: 400,
+					columnLines 	: true,
+					store 			: store_mapros_avmt_detail,
+					viewConfig 		: {
+						stripeRows 			: true,
+						emptyText 	 		: '<div class="empty-txt">No data to display.</div>',
+						deferEmptyText 		: false,
+						enableTextSelection	: true
+					},
+					columns 	: [
+						{	header 		: 'autoid',
+							dataIndex 	: 'autoid',
+							flex 		: 1,
+							renderer	: upsize,
+							hidden 		: true
+						},
+						{	header 		: 'ID AVMT',
+							dataIndex 	: 'idavmt',
+							flex 		: 1,
+							renderer	: upsize,
+							hidden 		: true
+						},
+						{	header 		: 'DUMMY MASTER',
+							dataIndex 	: 'barcode',
+							flex 		: 1,
+							renderer	: upsize,
+							hidden 		: true
+						},
+						{	header 		: 'STEP',
+							dataIndex 	: 'step',
+							flex 		: 1,
+							renderer	: upsize
+						},
+						{	header 		: 'TYPE',
+							dataIndex 	: 'type',
+							flex 		: 1,
+							renderer	: upsize
+						},
+						{	header 		: 'NAME',
+							dataIndex 	: 'name',
+							flex 		: 1,
+							renderer	: upsize
+						},
+						{	header 		: 'JUDGE',
+							dataIndex 	: 'judgment',
+							flex 		: 1,
+							renderer	: upsize
+						},
+						{	header 		: 'VOLT',
+							dataIndex 	: 'volt',
+							flex 		: 1,
+							renderer	: upsize
+						},
+						{	header 		: 'CURR',
+							dataIndex 	: 'curr',
+							flex 		: 1,
+							renderer	: upsize
+						},
+						{	header 		: 'FREQ',
+							dataIndex 	: 'freq',
+							flex 		: 1,
+							renderer	: upsize
+						},
+						{	header 		: 'LVLL',
+							dataIndex 	: 'lvll',
+							flex 		: 1,
+							renderer	: upsize
+						},
+						{	header 		: 'DSTL',
+							dataIndex 	: 'dstl',
+							flex 		: 1,
+							renderer	: upsize
+						},
+						{	header 		: 'DSTR',
+							dataIndex 	: 'dstr',
+							flex 		: 1,
+							renderer	: upsize
+						},
+						{	header 		: 'RELL',
+							dataIndex 	: 'rell',
+							flex 		: 1,
+							renderer	: upsize
+						},
+						{	header 		: 'RELR',
+							dataIndex 	: 'relr',
+							flex 		: 1,
+							renderer	: upsize
+						},
+						{	header 		: 'SNL',
+							dataIndex 	: 'snl',
+							flex 		: 1,
+							renderer	: upsize
+						},
+						{	header 		: 'SNR',
+							dataIndex 	: 'snr',
+							flex 		: 1,
+							renderer	: upsize
+						},
+						{	header 		: 'REMARK',
+							dataIndex 	: 'remark',
+							flex 		: 1,
+							renderer	: upsize
+						},
+						{	header 		: 'MCH NAME',
+							dataIndex 	: 'input_user',
+							flex 		: 1,
+							renderer	: upsize
+						},
+						{	header 		: 'DATE',
+							dataIndex 	: 'input_date',
+							flex 		: 1,
+							renderer	: upsize
+						},
+						{	header 		: 'update_user',
+							dataIndex 	: 'update_user',
+							flex 		: 1,
+							renderer	: upsize,
+							hidden 		: true
+						},
+						{	header 		: 'update_date',
+							dataIndex 	: 'update_date',
+							flex 		: 1,
+							renderer	: upsize,
+							hidden 		: true
+						}
+					],
+					bbar			: Ext.create('Ext.PagingToolbar', {
+						pageSize		: itemperpage,
+						store			: store_mapros_avmt_detail,
 						displayInfo		: true,
 						displayMsg		: 'Data {0} - {1} from {2} data',
 						emptyMsg		: "Page not found",
@@ -2219,7 +2295,26 @@
 					// },
 					// plugins: [cellEditing]
 				});
-						
+		
+		//	=======================================================  PANEL    =========================================
+			var panel_avmt = Ext.create('Ext.panel.Panel',{
+			    border: true,
+			    layout: 'border',
+			   	defaults: {
+				     split: false,
+				     plain: true
+			    },
+			   	items: [{
+				   region: 'north', // GRID SIDE
+				   layout: 'fit',
+				   items: grid_mapros_avmt
+				   }, {
+				   region: 'center', // GRID SIDE
+				   layout: 'fit',
+				   items: grid_mapros_avmt_detail
+				   }]
+			  });
+
 		//	=======================================================  TAB  PANEL    =========================================
 			
 			//	BOARD ID GENERATOR
@@ -2327,7 +2422,7 @@
 					plain 		: true,
 					activeTab 	: 0,
 					autoWidth 	: '100%',
-					height		: 330,
+					height		: 490,
 					autoScroll 	: true,
 					frame 		: true,
 					//style 	: 'padding:5px;-background:#157FCC;',
@@ -2372,7 +2467,8 @@
 						{	title 		: 'AVMT',
 						 	id  		: 'show_grid_avmt',
 							reorderable : false,
-							items 		: [grid_mapros_avmt]
+							layout		: 'fit',
+							items 		: [panel_avmt]
 						}, 
 						{	title 		: 'AUTO LINE ZERO',
 						 	id  		: 'show_grid_zero',
@@ -2400,7 +2496,8 @@
 					//value:  	'000157A000010009',
 					//value:  	'000177A020010012',
 					//value:  	'000267B000010001',
-					value:  	'YJ5224A00VT_01B7002A0001',
+					//value:  	'YJ5224A00VT_01B7002A0001',
+					value:  	'YJ5224A01MN_00A7010A0002',
 					listeners	: {
 									afterrender : function() {
 													this.inputEl.setStyle('text-align', 'center');
@@ -2442,9 +2539,10 @@
 															store_mapros_avntest.loadPage(1);
 															store_mapros_avmt.proxy.setExtraParam('boardid', boardid);
 															store_mapros_avmt.loadPage(1);
+															store_mapros_avmt_detail.proxy.setExtraParam('avmt','');
+			    											store_mapros_avmt_detail.loadPage(1);
 															store_mapros_line0.proxy.setExtraParam('boardid', boardid);
 															store_mapros_line0.loadPage(1);
-															
 														}
 													}
 												}
