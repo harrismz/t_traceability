@@ -88,6 +88,7 @@
 
 			//	end function untuk column bigsize
 				var itemperpage = 10;
+				var itemperpage_detail = 6;
 				var date 		= new Date();
 			
 		//	=======================================================    MODEL    =========================================
@@ -167,6 +168,10 @@
 					extend: 'Ext.data.Model',
 	                fields: ['idavnt','dateinspec','serial', 'sn','jigno','judge','inspectime',
 	                		'artfilename','ngcontent','input_user','input_date']
+	           	});
+	          	Ext.define('model_mapros_avntest_detail',{
+					extend: 'Ext.data.Model',
+	                fields: ['idavnt','step','stepdata','measure','measuredata','input_user','input_date']
 	           	});
 	          	Ext.define('model_mapros_avmt',{
 					extend: 'Ext.data.Model',
@@ -425,27 +430,28 @@
 				var store_mapros_fwdn = Ext.create('Ext.data.Store',{
 					model	: 'model_mapros_fwdn',
 					autoLoad: false,
-					pageSize: itemperpage,
+					// pageSize: itemperpage,
 					proxy   : {
 						type    : 'ajax',
 						url     : 'json/finishgood_smt/json_good_smt_mapros_fwdn.php',
 						reader  : {
 							type    : 'json',
 							root    : 'rows',
-							totalProperty: 'totalCount'
+							// totalProperty: 'totalCount'
 						}
 					}
 				});
 				var store_mapros_fwdn_detail = Ext.create('Ext.data.Store',{
 					model	: 'model_mapros_fwdn_detail',
 					autoLoad: false,
-					pageSize: itemperpage,
+					pageSize: itemperpage_detail,
 					proxy   : {
 						type    : 'ajax',
 						url     : 'json/finishgood_smt/json_good_smt_mapros_fwdn_detail.php',
 						reader  : {
 							type    : 'json',
-							root    : 'rows'
+							root    : 'rows',
+							totalProperty: 'totalCount'
 						}
 					}
 				});
@@ -473,6 +479,20 @@
 						reader  : {
 							type    : 'json',
 							root    : 'rows',
+							//totalProperty: 'totalCount'
+						}
+					}
+				});
+				var store_mapros_avntest_detail = Ext.create('Ext.data.Store',{
+					model	: 'model_mapros_avntest_detail',
+					autoLoad: false,
+					pageSize: itemperpage_detail,
+					proxy   : {
+						type    : 'ajax',
+						url     : 'json/finishgood_smt/json_good_smt_mapros_avntest_detail.php',
+						reader  : {
+							type    : 'json',
+							root    : 'rows',
 							totalProperty: 'totalCount'
 						}
 					}
@@ -487,20 +507,21 @@
 						reader  : {
 							type    : 'json',
 							root    : 'rows',
-							totalProperty: 'totalCount'
+							//totalProperty: 'totalCount'
 						}
 					}
 				});
 				var store_mapros_avmt_detail = Ext.create('Ext.data.Store',{
 					model	: 'model_mapros_avmt_detail',
 					autoLoad: false,
-					pageSize: itemperpage,
+					pageSize: itemperpage_detail,
 					proxy   : {
 						type    : 'ajax',
 						url     : 'json/finishgood_smt/json_good_smt_mapros_avmt_detail.php',
 						reader  : {
 							type    : 'json',
-							root    : 'rows'
+							root    : 'rows',
+							totalProperty: 'totalCount'
 						}
 					}
 				});
@@ -514,20 +535,21 @@
 						reader  : {
 							type    : 'json',
 							root    : 'rows',
-							totalProperty: 'totalCount'
+							// totalProperty: 'totalCount'
 						}
 					}
 				});
 				var store_mapros_line0_detail = Ext.create('Ext.data.Store',{
 					model	: 'model_mapros_line0_detail',
 					autoLoad: false,
-					pageSize: itemperpage,
+					pageSize: itemperpage_detail,
 					proxy   : {
 						type    : 'ajax',
 						url     : 'json/finishgood_smt/json_good_smt_mapros_line0_detail.php',
 						reader  : {
 							type    : 'json',
-							root    : 'rows'
+							root    : 'rows',
+							totalProperty: 'totalCount'
 						}
 					}
 				});
@@ -575,7 +597,7 @@
 						},
 						{ 	header 	 : 'YNUMBER',
 							dataIndex: 'ynumber',
-							width 	 : 90,
+							width 	 : 100,
 							renderer : upsize
 						}, 
 						{ 	header 	 : 'SIDE',
@@ -1348,7 +1370,7 @@
 				var grid_mapros_fwdn = Ext.create('Ext.grid.Panel', {
 					id 				: 'grid_mapros_fwdn',
 					autoWidth 		: '100%',
-					height			: 290,
+					maxHeight			: 200,
 					columnLines 	: true,
 					store 			: store_mapros_fwdn,
 					viewConfig 		: {
@@ -1358,9 +1380,9 @@
 						enableTextSelection	: true
 					},
 					columns 		: [
-						{ header : 'FWDN',
+						{ 	header 		: 'FWDN',
 							dataIndex 	: 'idfwdn',
-							width 		: 200,
+							width 		: 180,
 							renderer	: upsize
 						},
 						{	header 		: 'INSP DATE',
@@ -1375,17 +1397,17 @@
 						},
 						{	header 		: 'SERIAL',
 							dataIndex 	: 'serial',
-							width 		: 140,
+							width 		: 210,
 							renderer	: upsize
 						},
 						{	header 		: 'SN',
 							dataIndex 	: 'sn',
-							width 		: 80,
+							width 		: 60,
 							renderer	: upsize
 						},
 						{	header 		: 'JIG NO',
 							dataIndex 	: 'jigno',
-							width 		: 80,
+							width 		: 60,
 							renderer	: upsize
 						},
 						{	header 		: 'JUDGE',
@@ -1395,17 +1417,17 @@
 						},
 						{	header 		: 'FILE',
 							dataIndex 	: 'artfilename',
-							width 		: 80,
+							width 		: 60,
 							renderer	: upsize
 						},
 						{	header 		: 'NG',
 							dataIndex 	: 'ngcontent',
-							width 		: 80,
+							width 		: 60,
 							renderer	: upsize
 						},
 						{	header 		: 'MCH CODE',
 							dataIndex 	: 'input_user',
-							width 		: 120,
+							width 		: 100,
 							renderer	: upsize
 						},
 						{	header 		: 'OPT SCAN',
@@ -1466,9 +1488,95 @@
 							}
 				    	}
 			    	],
+					// bbar			: Ext.create('Ext.PagingToolbar', {
+					// 	pageSize		: itemperpage,
+					// 	store			: store_mapros_fwdn,
+					// 	displayInfo		: true,
+					// 	displayMsg		: 'Data {0} - {1} from {2} data',
+					// 	emptyMsg		: "Page not found",
+					// 	beforePageText  : 'Page',
+					// 	afterPageText   : 'from {0} Pages',
+					// 	firstText       : 'First Page',
+					// 	prevText        : 'Previous Page',
+					// 	nextText        : 'Next page',
+					// 	lastText        : 'Last Page',
+					// 	plugins       	: Ext.create('Ext.ux.ProgressBarPager', {}),
+					// 	listeners 		: {
+					// 		afterrender : function (cmp) {
+					// 			cmp.getComponent("refresh").hide();
+					// 		}
+					// 	}
+					// }),
+					listeners: {
+			    		select: function(grid, rowIndex, colIndex) {
+			    			var rec = this.getSelectionModel().getSelection();
+			    			var fwdn = rec[0].data.idfwdn;
+			    			
+			    			store_mapros_fwdn_detail.proxy.setExtraParam('idfwdn',fwdn);
+			    			store_mapros_fwdn_detail.loadPage(1);
+
+			    		}
+			    	},
+					//features: [filters],
+					// selModel: {
+					// 	selType: 'cellmodel'
+					// },
+					// plugins: [cellEditing]
+				});
+				var grid_mapros_fwdn_detail = Ext.create('Ext.grid.Panel', {
+					id 				: 'grid_mapros_fwdn_detail',
+					title 			: '<div style="text-align:center;">==== &nbsp; DETAIL &nbsp; ====</div>',
+					autoWidth 		: '80%',
+					height			: 400,
+					columnLines 	: true,
+					store 			: store_mapros_fwdn_detail,
+					viewConfig 		: {
+						stripeRows 			: true,
+						emptyText 	 		: '<div class="empty-txt">No data to display.</div>',
+						deferEmptyText 		: false,
+						enableTextSelection	: true
+					},
+					columns 	: [
+						{	header 		: 'FWDN',
+							dataIndex 	: 'idfwdn',
+							flex 		: 1,
+							renderer	: upsize,
+							hidden 		: true
+						},
+						{	header 		: 'STEP',
+							dataIndex 	: 'step',
+							flex 		: 1,
+							renderer	: upsize
+						},
+						{	header 		: 'STEP DATA',
+							dataIndex 	: 'stepdata',
+							flex 		: 1,
+							renderer	: upsize
+						},
+						{	header 		: 'MEASURE',
+							dataIndex 	: 'measure',
+							flex 		: 1,
+							renderer	: upsize
+						},
+						{	header 		: 'MEASURE DATA',
+							dataIndex 	: 'measuredata',
+							flex 		: 1,
+							renderer	: upsize
+						},
+						{	header 		: 'OPERATOR',
+							dataIndex 	: 'input_user',
+							flex 		: 1,
+							renderer	: upsize
+						},
+						{	header 		: 'INSP DATE',
+							dataIndex 	: 'input_date',
+							flex 		: 1,
+							renderer	: upsize
+						}
+					],
 					bbar			: Ext.create('Ext.PagingToolbar', {
 						pageSize		: itemperpage,
-						store			: store_mapros_fwdn,
+						store			: store_mapros_fwdn_detail,
 						displayInfo		: true,
 						displayMsg		: 'Data {0} - {1} from {2} data',
 						emptyMsg		: "Page not found",
@@ -1494,7 +1602,7 @@
 				var grid_mapros_flash = Ext.create('Ext.grid.Panel', {
 					id 				: 'grid_mapros_flash',
 					autoWidth 		: '100%',
-					height			: 290,
+					height			: 500,
 					columnLines 	: true,
 					store 			: store_mapros_flash,
 					viewConfig 		: {
@@ -1560,26 +1668,26 @@
 							renderer	: upsize
 						}
 					],
-					plugins			: [{
-	        				ptype	: 'rowwidget',
-	        				widget	: {
-				            xtype	: 'grid',
-				            autoLoad: true,
-				            bind	: {
-				                store : '{record.idfwdn}',
-				                title : 'Orders for {record.idflash}'
-				            },
-				            columns : [{
-				                text 		: 'Order Id',
-				                dataIndex 	: 'id',
-				                width 		: 75
-				            }, {
-				                text 		: 'Procuct code',
-				                dataIndex 	: 'productCode',
-				                width 		: 265
-				            }]
-				        }
-				    }],
+					// plugins			: [{
+	    //     				ptype	: 'rowwidget',
+	    //     				widget	: {
+				 //            xtype	: 'grid',
+				 //            autoLoad: true,
+				 //            bind	: {
+				 //                store : '{record.idfwdn}',
+				 //                title : 'Orders for {record.idflash}'
+				 //            },
+				 //            columns : [{
+				 //                text 		: 'Order Id',
+				 //                dataIndex 	: 'id',
+				 //                width 		: 75
+				 //            }, {
+				 //                text 		: 'Procuct code',
+				 //                dataIndex 	: 'productCode',
+				 //                width 		: 265
+				 //            }]
+					 //        }
+					 //    }],
 					bbar			: Ext.create('Ext.PagingToolbar', {
 						pageSize		: itemperpage,
 						store			: store_mapros_fwdn,
@@ -1608,7 +1716,7 @@
 				var grid_mapros_avmt = Ext.create('Ext.grid.Panel', {
 					id 				: 'grid_mapros_avmt',
 					autoWidth 		: '80%',
-					height			: 270,
+					maxheight		: 150,
 					columnLines 	: true,
 					store 			: store_mapros_avmt,
 					viewConfig 		: {
@@ -1821,36 +1929,36 @@
 
 			    		}
 			    	},
-					bbar			: Ext.create('Ext.PagingToolbar', {
-						pageSize		: itemperpage,
-						store			: store_mapros_avmt,
-						displayInfo		: true,
-						displayMsg		: 'Data {0} - {1} from {2} data',
-						emptyMsg		: "Page not found",
-						beforePageText  : 'Page',
-						afterPageText   : 'from {0} Pages',
-						firstText       : 'First Page',
-						prevText        : 'Previous Page',
-						nextText        : 'Next page',
-						lastText        : 'Last Page',
-						plugins       	: Ext.create('Ext.ux.ProgressBarPager', {}),
-						listeners 		: {
-							afterrender : function (cmp) {
-								cmp.getComponent("refresh").hide();
-							}
-						}
-					}),
-					//features: [filters],
-					// selModel: {
-					// 	selType: 'cellmodel'
-					// },
-					// plugins: [cellEditing]
+					// bbar			: Ext.create('Ext.PagingToolbar', {
+						// 	pageSize		: itemperpage,
+						// 	store			: store_mapros_avmt,
+						// 	displayInfo		: true,
+						// 	displayMsg		: 'Data {0} - {1} from {2} data',
+						// 	emptyMsg		: "Page not found",
+						// 	beforePageText  : 'Page',
+						// 	afterPageText   : 'from {0} Pages',
+						// 	firstText       : 'First Page',
+						// 	prevText        : 'Previous Page',
+						// 	nextText        : 'Next page',
+						// 	lastText        : 'Last Page',
+						// 	plugins       	: Ext.create('Ext.ux.ProgressBarPager', {}),
+						// 	listeners 		: {
+						// 		afterrender : function (cmp) {
+						// 			cmp.getComponent("refresh").hide();
+						// 		}
+						// 	}
+						// }),
+						//features: [filters],
+						// selModel: {
+						// 	selType: 'cellmodel'
+						// },
+						// plugins: [cellEditing]
 				});
 				var grid_mapros_avmt_detail = Ext.create('Ext.grid.Panel', {
 					id 				: 'grid_mapros_avmt_detail',
 					title 			: '<div style="text-align:center;">== &nbsp; DETAIL &nbsp; ==</div>',
 					autoWidth 		: '80%',
-					Height			: 400,
+					Height			: 450,
 					columnLines 	: true,
 					store 			: store_mapros_avmt_detail,
 					viewConfig 		: {
@@ -1880,87 +1988,87 @@
 						},
 						{	header 		: 'STEP',
 							dataIndex 	: 'step',
-							flex 		: 1,
+							width 		: 90,
 							renderer	: upsize
 						},
 						{	header 		: 'TYPE',
 							dataIndex 	: 'type',
-							flex 		: 1,
+							width 		: 90,
 							renderer	: upsize
 						},
 						{	header 		: 'NAME',
 							dataIndex 	: 'name',
-							flex 		: 1,
+							width 		: 180,
 							renderer	: upsize
 						},
 						{	header 		: 'JUDGE',
 							dataIndex 	: 'judgment',
-							flex 		: 1,
+							width 		: 80,
 							renderer	: upsize
 						},
 						{	header 		: 'VOLT',
 							dataIndex 	: 'volt',
-							flex 		: 1,
+							width 		: 75,
 							renderer	: upsize
 						},
 						{	header 		: 'CURR',
 							dataIndex 	: 'curr',
-							flex 		: 1,
+							width 		: 75,
 							renderer	: upsize
 						},
 						{	header 		: 'FREQ',
 							dataIndex 	: 'freq',
-							flex 		: 1,
+							width 		: 75,
 							renderer	: upsize
 						},
 						{	header 		: 'LVLL',
 							dataIndex 	: 'lvll',
-							flex 		: 1,
+							width 		: 75,
 							renderer	: upsize
 						},
 						{	header 		: 'DSTL',
 							dataIndex 	: 'dstl',
-							flex 		: 1,
+							width 		: 75,
 							renderer	: upsize
 						},
 						{	header 		: 'DSTR',
 							dataIndex 	: 'dstr',
-							flex 		: 1,
+							width 		: 75,
 							renderer	: upsize
 						},
 						{	header 		: 'RELL',
 							dataIndex 	: 'rell',
-							flex 		: 1,
+							width 		: 75,
 							renderer	: upsize
 						},
 						{	header 		: 'RELR',
 							dataIndex 	: 'relr',
-							flex 		: 1,
+							width 		: 75,
 							renderer	: upsize
 						},
 						{	header 		: 'SNL',
 							dataIndex 	: 'snl',
-							flex 		: 1,
+							width 		: 75,
 							renderer	: upsize
 						},
 						{	header 		: 'SNR',
 							dataIndex 	: 'snr',
-							flex 		: 1,
+							width 		: 75,
 							renderer	: upsize
 						},
 						{	header 		: 'REMARK',
 							dataIndex 	: 'remark',
-							flex 		: 1,
+							width 		: 100,
 							renderer	: upsize
 						},
 						{	header 		: 'MCH NAME',
 							dataIndex 	: 'input_user',
-							flex 		: 1,
+							width 		: 100,
 							renderer	: upsize
 						},
-						{	header 		: 'DATE',
+						{	header 		: 'INSP DATE',
 							dataIndex 	: 'input_date',
-							flex 		: 1,
+							width 		: 100,
 							renderer	: upsize
 						},
 						{	header 		: 'update_user',
@@ -2004,7 +2112,7 @@
 				var grid_mapros_avntest = Ext.create('Ext.grid.Panel', {
 					id 				: 'grid_mapros_avntest',
 					autoWidth 		: '100%',
-					maxHeight		: 290,
+					maxHeight		: 150,
 					columnLines 	: true,
 					store 			: store_mapros_avntest,
 					viewConfig 		: {
@@ -2080,7 +2188,8 @@
 				                title : 'Orders for {record.idavnt}',
 				                selection: '{idavnt}',
 				            },
-				            columns : [{	header 		: 'AVNTEST',
+				            columns : [
+				            			{	header 		: 'AVNTEST',
 											dataIndex 	: 'idavnt',
 											flex 		: 1,
 											renderer	: upsize,
@@ -2115,12 +2224,98 @@
 											dataIndex 	: 'input_date',
 											flex 		: 1,
 											renderer	: upsize
-										}]
+										}
+									]
 				        }
 				    }],
+			    	listeners: {
+			    		select: function(grid, rowIndex, colIndex) {
+			    			var rec = this.getSelectionModel().getSelection();
+			    			var avnt = rec[0].data.idavnt;
+			    			store_mapros_avntest_detail.proxy.setExtraParam('avnt',avnt);
+			    			store_mapros_avntest_detail.loadPage(1);
+
+			    		}
+			    	},
+					// bbar			: Ext.create('Ext.PagingToolbar', {
+						// 	pageSize		: itemperpage,
+						// 	store			: store_mapros_avntest,
+						// 	displayInfo		: true,
+						// 	displayMsg		: 'Data {0} - {1} from {2} data',
+						// 	emptyMsg		: "Page not found",
+						// 	beforePageText  : 'Page',
+						// 	afterPageText   : 'from {0} Pages',
+						// 	firstText       : 'First Page',
+						// 	prevText        : 'Previous Page',
+						// 	nextText        : 'Next page',
+						// 	lastText        : 'Last Page',
+						// 	plugins       	: Ext.create('Ext.ux.ProgressBarPager', {}),
+						// 	listeners 		: {
+						// 		afterrender : function (cmp) {
+						// 			cmp.getComponent("refresh").hide();
+						// 		}
+						// 	}
+						// }),
+					//features: [filters],
+						// selModel: {
+						// 	selType: 'cellmodel'
+						// },
+						// plugins: [cellEditing]
+				});
+				var grid_mapros_avntest_detail = Ext.create('Ext.grid.Panel', {
+					id 				: 'grid_mapros_avntest_detail',
+					title 			: '<div style="text-align:center;">==== &nbsp; DETAIL &nbsp; ====</div>',
+					autoWidth 		: '80%',
+					Height			: 450,
+					columnLines 	: true,
+					store 			: store_mapros_avntest_detail,
+					viewConfig 		: {
+						stripeRows 			: true,
+						emptyText 	 		: '<div class="empty-txt">No data to display.</div>',
+						deferEmptyText 		: false,
+						enableTextSelection	: true
+					},
+					columns 	: [
+						{	header 		: 'AVNTEST',
+							dataIndex 	: 'idavnt',
+							flex 		: 1,
+							renderer	: upsize,
+							hidden 		: true
+						},
+						{	header 		: 'STEP',
+							dataIndex 	: 'step',
+							flex 		: 1,
+							renderer	: upsize
+						},
+						{	header 		: 'STEP DATA',
+							dataIndex 	: 'stepdata',
+							flex 		: 1,
+							renderer	: upsize
+						},
+						{	header 		: 'MEASURE',
+							dataIndex 	: 'measure',
+							flex 		: 1,
+							renderer	: upsize
+						},
+						{	header 		: 'MEASURE DATA',
+							dataIndex 	: 'measuredata',
+							flex 		: 1,
+							renderer	: upsize
+						},
+						{	header 		: 'MCH NAME',
+							dataIndex 	: 'input_user',
+							flex 		: 1,
+							renderer	: upsize
+						},
+						{	header 		: 'INSP DATE',
+							dataIndex 	: 'input_date',
+							flex 		: 1,
+							renderer	: upsize
+						}
+					],
 					bbar			: Ext.create('Ext.PagingToolbar', {
 						pageSize		: itemperpage,
-						store			: store_mapros_avntest,
+						store			: store_mapros_avntest_detail,
 						displayInfo		: true,
 						displayMsg		: 'Data {0} - {1} from {2} data',
 						emptyMsg		: "Page not found",
@@ -2146,7 +2341,7 @@
 				var grid_mapros_auto0 = Ext.create('Ext.grid.Panel', {
 					id 				: 'grid_mapros_auto0',
 					autoWidth 		: '100%',
-					maxHeight		: 290,
+					maxHeight		: 200,
 					columnLines 	: true,
 					store 			: store_mapros_line0,
 					viewConfig 		: {
@@ -2178,7 +2373,7 @@
 						},
 						{	header 		: 'SN',
 							dataIndex 	: 'sn',
-							width 		: 80,
+							width 		: 150,
 							renderer	: upsize
 						},
 						{	header 		: 'JIG NO',
@@ -2270,9 +2465,100 @@
 							}
 				    	}
 			    	],
+					// bbar			: Ext.create('Ext.PagingToolbar', {
+					// 	pageSize		: itemperpage,
+					// 	store			: store_mapros_line0,
+					// 	displayInfo		: true,
+					// 	displayMsg		: 'Data {0} - {1} from {2} data',
+					// 	emptyMsg		: "Page not found",
+					// 	beforePageText  : 'Page',
+					// 	afterPageText   : 'from {0} Pages',
+					// 	firstText       : 'First Page',
+					// 	prevText        : 'Previous Page',
+					// 	nextText        : 'Next page',
+					// 	lastText        : 'Last Page',
+					// 	plugins       	: Ext.create('Ext.ux.ProgressBarPager', {}),
+					// 	listeners 		: {
+					// 		afterrender : function (cmp) {
+					// 			cmp.getComponent("refresh").hide();
+					// 		}
+					// 	}
+					// }),
+					listeners: {
+			    		select: function(grid, rowIndex, colIndex) {
+			    			var rec = this.getSelectionModel().getSelection();
+			    			var idlinezero = rec[0].data.idlinezero;
+			    			store_mapros_line0_detail.proxy.setExtraParam('idline0',idlinezero);
+			    			store_mapros_line0_detail.loadPage(1);
+
+			    		}
+			    	},
+					//features: [filters],
+					// selModel: {
+					// 	selType: 'cellmodel'
+					// },
+					// plugins: [cellEditing]
+				});
+				var grid_mapros_auto0_detail = Ext.create('Ext.grid.Panel', {
+					id 				: 'grid_mapros_auto0_detail',
+					title 			: '<div style="text-align:center;">==== &nbsp; DETAIL &nbsp; ====</div>',
+					autoWidth 		: '80%',
+					height			: 450,
+					columnLines 	: true,
+					store 			: store_mapros_line0_detail,
+					viewConfig 		: {
+						stripeRows 			: true,
+						emptyText 	 		: '<div class="empty-txt">No data to display.</div>',
+						deferEmptyText 		: false,
+						enableTextSelection	: true
+					},
+					columns 	: [
+						{	header 		: 'ID',
+							dataIndex 	: 'idlinezero',
+							flex 		: 1,
+							renderer	: upsize,
+							hidden 		: true
+						},
+						{	header 		: 'Row Number',
+							dataIndex 	: 'rownumber',
+							flex 		: 1,
+							renderer	: upsize,
+							hidden 		: true
+						},
+						{	header 		: 'STEP',
+							dataIndex 	: 'step',
+							flex 		: 1,
+							renderer	: upsize
+						},
+						{	header 		: 'STEP DATA',
+							dataIndex 	: 'stepdata',
+							flex 		: 1,
+							renderer	: upsize
+						},
+						{	header 		: 'MEASURE',
+							dataIndex 	: 'measure',
+							flex 		: 1,
+							renderer	: upsize
+						},
+						{	header 		: 'MEASURE DATA',
+							dataIndex 	: 'measuredata',
+							flex 		: 1,
+							renderer	: upsize
+						},
+						{	header 		: 'OPERATOR',
+							dataIndex 	: 'input_user',
+							flex 		: 1,
+							renderer	: upsize
+						},
+						{	header 		: 'INSP DATE',
+							dataIndex 	: 'input_date',
+							flex 		: 1,
+							renderer	: upsize
+						}
+					],
 					bbar			: Ext.create('Ext.PagingToolbar', {
-						pageSize		: itemperpage,
-						store			: store_mapros_line0,
+						pageSize		: itemperpage_detail,
+						store			: store_mapros_line0_detail,
 						displayInfo		: true,
 						displayMsg		: 'Data {0} - {1} from {2} data',
 						emptyMsg		: "Page not found",
@@ -2289,14 +2575,34 @@
 							}
 						}
 					}),
+			    	
 					//features: [filters],
 					// selModel: {
 					// 	selType: 'cellmodel'
 					// },
 					// plugins: [cellEditing]
 				});
+				
+				
 		
 		//	=======================================================  PANEL    =========================================
+			var panel_fwdn = Ext.create('Ext.panel.Panel',{
+			    border: true,
+			    layout: 'border',
+			   	defaults: {
+				     split: false,
+				     plain: true
+			    },
+			   	items: [{
+				   region: 'north', // GRID SIDE
+				   layout: 'fit',
+				   items: grid_mapros_fwdn
+				   }, {
+				   region: 'center', // GRID SIDE
+				   layout: 'fit',
+				   items: grid_mapros_fwdn_detail
+				   }]
+		  	});
 			var panel_avmt = Ext.create('Ext.panel.Panel',{
 			    border: true,
 			    layout: 'border',
@@ -2314,6 +2620,42 @@
 				   items: grid_mapros_avmt_detail
 				   }]
 			  });
+			var panel_avntest = Ext.create('Ext.panel.Panel',{
+			    border: true,
+			    layout: 'border',
+			   	defaults: {
+				     split: false,
+				     plain: true
+			    },
+			   	items: [{
+				   region: 'north', // GRID SIDE
+				   layout: 'fit',
+				   items: grid_mapros_avntest
+				   }, {
+				   region: 'center', // GRID SIDE
+				   layout: 'fit',
+				   items: grid_mapros_avntest_detail
+				   }]
+			  });
+			var panel_auto0 = Ext.create('Ext.panel.Panel',{
+			    border: true,
+			    layout: 'border',
+			   	defaults: {
+				     split: false,
+				     plain: true
+			    },
+			   	items: [{
+				   region: 'north', // GRID SIDE
+				   layout: 'fit',
+				   items: grid_mapros_auto0
+				   }, {
+				   region: 'center', // GRID SIDE
+				   layout: 'fit',
+				   items: grid_mapros_auto0_detail
+				   }]
+			  });
+
+			
 
 		//	=======================================================  TAB  PANEL    =========================================
 			
@@ -2422,7 +2764,7 @@
 					plain 		: true,
 					activeTab 	: 0,
 					autoWidth 	: '100%',
-					height		: 490,
+					height		: 500,
 					autoScroll 	: true,
 					frame 		: true,
 					//style 	: 'padding:5px;-background:#157FCC;',
@@ -2452,7 +2794,8 @@
 						{	title 		: 'FWDN',
 						 	id  		: 'show_grid_fwdn',
 							reorderable : false,
-							items 		: [grid_mapros_fwdn]
+							layout		: 'fit',
+							items 		: [panel_fwdn]
 						}, 
 						{	title 		: 'FLASH',
 						 	id  		: 'show_grid_flash',
@@ -2462,7 +2805,8 @@
 						{	title 		: 'AVN TEST',
 						 	id  		: 'show_grid_avntest',
 							reorderable : false,
-							items 		: [grid_mapros_avntest]
+							layout		: 'fit',
+							items 		: [panel_avntest]
 						}, 
 						{	title 		: 'AVMT',
 						 	id  		: 'show_grid_avmt',
@@ -2473,7 +2817,8 @@
 						{	title 		: 'AUTO LINE ZERO',
 						 	id  		: 'show_grid_zero',
 							reorderable : false,
-							items 		: [grid_mapros_auto0]
+							layout		: 'fit',
+							items 		: [panel_auto0]
 						}
 					]
 				});
@@ -2533,16 +2878,23 @@
 															store_smt_spi.loadPage(1);
 															store_mapros_fwdn.proxy.setExtraParam('boardid', boardid);
 															store_mapros_fwdn.loadPage(1);
+															store_mapros_fwdn_detail.proxy.setExtraParam('idfwdn', '');
+															store_mapros_fwdn_detail.loadPage(1);
 															store_mapros_flash.proxy.setExtraParam('boardid', boardid);
 															store_mapros_flash.loadPage(1);
 															store_mapros_avntest.proxy.setExtraParam('boardid', boardid);
 															store_mapros_avntest.loadPage(1);
+															store_mapros_avntest_detail.proxy.setExtraParam('avnt', '');
+															store_mapros_avntest_detail.loadPage(1);
 															store_mapros_avmt.proxy.setExtraParam('boardid', boardid);
 															store_mapros_avmt.loadPage(1);
 															store_mapros_avmt_detail.proxy.setExtraParam('avmt','');
 			    											store_mapros_avmt_detail.loadPage(1);
 															store_mapros_line0.proxy.setExtraParam('boardid', boardid);
 															store_mapros_line0.loadPage(1);
+															store_mapros_line0_detail.proxy.setExtraParam('idline0','');
+			    											store_mapros_line0_detail.loadPage(1);
+
 														}
 													}
 												}
