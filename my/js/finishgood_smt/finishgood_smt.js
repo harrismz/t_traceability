@@ -773,7 +773,7 @@
 					columns: [
 						{ 	header 		: 'BARCODE',
 							dataIndex 	: 'barcode',
-							width 	 	: 135,
+							width 	 	: 200,
 							renderer 	: upsize
 						},
 						{ 	header 		: 'MCH NAME',
@@ -1053,8 +1053,8 @@
 						{ 	header : 'PWV NAME', 		dataIndex : 'pwbname', 		width : 75, 	renderer : upsize,	hidden : true },
 						{ 	header : 'PROCESS', 		dataIndex : 'process', 		width : 90, 	renderer : upsize },
 						{ 	header : 'LOT NO', 			dataIndex : 'lotno', 		width : 75, 	renderer : upsize,	hidden : true },
-						{ 	header : 'START', 			dataIndex : 'datein', 		width : 90, 	renderer : upsize },
-						{ 	header : 'END', 			dataIndex : 'dateout', 		width : 90, 	renderer : upsize },
+						{ 	header : 'BOARD IN', 			dataIndex : 'datein', 		width : 90, 	renderer : upsize },
+						{ 	header : 'BOARD OUT', 			dataIndex : 'dateout', 		width : 90, 	renderer : upsize },
 						{ 	header : 'JOBNO', 			dataIndex : 'jobno', 		width : 150, 	renderer : upsize },
 						{ 	header : 'LOCATION', 		dataIndex : 'partloc', 		width : 90, 	renderer : upsize },
 						{ 	header : 'MODE',			dataIndex : 'mode', 		width : 75,		renderer : upsize },
@@ -1257,7 +1257,7 @@
 							flex 		: 1,
 							renderer	: upsize
 						},
-						{	header 		: 'SCAN NIK',
+						{	header 		: 'EMP NO',
 							dataIndex 	: 'scan_nik',
 							flex 		: 1,
 							renderer	: upsize
@@ -1346,7 +1346,7 @@
 							flex 		: 1,
 							renderer	: upsize
 						},
-						{	header 		: 'SCAN NIK',
+						{	header 		: 'EMP NO',
 							dataIndex 	: 'scan_nik',
 							flex 		: 1,
 							renderer	: upsize
@@ -1428,7 +1428,7 @@
 							flex 		: 1,
 							renderer	: upsize
 						},
-						{	header 		: 'SCAN NIK',
+						{	header 		: 'EMP NO',
 							dataIndex 	: 'scan_nik',
 							flex 		: 1,
 							renderer	: upsize
@@ -1439,6 +1439,34 @@
 							renderer	: upsize,
 							hidden		: true
 						}
+					],
+					//features: [filters],
+					// selModel: {
+					// 	selType: 'cellmodel'
+					// },
+					// plugins: [cellEditing]
+				});
+				var grid_mapros_critical = Ext.create('Ext.grid.Panel', {
+					id 				: 'grid_mapros_critical',
+					autoWidth 		: '100%',
+					maxHeight		: 290,
+					columnLines 	: true,
+					//store 			: store_mapros_critical,
+					viewConfig 		: {
+						stripeRows 			: true,
+						emptyText 	 		: '<div class="empty-txt">No data to display.</div>',
+						deferEmptyText 		: false,
+						enableTextSelection	: true,
+						// getRowClass			: function(record, rowIndex, rowParams, store) {
+						// 	if (record.get('status')==='IN') return 'colorin';
+						// 	else if (record.get('status')==='OUT') return 'colorout';
+						// }
+					},
+					columns 	: [
+						{	header : 'MASTER NO',	dataIndex 	: 'ticket_no_master', 	width 		: 140, 	renderer	: upsize },
+						{	header : 'guid_master', dataIndex 	: 'guid_master', flex 		: 1, renderer	: upsize, hidden		: true },
+						{	header : 'MODEL', 		dataIndex 	: 'modelname', flex 		: 1, renderer	: upsize },
+						{	header : 'LINE', 		dataIndex 	: 'line', width 	 	: 90, renderer	: upsize },
 					],
 					//features: [filters],
 					// selModel: {
@@ -2884,6 +2912,11 @@
 						 	id  		: 'show_grid_master',
 							reorderable : false,
 							items 		: [grid_mapros_master]
+						}, 
+						{	title 		: 'CRITICAL PART',
+						 	id  		: 'show_grid_critical',
+							reorderable : false,
+							//items 		: [grid_mapros_critical]
 						}, 
 						{	title 		: 'FWDN',
 						 	id  		: 'show_grid_fwdn',
