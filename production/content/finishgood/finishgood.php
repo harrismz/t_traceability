@@ -171,13 +171,29 @@
             <!-- PCB & MA Department -->
             <div class="panel">
               <a class="panel-heading" role="tab" id="headingTwo2" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo2" aria-expanded="true" aria-controls="collapseTwo">
-                <h4 class="panel-title">PCB & MA Department</h4>
+                <h4 class="panel-title">TraceVerify MA Line</h4>
               </a>
               <div id="collapseTwo2" class="panel-collapse" role="tabpanel" aria-labelledby="headingTwo2">
                 <div class="panel-body">
 
                   <!--  Extjs Grid Part MA PCB -->
                   <div id="finishgood_part_ma_pcb" class="extjs_border">
+                  </div>
+                    <!--  END OF Extjs Grid Part MA PCB  -->
+                </div>
+              </div>
+            </div>
+
+            <!-- MA INSPECTION -->
+            <div class="panel">
+              <a class="panel-heading" role="tab" id="headingTwo2" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo2" aria-expanded="true" aria-controls="collapseTwo">
+                <h4 class="panel-title">MA Inspection</h4>
+              </a>
+              <div id="collapseTwo2" class="panel-collapse" role="tabpanel" aria-labelledby="headingTwo2">
+                <div class="panel-body">
+
+                  <!--  Extjs Grid Part MA PCB -->
+                  <div id="finishgood_ma_inspection" class="extjs_border">
                   </div>
                     <!--  END OF Extjs Grid Part MA PCB  -->
                 </div>
