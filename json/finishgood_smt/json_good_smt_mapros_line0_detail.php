@@ -2,13 +2,15 @@
 	date_default_timezone_set('Asia/jakarta');
     include '../../../adodb/con_mapros_SQL.php';
 
-    // $page       = @$_REQUEST["page"];
-    // $limit      = @$_REQUEST["limit"];
-    // $start      = (($page*$limit)-$limit)+1;
+    $page       = @$_REQUEST["page"];
+    $limit      = @$_REQUEST["limit"];
+    $start      = (($page*$limit)-$limit)+1;
     $idline0     = @$_REQUEST['idline0'];
 	
-    $sql        = "EXEC traceability_smt_line0_detail '{$idline0}'";
+    $sql        = "declare @totalcount as int; EXEC traceability_smt_line0_detail $start, $limit, '{$idline0}', @totalcount=@totalcount out;";
     $rs         = $db->Execute($sql);
+    $totalcount = $rs->fields['8'];
+
     $return     = array();
     for($i=0;!$rs->EOF;$i++){
         $return[$i]['idline0']      = trim($rs->fields['0']);
@@ -25,6 +27,7 @@
 
     $x = array(
         "success"=>true,
+        "totalCount"=>$totalcount,
         "rows"=>$return);
     echo json_encode($x);
     $db->Close();
