@@ -102,7 +102,14 @@
 					// 		extend: 'Ext.data.Model',
 					// 		fields: ['id', 'cavity', 'model', 'model_code', 'process', 'prod_no', 'prod_no_code', 'pwbname', 'pwbno', 'ynumber', 'side', 'model_id', 'start_serial', 'lot_size', 'seq_start', 'seq_end', 'qty', 'history_id', 'schedule_id', 'line', 'rev_date' ]
 					// 	});
-			//	AOI
+			//	REPAIR
+				Ext.define('model_smt_repair',{
+	                extend: 'Ext.data.Model',
+					fields: ['inputid','dateid','group','shift','mch','model_name','start_serial','serial_no',
+	                			'lot_no','lot_qty','pcb_name','pwb_no','process','ai','smt',
+	                			'loc','magazineno','ng','boardid','boardke','boardqty','pointqty','inputdate']
+	            });
+           	//	AOI
 				Ext.define('model_good_smt_aoi_board',{
 	                extend: 'Ext.data.Model',
 					fields: ['linkedserver', 'pcbid', 'pcbguid', 'barcode', 'stdate',
@@ -285,6 +292,21 @@
 					//         	}
 					// });
 				
+			//	MOUNTER
+				var store_smt_repair = Ext.create('Ext.data.Store',{
+					model	: 'model_smt_repair',
+					autoLoad: false,
+					pageSize: itemperpage,
+					proxy   : {
+						type    : 'ajax',
+						url     : 'json/finishgood_smt/json_good_smt_repair.php',
+						reader  : {
+							type    : 'json',
+							root    : 'rows',
+							totalProperty: 'totalCount'
+						}
+					}
+				});
 			//	AOI
 				var store_good_smt_aoi_board = Ext.create('Ext.data.Store',{
 					model	: 'model_good_smt_aoi_board',
@@ -676,6 +698,63 @@
 							}
 						}
 					})
+				});
+			//	REPAIR
+				var grid_smt_repair = Ext.create('Ext.grid.Panel', {
+					id 				: 'grid_smt_repair',
+					autoWidth 		: '100%',
+					maxHeight		: 300,
+					columnLines 	: true,
+					store 			: store_smt_repair,
+					viewConfig 		: {
+						stripeRows 			: true,
+						emptyText 	 		: '<div class="empty-txt">No data to display.</div>',
+						deferEmptyText 		: false,
+						enableTextSelection	: true
+					},
+					columns 	: [
+						{ 	header : 'ID',				dataIndex : 'inputid', 		width : 50,		renderer : upsize,	hidden : true },
+						{ 	header : 'BOARD ID', 		dataIndex : 'boardid', 		width : 200,	renderer : upsize,	hidden : true  },
+						{ 	header : 'DATE',			dataIndex : 'dateid', 		width : 100, 	renderer : upsize },
+						{ 	header : 'GROUP',			dataIndex : 'group',		width : 80,		renderer : upsize },
+						{ 	header : 'SHIFT',			dataIndex : 'shift',		width : 80,		renderer : upsize },
+						{ 	header : 'MCH NAME', 		dataIndex : 'mch', 			width : 90, 	renderer : upsize },
+						{ 	header : 'MODEL NAME', 		dataIndex : 'model_name', 	width : 130, 	renderer : upsize,	hidden : true },
+						{ 	header : 'START SERIAL', 	dataIndex : 'start_serial', width : 80, 	renderer : upsize },
+						{ 	header : 'SERIAL NO', 		dataIndex : 'serial_no', 	width : 75, 	renderer : upsize },
+						{ 	header : 'LOT NO', 			dataIndex : 'lot_no', 		width : 80, 	renderer : upsize,	hidden : true },
+						{ 	header : 'PCB NAME', 		dataIndex : 'pcb_name', 	width : 80, 	renderer : upsize },
+						{ 	header : 'PWB NO', 			dataIndex : 'pwb_no', 		width : 90, 	renderer : upsize },
+						{ 	header : 'PROCESS', 		dataIndex : 'process', 		width : 90, 	renderer : upsize,	hidden : true },
+						{ 	header : 'AI',				dataIndex : 'ai', 			width : 75,		renderer : upsize,	hidden : true },
+						{ 	header : 'SYMPTOM', 		dataIndex : 'smt', 			width : 120, 	renderer : upsize },
+						{ 	header : 'LOC', 			dataIndex : 'loc', 			width : 75, 	renderer : upsize },
+						{ 	header : 'MAGZ NO', 		dataIndex : 'magazineno', 	width : 75, 	renderer : upsize },
+						{ 	header : 'NG FOUND BY', 	dataIndex : 'ng',			width : 100,	renderer : upsize },
+						{ 	header : 'BOARD NG QTY', 	dataIndex : 'boardqty', 	width : 90,		renderer : upsize },
+						{ 	header : 'POINT NG QTY', 	dataIndex : 'pointqty', 	width : 90,		renderer : upsize },
+						{ 	header : 'REPAIR DATE', 	dataIndex : 'inputdate', 	width : 90,		renderer : upsize }
+					],
+					bbar	: Ext.create('Ext.PagingToolbar', {
+						pageSize		: itemperpage,
+						store			: store_smt_repair,
+						displayInfo		: true,
+						displayMsg		: 'Data {0} - {1} from {2} data',
+						emptyMsg		: "Page not found",
+						beforePageText  : 'Page',
+						afterPageText   : 'from {0} Pages',
+						firstText       : 'First Page',
+						prevText        : 'Previous Page',
+						nextText        : 'Next page',
+						lastText        : 'Last Page',
+						plugins       	: Ext.create('Ext.ux.ProgressBarPager', {}),
+						listeners 		: {
+							afterrender: function (cmp) {
+								cmp.getComponent("refresh").hide();
+							}
+						}
+					})
+					//features: [filters], selModel: { selType: 'cellmodel' }, plugins: [cellEditing]
 				});
 			//	AOI
 				var grid_smt_aoi_board = Ext.create('Ext.grid.Panel', {
@@ -2679,6 +2758,21 @@
 					// 	},
 					// 	items			: [grid_bigs]
 					// });
+			//	REPAIR
+				var panel_repair = Ext.create('Ext.panel.Panel', {
+					id 				: 'panel_repair',
+					renderTo 		: 'panel_repair',
+					autoWidth		: '100%',
+					maxHeight		: 820,
+					border			: false,
+					frame			: true,
+					hidden			: false,
+					defaults		: {
+						split		: true,
+						collapsible	: false
+					},
+					items			: [grid_smt_repair]
+				});
 			//	AOI
 				var panel_aoi = Ext.create('Ext.tab.Panel', {
 					id 			: 'panel_aoi',
@@ -2867,6 +2961,8 @@
 															store_bigs.proxy.setExtraParam('boardid', boardid);
 															store_bigs.proxy.setExtraParam('smt_date', '');
 															store_bigs.loadPage(1);
+															store_smt_repair.proxy.setExtraParam('src_boardid', boardid);
+															store_smt_repair.loadPage(1);
 															store_good_smt_aoi_board.proxy.setExtraParam('boardid', boardid);
 															store_good_smt_aoi_board.proxy.setExtraParam('smt_date', '');
 															store_good_smt_aoi_board.loadPage(1);

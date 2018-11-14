@@ -1,34 +1,31 @@
 <?php
-	include '../../ADODB/con_smtrepair.php';
-	date_default_timezone_set("Asia/Jakarta");
+	 include '../../../adodb/con_smtrepair.php';
+	//Setting Jam Indonesia //
+		date_default_timezone_set('Asia/Jakarta');
+		$Ymd = gmdate("d-m-Y");
+		$wkt = date('H:i:s');
+	// ================= //
+		
+	$page 	= @$_REQUEST["page"]-1;
+	$limit 	= @$_REQUEST["limit"];
+	$start	= ($page*$limit)+1;
 
-	/*
-		_dc	 1476784954417
-		limit 5
-		model KW-V820BTKN
-		page 1
-		prod_date	 2016-10-04
-		src_cat	 sp
-		start	 0
-	*/
-
-	$model			= isset($_REQUEST['model'])?$_REQUEST['model']:'';
-	$start_serial	= isset($_REQUEST['st_serial'])?$_REQUEST['st_serial']:'';
-	$serial_no		= isset($_REQUEST['serial_no'])?$_REQUEST['serial_no']:'';
-	$prod_date		= isset($_REQUEST['prod_date'])?$_REQUEST['prod_date']:'';
-	$src_cat		= isset($_REQUEST['src_cat'])?$_REQUEST['src_cat']:'';
-
-	//$model			= 'DDX317BTEN';
-	//$prod_date		= '2016-10-08';
+	$mchname 	= isset($_REQUEST['src_mch']) ? $_REQUEST['src_mch'] : '';
+	$modelname 	= isset($_REQUEST['src_model']) ? $_REQUEST['src_model'] : '';
+	$stserial 	= isset($_REQUEST['src_stserial']) ? $_REQUEST['src_stserial'] : '';
+	$boardid	= isset($_REQUEST['src_boardid']) ? $_REQUEST['src_boardid'] : '';
+	
 	/**	run query **/
-			$rs 			= $db->Execute("exec TRACE_DisplayInqual '$model', '$start_serial', '$prod_date', '$src_cat', '$serial_no'");
-			$return 		= array();
-
+	
+			$rs = $db->Execute(" declare @totalcount as int exec traceability_smtrepair $start, $limit, '{$boardid}', '{$mchname}', '{$modelname}', '{$stserial}', @totalcount=@totalcount out");
+			$totalcount = $rs->fields['23'];
+			$return = array();
+			
 	//	-----***-----  //
-
-
+	
+	
 	for ($i = 0; !$rs->EOF; $i++) {
-
+		
 		$return[$i]['inputid']		= trim($rs->fields['0']);
 		$return[$i]['dateid']		= trim($rs->fields['1']);
 		$return[$i]['group']		= trim($rs->fields['2']);
@@ -47,26 +44,27 @@
 		$return[$i]['loc']			= trim($rs->fields['15']);
 		$return[$i]['magazineno']	= trim($rs->fields['16']);
 		$return[$i]['ng']			= trim($rs->fields['17']);
-		$return[$i]['boardke']		= trim($rs->fields['18']);
-		$return[$i]['boardqty']		= (float)trim($rs->fields['19']);
-		$return[$i]['pointqty']		= (float)trim($rs->fields['20']);
-		$return[$i]['inputdate']	= $rs->fields['21'];
+		$return[$i]['boardid']		= trim($rs->fields['18']);
+		$return[$i]['boardke']		= trim($rs->fields['19']);
+		$return[$i]['boardqty']		= (float)trim($rs->fields['20']);
+		$return[$i]['pointqty']		= (float)trim($rs->fields['21']);
+		$return[$i]['inputdate']	= $rs->fields['22'];
 		/*$newdate					= date_create($rs->fields['20']);
 		$inputdate					= date_format($newdate, "Y-m-d H:i:s");
 		$return[$i]['inputdate']	= $inputdate;*/
-
+		
 		$rs->MoveNext();
 	}
-
-
+	$rs->Close();
+	
+	
 	$o = array(
 		"success"=>true,
-		//"totalCount"=>$totalcount,
+		"totalCount"=>$totalcount,
 		"rows"=>$return);
-
+	
 	echo json_encode($o);
-
-	$rs->Close();
+	
 	$db->Close();
 	$db=null;
 ?>
