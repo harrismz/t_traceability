@@ -2,15 +2,12 @@
 	date_default_timezone_set('Asia/jakarta');
     include '../../../adodb/con_mapros_SQL.php';
 
-    // $page       = @$_REQUEST["page"];
-    // $limit      = @$_REQUEST["limit"];
     $boardid    = @$_REQUEST['boardid'];
-    // $start      = (($page*$limit)-$limit)+1;
-	
-    // $sql        = "declare @totalcount as int; EXEC traceability_smt_avntest $start, $limit, '{$boardid}', @totalcount=@totalcount out;";
-    $sql        = "EXEC traceability_smt_avntest_rev1 '{$boardid}'";
+    
+    $model      = @$_REQUEST['model'];
+    $serial     = @$_REQUEST['serial'];
+    $sql        = "EXEC traceability_ma_avntest '{$model}','{$serial}'";
     $rs         = $db->Execute($sql);
-    //$totalcount = $rs->fields['11'];
     $return     = array();
 
     for($i=0;!$rs->EOF;$i++){
@@ -30,7 +27,6 @@
     }
     $x = array(
         "success"=>true,
-        //"totalCount"=>$totalcount,
         "rows"=>$return);
     echo json_encode($x);
     $db->Close();
