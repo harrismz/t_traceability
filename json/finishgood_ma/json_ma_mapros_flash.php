@@ -4,10 +4,11 @@
 
     $page       = @$_REQUEST["page"];
     $limit      = @$_REQUEST["limit"];
-    $boardid    = @$_REQUEST['boardid'];
+    $model      = @$_REQUEST['model'];
+    $serial     = @$_REQUEST['serial'];
     $start      = (($page*$limit)-$limit)+1;
 	
-    $sql        = "declare @totalcount as int; EXEC traceability_smt_flash $start, $limit, '{$boardid}', @totalcount=@totalcount out;";
+    $sql        = "declare @totalcount as int; EXEC traceability_ma_flash $start, $limit, '{$model}','{$serial}',@totalcount=@totalcount out;";
     $rs         = $db->Execute($sql);
     $totalcount = $rs->fields['11'];
     $return     = array();
