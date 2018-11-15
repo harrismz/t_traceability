@@ -14,7 +14,19 @@
 
 	//	function untuk fontsize grid
 	function upsize(val) {
-		return '<font class="fontsize12">' + val + '</font>';
+		var x = val;
+		if (x == '' || x == '-' || x == '---'){
+			return '<font class="fontsize12" style="color:red;font-weight: bold;"> --- </font>';
+		}
+		else if (x == 'NG' || x == 'STOP'){
+			return '<font class="fontsize12" style="color:red;font-weight: bold;"> ' + x + ' </font>';
+		}
+		else if (x == 'OK' || x == 'PASS' || x == 'SOLDER' || x == 'GOOD'){
+			return '<font class="fontsize12" style="color:green;font-weight: bold;"> ' + x + ' </font>';
+		}
+		else{
+			return '<font class="fontsize12">' + x + '</font>';
+		};
 	}
 
 	//function mode for part im navigation
@@ -667,7 +679,7 @@
 						pageSize: itemperpage,
 						proxy   : {
 							type    : 'ajax',
-							url     : 'json/finishgood_ma/json_good_smt_mapros_flash.php',
+							url     : 'json/finishgood_ma/json_ma_mapros_flash.php',
 							reader  : {
 								type    : 'json',
 								root    : 'rows',
@@ -681,7 +693,7 @@
 						pageSize: itemperpage,
 						proxy   : {
 							type    : 'ajax',
-							url     : 'json/finishgood_ma/json_good_smt_mapros_avntest.php',
+							url     : 'json/finishgood_ma/json_ma_mapros_avntest.php',
 							reader  : {
 								type    : 'json',
 								root    : 'rows',
@@ -709,7 +721,7 @@
 						pageSize: itemperpage,
 						proxy   : {
 							type    : 'ajax',
-							url     : 'json/finishgood_ma/json_good_smt_mapros_avmt.php',
+							url     : 'json/finishgood_ma/json_ma_mapros_avmt.php',
 							reader  : {
 								type    : 'json',
 								root    : 'rows',
@@ -737,7 +749,7 @@
 						pageSize: itemperpage,
 						proxy   : {
 							type    : 'ajax',
-							url     : 'json/finishgood_ma/json_good_smt_mapros_line0.php',
+							url     : 'json/finishgood_ma/json_ma_mapros_line0.php',
 							reader  : {
 								type    : 'json',
 								root    : 'rows',
@@ -3579,6 +3591,7 @@
 						// },
 						// plugins: [cellEditing]
 					});
+				
 				//	MA INSPECTION
 					var grid_ma_quality = Ext.create('Ext.grid.Panel',{
 		                id          : 'grid_ma_quality',
@@ -3717,7 +3730,7 @@
 													renderer	: upsize,
 													hidden 		: true
 												},
-												{	header 		: 'STEP',
+												{	header 		: 'STEP NO',
 													dataIndex 	: 'step',
 													flex 		: 1,
 													renderer	: upsize
@@ -3737,7 +3750,7 @@
 													flex 		: 1,
 													renderer	: upsize
 												},
-												{	header 		: 'OPERATOR',
+												{	header 		: 'MCH NAME',
 													dataIndex 	: 'input_user',
 													flex 		: 1,
 													renderer	: upsize
@@ -3794,7 +3807,7 @@
 						store 			: store_mapros_fwdn_detail,
 						viewConfig 		: {
 							stripeRows 			: true,
-							emptyText 	 		: '<div class="empty-txt">No data to display.</div>',
+							emptyText 	 		: '<div class="empty-txt">Selected Header for show Detail</div>',
 							deferEmptyText 		: false,
 							enableTextSelection	: true
 						},
@@ -3805,7 +3818,7 @@
 								renderer	: upsize,
 								hidden 		: true
 							},
-							{	header 		: 'STEP',
+							{	header 		: 'STEP NO',
 								dataIndex 	: 'step',
 								flex 		: 1,
 								renderer	: upsize
@@ -3825,7 +3838,7 @@
 								flex 		: 1,
 								renderer	: upsize
 							},
-							{	header 		: 'OPERATOR',
+							{	header 		: 'MCH NAME',
 								dataIndex 	: 'input_user',
 								flex 		: 1,
 								renderer	: upsize
@@ -3864,7 +3877,7 @@
 					var grid_mapros_flash = Ext.create('Ext.grid.Panel', {
 						id 				: 'grid_mapros_flash',
 						autoWidth 		: '100%',
-						height			: 500,
+						height			: 440,
 						columnLines 	: true,
 						store 			: store_mapros_flash,
 						viewConfig 		: {
@@ -3891,7 +3904,7 @@
 							},
 							{	header 		: 'SERIAL',
 								dataIndex 	: 'serial',
-								width 		: 140,
+								width 		: 200,
 								renderer	: upsize
 							},
 							{	header 		: 'SN',
@@ -3919,7 +3932,7 @@
 								width 		: 80,
 								renderer	: upsize
 							},
-							{	header 		: 'OPERATOR',
+							{	header 		: 'MCH NAME',
 								dataIndex 	: 'input_user',
 								width 		: 120,
 								renderer	: upsize
@@ -4028,7 +4041,7 @@
 								width 		: 80,
 								renderer	: upsize
 							},
-							{	header 		: 'MCHNAME',
+							{	header 		: 'MCH NAME',
 								dataIndex 	: 'input_user',
 								width 		: 100,
 								renderer	: upsize
@@ -4080,7 +4093,7 @@
 													renderer	: upsize,
 													hidden 		: true
 												},
-												{	header 		: 'STEP',
+												{	header 		: 'STEP NO',
 													dataIndex 	: 'step',
 													flex 		: 1,
 													renderer	: upsize
@@ -4225,7 +4238,7 @@
 						store 			: store_mapros_avmt_detail,
 						viewConfig 		: {
 							stripeRows 			: true,
-							emptyText 	 		: '<div class="empty-txt">No data to display.</div>',
+							emptyText 	 		: '<div class="empty-txt">Selected Header for show Detail</div>',
 							deferEmptyText 		: false,
 							enableTextSelection	: true
 						},
@@ -4248,7 +4261,7 @@
 								renderer	: upsize,
 								hidden 		: true
 							},
-							{	header 		: 'STEP',
+							{	header 		: 'STEP NO',
 								dataIndex 	: 'step',
 								width 		: 90,
 								renderer	: upsize
@@ -4401,7 +4414,7 @@
 							},
 							{	header 		: 'SERIAL',
 								dataIndex 	: 'serial',
-								width 		: 140,
+								width 		: 200,
 								renderer	: upsize
 							},
 							{	header 		: 'SN',
@@ -4429,12 +4442,12 @@
 								width 		: 200,
 								renderer	: upsize
 							},
-							{	header 		: 'OPERATOR',
+							{	header 		: 'MCH NAME',
 								dataIndex 	: 'input_user',
 								width 		: 120,
 								renderer	: upsize
 							},
-							{	header 		: 'OPT SCAN',
+							{	header 		: 'SCAN DATE',
 								dataIndex 	: 'input_date',
 								width 		: 120,
 								renderer	: upsize
@@ -4457,7 +4470,7 @@
 												renderer	: upsize,
 												hidden 		: true
 											},
-											{	header 		: 'STEP',
+											{	header 		: 'STEP NO',
 												dataIndex 	: 'step',
 												flex 		: 1,
 												renderer	: upsize
@@ -4477,7 +4490,7 @@
 												flex 		: 1,
 												renderer	: upsize
 											},
-											{	header 		: 'OPERATOR',
+											{	header 		: 'MCH NAME',
 												dataIndex 	: 'input_user',
 												flex 		: 1,
 												renderer	: upsize
@@ -4533,7 +4546,7 @@
 						store 			: store_mapros_avntest_detail,
 						viewConfig 		: {
 							stripeRows 			: true,
-							emptyText 	 		: '<div class="empty-txt">No data to display.</div>',
+							emptyText 	 		: '<div class="empty-txt">Selected Header for show Detail</div>',
 							deferEmptyText 		: false,
 							enableTextSelection	: true
 						},
@@ -4544,7 +4557,7 @@
 								renderer	: upsize,
 								hidden 		: true
 							},
-							{	header 		: 'STEP',
+							{	header 		: 'STEP NO',
 								dataIndex 	: 'step',
 								flex 		: 1,
 								renderer	: upsize
@@ -4693,7 +4706,7 @@
 													renderer	: upsize,
 													hidden 		: true
 												},
-												{	header 		: 'STEP',
+												{	header 		: 'STEP NO',
 													dataIndex 	: 'step',
 													flex 		: 1,
 													renderer	: upsize
@@ -4713,7 +4726,7 @@
 													flex 		: 1,
 													renderer	: upsize
 												},
-												{	header 		: 'OPERATOR',
+												{	header 		: 'MCH NAME',
 													dataIndex 	: 'input_user',
 													flex 		: 1,
 													renderer	: upsize
@@ -4770,7 +4783,7 @@
 						store 			: store_mapros_line0_detail,
 						viewConfig 		: {
 							stripeRows 			: true,
-							emptyText 	 		: '<div class="empty-txt">No data to display.</div>',
+							emptyText 	 		: '<div class="empty-txt">Selected Header for show Detail</div>',
 							deferEmptyText 		: false,
 							enableTextSelection	: true
 						},
@@ -4787,7 +4800,7 @@
 								renderer	: upsize,
 								hidden 		: true
 							},
-							{	header 		: 'STEP',
+							{	header 		: 'STEP NO',
 								dataIndex 	: 'step',
 								flex 		: 1,
 								renderer	: upsize
@@ -4807,7 +4820,7 @@
 								flex 		: 1,
 								renderer	: upsize
 							},
-							{	header 		: 'OPERATOR',
+							{	header 		: 'MCH NAME',
 								dataIndex 	: 'input_user',
 								flex 		: 1,
 								renderer	: upsize
@@ -5988,6 +6001,22 @@
 										store_mapros_fwdn.proxy.setExtraParam('serial', s_no);
 										store_mapros_fwdn.loadPage(1);
 
+										store_mapros_flash.proxy.setExtraParam('model', model);
+										store_mapros_flash.proxy.setExtraParam('serial', s_no);
+										store_mapros_flash.loadPage(1);
+
+										store_mapros_avntest.proxy.setExtraParam('model', model);
+										store_mapros_avntest.proxy.setExtraParam('serial', s_no);
+										store_mapros_avntest.loadPage(1);
+
+										store_mapros_avmt.proxy.setExtraParam('model', model);
+										store_mapros_avmt.proxy.setExtraParam('serial', s_no);
+										store_mapros_avmt.loadPage(1);
+										
+										store_mapros_line0.proxy.setExtraParam('model', model);
+										store_mapros_line0.proxy.setExtraParam('serial', s_no);
+										store_mapros_line0.loadPage(1);
+
 										// store_proc_smt_output.proxy.setExtraParam('src_cat', 'fg');
 										// store_proc_smt_downtime.proxy.setExtraParam('src_cat', 'fg');
 										// store_proc_smt_quality.proxy.setExtraParam('model', model);
@@ -6120,6 +6149,23 @@
 									store_mapros_fwdn.proxy.setExtraParam('serial', s_no);
 									store_mapros_fwdn.loadPage(1);
 
+									store_mapros_flash.proxy.setExtraParam('model', model);
+									store_mapros_flash.proxy.setExtraParam('serial', s_no);
+									store_mapros_flash.loadPage(1);
+
+									store_mapros_avntest.proxy.setExtraParam('model', model);
+									store_mapros_avntest.proxy.setExtraParam('serial', s_no);
+									store_mapros_avntest.loadPage(1);
+
+									store_mapros_avmt.proxy.setExtraParam('model', model);
+									store_mapros_avmt.proxy.setExtraParam('serial', s_no);
+									store_mapros_avmt.loadPage(1);
+
+									store_mapros_line0.proxy.setExtraParam('model', model);
+									store_mapros_line0.proxy.setExtraParam('serial', s_no);
+									store_mapros_line0.loadPage(1);
+
+									
 									// 	store_proc_smt_output.proxy.setExtraParam('src_cat', 'fg');
 									// 	store_proc_smt_downtime.proxy.setExtraParam('src_cat', 'fg');
 									// store_proc_smt_quality.proxy.setExtraParam('model', model); // _Z_ by zaki20161017
