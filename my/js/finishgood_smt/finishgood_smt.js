@@ -127,15 +127,17 @@
 	                fields: ['board_id', 'scan_date', 'reflow_start_time', 'reflow_end_time','boardlen','diffdate','pcbid']
 	           	});
            	//	MOUNTER
+				Ext.define('model_smt_mounter_header',{
+	                extend: 'Ext.data.Model',
+					fields: ['line','boardid','datein','dateout']
+	           	});
 				Ext.define('model_smt_mounter',{
 	                extend: 'Ext.data.Model',
-					// fields: ['mjsid','puside','partloc','jobno','model','board','pwbno','process',
-	    			//  		'mode','partno','feeder','feederserial','feederno','compid1','compid2',
-	    			//  		'compid3','compid4','compid5','scandate']
 					fields: ['row','line','boardid','model','pwbno','pwbname','process','lotno',
 	                			'datein','dateout','jobno','partloc','mode','partno','feeder',
 	                			'feederserial','feederno','compid1','scandate']
 	           	});
+	           	
            	//	SPI
 				Ext.define('model_smt_spi',{
 	                extend: 'Ext.data.Model',
@@ -231,8 +233,8 @@
 								cavity 	= store.getAt(0).get('cavity');
 								boardid = Ext.getCmp('boardid_scan').getValue();
 								
-								store_smt_mounter.proxy.setExtraParam('boardid', boardid);
-								store_smt_mounter.loadPage(1);
+								store_smt_mounter_header.proxy.setExtraParam('boardid', boardid);
+								store_smt_mounter_header.loadPage(1);
 
 								store_mapros_board.proxy.setExtraParam('boardid', boardid);
 								store_mapros_board.proxy.setExtraParam('cavity', cavity);
@@ -370,6 +372,18 @@
 					}
 				});
 			//	MOUNTER
+				var store_smt_mounter_header = Ext.create('Ext.data.Store',{
+					model	: 'model_smt_mounter_header',
+					autoLoad: false,
+					proxy   : {
+						type    : 'ajax',
+						url     : 'json/finishgood_smt/json_good_smt_mounter_header.php',
+						reader  : {
+							type    : 'json',
+							root    : 'rows'
+						}
+					}
+				});
 				var store_smt_mounter = Ext.create('Ext.data.Store',{
 					model	: 'model_smt_mounter',
 					autoLoad: false,
@@ -1051,12 +1065,12 @@
 					// plugins: [cellEditing]
 				});
 			//	MOUNTER
-				var grid_smt_mounter = Ext.create('Ext.grid.Panel', {
-					id 				: 'grid_smt_mounter',
+				var grid_smt_mounter_header = Ext.create('Ext.grid.Panel', {
+					id 				: 'grid_smt_mounter_header',
 					autoWidth 		: '100%',
-					maxHeight		: 350,
+					maxHeight		: 250,
 					columnLines 	: true,
-					store 			: store_smt_mounter,
+					store 			: store_smt_mounter_header,
 					viewConfig 		: {
 						stripeRows 			: true,
 						emptyText 	 		: '<div class="empty-txt">No data to display.</div>',
@@ -1064,17 +1078,41 @@
 						enableTextSelection	: true
 					},
 					columns 	: [
+						{ 	header : 'LINE',			dataIndex : 'line', 		flex : 1, 	renderer : upsize },
+						{ 	header : 'BOARD',			dataIndex : 'boardid',		flex : 1,	renderer : upsize,	hidden : true },
+						{ 	header : 'BOARD IN', 		dataIndex : 'datein', 		flex : 1, 	renderer : upsize },
+						{ 	header : 'BOARD OUT', 		dataIndex : 'dateout', 		flex : 1, 	renderer : upsize }
+					],
+					listeners: {
+			    		select: function(grid, rowIndex, colIndex) {
+			    			var rec = this.getSelectionModel().getSelection();
+			    			var boardid = rec[0].data.boardid;
+			    			store_smt_mounter.proxy.setExtraParam('boardid', boardid);
+							store_smt_mounter.loadPage(1);
+			    		}
+			    	}
+				});
+				var grid_smt_mounter = Ext.create('Ext.grid.Panel', {
+					id 				: 'grid_smt_mounter',
+					//title 			: '<div style="text-align:center;">==== &nbsp; DETAIL &nbsp; ====</div>',
+					autoWidth 		: '100%',
+					maxHeight		: 400,
+					columnLines 	: true,
+					store 			: store_smt_mounter,
+					viewConfig 		: {
+						stripeRows 			: true,
+						emptyText 	 		: '<div class="empty-txt">Select Header for Show this data.</div>',
+						deferEmptyText 		: false,
+						enableTextSelection	: true
+					},
+					columns 	: [
 						{ 	header : 'NO',				dataIndex : 'row', 			width : 50,		renderer : upsize },
-						{ 	header : 'LINE',			dataIndex : 'line', 		width : 60, 	renderer : upsize },
 						{ 	header : 'BOARD',			dataIndex : 'boardid',		width : 200,	renderer : upsize,	hidden : true },
 						{ 	header : 'MODEL',			dataIndex : 'model',		width : 120,	renderer : upsize,	hidden : true },
 						{ 	header : 'PWB NO', 			dataIndex : 'pwbno', 		width : 100, 	renderer : upsize,	hidden : true },
 						{ 	header : 'PWV NAME', 		dataIndex : 'pwbname', 		width : 75, 	renderer : upsize,	hidden : true },
-						{ 	header : 'PROCESS', 		dataIndex : 'process', 		width : 90, 	renderer : upsize },
+						{ 	header : 'PROCESS', 		dataIndex : 'process', 		width : 90, 	renderer : upsize,	hidden : true },
 						{ 	header : 'LOT NO', 			dataIndex : 'lotno', 		width : 75, 	renderer : upsize,	hidden : true },
-						{ 	header : 'BOARD IN', 			dataIndex : 'datein', 		width : 90, 	renderer : upsize },
-						{ 	header : 'BOARD OUT', 			dataIndex : 'dateout', 		width : 90, 	renderer : upsize },
-						{ 	header : 'JOBNO', 			dataIndex : 'jobno', 		width : 150, 	renderer : upsize },
 						{ 	header : 'LOCATION', 		dataIndex : 'partloc', 		width : 90, 	renderer : upsize },
 						{ 	header : 'MODE',			dataIndex : 'mode', 		width : 75,		renderer : upsize },
 						{ 	header : 'PARTNO', 			dataIndex : 'partno', 		width : 120, 	renderer : upsize },
@@ -1082,7 +1120,8 @@
 						{ 	header : 'FEEDER SERIAL', 	dataIndex : 'feederserial',	width : 130,	renderer : upsize },
 						{ 	header : 'FEEDER NO', 		dataIndex : 'feederno', 	width : 100,	renderer : upsize },
 						{ 	header : 'SCANNING', 		dataIndex : 'compid1', 		width : 140,	renderer : upsize },
-						{ 	header : 'SCAN DATE', 		dataIndex : 'scandate', 	width : 90,		renderer : upsize }
+						{ 	header : 'SCAN DATE', 		dataIndex : 'scandate', 	width : 90,		renderer : upsize },
+						{ 	header : 'JOBNO', 			dataIndex : 'jobno', 		width : 150, 	renderer : upsize }
 					],
 					bbar	: Ext.create('Ext.PagingToolbar', {
 						pageSize		: itemperpage,
@@ -2785,8 +2824,8 @@
 				   layout: 'fit',
 				   items: grid_mapros_auto0_detail
 				   }]
-			  });
-
+		  	});
+			
 			
 
 		//	=======================================================  TAB  PANEL    =========================================
@@ -2875,20 +2914,47 @@
 					items			: [grid_smt_reflow]
 				});
 			//	MOUNTER
-				var panel_mounter = Ext.create('Ext.panel.Panel', {
-					id 				: 'panel_mounter',
-					renderTo 		: 'panel_mounter',
-					autoWidth		: '100%',
-					maxHeight		: 820,
-					border			: false,
-					frame			: true,
-					hidden			: false,
-					defaults		: {
-						split		: true,
-						collapsible	: false
-					},
-					items			: [grid_smt_mounter]
-				});
+				var panel_mounter = Ext.create('Ext.panel.Panel',{
+			    	id 			: 'panel_mounter',
+					renderTo 	: 'panel_mounter',
+					autoWidth	: '100%',
+					maxHeight	: 550,
+					border		: false,
+					 frame		: true,
+					// hidden		: false,
+				 //    layout		: 'fit',
+				 //   	defaults	: {
+					//      split: false,
+					//      plain: true
+				 //    },
+
+
+
+				   	items		: [{
+					   region	: 'north', // GRID SIDE
+					   layout	: 'fit',
+					   items	: [grid_smt_mounter_header]
+					   }, {
+					   region	: 'center', // GRID SIDE
+					   layout	: 'fit',
+					   items	: [grid_smt_mounter]
+					   }]
+			  	});
+				// var panel_mounter = Ext.create('Ext.panel.Panel', {
+				// 	id 				: 'panel_mounter',
+				// 	renderTo 		: 'panel_mounter',
+				// 	autoWidth		: '100%',
+				// 	maxHeight		: 820,
+				// 	border			: false,
+				// 	frame			: true,
+				// 	hidden			: false,
+				// 	defaults		: {
+				// 		split		: true,
+				// 		collapsible	: false
+				// 	},
+				// 	layout 			: 'fit',
+				// 	items			: [panel_mounter_grid]
+				// });
 			//	SPI
 				var panel_spi = Ext.create('Ext.panel.Panel', {
 					id 				: 'panel_spi',
