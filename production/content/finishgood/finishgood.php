@@ -1,6 +1,6 @@
 <section>
   <!--  Searching Traceability -->
-  <div class="row">
+  <div id="search_tab" class="row">
     <div class="x_panel">
       <div class="form-inline">
         <div id="finishgood_model" class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
@@ -15,7 +15,7 @@
   <!--  END OF Searching Traceability -->
   <!-- ============================================================================== -->
   <!--  MAIN OCS Finishgood Model -->
-  <div class="row">
+  <div id="finishgood_tab" class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="x_panel">
         <div class="x_title">
@@ -40,7 +40,7 @@
   <!--  END OF MAIN OCS Finishgood Model -->
   <!-- ============================================================================== -->
   <!-- Plan and Actual Data -->
-  <div class="row">
+  <div id="plan_tab" class="row">
     <div class="col-md-6 col-sm-6 col-xs-12">
       <div class="x_panel">
         <div class="x_title">
@@ -120,7 +120,7 @@
 
         <!-- title of Part Operational -->
         <div class="x_title">
-          <h2><i class="fab fa-cloudscale"></i> Process Operational <small> ( SMT, PCB, MA ) </small> </h2>
+          <h2><i class="fab fa-cloudscale"></i> Process Operational <small> ( MA ) </small> </h2>
           <ul class="nav navbar-right panel_toolbox">
             <li>
               <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -300,10 +300,6 @@
               </div>
             </div>
             <!--  END OF Receiving Part -->
-
-           
-
-            
           </div>
         </div>
       </div>
