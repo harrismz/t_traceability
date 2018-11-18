@@ -734,13 +734,13 @@
 					columns 	: [
 						{ 	header : 'ID',				dataIndex : 'inputid', 		width : 50,		renderer : upsize,	hidden : true },
 						{ 	header : 'BOARD ID', 		dataIndex : 'boardid', 		width : 200,	renderer : upsize,	hidden : true  },
-						{ 	header : 'DATE',			dataIndex : 'dateid', 		width : 100, 	renderer : upsize },
+						{ 	header : 'REPAIR DATE',		dataIndex : 'dateid', 		width : 100, 	renderer : upsize },
 						{ 	header : 'GROUP',			dataIndex : 'group',		width : 80,		renderer : upsize },
 						{ 	header : 'SHIFT',			dataIndex : 'shift',		width : 80,		renderer : upsize },
 						{ 	header : 'MCH NAME', 		dataIndex : 'mch', 			width : 90, 	renderer : upsize },
 						{ 	header : 'MODEL NAME', 		dataIndex : 'model_name', 	width : 130, 	renderer : upsize,	hidden : true },
 						{ 	header : 'START SERIAL', 	dataIndex : 'start_serial', width : 80, 	renderer : upsize },
-						{ 	header : 'SERIAL NO', 		dataIndex : 'serial_no', 	width : 75, 	renderer : upsize },
+						{ 	header : 'SERIAL NO', 		dataIndex : 'serial_no', 	width : 75, 	renderer : upsize,	hidden : true },
 						{ 	header : 'LOT NO', 			dataIndex : 'lot_no', 		width : 80, 	renderer : upsize,	hidden : true },
 						{ 	header : 'PCB NAME', 		dataIndex : 'pcb_name', 	width : 80, 	renderer : upsize },
 						{ 	header : 'PWB NO', 			dataIndex : 'pwb_no', 		width : 90, 	renderer : upsize },
@@ -752,7 +752,7 @@
 						{ 	header : 'NG FOUND BY', 	dataIndex : 'ng',			width : 100,	renderer : upsize },
 						{ 	header : 'BOARD NG QTY', 	dataIndex : 'boardqty', 	width : 90,		renderer : upsize },
 						{ 	header : 'POINT NG QTY', 	dataIndex : 'pointqty', 	width : 90,		renderer : upsize },
-						{ 	header : 'REPAIR DATE', 	dataIndex : 'inputdate', 	width : 90,		renderer : upsize }
+						{ 	header : 'REPAIR DATE', 	dataIndex : 'inputdate', 	width : 90,		renderer : upsize,	hidden : true }
 					],
 					bbar	: Ext.create('Ext.PagingToolbar', {
 						pageSize		: itemperpage,
@@ -1122,15 +1122,16 @@
 						{	header 		: 'BARCODE',
 							dataIndex 	: 'barcode',
 							flex 		: 1,
+							renderer	: upsize,
+							hidden 		: true
+						},
+						{	header 		: 'INSP DATE',
+							dataIndex 	: 'inspectiondatetime',
+							flex 		: 1,
 							renderer	: upsize
 						},
 						{	header 		: 'MCH NAME',
 							dataIndex 	: 'mchname',
-							width 		: 80,
-							renderer	: upsize
-						},
-						{	header 		: 'INSP DATE',
-							dataIndex 	: 'inspectiondatetime',
 							flex 		: 1,
 							renderer	: upsize
 						},
@@ -1160,17 +1161,17 @@
 						},
 						{	header 		: 'MCH JUDGE',
 							dataIndex 	: 'spijudge',
-							width 		: 80,
+							flex 		: 1,
 							renderer	: spimchjudge
 						},
 						{	header 		: 'OP JUDGE',
 							dataIndex 	: 'opjudge',
-							width 		: 80,
+							flex 		: 1,
 							renderer	: spiopjudge
 						},
 						{	header 		: 'DEFECT CNT',
 							dataIndex 	: 'defectcnt',
-							width 		: 80,
+							flex 		: 1,
 							renderer	: upsize
 						}
 					],
