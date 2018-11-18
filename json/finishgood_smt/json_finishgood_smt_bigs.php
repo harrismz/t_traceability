@@ -54,16 +54,16 @@
         for($i=0;!$rs_big24->EOF;$i++){
             $return[$i]['side']         = trim($rs_big24->fields['0']);
             $return[$i]['cavity']       = trim($rs_big24->fields['1']);
-            $return[$i]['seq_start']    = trim($rs_big24->fields['2']);
-            $return[$i]['seq_end']      = trim($rs_big24->fields['3']);
-            $return[$i]['line']         = trim($rs_big24->fields['4']);
-            $return[$i]['model']        = trim($rs_big24->fields['5']);
-            $return[$i]['pwbname']      = trim($rs_big24->fields['6']);
-            $return[$i]['prod_no']      = trim($rs_big24->fields['7']);
-            $return[$i]['process']      = trim($rs_big24->fields['8']);
-            $return[$i]['qty']          = trim($rs_big24->fields['9']);
-            $return[$i]['ynumber']      = trim($rs_big24->fields['10']);
-            $return[$i]['start_serial'] = trim($rs_big24->fields['11']);
+            // $return[$i]['seq_start']    = trim($rs_big24->fields['2']);
+            // $return[$i]['seq_end']      = trim($rs_big24->fields['3']);
+            $return[$i]['line']         = trim($rs_big24->fields['2']);
+            $return[$i]['model']        = trim($rs_big24->fields['3']);
+            $return[$i]['pwbname']      = trim($rs_big24->fields['4']);
+            $return[$i]['prod_no']      = trim($rs_big24->fields['5']);
+            $return[$i]['process']      = trim($rs_big24->fields['6']);
+            $return[$i]['qty']          = trim($rs_big24->fields['7']);
+            $return[$i]['ynumber']      = trim($rs_big24->fields['8']);
+            $return[$i]['start_serial'] = trim($rs_big24->fields['9']);
            
             $rs_big24->MoveNext();
         }
