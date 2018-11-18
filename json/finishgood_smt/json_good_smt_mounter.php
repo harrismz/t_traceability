@@ -9,7 +9,7 @@
 
     // echo "declare @totalcount as int; exec traceability_good_smt_mounter_test1 $start, $limit, '{$model}','{$process}','{$pwbno}','{$spidate}', @totalcount=@totalcount out";
     // echo "declare @totalcount as int; exec [traceability_dispReaderMounter_rev2] $start, $limit, '{$boardid}', @totalcount=@totalcount out";
-    $rs         = $db->Execute("declare @totalcount as int; exec [traceability_dispReaderMounter_rev2] $start, $limit, '{$boardid}', @totalcount=@totalcount out");
+    $rs         = $db->Execute("declare @totalcount as int; exec [traceability_dispReaderMounter_rev3] $start, $limit, '{$boardid}', @totalcount=@totalcount out");
     $totalcount = $rs->fields['19'];
     $return     = array();
 
