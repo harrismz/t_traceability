@@ -3119,6 +3119,8 @@
 			    											store_mapros_critical.proxy.setExtraParam('serial_no', '');
 			    											store_mapros_critical.proxy.setExtraParam('boardid', boardid);
 			    											store_mapros_critical.loadPage(1);
+			    											store_smt_mounter.proxy.setExtraParam('boardid', '');
+															store_smt_mounter.loadPage(1);
 
 														}
 													}
