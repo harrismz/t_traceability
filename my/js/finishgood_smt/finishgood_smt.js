@@ -96,7 +96,8 @@
 				Ext.define('model_bigs', {
 					extend: 'Ext.data.Model',
 					//fields: ['schedule_id', 'lot_size', 'model_code', 'prod_no_code', 'side', 'cavity', 'seq_start', 'seq_end', 'line', 'model', 'pwbname', 'pwbno', 'process', 'rev_date', 'qty', 'ynumber', 'start_serial']
-					fields: [ 'side', 'cavity', 'seq_start', 'seq_end', 'line', 'model', 'pwbname', 'process', 'qty', 'ynumber', 'start_serial']
+					//fields: [ 'side', 'cavity', 'seq_start', 'seq_end', 'line', 'model', 'pwbname', 'process', 'qty', 'ynumber', 'start_serial']
+					fields: [ 'side', 'cavity', 'line', 'model', 'pwbname', 'process', 'qty', 'ynumber', 'start_serial']
 				});
 				// 	Ext.define('model_bigs', {
 					// 		extend: 'Ext.data.Model',
@@ -200,7 +201,11 @@
 	                extend: 'Ext.data.Model',
 	                fields: ['idlinezero','rownumber','step','stepdata', 'measure','measuredata','input_user','input_date']
 	           	});
-	          	
+
+	          	Ext.define('model_mapros_critical',{
+	                extend: 'Ext.data.Model',
+					fields: ['unique_id','supp_code','part_no','po', 'prodsup','lotnosup','qty','scan_nik','created_at','process','code','line']
+	           	});
 
 		//	=======================================================    DATASTORE    =====================================
 			//	BOARD ID GENERATOR
@@ -575,6 +580,20 @@
 						}
 					}
 				});
+				var store_mapros_critical = Ext.create('Ext.data.Store',{
+					model	: 'model_mapros_critical',
+					autoLoad: false,
+					pageSize: itemperpage,
+					proxy   : {
+						type    : 'ajax',
+						url     : 'json/finishgood_smt/json_good_smt_mapros_critical.php',
+						reader  : {
+							type    : 'json',
+							root    : 'rows',
+							totalProperty: 'totalCount'
+						}
+					}
+				});
 				
 
 		//	=======================================================    GRID    ==========================================
@@ -632,16 +651,16 @@
 							width 	 : 70,
 							renderer : upsize
 						}, 
-						{ 	header 	 : 'SEQ START',
-							dataIndex: 'seq_start',
-							width 	 : 70,
-							renderer : upsize
-						}, 
-						{ 	header 	 : 'SEQ END',
-							dataIndex: 'seq_end',
-							width 	 : 70,
-							renderer : upsize
-						}, 
+						// { 	header 	 : 'SEQ START',
+						// 	dataIndex: 'seq_start',
+						// 	width 	 : 70,
+						// 	renderer : upsize
+						// }, 
+						// { 	header 	 : 'SEQ END',
+						// 	dataIndex: 'seq_end',
+						// 	width 	 : 70,
+						// 	renderer : upsize
+						// }, 
 						{ 	header 	 : 'LINE',
 							dataIndex: 'line',
 							width 	 : 60,
@@ -1451,7 +1470,7 @@
 					autoWidth 		: '100%',
 					maxHeight		: 290,
 					columnLines 	: true,
-					//store 			: store_mapros_critical,
+					store 			: store_mapros_critical,
 					viewConfig 		: {
 						stripeRows 			: true,
 						emptyText 	 		: '<div class="empty-txt">No data to display.</div>',
@@ -1463,10 +1482,15 @@
 						// }
 					},
 					columns 	: [
-						{	header : 'MASTER NO',	dataIndex 	: 'ticket_no_master', 	width 		: 140, 	renderer	: upsize },
-						{	header : 'guid_master', dataIndex 	: 'guid_master', flex 		: 1, renderer	: upsize, hidden		: true },
-						{	header : 'MODEL', 		dataIndex 	: 'modelname', flex 		: 1, renderer	: upsize },
-						{	header : 'LINE', 		dataIndex 	: 'line', width 	 	: 90, renderer	: upsize },
+						{	header : 'UNIQUE ID',	dataIndex : 'unique_id', 	width : 140, 	renderer : upsize },
+						{	header : 'SUPP CODE', 	dataIndex : 'supp_code', 	flex : 1, 		renderer : upsize },
+						{	header : 'PART NO', 	dataIndex : 'part_no', 		flex : 1, 		renderer : upsize },
+						{	header : 'PO', 			dataIndex : 'po', 			width : 90, 	renderer : upsize },
+						{	header : 'PROD DATE<br>SUPPLIER', 	dataIndex : 'prodsup', 		width : 90, 	renderer : upsize },
+						{	header : 'LOT NO<br>SUPPLIER', 		dataIndex : 'lotnosup', 	width : 90, 	renderer : upsize },
+						{	header : 'QTY', 		dataIndex : 'qty', 			width : 90, 	renderer : upsize },
+						{	header : 'INSP DATE', 	dataIndex : 'created_at', 	width : 90, 	renderer : upsize },
+						{	header : 'LINE', 		dataIndex : 'line', 		width : 90, 	renderer : upsize },
 					],
 					//features: [filters],
 					// selModel: {
@@ -1776,49 +1800,49 @@
 						}
 					],
 					// plugins			: [{
-	    //     				ptype	: 'rowwidget',
-	    //     				widget	: {
-				 //            xtype	: 'grid',
-				 //            autoLoad: true,
-				 //            bind	: {
-				 //                store : '{record.idfwdn}',
-				 //                title : 'Orders for {record.idflash}'
-				 //            },
-				 //            columns : [{
-				 //                text 		: 'Order Id',
-				 //                dataIndex 	: 'id',
-				 //                width 		: 75
-				 //            }, {
-				 //                text 		: 'Procuct code',
-				 //                dataIndex 	: 'productCode',
-				 //                width 		: 265
-				 //            }]
-					 //        }
-					 //    }],
-					bbar			: Ext.create('Ext.PagingToolbar', {
-						pageSize		: itemperpage,
-						store			: store_mapros_fwdn,
-						displayInfo		: true,
-						displayMsg		: 'Data {0} - {1} from {2} data',
-						emptyMsg		: "Page not found",
-						beforePageText  : 'Page',
-						afterPageText   : 'from {0} Pages',
-						firstText       : 'First Page',
-						prevText        : 'Previous Page',
-						nextText        : 'Next page',
-						lastText        : 'Last Page',
-						plugins       	: Ext.create('Ext.ux.ProgressBarPager', {}),
-						listeners 		: {
-							afterrender : function (cmp) {
-								cmp.getComponent("refresh").hide();
-							}
-						}
-					}),
-					//features: [filters],
-					// selModel: {
-					// 	selType: 'cellmodel'
-					// },
-					// plugins: [cellEditing]
+					    //     				ptype	: 'rowwidget',
+					    //     				widget	: {
+								 //            xtype	: 'grid',
+								 //            autoLoad: true,
+								 //            bind	: {
+								 //                store : '{record.idfwdn}',
+								 //                title : 'Orders for {record.idflash}'
+								 //            },
+								 //            columns : [{
+								 //                text 		: 'Order Id',
+								 //                dataIndex 	: 'id',
+								 //                width 		: 75
+								 //            }, {
+								 //                text 		: 'Procuct code',
+								 //                dataIndex 	: 'productCode',
+								 //                width 		: 265
+								 //            }]
+									 //        }
+									 //    }],
+									bbar			: Ext.create('Ext.PagingToolbar', {
+										pageSize		: itemperpage,
+										store			: store_mapros_fwdn,
+										displayInfo		: true,
+										displayMsg		: 'Data {0} - {1} from {2} data',
+										emptyMsg		: "Page not found",
+										beforePageText  : 'Page',
+										afterPageText   : 'from {0} Pages',
+										firstText       : 'First Page',
+										prevText        : 'Previous Page',
+										nextText        : 'Next page',
+										lastText        : 'Last Page',
+										plugins       	: Ext.create('Ext.ux.ProgressBarPager', {}),
+										listeners 		: {
+											afterrender : function (cmp) {
+												cmp.getComponent("refresh").hide();
+											}
+										}
+									}),
+									//features: [filters],
+									// selModel: {
+									// 	selType: 'cellmodel'
+									// },
+									// plugins: [cellEditing]
 				});
 				var grid_mapros_avmt = Ext.create('Ext.grid.Panel', {
 					id 				: 'grid_mapros_avmt',
@@ -2898,17 +2922,17 @@
 						}
 					},
 					items 		: [
-						{	title 		: 'PCB',
+						{	title 		: 'PCB SERIAL',
 						 	id  		: 'show_grid_board',
 							reorderable : false,
 							items 		: [grid_mapros_board]
 						}, 
-						{	title 		: 'PANEL AND MECHA',
+						{	title 		: 'PANEL NO',
 						 	id  		: 'show_grid_ticket',
 							reorderable : false,
 							items 		: [grid_mapros_panel]
 						}, 
-						{	title 		: 'MASTER',
+						{	title 		: 'DUMMY SERIAL',
 						 	id  		: 'show_grid_master',
 							reorderable : false,
 							items 		: [grid_mapros_master]
@@ -2916,7 +2940,7 @@
 						{	title 		: 'CRITICAL PART',
 						 	id  		: 'show_grid_critical',
 							reorderable : false,
-							//items 		: [grid_mapros_critical]
+							items 		: [grid_mapros_critical]
 						}, 
 						{	title 		: 'FWDN',
 						 	id  		: 'show_grid_fwdn',
@@ -2969,7 +2993,8 @@
 					//value:  	'000177A020010012',
 					//value:  	'000267B000010001',
 					//value:  	'YJ5224A00VT_01B7002A0001',
-					value:  	'YJ5224A01MN_00A7010A0002',
+					//value:  	'YJ5224A01MN_00A7010A0002',
+					value:  	'YJ5214A00SH-01B7010A0089',
 					listeners	: {
 									afterrender : function() {
 													this.inputEl.setStyle('text-align', 'center');
@@ -3023,6 +3048,10 @@
 															store_mapros_line0.loadPage(1);
 															store_mapros_line0_detail.proxy.setExtraParam('idline0','');
 			    											store_mapros_line0_detail.loadPage(1);
+			    											store_mapros_critical.proxy.setExtraParam('model', '');
+			    											store_mapros_critical.proxy.setExtraParam('serial_no', '');
+			    											store_mapros_critical.proxy.setExtraParam('boardid', boardid);
+			    											store_mapros_critical.loadPage(1);
 
 														}
 													}
