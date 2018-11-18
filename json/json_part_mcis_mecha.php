@@ -1,12 +1,18 @@
 <?php
     date_default_timezone_set('Asia/jakarta');
     include '../../adodb/con_mc.php';
+
+    $page       = @$_REQUEST["page"];
+    $limit      = @$_REQUEST["limit"];
+    $start      = (($page*$limit)-$limit)+1;
+
     $model    = $_REQUEST['model'];
     $lot      = $_REQUEST['prod_no'];
     $getdate  = substr($_REQUEST['prod_date'],0,10);
     $proddate = date('Y-m-d', strtotime($getdate));
 
-    $rs       = $db->Execute("exec traceability_partiss '{$model}','{$lot}','{$proddate}','mecha'");
+    $rs       = $db->Execute(" declare @totalcount as int exec traceability_partiss $start,$limit,'{$model}','{$lot}','{$proddate}','mecha', @totalcount=@totalcount out");
+    $totalcount = $rs->fields['12'];
     $return   = array();
 
     for($i=0;!$rs->EOF;$i++){
@@ -20,11 +26,14 @@
         $return[$i]['line']       = trim($rs->fields['7']);
         $return[$i]['so']         = trim($rs->fields['8']);
         $return[$i]['reqqty']     = (float)trim($rs->fields['9']);
+        $return[$i]['proddatesupp'] = trim($rs->fields['10']);
+        $return[$i]['lotnosupp']  = trim($rs->fields['11']);
         $rs->MoveNext();
     }
 
     $o = array(
         "success"=>true,
+        "totalCount"=>$totalcount,
         "rows"=>$return
     );
 

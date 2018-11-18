@@ -1278,14 +1278,14 @@
 							enableTextSelection	: true
 						},
 						columns			: [
-							{ header		: 'Date',
+							{ header		: 'Date Issue',
 								dataIndex	: 'issdate',
 								minWidth	: 90,
 								renderer	: upsize
 							},
 							{ header		: 'Part Number',
 								dataIndex	: 'partno',
-								minWidth	: 90,
+								flex		: 1,
 								renderer	: upsize,
 								filter		: {
 									type		: 'string',
@@ -1294,7 +1294,7 @@
 							},
 							{ header		: 'Part Name',
 								dataIndex	: 'partname',
-								minWidth	: 110,
+								flex		: 1,
 								renderer	: upsize
 							},
 							{ header			: 'QTY',
@@ -1334,17 +1334,17 @@
 								minWidth	: 90,
 								renderer	: upsize
 							},
-							{ header		: 'so',
+							{ header		: 'SO',
 								dataIndex	: 'so',
 								minWidth	: 90,
 								renderer	: upsize
 							},
-							{ header		: 'PROD DATE',
+							{ header		: 'Prod Date',
 								dataIndex	: 'proddatesupp',
 								minWidth	: 90,
 								renderer	: upsize
 							},
-							{ header		: 'LOTNO SUPPLIER',
+							{ header		: 'Lotno Supplier',
 								dataIndex	: 'lotnosupp',
 								minWidth	: 90,
 								renderer	: upsize
@@ -1394,14 +1394,14 @@
 							enableTextSelection : true
 						},
 						columns: [
-							{ header		: 'Date',
+							{ header		: 'Date Issue',
 								dataIndex	: 'issdate',
 								minWidth	: 90,
 								renderer	: upsize
 							},
 							{ header		: 'Part Number',
 								dataIndex	: 'partno',
-								minWidth	: 90,
+								flex		: 1,
 								renderer	: upsize,
 								filter		: {
 									type		: 'string',
@@ -1410,7 +1410,7 @@
 							},
 							{ header		: 'Part Name',
 								dataIndex	: 'partname',
-								minWidth	: 110,
+								flex		: 1,
 								renderer	: upsize
 							},
 							{ header			: 'QTY',
@@ -1450,12 +1450,31 @@
 								minWidth	: 90,
 								renderer	: upsize
 							},
-							{ header		: 'so',
+							{ header		: 'SO',
 								dataIndex	: 'so',
 								minWidth	: 90,
 								renderer	: upsize
 							}
 						],
+						bbar	: Ext.create('Ext.PagingToolbar', {
+							pageSize		: itemperpage,
+							store			: store_part_mc_issue_mecha,
+							displayInfo		: true,
+							displayMsg		: 'Data {0} - {1} from {2} data',
+							emptyMsg		: "Page not found",
+							beforePageText  : 'Page',
+							afterPageText   : 'from {0} Pages',
+							firstText       : 'First Page',
+							prevText        : 'Previous Page',
+							nextText        : 'Next page',
+							lastText        : 'Last Page',
+							plugins       	: Ext.create('Ext.ux.ProgressBarPager', {}),
+							listeners 		: {
+								afterrender: function (cmp) {
+									cmp.getComponent("refresh").hide();
+								}
+							}
+						}),
 						// features: [{
 						// 	ftype: 'filters',
 						// 	encode: encode, // json encode the filter query
