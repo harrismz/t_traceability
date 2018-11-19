@@ -15,7 +15,7 @@
 	//	function untuk fontsize grid
 	function upsize(val) {
 		var x = val;
-		if (x == '' || x == '-' || x == '---'){
+		if (x == '' || x == '-' || x == '---' || x == 'undefined'){
 			return '<font class="fontsize12" style="color:red;font-weight: bold;"> --- </font>';
 		}
 		else if (x == 'NG' || x == 'STOP'){
@@ -150,7 +150,8 @@
 					Ext.define('model_mapros_board_fg',{
 		                extend: 'Ext.data.Model',
 		                fields: ['board_id','guid_master','guid_ticket','modelname','lotno',
-									'scanner_id','status','scan_nik','judge','created_at','updated_at','lineprocess','line']
+									'scanner_id','status','scan_nik','judge','created_at',
+									'updated_at','lineprocess','line','refno','ngsymptom']
        				});
 					Ext.define('model_mapros_panel_fg',{
 		                extend: 'Ext.data.Model',
@@ -2966,8 +2967,18 @@
 								width 	 	: 90,
 								renderer	: upsize
 							},
-							{	header 		: 'INSP DATE',
+							{	header 		: 'PROCESS DATE',
 								dataIndex 	: 'created_at',
+								flex 		: 1,
+								renderer	: upsize
+							},
+							{	header 		: 'REF. NO',
+								dataIndex 	: 'refno',
+								flex 		: 1,
+								renderer	: upsize
+							},
+							{	header 		: 'NG SYMPTOM',
+								dataIndex 	: 'ngsymptom',
 								flex 		: 1,
 								renderer	: upsize
 							},
@@ -3056,7 +3067,7 @@
 								width 	 	: 90,
 								renderer	: upsize
 							},
-							{	header 		: 'INSP TIME',
+							{	header 		: 'PROCESS DATE',
 								dataIndex 	: 'created_at',
 								flex 		: 1,
 								renderer	: upsize
@@ -3139,7 +3150,7 @@
 								width 	 	: 90,
 								renderer	: upsize
 							},
-							{	header 		: 'INSP TIME',
+							{	header 		: 'PROCESS DATE',
 								dataIndex 	: 'created_at',
 								flex 		: 1,
 								renderer	: upsize
