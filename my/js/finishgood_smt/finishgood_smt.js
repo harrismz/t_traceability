@@ -392,7 +392,7 @@
 						type    : 'ajax',
 						url     : 'json/finishgood_smt/json_good_smt_mounter.php',
 						extraParams: {
-							boardid: 'x'
+							boardid: '123456789012345678901234'
 						},
 						reader  : {
 							type    : 'json',
