@@ -386,11 +386,14 @@
 				});
 				var store_smt_mounter = Ext.create('Ext.data.Store',{
 					model	: 'model_smt_mounter',
-					autoLoad: false,
+					autoLoad: true,
 					pageSize: itemperpage,
 					proxy   : {
 						type    : 'ajax',
 						url     : 'json/finishgood_smt/json_good_smt_mounter.php',
+						extraParams: {
+							boardid: 'x'
+						},
 						reader  : {
 							type    : 'json',
 							root    : 'rows',
@@ -1522,15 +1525,15 @@
 						// }
 					},
 					columns 	: [
-						{	header : 'UNIQUE ID',	dataIndex : 'unique_id', 	width : 140, 	renderer : upsize },
-						{	header : 'SUPP CODE', 	dataIndex : 'supp_code', 	flex : 1, 		renderer : upsize },
-						{	header : 'PART NO', 	dataIndex : 'part_no', 		flex : 1, 		renderer : upsize },
-						{	header : 'PO', 			dataIndex : 'po', 			width : 90, 	renderer : upsize },
-						{	header : 'PROD DATE<br>SUPPLIER', 	dataIndex : 'prodsup', 		width : 90, 	renderer : upsize },
-						{	header : 'LOT NO<br>SUPPLIER', 		dataIndex : 'lotnosup', 	width : 90, 	renderer : upsize },
-						{	header : 'QTY', 		dataIndex : 'qty', 			width : 90, 	renderer : upsize },
+						{	header : 'UNIQUE ID',	dataIndex : 'unique_id', 	width : 200, 	renderer : upsize, hidden : true },
+						{	header : 'LINE', 		dataIndex : 'line', 		flex : 1, 	renderer : upsize },
 						{	header : 'INSP DATE', 	dataIndex : 'created_at', 	width : 90, 	renderer : upsize },
-						{	header : 'LINE', 		dataIndex : 'line', 		width : 90, 	renderer : upsize },
+						{	header : 'SUPP CODE', 	dataIndex : 'supp_code', 	flex : 1, 	renderer : upsize },
+						{	header : 'PART NO', 	dataIndex : 'part_no', 		flex : 1, 	renderer : upsize },
+						{	header : 'PO', 			dataIndex : 'po', 			flex : 1,	renderer : upsize },
+						{	header : 'PROD DATE<br>SUPPLIER', 	dataIndex : 'prodsup', 		flex : 1,	renderer : upsize },
+						{	header : 'LOT NO<br>SUPPLIER', 		dataIndex : 'lotnosup', 	flex : 1, 	renderer : upsize },
+						{	header : 'QTY', 		dataIndex : 'qty', 			flex : 1, 	renderer : upsize }
 					],
 					//features: [filters],
 					// selModel: {
@@ -3061,7 +3064,8 @@
 					//value:  	'000267B000010001',
 					//value:  	'YJ5224A00VT_01B7002A0001',
 					//value:  	'YJ5224A01MN_00A7010A0002',
-					value:  	'YJ5214A00SH-01B7010A0089',
+					//value:  	'YJ5214A00SH-01B7010A0089',
+					value:  	'YJ5224A01VT_00A7011A0021',
 					listeners	: {
 									afterrender : function() {
 													this.inputEl.setStyle('text-align', 'center');
@@ -3119,8 +3123,7 @@
 			    											store_mapros_critical.proxy.setExtraParam('serial_no', '');
 			    											store_mapros_critical.proxy.setExtraParam('boardid', boardid);
 			    											store_mapros_critical.loadPage(1);
-			    											store_smt_mounter.proxy.setExtraParam('boardid', '');
-															store_smt_mounter.loadPage(1);
+			    											
 
 														}
 													}

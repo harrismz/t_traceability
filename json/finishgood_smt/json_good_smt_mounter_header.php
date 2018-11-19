@@ -4,6 +4,7 @@
 
     $boardid    = @$_REQUEST["boardid"];
 
+    // echo "exec [traceability_scanreaderline] '{$boardid}'";
     $rs         = $db->Execute("exec [traceability_scanreaderline] '{$boardid}'");
     $return     = array();
 
