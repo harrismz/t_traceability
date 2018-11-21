@@ -210,6 +210,10 @@
 		                extend: 'Ext.data.Model',
 		                fields: ['idlinezero','rownumber','step','stepdata', 'measure','measuredata','input_user','input_date']
 		           	});
+		           	Ext.define('model_mapros_critical',{
+		                extend: 'Ext.data.Model',
+						fields: ['unique_id','supp_code','part_no','po', 'prodsup','lotnosup','qty','scan_nik','created_at','process','code','line']
+		           	});
 					// Ext.define('model_mapros_avmt',{
 			   			//	extend: 'Ext.data.Model',
 			   			//              fields: ['ticket_no_master','guid_master','modelname',
@@ -619,6 +623,21 @@
 						// 	}
 						// }
 					});
+					var store_mapros_critical = Ext.create('Ext.data.Store',{
+						model	: 'model_mapros_critical',
+						autoLoad: false,
+						pageSize: itemperpage,
+						proxy   : {
+							type    : 'ajax',
+							url     : 'json/finishgood_ma/json_mapros_critical.php',
+							reader  : {
+								type    : 'json',
+								root    : 'rows',
+								totalProperty: 'totalCount'
+							}
+						}
+					});
+
 					// var store_mapros_avmt_fg = Ext.create('Ext.data.Store',{
 						// 	model	: 'model_mapros_avmt_fg',
 						// 	autoLoad: false,
@@ -871,6 +890,11 @@
 									store_ma_qualityreport.proxy.setExtraParam('serial_no', serialcode);
 									store_ma_qualityreport.proxy.setExtraParam('src_cat', 'fg');
 									store_ma_qualityreport.loadPage(1);
+
+									store_mapros_critical.proxy.setExtraParam('model', model);
+									store_mapros_critical.proxy.setExtraParam('serial_no', serialcode);
+									store_mapros_critical.proxy.setExtraParam('boardid', '');
+									store_mapros_critical.loadPage(1);
 
 									// store_mapros_board.proxy.setExtraParam('model',model);
 									// store_mapros_board.proxy.setExtraParam('prod_date',prod_date);
@@ -3545,12 +3569,89 @@
 						// 	// },
 						// 	// plugins: [cellEditing]
 						// });
+					// var grid_mapros_critical = Ext.create('Ext.grid.Panel', {
+						// 	id 				: 'grid_mapros_critical',
+						// 	autoWidth 		: '100%',
+						// 	maxHeight		: 330,
+						// 	columnLines 	: true,
+						// 	//store 			: store_mapros_critical_fg,
+						// 	viewConfig 		: {
+						// 		stripeRows 			: true,
+						// 		emptyText 	 		: '<div class="empty-txt">No data to display.</div>',
+						// 		deferEmptyText 		: false,
+						// 		enableTextSelection	: true,
+						// 		// getRowClass			: function(record, rowIndex, rowParams, store) {
+						// 		// 	if (record.get('status')==='IN') return 'colorin';
+						// 		// 	else if (record.get('status')==='OUT') return 'colorout';
+						// 		// }
+						// 	},
+						// 	columns 	: [
+						// 		{	header 		: 'LINE',
+						// 			dataIndex 	: 'line',
+						// 			width 	 	: 90,
+						// 			renderer	: upsize
+						// 		},
+						// 		{	header 		: 'line_id',
+						// 			dataIndex 	: 'line_id',
+						// 			flex 		: 1,
+						// 			renderer	: upsize,
+						// 			hidden		: true
+						// 		},
+						// 		{	header 		: 'PROCESS',
+						// 			dataIndex 	: 'proces',
+						// 			flex 		: 1,
+						// 			renderer	: upsize
+						// 		},
+						// 		{	header 		: 'SUPPLIER CODE',
+						// 			dataIndex 	: 'supp_code',
+						// 			width 	 	: 90,
+						// 			renderer	: upsize
+						// 		},
+						// 		{	header 		: 'PART NO',
+						// 			dataIndex 	: 'partno',
+						// 			width 	 	: 90,
+						// 			renderer	: upsize
+						// 		},
+						// 		{	header 		: 'PRODUCTION DATE',
+						// 			dataIndex 	: 'proddate',
+						// 			width 	 	: 90,
+						// 			renderer	: upsize
+						// 		},
+						// 		{	header 		: 'LOT NO SUPPLIER',
+						// 			dataIndex 	: 'lotno',
+						// 			width 	 	: 90,
+						// 			renderer	: upsize
+						// 		},
+						// 		{	header 		: 'QTY',
+						// 			dataIndex 	: 'qty',
+						// 			width 	 	: 90,
+						// 			renderer	: upsize
+						// 		},
+						// 		{	header 		: 'OPERATOR',
+						// 			dataIndex 	: 'scan_nik',
+						// 			width 	 	: 90,
+						// 			renderer	: upsize
+						// 		},
+						// 		{	header 		: 'PROCESS TIME',
+						// 			dataIndex 	: 'created_at',
+						// 			width 	 	: 90,
+						// 			renderer	: upsize
+						// 		}
+								
+						// 	],
+						// 	//features: [filters],
+						// 	// selModel: {
+						// 	// 	selType: 'cellmodel'
+						// 	// },
+						// 	// plugins: [cellEditing]
+						// });
+					
 					var grid_mapros_critical = Ext.create('Ext.grid.Panel', {
 						id 				: 'grid_mapros_critical',
 						autoWidth 		: '100%',
-						maxHeight		: 330,
+						maxHeight		: 290,
 						columnLines 	: true,
-						//store 			: store_mapros_critical_fg,
+						store 			: store_mapros_critical,
 						viewConfig 		: {
 							stripeRows 			: true,
 							emptyText 	 		: '<div class="empty-txt">No data to display.</div>',
@@ -3562,58 +3663,15 @@
 							// }
 						},
 						columns 	: [
-							{	header 		: 'LINE',
-								dataIndex 	: 'line',
-								width 	 	: 90,
-								renderer	: upsize
-							},
-							{	header 		: 'line_id',
-								dataIndex 	: 'line_id',
-								flex 		: 1,
-								renderer	: upsize,
-								hidden		: true
-							},
-							{	header 		: 'PROCESS',
-								dataIndex 	: 'proces',
-								flex 		: 1,
-								renderer	: upsize
-							},
-							{	header 		: 'SUPPLIER CODE',
-								dataIndex 	: 'supp_code',
-								width 	 	: 90,
-								renderer	: upsize
-							},
-							{	header 		: 'PART NO',
-								dataIndex 	: 'partno',
-								width 	 	: 90,
-								renderer	: upsize
-							},
-							{	header 		: 'PRODUCTION DATE',
-								dataIndex 	: 'proddate',
-								width 	 	: 90,
-								renderer	: upsize
-							},
-							{	header 		: 'LOT NO SUPPLIER',
-								dataIndex 	: 'lotno',
-								width 	 	: 90,
-								renderer	: upsize
-							},
-							{	header 		: 'QTY',
-								dataIndex 	: 'qty',
-								width 	 	: 90,
-								renderer	: upsize
-							},
-							{	header 		: 'OPERATOR',
-								dataIndex 	: 'scan_nik',
-								width 	 	: 90,
-								renderer	: upsize
-							},
-							{	header 		: 'PROCESS TIME',
-								dataIndex 	: 'created_at',
-								width 	 	: 90,
-								renderer	: upsize
-							}
-							
+							{	header : 'UNIQUE ID',	dataIndex : 'unique_id', 	width : 200, 	renderer : upsize, hidden : true },
+							{	header : 'LINE', 		dataIndex : 'line', 		flex : 1, 	renderer : upsize },
+							{	header : 'INSP DATE', 	dataIndex : 'created_at', 	width : 90, 	renderer : upsize },
+							{	header : 'SUPP CODE', 	dataIndex : 'supp_code', 	flex : 1, 	renderer : upsize },
+							{	header : 'PART NO', 	dataIndex : 'part_no', 		flex : 1, 	renderer : upsize },
+							{	header : 'PO', 			dataIndex : 'po', 			flex : 1,	renderer : upsize },
+							{	header : 'PROD DATE<br>SUPPLIER', 	dataIndex : 'prodsup', 		flex : 1,	renderer : upsize },
+							{	header : 'LOT NO<br>SUPPLIER', 		dataIndex : 'lotnosup', 	flex : 1, 	renderer : upsize },
+							{	header : 'QTY', 		dataIndex : 'qty', 			flex : 1, 	renderer : upsize }
 						],
 						//features: [filters],
 						// selModel: {
@@ -3621,7 +3679,7 @@
 						// },
 						// plugins: [cellEditing]
 					});
-				
+					
 				//	MA INSPECTION
 					var grid_ma_quality = Ext.create('Ext.grid.Panel',{
 		                id          : 'grid_ma_quality',
@@ -5874,6 +5932,11 @@
 							}
 						},
 						items 		: [
+							{	title 		: 'QUALITY REPORT',
+							 	id  		: 'show_grid_ma_quality',
+								reorderable : false,
+								items 	: [grid_ma_quality]
+							},
 							{	title 		: 'FWDN',
 							 	id  		: 'show_grid_fwdn',
 								reorderable : false,
