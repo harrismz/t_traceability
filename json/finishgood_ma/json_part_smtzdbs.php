@@ -47,7 +47,7 @@
         "rows"=>$return);
 
     echo json_encode($x);
-
+    $rs->Close();
     $db->Close();
 ?><?php
     /*
@@ -98,6 +98,6 @@
         "rows"=>$return);
 
     echo json_encode($x);
-
+    $rs->Close();
     $db->Close();
 ?>

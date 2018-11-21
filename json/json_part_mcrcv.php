@@ -36,6 +36,6 @@ date_default_timezone_set('Asia/jakarta');
         "rows"=>$return);
 
     echo json_encode($x);
-
+    $rs->Close();
     $db->Close();
 ?>

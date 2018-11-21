@@ -57,5 +57,6 @@
     echo json_encode($x);
 
     //$getimage->Close();
+    $rs->Close();
     $db->Close();
 ?>

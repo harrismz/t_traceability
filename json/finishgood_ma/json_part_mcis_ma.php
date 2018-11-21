@@ -49,6 +49,6 @@
 
   	echo json_encode($o);
 
-	$rs->Close();
+    $rs->Close();
   	$db->Close();
 ?>

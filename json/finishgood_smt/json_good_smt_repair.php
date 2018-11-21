@@ -64,7 +64,7 @@
 		"rows"=>$return);
 	
 	echo json_encode($o);
-	
+	$rs->Close();
 	$db->Close();
 	$db=null;
 ?>

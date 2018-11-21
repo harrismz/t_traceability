@@ -38,6 +38,6 @@
         "rows"=>$return);
 
     echo json_encode($x);
-
+    $rs->Close();
     $db->Close();
 ?>

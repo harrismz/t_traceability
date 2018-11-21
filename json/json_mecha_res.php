@@ -43,6 +43,6 @@ echo "select * from show_mecha_res('{$model}', '{$lot}')";
         "rows"=>$return);
 
     echo json_encode($x);
-
+    $rs->Close();
     $db->Close();
 ?>

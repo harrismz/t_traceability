@@ -41,7 +41,7 @@
             "rows"=>$return);
 
         echo json_encode($x);
-
+        $rs->Close();
         $db->Close();
     }
     else if($pjgboard == 24){
@@ -73,7 +73,7 @@
             "rows"=>$return);
 
         echo json_encode($j);
-
+        $rs_big24->Close();
         $db_big24->Close();
     }
     
