@@ -1,4 +1,8 @@
+<script type="text/javascript" src='./my/js/finishgood_smt/pcb_extjs_call.js'></script>
+<script type="text/javascript" src='./my/js/finishgood_smt/pcb_function.js'></script>
+<script type="text/javascript" src='./my/js/finishgood_smt/pcb_extjs_var.js'></script>
 <script type="text/javascript" src='./my/js/finishgood_smt/finishgood_smt.js'></script>
+<!-- <script type="text/javascript" src='./my/js/finishgood_smt/pcb_extjs_bigs.js'></script> -->
 <section>
   <!--  Searching Traceability -->
   <div class="row">
@@ -138,7 +142,8 @@
   				<div class="clearfix"></div>
   			</div>
         <div class="x_content">
-          <div id="panel_aoi" class="extjs_border">
+          <!-- <div id="panel_aoi" class="extjs_border"> -->
+          <div id="panel_aoi" style="border:2px solid grey">
           </div>
         </div>
       </div>

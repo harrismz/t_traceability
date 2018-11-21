@@ -1,96 +1,5 @@
-	Ext.Loader.setConfig({ enabled: true });
-	Ext.Loader.setPath('Ext.ux', '../framework/extjs-6.2.0/packages/ux/classic/src');
-	Ext.Loader.setPath('Ext.ajax', '../framework/extjs-6.2.0/packages/ux/src');
-	
-	Ext.override(Ext.form.TextField, {
-		enableKeyEvents: true,
-		onKeyUp: function(e, o) {
-			var value = this.getValue().toUpperCase();
-			this.setValue(value);
-			this.fireEvent('keyup', this, e);
-		}
-	});
-
-	//function untuk fontsize grid
-	function upsize(val) {
-		var x = val;
-		if (x == '' || x == '-' || x == '---'){
-			return '<font class="fontsize12" style="color:red;font-weight: bold;"> --- </font>';
-		}
-		else if (x == 'NG' || x == 'STOP'){
-			return '<font class="fontsize12" style="color:red;font-weight: bold;"> ' + x + ' </font>';
-		}
-		else if (x == 'OK' || x == 'PASS' || x == 'SOLDER' || x == 'GOOD'){
-			return '<font class="fontsize12" style="color:green;font-weight: bold;"> ' + x + ' </font>';
-		}
-		else{
-			return '<font class="fontsize12">' + x + '</font>';
-		};
-	}
-	function spimchjudge(val) {
-		var x = val;
-		if (x == '' || x == '-'){
-			return '<font class="fontsize12" style="color:red;font-weight: bold;"> --- </font>';
-		}
-		else if (x == '2'){
-			return '<font class="fontsize12" style="color:red;font-weight: bold;"> NG </font>';
-		}
-		else if (x == '0'){
-			return '<font class="fontsize12" style="color:green;font-weight: bold;"> OK </font>';
-		}
-		else{
-			return '<font class="fontsize12">' + x + '</font>';
-		};
-	}
-	function spiopjudge(val) {
-		var x = val;
-		if (x > '0'){
-			return '<font class="fontsize12" style="color:red;font-weight: bold;"> Unknown </font>';
-		}
-		else if (x == '0' || x == ''){
-			return '<font class="fontsize12" style="color:green;font-weight: bold;"> OK </font>';
-		}
-		else{
-			return '<font class="fontsize12">' + x + '</font>';
-		};
-	}
-
-	//function mode for part im navigation
-	function mode(val) {
-		if (val == "Mode2") {
-			return '<font class="upsize">CHANGE PART</font>';
-		}
-		else if (val === "Mode3") {
-			return '<font class="upsize">CHECK PART NON SEQUENTIAL</font>';
-		}
-		else if (val === "Mode4") {
-			return '<font class="upsize">CHECK PART SEQUENTIAL</font>';
-		}
-		else {
-			return '<font class="upsize">CHANGE FEEDER</font>';
-		}
-	}
-
-	function fileimage(val) {
-		return '<a href="detailpic/' + val + '" target="_blank"> <img style="max-width:120px; max-height:120px;" src="detailpic/' + val + '" /> </a>'; 
-	}
-
 	// Start
 	Ext.onReady(function() {
-
-		//	=======================================================    VARIABLE    =======================================
-			// configure whether filter query is encoded or not (initially)
-				var encode = false;
-
-			// configure whether filtering is performed locally or remotely (initially)
-				var local = true;
-				Ext.QuickTips.init();
-
-			//	end function untuk column bigsize
-				var itemperpage = 10;
-				var itemperpage_detail = 6;
-				var date 		= new Date();
-			
 		//	=======================================================    MODEL    =========================================
 			//	BOARD ID GENERATOR
 				Ext.define('model_bigs', {
@@ -299,7 +208,7 @@
 					//         	}
 					// });
 				
-			//	MOUNTER
+			//	REPAIR
 				var store_smt_repair = Ext.create('Ext.data.Store',{
 					model	: 'model_smt_repair',
 					autoLoad: false,
@@ -799,8 +708,8 @@
 					id 			: 'grid_smt_aoi_board',
 					//name		: 'grid_smt_aoi_board',
 					//autoWidth 	: '100%',
-					//maxHeight	: 300,
-					//minHeight 	: 200,
+					maxHeight	: 200,
+					minHeight 	: 200,
 					//columnLines : true,
 					store 		: store_good_smt_aoi_board,
 					viewConfig 	: {
@@ -881,130 +790,132 @@
 					// },
 					// plugins: [cellEditing]
 				});
-				var grid_smt_aoi_point = Ext.create('Ext.grid.Panel', {
-					id 				: 'grid_smt_aoi_point',
-					//autoWidth 	 	: '100%',
-					//maxHeight		: 300,
-					//minHeight 		: 200,
-					//columnLines 	: true,
-					store 			: store_good_smt_aoi_point,
-					viewConfig 		: {
-						stripeRows 	 		: true,
-						emptyText 			: '<div class="empty-txt">No data to display.</div>',
-						deferEmptyText 		: false,
-						enableTextSelection : true
-					},
-					columns: [
-						{ 	header 		: 'BARCODE',
-							dataIndex 	: 'barcode',
-							width 	 	: 200,
-							renderer 	: upsize
-						}, 
-						{ 	header 		: 'MCH NAME',
-							dataIndex 	: 'linkedserver',
-							width 	 	: 90,
-							renderer 	: upsize
-						}, 
-						{ 	header 		: 'PCB ID',
-							dataIndex 	: 'pcbid',
-							width 	 	: 75,
-							renderer 	: upsize,
-							hidden  	: true
-						}, 
-						{ 	header 		: 'PCB GUID',
-							dataIndex 	: 'pcbguid',
-							flex 		: 1,
-							renderer 	: upsize,
-							hidden  	: true
-						}, 
-						{ 	header 		: 'COMPONENT GUID',
-							dataIndex 	: 'componentguid',
-							flex 		: 1,
-							renderer 	: upsize,
-							hidden 		: true
-						}, 
-						{ 	header 		: 'UNAME',
-							dataIndex 	: 'uname',
-							width 	 	: 75,
-							renderer 	: upsize,
-							hidden  	: true
-						}, 
-						{ 	header 		: 'INSP START',
-							dataIndex 	: 'stdate',
-							flex 		: 1,
-							renderer 	: upsize
-						},
-						{ 	header 		: 'INSP END',
-							dataIndex 	: 'enddate',
-							flex 		: 1,
-							renderer 	: upsize,
-							filters 	: {
-								type 	: 'string'
-							}
-						}, 
-						{ 	header 		: 'PART NO',
-							dataIndex 	: 'partno',
-							width 		: 150,
-							renderer 	: upsize,
-							filter 		: {
-								type 	: 'string'
-							}
-						}, 
-						{ 	header 		: 'PART NAME',
-							dataIndex 	: 'partname',
-							flex 		: 1,
-							renderer 	: upsize
-						}, 
-						{ 	header 		: 'IMAGE',
-							dataIndex 	: 'image2d',
-							text 		: this.i18nColIconBmp,
-							width 		: 100,
-							renderer 	: function(value, metaData, record, rowIndex, colIndex, store) {
-								if ( !value ){
-									return '<font class="fontsize12" style="color:red;font-weight: bold;"> No Image </font>';
-								}
-								else{
-									return '<img src="data:image/jpg;base64,' + value +  '" width="80"/>';
-								}
+				// var grid_smt_aoi_point = Ext.create('Ext.grid.Panel', {
+				// 	id 				: 'grid_smt_aoi_point',
+				// 	maxHeight	: 200,
+				// 	minHeight 	: 200,
+				// 	//autoWidth 	 	: '100%',
+				// 	//maxHeight		: 300,
+				// 	//minHeight 		: 200,
+				// 	//columnLines 	: true,
+				// 	store 			: store_good_smt_aoi_point,
+				// 	viewConfig 		: {
+				// 		stripeRows 	 		: true,
+				// 		emptyText 			: '<div class="empty-txt">No data to display.</div>',
+				// 		deferEmptyText 		: false,
+				// 		enableTextSelection : true
+				// 	},
+				// 	columns: [
+				// 		{ 	header 		: 'BARCODE',
+				// 			dataIndex 	: 'barcode',
+				// 			width 	 	: 200,
+				// 			renderer 	: upsize
+				// 		}, 
+				// 		{ 	header 		: 'MCH NAME',
+				// 			dataIndex 	: 'linkedserver',
+				// 			width 	 	: 90,
+				// 			renderer 	: upsize
+				// 		}, 
+				// 		{ 	header 		: 'PCB ID',
+				// 			dataIndex 	: 'pcbid',
+				// 			width 	 	: 75,
+				// 			renderer 	: upsize,
+				// 			hidden  	: true
+				// 		}, 
+				// 		{ 	header 		: 'PCB GUID',
+				// 			dataIndex 	: 'pcbguid',
+				// 			flex 		: 1,
+				// 			renderer 	: upsize,
+				// 			hidden  	: true
+				// 		}, 
+				// 		{ 	header 		: 'COMPONENT GUID',
+				// 			dataIndex 	: 'componentguid',
+				// 			flex 		: 1,
+				// 			renderer 	: upsize,
+				// 			hidden 		: true
+				// 		}, 
+				// 		{ 	header 		: 'UNAME',
+				// 			dataIndex 	: 'uname',
+				// 			width 	 	: 75,
+				// 			renderer 	: upsize,
+				// 			hidden  	: true
+				// 		}, 
+				// 		{ 	header 		: 'INSP START',
+				// 			dataIndex 	: 'stdate',
+				// 			flex 		: 1,
+				// 			renderer 	: upsize
+				// 		},
+				// 		{ 	header 		: 'INSP END',
+				// 			dataIndex 	: 'enddate',
+				// 			flex 		: 1,
+				// 			renderer 	: upsize,
+				// 			filters 	: {
+				// 				type 	: 'string'
+				// 			}
+				// 		}, 
+				// 		{ 	header 		: 'PART NO',
+				// 			dataIndex 	: 'partno',
+				// 			width 		: 150,
+				// 			renderer 	: upsize,
+				// 			filter 		: {
+				// 				type 	: 'string'
+				// 			}
+				// 		}, 
+				// 		{ 	header 		: 'PART NAME',
+				// 			dataIndex 	: 'partname',
+				// 			flex 		: 1,
+				// 			renderer 	: upsize
+				// 		}, 
+				// 		{ 	header 		: 'IMAGE',
+				// 			dataIndex 	: 'image2d',
+				// 			text 		: this.i18nColIconBmp,
+				// 			width 		: 100,
+				// 			renderer 	: function(value, metaData, record, rowIndex, colIndex, store) {
+				// 				if ( !value ){
+				// 					return '<font class="fontsize12" style="color:red;font-weight: bold;"> No Image </font>';
+				// 				}
+				// 				else{
+				// 					return '<img src="data:image/jpg;base64,' + value +  '" width="80"/>';
+				// 				}
 								
-							}
-						}, 
-						{ 	header 		: 'MCH JUDGE',
-							dataIndex 	: 'aoijudgment',
-							flex 		: 1,
-							renderer 	: upsize
-						}, 
-						{ 	header 		: 'OP JUDGE',
-							dataIndex 	: 'userjudgment',
-							flex 		: 1,
-							renderer 	: upsize
-						}
-					],
-					bbar	: Ext.create('Ext.PagingToolbar', {
-						pageSize		: itemperpage,
-						store			: store_good_smt_aoi_point,
-						displayInfo		: true,
-						displayMsg		: 'Data {0} - {1} from {2} data',
-						emptyMsg		: "Page not found",
-						beforePageText  : 'Page',
-						afterPageText   : 'from {0} Pages',
-						firstText       : 'First Page',
-						prevText        : 'Previous Page',
-						nextText        : 'Next page',
-						lastText        : 'Last Page',
-						plugins       	: Ext.create('Ext.ux.ProgressBarPager', {}),
-						listeners 		: {
-							afterrender: function (cmp) {
-								cmp.getComponent("refresh").hide();
-							}
-						}
-					})
-					//features: [filters],
-					// selModel: {
-					// 	selType: 'cellmodel'
-					// },
-					// plugins: [cellEditing]
-				});
+				// 			}
+				// 		}, 
+				// 		{ 	header 		: 'MCH JUDGE',
+				// 			dataIndex 	: 'aoijudgment',
+				// 			flex 		: 1,
+				// 			renderer 	: upsize
+				// 		}, 
+				// 		{ 	header 		: 'OP JUDGE',
+				// 			dataIndex 	: 'userjudgment',
+				// 			flex 		: 1,
+				// 			renderer 	: upsize
+				// 		}
+				// 	],
+				// 	bbar	: Ext.create('Ext.PagingToolbar', {
+				// 		pageSize		: itemperpage,
+				// 		store			: store_good_smt_aoi_point,
+				// 		displayInfo		: true,
+				// 		displayMsg		: 'Data {0} - {1} from {2} data',
+				// 		emptyMsg		: "Page not found",
+				// 		beforePageText  : 'Page',
+				// 		afterPageText   : 'from {0} Pages',
+				// 		firstText       : 'First Page',
+				// 		prevText        : 'Previous Page',
+				// 		nextText        : 'Next page',
+				// 		lastText        : 'Last Page',
+				// 		plugins       	: Ext.create('Ext.ux.ProgressBarPager', {}),
+				// 		listeners 		: {
+				// 			afterrender: function (cmp) {
+				// 				cmp.getComponent("refresh").hide();
+				// 			}
+				// 		}
+				// 	})
+				// 	//features: [filters],
+				// 	// selModel: {
+				// 	// 	selType: 'cellmodel'
+				// 	// },
+				// 	// plugins: [cellEditing]
+				// });
 			//	REFLOW
 				var grid_smt_reflow = Ext.create('Ext.grid.Panel', {
 					id 			: 'grid_smt_reflow',
@@ -2938,10 +2849,11 @@
 				var panel_aoi = Ext.create('Ext.tab.Panel', {
 					id 			: 'panel_aoi',
 					renderTo 	: 'panel_aoi',
-					//minHeight 	: 400,
-					//maxHeight 	: 400,
-					//autoScroll 	: true,
-					//frame 		: true,
+					// minHeight 	: 400,
+					// maxHeight 	: 400,
+					autoScroll 	: true,
+					frame 		: false,
+					border : false,
 					tabBar: {
 						flex: 1,
 						layout: {
@@ -2952,16 +2864,16 @@
 					items 		: [
 						{	title 		: 'BOARD',
 						 	id  		: 'show_grid_aoi_board',
-							//reorderable : false,
-							//layout		: 'fit',
-							//items 		: [grid_smt_aoi_board]
+							reorderable : false,
+							layout		: 'fit',
+							items 		: [grid_smt_aoi_board]
 						}, 
-						{	title 		: 'POINT',
-						 	id  		: 'show_grid_aoi_point',
-							//reorderable	: false,
-							//layout		: 'fit',
-							//items 		: [grid_smt_aoi_point]
-						}
+						// {	title 		: 'POINT',
+						//  	id  		: 'show_grid_aoi_point',
+						// 	reorderable	: false,
+						// 	layout		: 'fit',
+						// 	items 		: [grid_smt_aoi_point]
+						// }
 					]
 				});
 			//	REFLOW
