@@ -6,7 +6,7 @@
     $model      = @$_REQUEST['model'];
     $serial     = @$_REQUEST['serial_no'];
     $boardid    = @$_REQUEST['boardid'];
-    $sql        = "call mapros_critical_test ('{$model}','{$serial}','{$boardid}')";
+    $sql        = "call traceability_mapros_critical ('{$model}','{$serial}','{$boardid}')";
     $rs         = $db->Execute($sql);
     $return     = array();
  
