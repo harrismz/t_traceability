@@ -10,7 +10,7 @@
     // echo "declare @totalcount as int; exec traceability_good_smt_mounter_test1 $start, $limit, '{$model}','{$process}','{$pwbno}','{$spidate}', @totalcount=@totalcount out";
     // echo "declare @totalcount as int; exec [traceability_dispReaderMounter_rev3] $start, $limit, '{$boardid}', @totalcount=@totalcount out";
     $rs         = $db->Execute("declare @totalcount as int; exec [traceability_dispReaderMounter_rev3] $start, $limit, '{$boardid}', @totalcount=@totalcount out");
-    $totalcount = $rs->fields['19'];
+    $totalcount = $rs->fields['20'];
     $return     = array();
 
     for($i=0;!$rs->EOF;$i++){
@@ -33,6 +33,7 @@
         $return[$i]['feederno']     = trim($rs->fields['16']);
         $return[$i]['compid1']      = trim($rs->fields['17']);
         $return[$i]['scandate']     = trim($rs->fields['18']);
+        $return[$i]['lot']          = trim($rs->fields['19']);
        
         $rs->MoveNext();
     }

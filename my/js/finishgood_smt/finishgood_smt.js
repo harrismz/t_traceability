@@ -135,7 +135,7 @@
 	                extend: 'Ext.data.Model',
 					fields: ['row','line','boardid','model','pwbno','pwbname','process','lotno',
 	                			'datein','dateout','jobno','partloc','mode','partno','feeder',
-	                			'feederserial','feederno','compid1','scandate']
+	                			'feederserial','feederno','compid1','scandate','lot']
 	           	});
 	           	
            	//	SPI
@@ -621,6 +621,7 @@
 					renderTo 	: 'panel_bigs',
 					columnLines	: true,
 					maxHeight 	: 300,
+					minHeight 	: 150,
 					store 		: store_bigs,
 					viewConfig	: {
 						stripeRows 			: true,
@@ -738,8 +739,9 @@
 			//	REPAIR
 				var grid_smt_repair = Ext.create('Ext.grid.Panel', {
 					id 				: 'grid_smt_repair',
-					autoWidth 		: '100%',
+					//autoWidth 		: '100%',
 					maxHeight		: 300,
+					minHeight 		: 150,
 					columnLines 	: true,
 					store 			: store_smt_repair,
 					viewConfig 		: {
@@ -795,10 +797,11 @@
 			//	AOI
 				var grid_smt_aoi_board = Ext.create('Ext.grid.Panel', {
 					id 			: 'grid_smt_aoi_board',
-					name		: 'grid_smt_aoi_board',
-					autoWidth 	: '100%',
-					maxHeight	: 330,
-					columnLines : true,
+					//name		: 'grid_smt_aoi_board',
+					//autoWidth 	: '100%',
+					//maxHeight	: 300,
+					//minHeight 	: 200,
+					//columnLines : true,
 					store 		: store_good_smt_aoi_board,
 					viewConfig 	: {
 						stripeRows 			: true,
@@ -880,9 +883,10 @@
 				});
 				var grid_smt_aoi_point = Ext.create('Ext.grid.Panel', {
 					id 				: 'grid_smt_aoi_point',
-					autoWidth 	 	: '100%',
-					maxHeight		: 330,
-					columnLines 	: true,
+					//autoWidth 	 	: '100%',
+					//maxHeight		: 300,
+					//minHeight 		: 200,
+					//columnLines 	: true,
 					store 			: store_good_smt_aoi_point,
 					viewConfig 		: {
 						stripeRows 	 		: true,
@@ -1006,6 +1010,7 @@
 					id 			: 'grid_smt_reflow',
 					autoWidth 	: '100%',
 					maxHeight	: 290,
+					minHeight 	: 150,
 					columnLines : true,
 					store 		: store_smt_reflow,
 					viewConfig 	: {
@@ -1070,9 +1075,9 @@
 			//	MOUNTER
 				var grid_smt_mounter_header = Ext.create('Ext.grid.Panel', {
 					id 				: 'grid_smt_mounter_header',
-					autoWidth 		: '100%',
 					maxHeight		: 250,
-					columnLines 	: true,
+					minHeight 		: 80,
+					//columnLines 	: true,
 					store 			: store_smt_mounter_header,
 					viewConfig 		: {
 						stripeRows 			: true,
@@ -1097,10 +1102,11 @@
 				});
 				var grid_smt_mounter = Ext.create('Ext.grid.Panel', {
 					id 				: 'grid_smt_mounter',
-					//title 			: '<div style="text-align:center;">==== &nbsp; DETAIL &nbsp; ====</div>',
-					autoWidth 		: '100%',
-					maxHeight		: 400,
-					columnLines 	: true,
+					// title 			: '<div style="text-align:center;">==== &nbsp; DETAIL &nbsp; ====</div>',
+					// autoWidth 		: '100%',
+					 maxHeight		: 400,
+					 minHeight 		: 150,
+					// columnLines 	: true,
 					store 			: store_smt_mounter,
 					viewConfig 		: {
 						stripeRows 			: true,
@@ -1124,6 +1130,7 @@
 						{ 	header : 'FEEDER NO', 		dataIndex : 'feederno', 	width : 100,	renderer : upsize },
 						{ 	header : 'SCANNING', 		dataIndex : 'compid1', 		width : 140,	renderer : upsize },
 						{ 	header : 'SCAN DATE', 		dataIndex : 'scandate', 	width : 90,		renderer : upsize },
+						{ 	header : 'LOT', 			dataIndex : 'lot', 			width : 90,		renderer : upsize },
 						{ 	header : 'JOBNO', 			dataIndex : 'jobno', 		width : 150, 	renderer : upsize }
 					],
 					bbar	: Ext.create('Ext.PagingToolbar', {
@@ -1152,6 +1159,7 @@
 					id 				: 'grid_smt_spi',
 					autoWidth 		: '100%',
 					maxHeight		: 290,
+					minHeight 		: 150,
 					columnLines 	: true,
 					store 			: store_smt_spi,
 					viewConfig 		: {
@@ -2857,29 +2865,83 @@
 				var panel_repair = Ext.create('Ext.panel.Panel', {
 					id 				: 'panel_repair',
 					renderTo 		: 'panel_repair',
-					autoWidth		: '100%',
-					maxHeight		: 820,
-					border			: false,
-					frame			: true,
-					hidden			: false,
-					defaults		: {
-						split		: true,
-						collapsible	: false
-					},
+					//autoWidth		: '100%',
+					maxHeight		: 400,
+					minHeight 		: 150,
+					//border			: false,
+					//frame			: true,
+					//hidden			: false,
+					// defaults		: {
+						//split		: true,
+						//collapsible	: false
+					// },
 					items			: [grid_smt_repair]
 				});
+			//	SPI
+				var panel_spi = Ext.create('Ext.panel.Panel', {
+					id 				: 'panel_spi',
+					renderTo 		: 'panel_spi',
+					//autoWidth		: '100%',
+					maxHeight		: 400,
+					minHeight 		: 150,
+					//border			: false,
+					//frame			: true,
+					//hidden			: false,
+					// defaults		: {
+					// 	split		: true,
+					// 	collapsible	: false
+					// },
+					items			: [grid_smt_spi]
+				});
+			//	MOUNTER
+				var panel_mounter = Ext.create('Ext.panel.Panel',{
+			    	id 			: 'panel_mounter',
+					renderTo 	: 'panel_mounter',
+					//autoWidth	: '100%',
+					maxHeight	: 550,
+					minHeight 	: 150,
+					//border		: false,
+					 //frame		: true,
+					// hidden		: false,
+				 //    layout		: 'fit',
+				 //   	defaults	: {
+					//      split: false,
+					//      plain: true
+				 //    },
+				   	items		: [{
+					   region	: 'north', // GRID SIDE
+					   layout	: 'fit',
+					   items	: [grid_smt_mounter_header]
+					   }, {
+					   region	: 'center', // GRID SIDE
+					   layout	: 'fit',
+					   title 	: '<div style="text-align:center;">==== &nbsp; DETAIL &nbsp; ====</div>',
+					   items	: [grid_smt_mounter]
+					   }]
+			  	});                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+				// var panel_mounter = Ext.create('Ext.panel.Panel', {
+					// 	id 				: 'panel_mounter',
+					// 	renderTo 		: 'panel_mounter',
+					// 	autoWidth		: '100%',
+					// 	maxHeight		: 820,
+					// 	border			: false,
+					// 	frame			: true,
+					// 	hidden			: false,
+					// 	defaults		: {
+					// 		split		: true,
+					// 		collapsible	: false
+					// 	},
+					// 	layout 			: 'fit',
+					// 	items			: [panel_mounter_grid]
+					// });
 			//	AOI
 				var panel_aoi = Ext.create('Ext.tab.Panel', {
 					id 			: 'panel_aoi',
 					renderTo 	: 'panel_aoi',
-					//autoHeight	: true,
-					plain 		: true,
-					//activeTab 	: 0,
-					autoWidth 	: '100%',
-					height 		: 350,
-					autoScroll 	: true,
-					frame 		: true,
-					style 	: 'padding:5px;-background:#157FCC;',
+					//minHeight 	: 400,
+					//maxHeight 	: 400,
+					//autoScroll 	: true,
+					//frame 		: true,
 					tabBar: {
 						flex: 1,
 						layout: {
@@ -2890,15 +2952,15 @@
 					items 		: [
 						{	title 		: 'BOARD',
 						 	id  		: 'show_grid_aoi_board',
-							reorderable : false,
-							layout		: 'fit',
-							items 		: [grid_smt_aoi_board]
+							//reorderable : false,
+							//layout		: 'fit',
+							//items 		: [grid_smt_aoi_board]
 						}, 
 						{	title 		: 'POINT',
 						 	id  		: 'show_grid_aoi_point',
-							reorderable	: false,
-							layout		: 'fit',
-							items 		: [grid_smt_aoi_point]
+							//reorderable	: false,
+							//layout		: 'fit',
+							//items 		: [grid_smt_aoi_point]
 						}
 					]
 				});
@@ -2915,63 +2977,6 @@
 						collapsible	: false
 					},
 					items			: [grid_smt_reflow]
-				});
-			//	MOUNTER
-				var panel_mounter = Ext.create('Ext.panel.Panel',{
-			    	id 			: 'panel_mounter',
-					renderTo 	: 'panel_mounter',
-					autoWidth	: '100%',
-					maxHeight	: 550,
-					border		: false,
-					 frame		: true,
-					// hidden		: false,
-				 //    layout		: 'fit',
-				 //   	defaults	: {
-					//      split: false,
-					//      plain: true
-				 //    },
-
-
-
-				   	items		: [{
-					   region	: 'north', // GRID SIDE
-					   layout	: 'fit',
-					   items	: [grid_smt_mounter_header]
-					   }, {
-					   region	: 'center', // GRID SIDE
-					   layout	: 'fit',
-					   items	: [grid_smt_mounter]
-					   }]
-			  	});
-				// var panel_mounter = Ext.create('Ext.panel.Panel', {
-				// 	id 				: 'panel_mounter',
-				// 	renderTo 		: 'panel_mounter',
-				// 	autoWidth		: '100%',
-				// 	maxHeight		: 820,
-				// 	border			: false,
-				// 	frame			: true,
-				// 	hidden			: false,
-				// 	defaults		: {
-				// 		split		: true,
-				// 		collapsible	: false
-				// 	},
-				// 	layout 			: 'fit',
-				// 	items			: [panel_mounter_grid]
-				// });
-			//	SPI
-				var panel_spi = Ext.create('Ext.panel.Panel', {
-					id 				: 'panel_spi',
-					renderTo 		: 'panel_spi',
-					autoWidth		: '100%',
-					maxHeight		: 820,
-					border			: false,
-					frame			: true,
-					hidden			: false,
-					defaults		: {
-						split		: true,
-						collapsible	: false
-					},
-					items			: [grid_smt_spi]
 				});
 			//	MAPROS
 				var panel_mapros = Ext.create('Ext.tab.Panel', {
