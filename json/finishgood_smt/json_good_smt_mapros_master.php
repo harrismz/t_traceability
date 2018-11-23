@@ -12,7 +12,7 @@
     $cavity     = @$_REQUEST['cavity'];
 
 
-	echo "call traceability_goodsmt_master ('{$boardid}','{$cavity}')";
+	// echo "call traceability_goodsmt_master ('{$boardid}','{$cavity}')";
     $rs    = $db->Execute("call traceability_goodsmt_master ('{$boardid}','{$cavity}')");
     $return = array();
  
