@@ -12,7 +12,6 @@
       <ul class="nav side-menu">
         <li><a href="home.php?content=finishgood_smt"><i class="fas fa-microchip"></i> PCB Serial </a></li>
         <li><a href="home.php?content=finishgood"><i class="fas fa-box"></i> Finished Goods </a></li>
-        <li><a href="home.php?content=symptom"><i class="fas fa-stethoscope"></i> Symptom </a></li>
         <li><a href="home.php?content=measurement"><i class="fas fa-thermometer-half"></i> Measurement </a></li>
       </ul>
     </div>
@@ -60,6 +59,7 @@
         <li><a href="home.php?content=Production"><i class="fas fa-cogs"></i> Production </a></li> -->
         <!-- <li><a href="home.php?content=errorfinder"><i class="fas fa-exclamation-triangle"></i> Error Finder </a></li> -->
         <!-- <li><a href="home.php?content=reflow"><i class="fas fa-tachometer-alt"></i> Reflow </a></li> -->
+        <!-- <li><a href="home.php?content=symptom"><i class="fas fa-stethoscope"></i> Symptom </a></li> -->
 
 
 <!--

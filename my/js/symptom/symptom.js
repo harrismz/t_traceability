@@ -188,5 +188,6 @@
 		var dept = d;
 		Ext.getStore('store_symptom').proxy.setExtraParam('dept', d);
 		Ext.getStore('store_symptom').loadPage(1);
+		
 	}
 
