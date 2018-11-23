@@ -2,19 +2,33 @@
 <script type="text/javascript" src='./my/js/finishgood_smt/pcb_function.js'></script>
 <script type="text/javascript" src='./my/js/finishgood_smt/pcb_extjs_var.js'></script>
 <script type="text/javascript" src='./my/js/finishgood_smt/finishgood_smt.js'></script>
-<!-- <script type="text/javascript" src='./my/js/finishgood_smt/pcb_extjs_bigs.js'></script> -->
+<script type="text/javascript" src='./my/js/finishgood_smt/pcb_extjs_bigs.js'></script>
+<script type="text/javascript" src='./my/js/finishgood_smt/pcb_extjs_repair.js'></script>
+<script type="text/javascript" src='./my/js/finishgood_smt/pcb_extjs_spi.js'></script>
+<script type="text/javascript" src='./my/js/finishgood_smt/pcb_extjs_mounter.js'></script>
+<script type="text/javascript" src='./my/js/finishgood_smt/pcb_extjs_reflow.js'></script> 
+<script type="text/javascript" src='./my/js/finishgood_smt/pcb_extjs_aoi.js'></script>
+<script type="text/javascript" src='./my/js/finishgood_smt/pcb_extjs_mapros.js'></script>
+<script type="text/javascript" src='./my/js/finishgood_smt/pcb_extjs_inspection.js'></script>
 <section>
   <!--  Searching Traceability -->
-  <div class="row">
-    <div class="x_panel">
-      <div class="form-inline">
-        <div id="boardid_scan" class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <h5 class="x_title"><i class="fas fa-search"></i> PCB ID </h5>
+  <div class="page-title">
+    <div class="title_left">
+      <h3>PCB Serial</h3>
+    </div>
+
+    <div class="title_right">
+      <div class="col-md-9 col-sm-9 col-xs-12 form-group pull-right top_search">
+        <div class="input-group">
+          <input id="pcbserial" type="text" class="form-control" placeholder="Search For PCB Serial..." onkeypress="checkPcbSerial(event)" value="YJ5224A01MN_00A7010A0002">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button" onclick="checkPcbSerial(event)">Go!</button>
+          </span>
         </div>
       </div>
     </div>
   </div>
-  <!--  END OF Searching Traceability -->
+  
   <!-- ============================================================================== -->
   <div id="big_tab" class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
@@ -153,7 +167,7 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="x_panel">
         <div class="x_title">
-          <h2><i class="far fa-calendar-check"></i> Production <small> ( MA & MECHA ) </small></h2>
+          <h2><i class="far fa-calendar-check"></i> TraceVerify MA <small> ( MAPROS ) </small></h2>
           <ul class="nav navbar-right panel_toolbox">
             <li>
               <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -165,13 +179,53 @@
           <div class="clearfix"></div>
         </div>
         <div class="x_content">
-          <div  id="panel_mapros" class="extjs_border">
+          <div  id="panel_pcb_mapros" class="extjs_border">
           </div>
         </div>
       </div>
     </div>
   </div>
-  <!-- <div id="finishgood_tab" class="row">
+  <div id="ma_tab" class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="x_panel">
+        <div class="x_title">
+          <h2><i class="far fa-calendar-check"></i> Inspection Process <small> ( MA ) </small></h2>
+          <ul class="nav navbar-right panel_toolbox">
+            <li>
+              <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+            </li>
+            <li>
+              <a class="close-link"><i class="fas fa-times"></i></a>
+            </li>
+          </ul>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+          <div  id="panel_pcb_inspection" class="extjs_border">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <a href="javascript:" id="return-to-top"><i class="fas fa-chevron-up"></i></a>
+</section>
+
+
+<!-- <script type="text/javascript" src='./my/js/finishgood_smt/pcb_extjs_bigs.js'></script> -->
+<!-- <script type="text/javascript" src='./my/js/finishgood_smt/pcb_search.js'></script> -->
+
+<!-- <div class="row">
+    <div class="x_panel">
+      <div class="form-inline">
+        <div id="boardid_scan" class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <h5 class="x_title"><i class="fas fa-search"></i> PCB ID </h5>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <!--  END OF Searching Traceability -->
+
+<!-- <div id="finishgood_tab" class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="x_panel fixed_height_500">
         <div class="x_title">
@@ -199,5 +253,3 @@
   </div> -->
   <!-- ============================================================================== -->
   <!-- Return to Top -->
-  <a href="javascript:" id="return-to-top"><i class="fas fa-chevron-up"></i></a>
-</section>

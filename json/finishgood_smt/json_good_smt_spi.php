@@ -6,28 +6,13 @@
     $limit      = @$_REQUEST["limit"];
     $start      = (($page*$limit)-$limit)+1;
     $boardid    = @$_REQUEST['boardid'];
-    $smt_date2  = @$_REQUEST['smt_date'];
-    $getdate    = '';
-    $smt_date   = '';
-
-    if ($smt_date2) {
-        $getdate    = substr($_REQUEST['smt_date'],0,10);
-        $smt_date   = date('Y-m-d', strtotime($getdate));
-    }
-    else {
-        $smt_date   = '';
-    }
-	//echo "exec [traceability_good_smt_spi] '{$boardid}','{$smt_date}'";
-    
-    //$sql    = "exec traceability_good_smt_spi $start, $limit, '{$boardid}', '{$smt_date}'";
     $sql    = "DECLARE  @return_value int,
                         @totalcount int
 
                 EXEC    @return_value = [dbo].[traceability_good_smt_spi]
-                        @start = 0,
-                        @maxct = 100,
+                        @start = '{$start}',
+                        @maxct = '{$limit}',
                         @boardid = N'{$boardid}',
-                        @smt_date = '{$smt_date}',
                         @totalcount = @totalcount OUTPUT";
     $rs    = $db->Execute($sql);
     $totalcount = $rs->fields['10'];

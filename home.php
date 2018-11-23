@@ -64,7 +64,8 @@
   		});
   	</script> -->
 </head>
-<body class="nav-md">
+<!-- <body class="nav-md"> -->
+<body class="nav-sm">
 	<!-- <?php // $username = 'Harris Muhammad Zaki'; ?> -->
 	<div class="container body">
 		<div class="main_container">

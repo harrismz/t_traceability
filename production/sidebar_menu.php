@@ -4,6 +4,42 @@
   </div>
 
   <div class="clearfix"></div>
+  <br />
+
+  <!-- sidebar menu -->
+  <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+    <div class="menu_section">
+      <ul class="nav side-menu">
+        <li><a href="home.php?content=finishgood_smt"><i class="fas fa-microchip"></i> PCB Serial </a></li>
+        <li><a href="home.php?content=finishgood"><i class="fas fa-box"></i> Finished Goods </a></li>
+        <li><a href="home.php?content=symptom"><i class="fas fa-stethoscope"></i> Symptom </a></li>
+        <li><a href="home.php?content=measurement"><i class="fas fa-thermometer-half"></i> Measurement </a></li>
+      </ul>
+    </div>
+  </div>
+  <!-- /sidebar menu -->
+
+  <!-- /menu footer buttons -->
+  <div class="sidebar-footer hidden-small">
+    <a data-toggle="tooltip" data-placement="top" title="Settings">
+      <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+    </a>
+    <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+      <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+    </a>
+    <a data-toggle="tooltip" data-placement="top" title="Lock">
+      <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+    </a>
+    <a data-toggle="tooltip" data-placement="top" title="Logout" href="#">
+      <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+    </a>
+  </div>
+  <!-- /menu footer buttons -->
+</div>
+
+
+
+<!-- TRASH -->
 
   <!-- menu profile quick info -->
   <!-- <div class="profile clearfix">
@@ -16,25 +52,13 @@
     </div>
   </div> -->
   <!-- /menu profile quick info -->
-
-  <br />
-
-  <!-- sidebar menu -->
-  <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-    <div class="menu_section">
-      <!-- <h3>General</h3> -->
-      <ul class="nav side-menu">
-        <!-- <li><a href="home.php"><i class="fas fa-home"></i> Home </a></li> -->
-        <li><a href="home.php?content=finishgood_smt"><i class="fas fa-microchip"></i> PCB Serial </a></li>
-        <li><a href="home.php?content=finishgood"><i class="fas fa-box"></i> Finished Goods </a></li>
+ <!-- <li><a href="home.php"><i class="fas fa-home"></i> Home </a></li> -->
         <!-- <li><a href="home.php?content=finishgood_smt"><i class="fas fa-code-branch"></i> Finished Goods SMT </a></li> -->
         <!-- <li><a href="home.php?content=singlepart"><i class="fas fa-microchip"></i> Part </a></li> -->
-        <!-- <li><a href="home.php?content=symptom"><i class="fas fa-stethoscope"></i> Symptom </a></li> -->
         <!-- <li><a href="home.php?content=modellotno"><i class="fas fa-search"></i> Model & Lot No </a></li> -->
         <!-- <li><a href="home.php?content=quality"><i class="fas fa-tasks"></i> Quality </a></li>
         <li><a href="home.php?content=Production"><i class="fas fa-cogs"></i> Production </a></li> -->
         <!-- <li><a href="home.php?content=errorfinder"><i class="fas fa-exclamation-triangle"></i> Error Finder </a></li> -->
-        <li><a href="home.php?content=measurement"><i class="fas fa-thermometer-half"></i> Measurement </a></li>
         <!-- <li><a href="home.php?content=reflow"><i class="fas fa-tachometer-alt"></i> Reflow </a></li> -->
 
 
@@ -87,8 +111,7 @@
             <li><a href="fixed_footer.html">Fixed Footer</a></li>
           </ul>
         </li> -->
-      </ul>
-    </div>
+
     <!-- <div class="menu_section">
       <h3>Live On</h3>
       <ul class="nav side-menu">
@@ -132,24 +155,5 @@
       </ul>
     </div> -->
 
-  </div>
-  <!-- /sidebar menu -->
-
-  <!-- /menu footer buttons -->
-  <div class="sidebar-footer hidden-small">
-    <a data-toggle="tooltip" data-placement="top" title="Settings">
-      <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-    </a>
-    <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-      <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-    </a>
-    <a data-toggle="tooltip" data-placement="top" title="Lock">
-      <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-    </a>
-    <!-- <a data-toggle="tooltip" data-placement="top" title="Logout" href="production/login.html"> -->
-    <a data-toggle="tooltip" data-placement="top" title="Logout" href="#">
-      <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-    </a>
-  </div>
-  <!-- /menu footer buttons -->
-</div>
+      <!-- <a data-toggle="tooltip" data-placement="top" title="Logout" href="production/login.html"> -->
+  
