@@ -27,7 +27,8 @@
         $return[$i]['created_at']      	= trim($rs->fields['7']);
         $return[$i]['updated_at']       = trim($rs->fields['8']);
         $return[$i]['lineprocess']    	= trim($rs->fields['9']);
-        $return[$i]['line']    			= trim($rs->fields['10']);
+        $return[$i]['line']             = trim($rs->fields['10']);
+        $return[$i]['serial_no']		= trim($rs->fields['11']);
         $rs->MoveNext();
     }
     $x = array(

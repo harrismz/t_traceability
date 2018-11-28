@@ -13,6 +13,18 @@ function upsize(val) {
 		return '<font class="fontsize12">' + x + '</font>';
 	};
 }
+function secondtime(val) {
+	var x = val;
+	if (x == ''){
+		return '<font class="fontsize12" style="color:red;font-weight: bold;"> Not Complete </font>';
+	}
+	else if (x != ''){
+		return '<font class="fontsize12"> ' + parseInt('' + (x/60)/60) + 'h : ' + parseInt('' + (x/60)%60) + 'm : ' + parseInt('' + (x%60)) + 's </font>';
+	}
+	else{
+		return '<font class="fontsize12">' + x + '</font>';
+	};
+}
 function spimchjudge(val) {
 	var x = val;
 	if (x == '' || x == '-'){
@@ -56,5 +68,15 @@ function mode(val) {
 }
 function fileimage(val) {
 	return '<a href="detailpic/' + val + '" target="_blank"> <img style="max-width:120px; max-height:120px;" src="detailpic/' + val + '" /> </a>'; 
+}
+function renderImage(value, metaData, record, rowIndex, colIndex, store) {
+        if ( !value ){
+			return '<font class="fontsize12" style="color:red;font-weight: bold;"> No Image </font>';
+		}
+		else{
+			// return '<img src="data:image/jpg;base64,' + value +  '" width="80"/>';
+			metaData.attr = 'style="cursor: pointer"';
+        	return '<img class="imageZoomCls" src="data:image/jpg;base64,' + value +  '" width="50" height="50" />';
+		}
 }
 

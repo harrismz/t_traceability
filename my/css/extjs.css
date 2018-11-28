@@ -24,6 +24,17 @@
 .colorout {
 	background-color: rgb(185, 246, 202, 0.4);
 }
+.imageZoomCls:hover{
+	width:200px;
+	height:auto;
+}
+.headergrid{
+	_color : #008ED7;
+	color : #17AEFF;
+	_font-weight: bold;
+}
+
+
 /* ==============================   OLD   ========================== */
 .fontsize12{
 	font-size:12px;

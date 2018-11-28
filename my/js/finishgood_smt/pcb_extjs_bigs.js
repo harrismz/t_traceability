@@ -24,6 +24,9 @@ Ext.onReady(function() {
 			load: function(store, records) {
 				if (records != "") {
 					cavity 	= store.getAt(0).get('cavity');
+					model   = store.getAt(0).get('model');
+					pwbname = store.getAt(0).get('pwbname');
+					//line 	= store.getAt(0).get('line');
 					boardid = document.getElementById('pcbserial').value;
 					
 					Ext.getStore('store_smt_mounter_header').proxy.setExtraParam('boardid', boardid);
@@ -31,6 +34,9 @@ Ext.onReady(function() {
 
 					Ext.getStore('store_mapros_board').proxy.setExtraParam('boardid', boardid);
 					Ext.getStore('store_mapros_board').proxy.setExtraParam('cavity', cavity);
+					Ext.getStore('store_mapros_board').proxy.setExtraParam('model', model);
+					Ext.getStore('store_mapros_board').proxy.setExtraParam('pwbname', pwbname);
+					//Ext.getStore('store_mapros_board').proxy.setExtraParam('line', line);
 					Ext.getStore('store_mapros_board').loadPage(1);
 
 					Ext.getStore('store_mapros_master').proxy.setExtraParam('boardid', boardid);
@@ -88,16 +94,19 @@ Ext.onReady(function() {
 			},
 			{ 	header 	 : 'YNUMBER',
 				dataIndex: 'ynumber',
+				componentCls: 'headergrid',
 				width 	 : 100,
 				renderer : upsize
 			}, 
 			{ 	header 	 : 'SIDE',
 				dataIndex: 'side',
+				componentCls: 'headergrid',
 				width 	 : 60,
 				renderer : upsize
 			},
 			{ 	header 	 : 'CAVITY',
 				dataIndex: 'cavity',
+				componentCls: 'headergrid',
 				width 	 : 70,
 				renderer : upsize
 			}, 
@@ -113,26 +122,31 @@ Ext.onReady(function() {
 			// }, 
 			{ 	header 	 : 'LINE',
 				dataIndex: 'line',
+				componentCls: 'headergrid',
 				width 	 : 60,
 				renderer : upsize
 			}, 
 			{ 	header 	 : 'MODEL',
 				dataIndex: 'model',
+				componentCls: 'headergrid',
 				width 	 : 120,
 				renderer : upsize
 			}, 
 			{ 	header 	 : 'PWB NAME',
 				dataIndex: 'pwbname',
+				componentCls: 'headergrid',
 				flex 	 : 1,
 				renderer : upsize
 			}, 
 			{ 	header 	 : 'PROD NO',
 				dataIndex: 'prod_no',
+				componentCls: 'headergrid',
 				flex 	 : 1,
 				renderer : upsize
 			}, 
 			{ 	header 	 : 'PROCESS',
 				dataIndex: 'process',
+				componentCls: 'headergrid',
 				flex 	 : 1,
 				renderer : upsize
 			}, 
@@ -144,6 +158,7 @@ Ext.onReady(function() {
 			}, 
 			{ 	header 	 : 'QUANTITY',
 				dataIndex: 'qty',
+				componentCls: 'headergrid',
 				flex 	 : 1,
 				renderer : upsize
 			}
