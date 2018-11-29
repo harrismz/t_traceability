@@ -80,7 +80,7 @@ Ext.onReady(function() {
 	//	=======================================================	TAB  PANEL	=====================================
 	var panel_pcb_warehouse = Ext.create('Ext.tab.Panel', {
 		id 			: 'panel_pcb_warehouse',
-		renderTo 	: 'panel_pcb_warehouse',
+		//renderTo 	: 'panel_pcb_warehouse',
 		plain 		: true,
 		activeTab 	: 0,
 		autoWidth 	: '100%',
