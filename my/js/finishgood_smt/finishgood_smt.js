@@ -23,8 +23,8 @@ function checkPcbSerial(event){
 		Ext.getStore('store_smt_mounter').loadPage(1);
 		Ext.getStore('store_good_smt_aoi_board').proxy.setExtraParam('boardid', pcbserial);
 		Ext.getStore('store_good_smt_aoi_board').loadPage(1);
-		// Ext.getStore('store_good_smt_aoi_point').proxy.setExtraParam('boardid', pcbserial);
-		// Ext.getStore('store_good_smt_aoi_point').loadPage(1);
+		Ext.getStore('store_good_smt_aoi_point').proxy.setExtraParam('boardid', pcbserial);
+		Ext.getStore('store_good_smt_aoi_point').loadPage(1);
 		Ext.getStore('store_mapros_critical').proxy.setExtraParam('model', '');
 		Ext.getStore('store_mapros_critical').proxy.setExtraParam('serial_no', '');
 		Ext.getStore('store_mapros_critical').proxy.setExtraParam('boardid', pcbserial);
