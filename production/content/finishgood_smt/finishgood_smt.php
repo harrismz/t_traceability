@@ -10,6 +10,7 @@
 <script type="text/javascript" src='./my/js/finishgood_smt/pcb_extjs_aoi.js'></script>
 <script type="text/javascript" src='./my/js/finishgood_smt/pcb_extjs_mapros.js'></script>
 <script type="text/javascript" src='./my/js/finishgood_smt/pcb_extjs_inspection.js'></script>
+<script type="text/javascript" src='./my/js/finishgood_smt/pcb_extjs_warehouse.js'></script>
 <section>
   <!--  Searching Traceability -->
   <div class="page-title">
@@ -20,15 +21,14 @@
     <div class="title_right">
       <div class="col-md-9 col-sm-9 col-xs-12 form-group pull-right top_search">
         <div class="input-group">
-          <input id="pcbserial" type="text" class="form-control" placeholder="Search For PCB Serial..." onkeypress="checkPcbSerial(event)" value="YJ5224A01MN_00A7010A0002">
+          <input id="pcbserial" type="text" class="form-control" placeholder="Search For PCB Serial..." onkeypress="checkPcbSerial(event)" value="YJ5224A01MN_00A7010A0002" data-qtip="Search PCB Serial here" style="text-transform:uppercase">
           <span class="input-group-btn">
-            <button class="btn btn-default" type="button" onclick="checkPcbSerial(event)">Go!</button>
+            <button class="btn btn-default" type="button" onclick="checkPcbSerial(event)" data-qtip="Click Here for searching data">Go!</button>
           </span>
         </div>
       </div>
     </div>
   </div>
-  
   <!-- ============================================================================== -->
   <div id="big_tab" class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
@@ -52,7 +52,7 @@
       </div>
     </div>
   </div>
-  <div id="big_tab" class="row">
+  <div id="repair_tab" class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="x_panel">
         <div class="x_title">
@@ -156,8 +156,7 @@
   				<div class="clearfix"></div>
   			</div>
         <div class="x_content">
-          <!-- <div id="panel_aoi" class="extjs_border"> -->
-          <div id="panel_aoi" style="border:2px solid grey">
+          <div id="panel_aoi" class="extjs_border">
           </div>
         </div>
       </div>
@@ -185,7 +184,7 @@
       </div>
     </div>
   </div>
-  <div id="ma_tab" class="row">
+  <div id="insp_tab" class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="x_panel">
         <div class="x_title">
@@ -207,6 +206,28 @@
       </div>
     </div>
   </div>
+  <!-- <div id="warehouse_tab" class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="x_panel">
+        <div class="x_title">
+          <h2><i class="fas fa-warehouse"></i> Warehouse <small> ( Logistic ) </small></h2>
+          <ul class="nav navbar-right panel_toolbox">
+            <li>
+              <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+            </li>
+            <li>
+              <a class="close-link"><i class="fas fa-times"></i></a>
+            </li>
+          </ul>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+          <div  id="panel_pcb_warehouse" class="extjs_border">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
   <a href="javascript:" id="return-to-top"><i class="fas fa-chevron-up"></i></a>
 </section>
 
