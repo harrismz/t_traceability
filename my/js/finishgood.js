@@ -2933,7 +2933,7 @@
 								if (record.get('status')==='IN') return 'colorin';
 								else if (record.get('status')==='OUT') return 'colorout';
 							},
-							emptyText 	 		: '<div class="empty-txt">No data to display.</div>',
+							emptyText 	 		: '<div class="empty-txt">Under Maintenance After Migration Server.</div>',
 						},
 						columns 	: [
 							{	header 		: 'PCB SERIAL',
@@ -3032,7 +3032,7 @@
 						store 			: store_mapros_panel_fg,
 						viewConfig 		: {
 							stripeRows 			: true,
-							emptyText 	 		: '<div class="empty-txt">No data to display.</div>',
+							emptyText 	 		: '<div class="empty-txt">Under Maintenance After Migration Server.</div>',
 							deferEmptyText 		: false,
 							enableTextSelection	: true,
 							getRowClass			: function(record, rowIndex, rowParams, store) {
@@ -3122,7 +3122,7 @@
 						store 			: store_mapros_master_fg,
 						viewConfig 		: {
 							stripeRows 			: true,
-							emptyText 	 		: '<div class="empty-txt">No data to display.</div>',
+							emptyText 	 		: '<div class="empty-txt">Under Maintenance After Migration Server.</div>',
 							deferEmptyText 		: false,
 							enableTextSelection	: true,
 							getRowClass			: function(record, rowIndex, rowParams, store) {
@@ -3654,7 +3654,7 @@
 						store 			: store_mapros_critical,
 						viewConfig 		: {
 							stripeRows 			: true,
-							emptyText 	 		: '<div class="empty-txt">No data to display.</div>',
+							emptyText 	 		: '<div class="empty-txt">Under Maintenance After Migration Server.</div>',
 							deferEmptyText 		: false,
 							enableTextSelection	: true,
 							// getRowClass			: function(record, rowIndex, rowParams, store) {
