@@ -5,11 +5,12 @@
 @import url("../../../framework/extjs-6.2.0/build/classic/theme-crisp/resources/theme-crisp-all.css");
 @import url("../../build/css/custom.min.css");
 @import url("../../my/css/extjs.css");
-.nav li > a{
+
+.nav li > a {
   font-size: 14px;
 }
 
-.green-title{
+.green-title {
   z-index: 2;
   line-height: 2;
   background-color: #03dac5 !important;
@@ -17,95 +18,107 @@
   color: #fff;
 }
 
-.green-border{
-  border:1px solid #03dac5 !important;
+.green-border {
+  border: 1px solid #03dac5 !important;
   padding: 0px !important;
 }
-.shrinepink-title{
+
+.shrinepink-title {
   z-index: 2;
   line-height: 2;
   background-color: #FEDBD0 !important;
   height: 25px;
   color: #442C2E;
 }
-.shrinepink-border{
-  border:2px solid #FEDBD0 !important;
+
+.shrinepink-border {
+  border: 2px solid #FEDBD0 !important;
   padding: 0px !important;
 }
 
-.btn-custom, .btn-custom:focus{
+.btn-custom, .btn-custom:focus {
   border-radius: 0px;
   color: #fff;
   background-color: #0067AE;
 }
+
 .btn-custom:hover {
   border-radius: 0px;
   color: #0067AE;
   background-color: #03dac5;
 }
-.side-menu{
+
+.side-menu {
   line-height: 10px !important;
 }
 
 /* Return To Top */
+
 #return-to-top {
-    position: fixed;
-    bottom: 55px;
-    right: 9px;
-    background: rgb(0, 0, 0);
-    background: rgba(0, 0, 0, 0.7);
-    width: 50px;
-    height: 50px;
-    display: block;
-    text-decoration: none;
-    -webkit-border-radius: 35px;
-    -moz-border-radius: 35px;
-    border-radius: 35px;
-    display: none;
-    -webkit-transition: all 0.3s linear;
-    -moz-transition: all 0.3s ease;
-    -ms-transition: all 0.3s ease;
-    -o-transition: all 0.3s ease;
-    transition: all 0.3s ease;
-}
-#return-to-top i {
-    color: #fff;
-    margin: 0;
-    position: relative;
-    left: 12px;
-    top: 8px;
-    font-size: 30px;
-    -webkit-transition: all 0.3s ease;
-    -moz-transition: all 0.3s ease;
-    -ms-transition: all 0.3s ease;
-    -o-transition: all 0.3s ease;
-    transition: all 0.3s ease;
-}
-#return-to-top:hover {
-    background: rgba(0, 0, 0, 0.9);
-}
-#return-to-top:hover i {
-    color: #fff;
-    top: 3px;
+  position: fixed;
+  bottom: 55px;
+  right: 9px;
+  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.7);
+  width: 50px;
+  height: 50px;
+  display: block;
+  text-decoration: none;
+  -webkit-border-radius: 35px;
+     -moz-border-radius: 35px;
+          border-radius: 35px;
+  display: none;
+  -webkit-transition: all 0.3s linear;
+     -moz-transition: all 0.3s ease;
+      -ms-transition: all 0.3s ease;
+       -o-transition: all 0.3s ease;
+          transition: all 0.3s ease;
 }
 
+#return-to-top i {
+  color: #fff;
+  margin: 0;
+  position: relative;
+  left: 12px;
+  top: 8px;
+  font-size: 30px;
+  -webkit-transition: all 0.3s ease;
+     -moz-transition: all 0.3s ease;
+      -ms-transition: all 0.3s ease;
+       -o-transition: all 0.3s ease;
+          transition: all 0.3s ease;
+}
+
+#return-to-top:hover {
+  background: rgba(0, 0, 0, 0.9);
+}
+
+#return-to-top:hover i {
+  color: #fff;
+  top: 3px;
+}
 
 /* Extra Things */
-body{
+
+body {
   background: #eee ;
   font-family: 'Open Sans', sans-serif;
 }
-h3{
-  font-size: 30px; 
+
+h3 {
+  font-size: 30px;
   font-weight: 400;
   text-align: center;
   margin-top: 50px;
 }
-h3 i{
+
+h3 i {
   color: #444;
 }
-.title_left{
+
+.title_left {
   font-family: 'Roboto', sans-serif;
   color: #A69999;
 }
+
 /* ---  End Of Return To Top */

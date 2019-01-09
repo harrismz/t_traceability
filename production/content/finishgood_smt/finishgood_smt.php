@@ -6,7 +6,7 @@
 <script type="text/javascript" src='./my/js/finishgood_smt/pcb_extjs_repair.js'></script>
 <script type="text/javascript" src='./my/js/finishgood_smt/pcb_extjs_spi.js'></script>
 <script type="text/javascript" src='./my/js/finishgood_smt/pcb_extjs_mounter.js'></script>
-<script type="text/javascript" src='./my/js/finishgood_smt/pcb_extjs_reflow.js'></script> 
+<script type="text/javascript" src='./my/js/finishgood_smt/pcb_extjs_reflow.js'></script>
 <script type="text/javascript" src='./my/js/finishgood_smt/pcb_extjs_aoi.js'></script>
 <script type="text/javascript" src='./my/js/finishgood_smt/pcb_extjs_mapros.js'></script>
 <script type="text/javascript" src='./my/js/finishgood_smt/pcb_extjs_inspection.js'></script>
@@ -17,7 +17,6 @@
     <div class="title_left">
       <h3>PCB Serial</h3>
     </div>
-
     <div class="title_right">
       <div class="col-md-9 col-sm-9 col-xs-12 form-group pull-right top_search">
         <div class="input-group">
@@ -34,17 +33,17 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="x_panel">
         <div class="x_title">
-  				<h2><i class="fab fa-hubspot"></i> Board ID Generator <small> ( SMT ) </small></h2>
-        	<ul class="nav navbar-right panel_toolbox">
-  					<li>
-  						<a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-  					</li>
-  					<li>
-  						<a class="close-link"><i class="fas fa-times"></i></a>
-  					</li>
-  				</ul>
-  				<div class="clearfix"></div>
-  			</div>
+          <h2><i class="fab fa-hubspot"></i> Board ID Generator <small> ( SMT ) </small></h2>
+          <ul class="nav navbar-right panel_toolbox">
+            <li>
+              <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+            </li>
+            <li>
+              <a class="close-link"><i class="fas fa-times"></i></a>
+            </li>
+          </ul>
+          <div class="clearfix"></div>
+        </div>
         <div class="x_content">
           <div  id="panel_bigs" class="extjs_border">
           </div>
@@ -144,17 +143,17 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="x_panel">
         <div class="x_title">
-  				<h2><i class="far fa-clipboard"></i> AOI  <small> ( SMT ) </small></h2>
-  				<ul class="nav navbar-right panel_toolbox">
-  					<li>
-  						<a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-  					</li>
-  					<li>
-  						<a class="close-link"><i class="fas fa-times"></i></a>
-  					</li>
-  				</ul>
-  				<div class="clearfix"></div>
-  			</div>
+          <h2><i class="far fa-clipboard"></i> AOI  <small> ( SMT ) </small></h2>
+          <ul class="nav navbar-right panel_toolbox">
+            <li>
+              <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+            </li>
+            <li>
+              <a class="close-link"><i class="fas fa-times"></i></a>
+            </li>
+          </ul>
+          <div class="clearfix"></div>
+        </div>
         <div class="x_content">
           <div id="panel_aoi" class="extjs_border">
           </div>
@@ -230,47 +229,43 @@
   </div> -->
   <a href="javascript:" id="return-to-top"><i class="fas fa-chevron-up"></i></a>
 </section>
-
-
 <!-- <script type="text/javascript" src='./my/js/finishgood_smt/pcb_extjs_bigs.js'></script> -->
 <!-- <script type="text/javascript" src='./my/js/finishgood_smt/pcb_search.js'></script> -->
-
 <!-- <div class="row">
-    <div class="x_panel">
-      <div class="form-inline">
-        <div id="boardid_scan" class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <h5 class="x_title"><i class="fas fa-search"></i> PCB ID </h5>
-        </div>
+  <div class="x_panel">
+    <div class="form-inline">
+      <div id="boardid_scan" class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <h5 class="x_title"><i class="fas fa-search"></i> PCB ID </h5>
       </div>
     </div>
-  </div> -->
-  <!--  END OF Searching Traceability -->
-
+  </div>
+</div> -->
+<!--  END OF Searching Traceability -->
 <!-- <div id="finishgood_tab" class="row">
-    <div class="col-md-12 col-sm-12 col-xs-12">
-      <div class="x_panel fixed_height_500">
-        <div class="x_title">
-          <h2><i class="fas fa-warehouse"></i> Warehouse <small> ( Logistic ) </small></h2>
-          <ul class="nav navbar-right panel_toolbox">
-            <li>
-              <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-            </li>
-            <li>
-              <a class="close-link"><i class="fas fa-times"></i></a>
-            </li>
-          </ul>
-          <div class="clearfix"></div>
-        </div>
-        <div class="x_content">
-          <div class="well" style="overflow: auto">
-            <div class="col-md-12">
-              <div id="panel_warehouse" class="extjs_border">
-              </div>
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel fixed_height_500">
+      <div class="x_title">
+        <h2><i class="fas fa-warehouse"></i> Warehouse <small> ( Logistic ) </small></h2>
+        <ul class="nav navbar-right panel_toolbox">
+          <li>
+            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+          </li>
+          <li>
+            <a class="close-link"><i class="fas fa-times"></i></a>
+          </li>
+        </ul>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content">
+        <div class="well" style="overflow: auto">
+          <div class="col-md-12">
+            <div id="panel_warehouse" class="extjs_border">
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div> -->
-  <!-- ============================================================================== -->
-  <!-- Return to Top -->
+  </div>
+</div> -->
+<!-- ============================================================================== -->
+<!-- Return to Top -->
