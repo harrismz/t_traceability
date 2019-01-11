@@ -9,7 +9,7 @@
     $sql    = "DECLARE  @return_value int,
                         @totalcount int
 
-                EXEC    @return_value = [dbo].[traceability_good_smt_spi]
+                EXEC    @return_value = [dbo].[traceability_good_smt_spi_rev1]
                         @start = '{$start}',
                         @maxct = '{$limit}',
                         @boardid = N'{$boardid}',
