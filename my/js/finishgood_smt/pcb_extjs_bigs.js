@@ -163,6 +163,15 @@ Ext.onReady(function() {
 				renderer : upsize
 			}
 		],
+		listeners: {
+    		select: function(grid, rowIndex, colIndex) {
+    			var boardid = document.getElementById('pcbserial').value;
+				Ext.getStore('store_smt_repair').proxy.setExtraParam('src_boardid', boardid);
+				Ext.getStore('store_smt_repair').loadPage(1);
+				Ext.getStore('store_smt_spi').proxy.setExtraParam('boardid', boardid);
+				Ext.getStore('store_smt_spi').loadPage(1);
+    		}
+    	},
 		bbar	: Ext.create('Ext.PagingToolbar', {
 			pageSize		: itemperpage,
 			store			: store_bigs,

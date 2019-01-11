@@ -21,11 +21,12 @@
 
     <!-- SWITCH WITHOUT MOTHERCODE -->
     <!-- YJ5214A00SH_01A7015A0001  -->
+    <!-- YJ5214A00SH_01A7013A0208  -->
     
     <div class="title_right">
       <div class="col-md-9 col-sm-9 col-xs-12 form-group pull-right top_search">
         <div class="input-group">
-          <input id="pcbserial" type="text" class="form-control" placeholder="Search For PCB Serial..." onkeypress="checkPcbSerial(event)" value="YJ5224A01MN_00A7010A0002" data-qtip="Search PCB Serial here" style="text-transform:uppercase">
+          <input id="pcbserial" type="text" class="form-control" placeholder="Search For PCB Serial..." onkeypress="checkPcbSerial(event)" value="YJ5214A00SH_01A7013A0208" data-qtip="Search PCB Serial here" style="text-transform:uppercase">
           <span class="input-group-btn">
             <button class="btn btn-default" type="button" onclick="checkPcbSerial(event)" data-qtip="Click Here for searching data">Go!</button>
           </span>
