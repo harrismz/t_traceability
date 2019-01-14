@@ -7,51 +7,66 @@ Ext.onReady(function() {
 	});
 //	=======================================================    DATASTORE    =====================================
 	var store_bigs = Ext.create('Ext.data.Store', {
-		storeId : 'store_bigs',
-		model: 'model_bigs',
-		pageSize : itemperpage,
-		proxy: {
-			type: 'ajax',
-			url: 'json/finishgood_smt/json_finishgood_smt_bigs.php',
-			reader: {
-				type: 'json',
-				root: 'rows',
-				totalProperty: 'totalCount'
+		storeId		: 'store_bigs',
+		model 		: 'model_bigs',
+		pageSize 	: itemperpage,
+		proxy 		: {
+			type 	: 'ajax',
+			url 	: 'json/finishgood_smt/json_finishgood_smt_bigs.php',
+			reader 	: {
+				type 			: 'json',
+				root 			: 'rows',
+				totalProperty 	: 'totalCount',
+				messageProperty : 'msgError'
 			},
-			load: false
+			load 	: false
 		},
 		listeners: {
 			load: function(store, records) {
-				if (records != "") {
-					cavity 	= store.getAt(0).get('cavity');
-					model   = store.getAt(0).get('model');
-					pwbname = store.getAt(0).get('pwbname');
-					//line 	= store.getAt(0).get('line');
-					boardid = document.getElementById('pcbserial').value;
-					
-					Ext.getStore('store_smt_mounter_header').proxy.setExtraParam('boardid', boardid);
-					Ext.getStore('store_smt_mounter_header').loadPage(1);
-
-					Ext.getStore('store_mapros_board').proxy.setExtraParam('boardid', boardid);
-					Ext.getStore('store_mapros_board').proxy.setExtraParam('cavity', cavity);
-					Ext.getStore('store_mapros_board').proxy.setExtraParam('model', model);
-					Ext.getStore('store_mapros_board').proxy.setExtraParam('pwbname', pwbname);
-					//Ext.getStore('store_mapros_board').proxy.setExtraParam('line', line);
-					Ext.getStore('store_mapros_board').loadPage(1);
-
-					Ext.getStore('store_mapros_master').proxy.setExtraParam('boardid', boardid);
-					Ext.getStore('store_mapros_master').proxy.setExtraParam('cavity', cavity);
-					Ext.getStore('store_mapros_master').loadPage(1);
-
-					Ext.getStore('store_mapros_panel').proxy.setExtraParam('boardid', boardid);
-					Ext.getStore('store_mapros_panel').proxy.setExtraParam('cavity', cavity);
-					Ext.getStore('store_mapros_panel').loadPage(1);
-					
-				} else {
+				if (records = "") {
 					Ext.Msg.alert('Warning', 'No Data Found ! <br> Please try again with the correct PCB ID.');
+					// cavity 	= store.getAt(0).get('cavity');
+					// model   = store.getAt(0).get('model');
+					// pwbname = store.getAt(0).get('pwbname');
+					// //line 	= store.getAt(0).get('line');
+					// boardid = document.getElementById('pcbserial').value;
+					
+					// Ext.getStore('store_smt_mounter_header').proxy.setExtraParam('boardid', boardid);
+					// Ext.getStore('store_smt_mounter_header').loadPage(1);
+
+					// Ext.getStore('store_mapros_board').proxy.setExtraParam('boardid', boardid);
+					// Ext.getStore('store_mapros_board').proxy.setExtraParam('cavity', cavity);
+					// Ext.getStore('store_mapros_board').proxy.setExtraParam('model', model);
+					// Ext.getStore('store_mapros_board').proxy.setExtraParam('pwbname', pwbname);
+					// //Ext.getStore('store_mapros_board').proxy.setExtraParam('line', line);
+					// Ext.getStore('store_mapros_board').loadPage(1);
+
+					// Ext.getStore('store_mapros_master').proxy.setExtraParam('boardid', boardid);
+					// Ext.getStore('store_mapros_master').proxy.setExtraParam('cavity', cavity);
+					// Ext.getStore('store_mapros_master').loadPage(1);
+
+					// Ext.getStore('store_mapros_panel').proxy.setExtraParam('boardid', boardid);
+					// Ext.getStore('store_mapros_panel').proxy.setExtraParam('cavity', cavity);
+					// Ext.getStore('store_mapros_panel').loadPage(1);
 				}
 			}
 		}
+	});
+	store_bigs.load({
+	    callback: function(records, operation, success) {
+	        if(success == true){
+                if(records.length == 0){
+                	//Ext.Msg.alert('Result', 'No Available Data');
+                }
+            }
+            if(success == false){
+                try{
+                    Ext.Msg.alert('Error', operation.getError()); // way more elegant than ussing rawData etc ...
+                }catch(e){
+                    Ext.Msg.alert('Error', 'Please Call IT with inform "Filter BIGS PCB Serial Error"');
+                }
+            }
+	    }
 	});
 //	=======================================================    GRID         =====================================
 	var grid_bigs = Ext.create('Ext.grid.Panel', {
@@ -94,59 +109,49 @@ Ext.onReady(function() {
 			},
 			{ 	header 	 : 'YNUMBER',
 				dataIndex: 'ynumber',
-				componentCls: 'headergrid',
+				// componentCls: 'headergrid',
 				width 	 : 100,
 				renderer : upsize
 			}, 
 			{ 	header 	 : 'SIDE',
 				dataIndex: 'side',
-				componentCls: 'headergrid',
+				// componentCls: 'headergrid',
 				width 	 : 60,
 				renderer : upsize
 			},
 			{ 	header 	 : 'CAVITY',
 				dataIndex: 'cavity',
-				componentCls: 'headergrid',
+				// componentCls: 'headergrid',
 				width 	 : 70,
 				renderer : upsize
 			}, 
-			// { 	header 	 : 'SEQ START',
-			// 	dataIndex: 'seq_start',
-			// 	width 	 : 70,
-			// 	renderer : upsize
-			// }, 
-			// { 	header 	 : 'SEQ END',
-			// 	dataIndex: 'seq_end',
-			// 	width 	 : 70,
-			// 	renderer : upsize
-			// }, 
 			{ 	header 	 : 'LINE',
 				dataIndex: 'line',
-				componentCls: 'headergrid',
+				// componentCls: 'headergrid',
 				width 	 : 60,
 				renderer : upsize
 			}, 
 			{ 	header 	 : 'MODEL',
 				dataIndex: 'model',
-				componentCls: 'headergrid',
+				// componentCls: 'headergrid',
 				width 	 : 120,
 				renderer : upsize
 			}, 
 			{ 	header 	 : 'PWB NAME',
 				dataIndex: 'pwbname',
-				componentCls: 'headergrid',
+				// componentCls: 'headergrid',
 				flex 	 : 1,
 				renderer : upsize
 			}, 
 			{ 	header 	 : 'PROD NO',
 				dataIndex: 'prod_no',
-				componentCls: 'headergrid',
+				// componentCls: 'headergrid',
 				flex 	 : 1,
 				renderer : upsize
 			}, 
 			{ 	header 	 : 'PROCESS',
 				dataIndex: 'process',
-				componentCls: 'headergrid',
+				// componentCls: 'headergrid',
 				flex 	 : 1,
 				renderer : upsize
 			}, 
@@ -158,17 +163,21 @@ Ext.onReady(function() {
 			}, 
 			{ 	header 	 : 'QUANTITY',
 				dataIndex: 'qty',
-				componentCls: 'headergrid',
+				// componentCls: 'headergrid',
 				flex 	 : 1,
 				renderer : upsize
 			}
 		],
 		listeners: {
     		select: function(grid, rowIndex, colIndex) {
-    			var boardid = document.getElementById('pcbserial').value;
+    			var rec 		= this.getSelectionModel().getSelection();
+    			var totcavity 	= rec[0].data.cavity;
+    			var boardid 	= document.getElementById('pcbserial').value;
 				Ext.getStore('store_smt_repair').proxy.setExtraParam('src_boardid', boardid);
+				Ext.getStore('store_smt_repair').proxy.setExtraParam('totcavity', totcavity);
 				Ext.getStore('store_smt_repair').loadPage(1);
 				Ext.getStore('store_smt_spi').proxy.setExtraParam('boardid', boardid);
+				Ext.getStore('store_smt_spi').proxy.setExtraParam('totcavity', totcavity);
 				Ext.getStore('store_smt_spi').loadPage(1);
     		}
     	},
@@ -192,5 +201,4 @@ Ext.onReady(function() {
 			}
 		})
 	});
-
 });
