@@ -16,7 +16,7 @@
 		$modelname 	= isset($_REQUEST['src_model']) ? $_REQUEST['src_model'] : '';
 		$stserial 	= isset($_REQUEST['src_stserial']) ? $_REQUEST['src_stserial'] : '';
 		$boardid	= isset($_REQUEST['src_boardid']) ? $_REQUEST['src_boardid'] : '';
-		$totcavity	= isset($_REQUEST['totcavity']) ? $_REQUEST['totcavity'] : '';
+	
 	//	================= //
 
 	//	Query //
