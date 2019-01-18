@@ -6220,7 +6220,8 @@
 					//value : '143X0011',
 					//value : 'PA9X0028',
 					//value : 'PA9X0021',
-					value : '163X0105',
+					//value : '163X0105',
+					value : '173X0505',
 					listeners	: {
 						afterrender : function() {
 							this.inputEl.setStyle('text-align', 'center');
