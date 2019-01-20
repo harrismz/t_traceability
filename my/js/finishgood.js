@@ -6062,8 +6062,9 @@
 						//value: 'DPX5000BTITA9N',
 						//value: 'A9K4-V6-650JN',
 						//value: 'DPXGT700RA9N',
-						//value: 'DDXGT700RA9N',
-						value: 'DDXGT701RA9N',
+						value: 'DDXGT700RA9N',
+						//value: 'DDXGT701RA9N',
+						// value: 'DDXGT500RA9N',
 						listeners	: {
 							afterrender : function() {
 								this.inputEl.setStyle('text-align', 'center');
@@ -6221,8 +6222,10 @@
 					//value : 'PA9X0028',
 					//value : 'PA9X0021',
 					//value : '163X0105',
-					value : '173X0505',
-					listeners	: {
+					//value : '173X0505',
+					// value : '064X1752',
+					value : '064X1600',
+ 					listeners	: {
 						afterrender : function() {
 							this.inputEl.setStyle('text-align', 'center');
 							this.inputEl.setStyle('backgroundColor', '#0067AE');
@@ -6280,7 +6283,6 @@
 									store_mapros_line0.proxy.setExtraParam('model', model);
 									store_mapros_line0.proxy.setExtraParam('serial', s_no);
 									store_mapros_line0.loadPage(1);
-
 
 									// 	store_proc_smt_output.proxy.setExtraParam('src_cat', 'fg');
 									// 	store_proc_smt_downtime.proxy.setExtraParam('src_cat', 'fg');
