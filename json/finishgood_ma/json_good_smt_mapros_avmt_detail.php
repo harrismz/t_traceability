@@ -9,7 +9,7 @@
     
     $sql        = "declare @totalcount as int; EXEC traceability_smt_avmt_detail  $start, $limit, '{$idavmt}', @totalcount=@totalcount out;";
     $rs         = $db->Execute($sql);
-    $totalcount = $rs->fields['23'];
+    $totalcount = $rs->fields['25'];
 
     $return     = array();
     for($i=0;!$rs->EOF;$i++){
@@ -31,11 +31,13 @@
         $return[$i]['relr']         = trim($rs->fields['15']);
         $return[$i]['snl']          = trim($rs->fields['16']);
         $return[$i]['snr']          = trim($rs->fields['17']);
-        $return[$i]['remark']       = trim($rs->fields['18']);
-        $return[$i]['input_user']   = trim($rs->fields['19']);
-        $return[$i]['input_date']   = trim($rs->fields['20']);
-        $return[$i]['update_user']  = trim($rs->fields['21']);
-        $return[$i]['update_date']  = trim($rs->fields['22']);
+        $return[$i]['ratio']        = trim($rs->fields['18']);
+        $return[$i]['hpos0']        = trim($rs->fields['19']);
+        $return[$i]['remark']       = trim($rs->fields['20']);
+        $return[$i]['input_user']   = trim($rs->fields['21']);
+        $return[$i]['input_date']   = trim($rs->fields['22']);
+        $return[$i]['update_user']  = trim($rs->fields['23']);
+        $return[$i]['update_date']  = trim($rs->fields['24']);
        
         $rs->MoveNext();
     }

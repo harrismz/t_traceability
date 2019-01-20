@@ -198,7 +198,7 @@
 		          	Ext.define('model_mapros_avmt_detail',{
 						extend: 'Ext.data.Model',
 						fields: ['autoid','idavmt','barcode', 'step','type','name','judgment',
-		                		'volt','curr','freq','lvll','dstl','dstr','rell','relr','snl','snr','remark','input_user'
+		                		'volt','curr','freq','lvll','dstl','dstr','rell','relr','snl','snr','ratio','hpos0','remark','input_user'
 		                		,'input_date','update_user','update_date']
 		           	});
 		          	Ext.define('model_mapros_line0',{
@@ -4427,6 +4427,16 @@
 							},
 							{	header 		: 'SNR',
 								dataIndex 	: 'snr',
+								width 		: 75,
+								renderer	: upsize
+							},
+							{	header 		: 'RATIO',
+								dataIndex 	: 'ratio',
+								width 		: 75,
+								renderer	: upsize
+							},
+							{	header 		: 'HPOS 0',
+								dataIndex 	: 'hpos0',
 								width 		: 75,
 								renderer	: upsize
 							},
