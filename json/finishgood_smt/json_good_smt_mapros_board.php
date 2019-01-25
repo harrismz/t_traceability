@@ -18,9 +18,6 @@ if ($mysqli->connect_errno) {
     exit();
 }
 
-
-
-
 $sql    = "call traceability_goodsmt_board_rev2 ('{$boardid}','{$cavity}', '{$model}','{$pwbname}')";
 $rs     = $db->execute($sql);
 
