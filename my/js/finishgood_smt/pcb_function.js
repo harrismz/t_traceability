@@ -79,4 +79,12 @@ function renderImage(value, metaData, record, rowIndex, colIndex, store) {
         	return '<img class="imageZoomCls" src="data:image/jpg;base64,' + value +  '" width="50" height="50" />';
 		}
 }
-
+/*
+getColumnWidth:function(text){
+        let columnWidth = (text.length * 7) + 35  // giving 7 pixles for each letter in the text
+        //Optional This part is used to set a maximum column width in case there is too many charachter in the text
+        if(columnWidth>400){
+            columnWidth = 400
+        }
+        return columnWidth;
+    }*/ 

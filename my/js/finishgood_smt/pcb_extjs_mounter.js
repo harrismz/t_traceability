@@ -35,9 +35,9 @@ Ext.onReady(function() {
 			proxy   : {
 				type    : 'ajax',
 				url     : 'json/finishgood_smt/json_good_smt_mounter.php',
-				extraParams: {
-					boardid: '123456789012345678901234'
-				},
+				// extraParams: {
+				// 	boardid: '123456789012345678901234'
+				// },
 				reader  : {
 					type    : 'json',
 					root    : 'rows',
@@ -54,7 +54,7 @@ Ext.onReady(function() {
 			store 			: store_smt_mounter_header,
 			viewConfig 		: {
 				stripeRows 			: true,
-				emptyText 	 		: '<div class="empty-txt">No data to display.</div>',
+				emptyText 	 		: '<div class="empty-txt">Select SPI for this result.</div>',
 				deferEmptyText 		: false,
 				enableTextSelection	: true
 			},
@@ -73,6 +73,15 @@ Ext.onReady(function() {
 	    		}
 	    	}
 		});
+
+		grid_smt_mounter_header.getStore().on('load', function() {
+            grid_smt_mounter_header.getView().stripeRows 			= true;
+			grid_smt_mounter_header.getView().deferEmptyText 		= false;
+			grid_smt_mounter_header.getView().enableTextSelection	= true;
+            grid_smt_mounter_header.getView().emptyText = '<div class="empty-txt2">Data Not Available.</div>';
+            grid_smt_mounter_header.getView().refresh();
+        });
+
 		var grid_smt_mounter = Ext.create('Ext.grid.Panel', {
 			id 				: 'grid_smt_mounter',
 			 maxHeight		: 400,
@@ -80,7 +89,7 @@ Ext.onReady(function() {
 			store 			: store_smt_mounter,
 			viewConfig 		: {
 				stripeRows 			: true,
-				emptyText 	 		: '<div class="empty-txt">Select Header for Show this data.</div>',
+				emptyText 	 		: '<div class="empty-txt">Select Header of Mounter for this result.</div>',
 				deferEmptyText 		: false,
 				enableTextSelection	: true
 			},
@@ -124,6 +133,13 @@ Ext.onReady(function() {
 			})
 		});
 		
+		grid_smt_mounter.getStore().on('load', function() {
+            grid_smt_mounter.getView().stripeRows 			= true;
+			grid_smt_mounter.getView().deferEmptyText 		= false;
+			grid_smt_mounter.getView().enableTextSelection	= true;
+            grid_smt_mounter.getView().emptyText = '<div class="empty-txt2">Data Not Available.</div>';
+            grid_smt_mounter.getView().refresh();
+        });
 			
 	//	=======================================================	 PANEL	=====================================
 		var panel_mounter = Ext.create('Ext.panel.Panel',{

@@ -44,19 +44,17 @@ Ext.onReady(function() {
 	//	=======================================================	GRID 		=====================================
 	var grid_smt_aoi_board = Ext.create('Ext.grid.Panel', {
 		id 			: 'grid_smt_aoi_board',
-		//name		: 'grid_smt_aoi_board',
-		//autoWidth 	: '100%',
-		autoScroll 		: true,
+		autoScroll 	: true,
 		maxHeight	: 450,
-		minHeight 	: 300,
-		//columnLines : true,
+		minHeight 	: 300, 	
+		columnLines : true,
 		store 		: store_good_smt_aoi_board,
-		// viewConfig 	: {
-		// 	stripeRows 			: true,
-		// 	emptyText 			: '<div class="empty-txt">No data to display.</div>',
-		// 	deferEmptyText 		: false,
-		// 	enableTextSelection : true
-		// },
+		viewConfig 	: {
+			stripeRows 			: true,
+			emptyText 			: '<div class="empty-txt">Select Reflow for this result.</div>',
+			deferEmptyText 		: false,
+			enableTextSelection : true
+		},
 		columns: [
 			{ 	header 		: 'BARCODE',
 				dataIndex 	: 'barcode',
@@ -111,6 +109,15 @@ Ext.onReady(function() {
 				renderer 	: upsize
 			}
 		],
+		listeners: {
+    		select: function(grid, rowIndex, colIndex) {
+    			var rec 		= this.getSelectionModel().getSelection();
+    			var boardid 	= document.getElementById('pcbserial').value;
+
+    			Ext.getStore('store_mapros_board').proxy.setExtraParam('boardid', boardid);
+				Ext.getStore('store_mapros_board').loadPage(1);
+    		}
+    	},
 		bbar	: Ext.create('Ext.PagingToolbar', {
 			pageSize		: itemperpage,
 			store			: store_good_smt_aoi_board,
@@ -131,23 +138,28 @@ Ext.onReady(function() {
 			}
 		})
 	});
+
+	grid_smt_aoi_board.getStore().on('load', function() {
+        grid_smt_aoi_board.getView().stripeRows 			= true;
+		grid_smt_aoi_board.getView().deferEmptyText 		= false;
+		grid_smt_aoi_board.getView().enableTextSelection	= true;
+        grid_smt_aoi_board.getView().emptyText = '<div class="empty-txt2">Data Not Available.</div>';
+        grid_smt_aoi_board.getView().refresh();
+    });
+
 	var grid_smt_aoi_point = Ext.create('Ext.grid.Panel', {
-		id 				: 'grid_smt_aoi_point',
-		maxHeight		: 450,
-		minHeight 		: 300,
-		autoScroll 		: true,
-		//autoWidth 	 	: '100%',
-		//maxHeight		: 300,
-		//minHeight 		: 200,
-		//columnLines 	: true,
-		store 			: store_good_smt_aoi_point,
-		// viewConfig 		: {
-		// 	stripeRows 	 		: true,
-		// 	emptyText 			: '<div class="empty-txt">No data to display.</div>',
-		// 	deferEmptyText 		: false,
-		// 	enableTextSelection : true
-		// },
-		columns: [
+		id 			: 'grid_smt_aoi_point',
+		maxHeight	: 450,
+		minHeight 	: 300,
+		autoScroll 	: true,
+		store 		: store_good_smt_aoi_point,
+		viewConfig 	: {
+			stripeRows 			: true,
+			emptyText 			: '<div class="empty-txt">Select Reflow for this result.</div>',
+			deferEmptyText 		: false,
+			enableTextSelection : true
+		},
+		columns 	: [
 			{ 	header 		: 'BARCODE',
 				dataIndex 	: 'barcode',
 				componentCls: 'headergrid',
@@ -238,6 +250,15 @@ Ext.onReady(function() {
 				renderer 	: upsize
 			}
 		],
+		listeners: {
+    		select: function(grid, rowIndex, colIndex) {
+    			var rec 		= this.getSelectionModel().getSelection();
+    			var boardid 	= document.getElementById('pcbserial').value;
+
+    			Ext.getStore('store_mapros_board').proxy.setExtraParam('boardid', boardid);
+				Ext.getStore('store_mapros_board').loadPage(1);
+    		}
+    	},
 		bbar	: Ext.create('Ext.PagingToolbar', {
 			pageSize		: itemperpage,
 			store			: store_good_smt_aoi_point,
@@ -258,6 +279,15 @@ Ext.onReady(function() {
 			}
 		})
 	});
+
+	grid_smt_aoi_point.getStore().on('load', function() {
+        grid_smt_aoi_point.getView().stripeRows 			= true;
+		grid_smt_aoi_point.getView().deferEmptyText 		= false;
+		grid_smt_aoi_point.getView().enableTextSelection	= true;
+        grid_smt_aoi_point.getView().emptyText = '<div class="empty-txt2">Data Not Available.</div>';
+        grid_smt_aoi_point.getView().refresh();
+    });
+
 	//	=======================================================	TAB  PANEL	=====================================
 	var panel_aoi = Ext.create('Ext.tab.Panel', {
 		id 			: 'panel_aoi2',

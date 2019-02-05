@@ -5,7 +5,7 @@ Ext.onReady(function() {
             extend: 'Ext.data.Model',
 			fields: ['inputid','dateid','group','shift','mch','model_name','start_serial','serial_no',
             			'lot_no','lot_qty','pcb_name','pwb_no','process','ai','smt',
-            			'loc','magazineno','ng','boardid','boardke','boardqty','pointqty','inputdate']
+            			'loc','magazineno','ng','boardid','boardke','boardqty','pointqty','inputdate','totcount']
         });
 	//	=======================================================    DATASTORE    =====================================
 		var store_smt_repair = Ext.create('Ext.data.Store',{
@@ -13,6 +13,10 @@ Ext.onReady(function() {
 			model	: 'model_smt_repair',
 			autoLoad: false,
 			pageSize: itemperpage,
+			filters: [{
+                property: 'text',
+                value:'WeWantToFilterOutEverything'
+            }],
 			proxy   : {
 				type    : 'ajax',
 				url     : 'json/finishgood_smt/json_good_smt_repair.php',
@@ -24,6 +28,7 @@ Ext.onReady(function() {
 			}
 		});
 	//	=======================================================    GRID         =====================================
+
 		var grid_smt_repair = Ext.create('Ext.grid.Panel', {
 			id 				: 'grid_smt_repair',
 			maxHeight		: 300,
@@ -32,7 +37,7 @@ Ext.onReady(function() {
 			store 			: store_smt_repair,
 			viewConfig 		: {
 				stripeRows 			: true,
-				emptyText 	 		: '<div class="empty-txt">No data to display.</div>',
+				emptyText 	 		: '<div class="empty-txt">Select Board ID Generator for this result.</div>',
 				deferEmptyText 		: false,
 				enableTextSelection	: true
 			},
@@ -79,21 +84,20 @@ Ext.onReady(function() {
 				}
 			})
 		});
+
+		grid_smt_repair.getStore().on('load', function() {
+            grid_smt_repair.getView().stripeRows 			= true;
+			grid_smt_repair.getView().deferEmptyText 		= false;
+			grid_smt_repair.getView().enableTextSelection	= true;
+            grid_smt_repair.getView().emptyText = '<div class="empty-txt2">Data Not Available.</div>';
+            grid_smt_repair.getView().refresh();
+        });
 	//	=======================================================  TAB  PANEL     =====================================
 		var panel_repair = Ext.create('Ext.panel.Panel', {
 			id 				: 'panel_repair',
 			renderTo 		: 'panel_repair',
-			//autoWidth		: '100%',
 			maxHeight		: 400,
 			minHeight 		: 150,
-			//border			: false,
-			//frame			: true,
-			//hidden			: false,
-			// defaults		: {
-				//split		: true,
-				//collapsible	: false
-			// },
 			items			: [grid_smt_repair]
 		});
-			
 });

@@ -22,18 +22,18 @@ Ext.onReady(function() {
 					totalProperty: 'totalCount'
 				}
 			},
-			listeners : {
-				load : function(store, records){
-					if (records != 0) {
-						boardid = document.getElementById('pcbserial').value;
-						spidate = store.getAt(0).get('inspectiondate');
+			// listeners : {
+			// 	load : function(store, records){
+			// 		if (records != 0) {
+			// 			boardid = document.getElementById('pcbserial').value;
+			// 			spidate = store.getAt(0).get('inspectiondate');
 
-						Ext.getStore('store_smt_reflow').proxy.setExtraParam('boardid', boardid);
-						Ext.getStore('store_smt_reflow').proxy.setExtraParam('smt_date', spidate);
-						Ext.getStore('store_smt_reflow').loadPage(1);								
-					}
-				} 
-			}
+			// 			Ext.getStore('store_smt_reflow').proxy.setExtraParam('boardid', boardid);
+			// 			Ext.getStore('store_smt_reflow').proxy.setExtraParam('smt_date', spidate);
+			// 			Ext.getStore('store_smt_reflow').loadPage(1);								
+			// 		}
+			// 	} 
+			// }
 		});
 			
 	//	=======================================================	GRID 		=====================================
@@ -46,7 +46,7 @@ Ext.onReady(function() {
 			store 			: store_smt_spi,
 			viewConfig 		: {
 				stripeRows 			: true,
-				emptyText 	 		: '<div class="empty-txt">No data to display.</div>',
+				emptyText 	 		: '<div class="empty-txt">Select Board ID Generator for this result.</div>',
 				deferEmptyText 		: false,
 				enableTextSelection	: true
 			},
@@ -112,6 +112,19 @@ Ext.onReady(function() {
 					renderer	: upsize
 				}
 			],
+			listeners: {
+	    		select: function(grid, rowIndex, colIndex) {
+	    			var rec 		= this.getSelectionModel().getSelection();
+	    			var spidate 	= store_smt_spi.getAt(0).get('inspectiondate');
+	    			var boardid 	= document.getElementById('pcbserial').value;
+
+	    			Ext.getStore('store_smt_reflow').proxy.setExtraParam('boardid', boardid);
+					Ext.getStore('store_smt_reflow').proxy.setExtraParam('smt_date', spidate);
+					Ext.getStore('store_smt_reflow').loadPage(1);	
+					Ext.getStore('store_smt_mounter_header').proxy.setExtraParam('boardid', boardid);
+					Ext.getStore('store_smt_mounter_header').loadPage(1);
+	    		}
+	    	},
 			bbar	: Ext.create('Ext.PagingToolbar', {
 				pageSize		: itemperpage,
 				store			: store_smt_spi,
@@ -132,21 +145,21 @@ Ext.onReady(function() {
 				}
 			})
 		});
-			
+		
+		grid_smt_spi.getStore().on('load', function() {
+            grid_smt_spi.getView().stripeRows 			= true;
+			grid_smt_spi.getView().deferEmptyText 		= false;
+			grid_smt_spi.getView().enableTextSelection	= true;
+            grid_smt_spi.getView().emptyText = '<div class="empty-txt2">Data Not Available.</div>';
+            grid_smt_spi.getView().refresh();
+        });
+
 	//	=======================================================	PANEL	=====================================
 		var panel_spi = Ext.create('Ext.panel.Panel', {
 			id 				: 'panel_spi',
 			renderTo 		: 'panel_spi',
-			//autoWidth		: '100%',
 			maxHeight		: 400,
 			minHeight 		: 150,
-			//border			: false,
-			//frame			: true,
-			//hidden			: false,
-			// defaults		: {
-			// 	split		: true,
-			// 	collapsible	: false
-			// },
 			items			: [grid_smt_spi]
 		});
 			

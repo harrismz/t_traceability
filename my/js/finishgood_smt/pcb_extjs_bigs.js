@@ -22,163 +22,152 @@ Ext.onReady(function() {
 			load 	: false
 		},
 		listeners: {
-			load: function(store, records) {
-				if (records = "") {
-					Ext.Msg.alert('Warning', 'No Data Found ! <br> Please try again with the correct PCB ID.');
-					// cavity 	= store.getAt(0).get('cavity');
-					// model   = store.getAt(0).get('model');
-					// pwbname = store.getAt(0).get('pwbname');
-					// //line 	= store.getAt(0).get('line');
-					// boardid = document.getElementById('pcbserial').value;
-					
-					// Ext.getStore('store_smt_mounter_header').proxy.setExtraParam('boardid', boardid);
-					// Ext.getStore('store_smt_mounter_header').loadPage(1);
-
-					// Ext.getStore('store_mapros_board').proxy.setExtraParam('boardid', boardid);
-					// Ext.getStore('store_mapros_board').proxy.setExtraParam('cavity', cavity);
-					// Ext.getStore('store_mapros_board').proxy.setExtraParam('model', model);
-					// Ext.getStore('store_mapros_board').proxy.setExtraParam('pwbname', pwbname);
-					// //Ext.getStore('store_mapros_board').proxy.setExtraParam('line', line);
-					// Ext.getStore('store_mapros_board').loadPage(1);
-
-					// Ext.getStore('store_mapros_master').proxy.setExtraParam('boardid', boardid);
-					// Ext.getStore('store_mapros_master').proxy.setExtraParam('cavity', cavity);
-					// Ext.getStore('store_mapros_master').loadPage(1);
-
-					// Ext.getStore('store_mapros_panel').proxy.setExtraParam('boardid', boardid);
-					// Ext.getStore('store_mapros_panel').proxy.setExtraParam('cavity', cavity);
-					// Ext.getStore('store_mapros_panel').loadPage(1);
+			load: function(store, records, success) {
+				if (records.length == 0) {
+					Ext.Msg.alert('Warning [ WPSB001 ]', 'No Data Found ! <br><br> Please try again with the correct PCB Serial.');
+				}
+				else if (success = false){
+					try{
+						//Ext.Msg.alert('Error', operation.getError());
+						Ext.Msg.alert('Error [ EPSB001 ]', 'Please Call IT with inform "Filter BIGS PCB Serial Error"');
+					}catch(e){
+		                Ext.Msg.alert('Error [ EPSB002 ]', 'Please Call IT with inform "Filter BIGS PCB Serial Error"');
+		            }
 				}
 			}
 		}
 	});
-	store_bigs.load({
-	    callback: function(records, operation, success) {
-	        if(success == true){
-                if(records.length == 0){
-                	//Ext.Msg.alert('Result', 'No Available Data');
-                }
-            }
-            if(success == false){
-                try{
-                    Ext.Msg.alert('Error', operation.getError()); // way more elegant than ussing rawData etc ...
-                }catch(e){
-                    Ext.Msg.alert('Error', 'Please Call IT with inform "Filter BIGS PCB Serial Error"');
-                }
-            }
-	    }
-	});
+	// store_bigs.load({
+	//     callback: function(records, operation, success) {
+	//         if(success == true){
+	//             if(records.length == 0){
+	//             	Ext.Msg.alert('Result', 'BIGS - No Available Data');
+	//             }
+	//         }
+	//         if(success == false){
+	//             try{
+	//                 //Ext.Msg.alert('Error', operation.getError()); // way more elegant than ussing rawData etc ...
+	//                 Ext.Msg.alert('Error', 'Please Call IT with inform "Filter BIGS PCB Serial Error"');
+	//             }catch(e){
+	//                 Ext.Msg.alert('Error', 'Please Call IT with inform "Filter BIGS PCB Serial Error"');
+	//             }
+	//         }
+	//     }
+	// });
 //	=======================================================    GRID         =====================================
 	var grid_bigs = Ext.create('Ext.grid.Panel', {
 		id 			: 'grid_bigs',
 		renderTo 	: 'panel_bigs',
+		forceFit 	: true,
 		columnLines	: true,
 		maxHeight 	: 300,
 		minHeight 	: 150,
 		store 		: store_bigs,
 		viewConfig	: {
 			stripeRows 			: true,
-			emptyText 			: '<div class="empty-txt">No data to display.</div>',
+			emptyText 			: '<div class="empty-txt">Click Go! / Clik Enter on Search PCB Serial</div>',
 			deferEmptyText 		: false,
 			enableTextSelection : true
 		},
 		columns 	: [
-			{	header 	 : 'schedule_id',
-				dataIndex: 'schedule_id',
-				width 	 : 50,
-				renderer : upsize,
-				hidden	 : true
-			}, 	
-			{	header 	 : 'lot_size',
-				dataIndex: 'lot_size',
-				width 	 : 85,
-				renderer : upsize,
-				hidden	 : true
-			}, 
-			{	header 	 : 'model_code',
-				dataIndex: 'model_code',
-				width 	 : 125,
-				renderer : upsize,
-				hidden	 : true
-			},
-			{ 	header 	 : 'prod_no_code',
-				dataIndex: 'prod_no_code',
-				width 	 : 70,
-				renderer : upsize,
-				hidden	 : true
-			},
-			{ 	header 	 : 'YNUMBER',
-				dataIndex: 'ynumber',
-				// componentCls: 'headergrid',
-				width 	 : 100,
-				renderer : upsize
-			}, 
-			{ 	header 	 : 'SIDE',
-				dataIndex: 'side',
-				// componentCls: 'headergrid',
-				width 	 : 60,
-				renderer : upsize
-			},
-			{ 	header 	 : 'CAVITY',
-				dataIndex: 'cavity',
-				// componentCls: 'headergrid',
-				width 	 : 70,
-				renderer : upsize
-			}, 
-			{ 	header 	 : 'LINE',
-				dataIndex: 'line',
-				// componentCls: 'headergrid',
-				width 	 : 60,
-				renderer : upsize
-			}, 
-			{ 	header 	 : 'MODEL',
-				dataIndex: 'model',
-				// componentCls: 'headergrid',
-				width 	 : 120,
-				renderer : upsize
-			}, 
-			{ 	header 	 : 'PWB NAME',
-				dataIndex: 'pwbname',
-				// componentCls: 'headergrid',
-				flex 	 : 1,
-				renderer : upsize
-			}, 
-			{ 	header 	 : 'PROD NO',
-				dataIndex: 'prod_no',
-				// componentCls: 'headergrid',
-				flex 	 : 1,
-				renderer : upsize
-			}, 
-			{ 	header 	 : 'PROCESS',
-				dataIndex: 'process',
-				// componentCls: 'headergrid',
-				flex 	 : 1,
-				renderer : upsize
-			}, 
-			{ 	header 	 : 'rev_date',
-				dataIndex: 'rev_date',
-				flex 	 : 1,
-				renderer : upsize,
-				hidden	 : true
-			}, 
-			{ 	header 	 : 'QUANTITY',
-				dataIndex: 'qty',
-				// componentCls: 'headergrid',
-				flex 	 : 1,
-				renderer : upsize
-			}
+			{	header 	 		: 'schedule_id',
+				dataIndex 		: 'schedule_id',
+				minWidth 		: 60,
+				renderer 		: upsize,
+				hidden	 		: true}, 	
+			{	header 	 		: 'lot_size',
+				dataIndex 		: 'lot_size',
+				minWidth 		: 60,
+				renderer 		: upsize,
+				hidden	 		: true}, 
+			{	header 	 		: 'model_code',
+				dataIndex 		: 'model_code',
+				minWidth 		: 60,
+				renderer 		: upsize,
+				hidden	 		: true},
+			{ 	header 	  		: 'prod_no_code',
+				dataIndex 		: 'prod_no_code',
+				minWidth 		: 60,
+				renderer 		: upsize,
+				hidden	 		: true},
+			{ 	header 	  		: 'rev_date',
+				dataIndex 		: 'rev_date',
+				renderer  		: upsize,
+				hidden	  		: true}, 
+			{ 	header 	 		: 'YNUMBER',
+				dataIndex		: 'ynumber',
+				componentCls	: 'headergrid',
+				minWidth 	 		: 100,
+				renderer 		: upsize}, 
+			{ 	header 	 		: 'SIDE',
+				dataIndex		: 'side',
+				componentCls 	: 'headergrid',
+				minWidth 	 		: 60,
+				renderer  		: upsize},
+			{ 	header 	 		: 'CAVITY',
+				dataIndex 		: 'cavity',
+				componentCls 	: 'headergrid',
+				minWidth 	 		: 80,
+				renderer 		: upsize}, 
+			{ 	header 	 		: 'LINE',
+				dataIndex 		: 'line',
+				componentCls 	: 'headergrid',
+				minWidth 	 		: 70,
+				renderer 		: upsize}, 
+			{ 	header 	 		: 'MODEL',
+				dataIndex 		: 'model',
+				componentCls 	: 'headergrid',
+				minWidth 	 		: 130,
+				renderer 		: upsize}, 
+			{ 	header 	  		: 'PWB NAME',
+				dataIndex 		: 'pwbname',
+				componentCls 	: 'headergrid',
+				minWidth 	 		: 100,
+				renderer 		: upsize}, 
+			{ 	header 	  		: 'PROD NO',
+				dataIndex 		: 'prod_no',
+				componentCls 	: 'headergrid',
+				minWidth 	 		: 80,
+				renderer  		: upsize}, 
+			{ 	header 	  		: 'PROCESS',
+				dataIndex 		: 'process',
+				componentCls 	: 'headergrid',
+				minWidth 	 		: 110,
+				renderer 		: upsize}, 
+			{ 	header 	  		: 'QUANTITY',
+				dataIndex 		: 'qty',
+				minWidth 	 		: 120,
+				componentCls 	: 'headergrid',
+				renderer 		: upsize}
 		],
 		listeners: {
+			// render : {
+			// 	fn: getColumnWidth(text){
+			//         let columnWidth = (text.length * 7) + 35  // giving 7 pixles for each letter in the text
+			//         //Optional This part is used to set a maximum column width in case there is too many charachter in the text
+			//         if(columnWidth>400){
+			//             columnWidth = 400
+			//         }
+			//         return columnWidth;
+			//     }
+			// }
+
     		select: function(grid, rowIndex, colIndex) {
     			var rec 		= this.getSelectionModel().getSelection();
-    			var totcavity 	= rec[0].data.cavity;
+    			var totCavity 	= rec[0].data.cavity;
+    			var srcModel	= rec[0].data.model;
+    			var srcPwbname  = rec[0].data.pwbname;
+				
     			var boardid 	= document.getElementById('pcbserial').value;
+
+
 				Ext.getStore('store_smt_repair').proxy.setExtraParam('src_boardid', boardid);
-				Ext.getStore('store_smt_repair').proxy.setExtraParam('totcavity', totcavity);
 				Ext.getStore('store_smt_repair').loadPage(1);
 				Ext.getStore('store_smt_spi').proxy.setExtraParam('boardid', boardid);
-				Ext.getStore('store_smt_spi').proxy.setExtraParam('totcavity', totcavity);
 				Ext.getStore('store_smt_spi').loadPage(1);
+				Ext.getStore('store_mapros_board').proxy.setExtraParam('cavity', totCavity);
+				Ext.getStore('store_mapros_board').proxy.setExtraParam('model', srcModel);
+				Ext.getStore('store_mapros_board').proxy.setExtraParam('pwbname', srcPwbname);
     		}
     	},
 		bbar	: Ext.create('Ext.PagingToolbar', {
@@ -201,4 +190,14 @@ Ext.onReady(function() {
 			}
 		})
 	});
+
+	grid_bigs.getStore().on('load', function() {
+        grid_bigs.getView().stripeRows 			= true;
+		grid_bigs.getView().deferEmptyText 		= false;
+		grid_bigs.getView().enableTextSelection	= true;
+        grid_bigs.getView().emptyText = '<div class="empty-txt2">Data Not Available.</div>';
+        grid_bigs.getView().refresh();
+    });
+
 });
+

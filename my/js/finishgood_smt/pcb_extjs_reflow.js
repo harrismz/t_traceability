@@ -31,11 +31,11 @@ Ext.onReady(function() {
 			minHeight 	: 150,
 			columnLines : true,
 			store 		: store_smt_reflow,
-			viewConfig 	: {
+			viewConfig 		: {
 				stripeRows 			: true,
-				emptyText 			: '<div class="empty-txt">No data to display.</div>',
+				emptyText 	 		: '<div class="empty-txt">Select Board ID Generator for this result.</div>',
 				deferEmptyText 		: false,
-				enableTextSelection : true
+				enableTextSelection	: true
 			},
 			columns: [
 				{
@@ -70,6 +70,17 @@ Ext.onReady(function() {
 					renderer: upsize
 				}
 			],
+			listeners: {
+	    		select: function(grid, rowIndex, colIndex) {
+	    			var rec 		= this.getSelectionModel().getSelection();
+	    			var boardid 	= document.getElementById('pcbserial').value;
+
+	    			Ext.getStore('store_good_smt_aoi_board').proxy.setExtraParam('boardid', boardid);
+					Ext.getStore('store_good_smt_aoi_board').loadPage(1);
+					Ext.getStore('store_good_smt_aoi_point').proxy.setExtraParam('boardid', boardid);
+					Ext.getStore('store_good_smt_aoi_point').loadPage(1);
+	    		}
+	    	},
 			bbar	: Ext.create('Ext.PagingToolbar', {
 				pageSize		: itemperpage,
 				store			: store_smt_reflow,
@@ -90,7 +101,15 @@ Ext.onReady(function() {
 				}
 			})
 		});
-	
+		
+		grid_smt_reflow.getStore().on('load', function() {
+            grid_smt_reflow.getView().stripeRows 			= true;
+			grid_smt_reflow.getView().deferEmptyText 		= false;
+			grid_smt_reflow.getView().enableTextSelection	= true;
+            grid_smt_reflow.getView().emptyText = '<div class="empty-txt2">Data Not Available.</div>';
+            grid_smt_reflow.getView().refresh();
+        });
+
 	//	=======================================================	 PANEL	=====================================
 		var panel_reflow = Ext.create('Ext.panel.Panel', {
 			id 				:'panel_reflow',

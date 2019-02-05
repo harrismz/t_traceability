@@ -12,16 +12,10 @@ $cavity     = @$_REQUEST['cavity'];
 $model      = @$_REQUEST['model'];
 $pwbname    = @$_REQUEST['pwbname'];
 
-/* check connection */
-if ($mysqli->connect_errno) {
-    printf("Connect failed: %s\n", $mysqli->connect_error);
-    exit();
-}
+// $sql    = "call traceability_goodsmt_board_rev2 ('{$boardid}','{$cavity}', '{$model}','{$pwbname}')";
+// $rs     = $db->execute($sql);
 
-$sql    = "call traceability_goodsmt_board_rev2 ('{$boardid}','{$cavity}', '{$model}','{$pwbname}')";
-$rs     = $db->execute($sql);
-
-
+$query    = "call traceability_goodsmt_board_rev2 ('{$boardid}','{$cavity}', '{$model}','{$pwbname}')";
 
 if ($result = $mysqli->query($query)) {
 
