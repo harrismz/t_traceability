@@ -116,18 +116,20 @@ Ext.onReady(function() {
 				pageSize		: itemperpage,
 				store			: store_smt_mounter,
 				displayInfo		: true,
-				displayMsg		: 'Data {0} - {1} from {2} data',
-				emptyMsg		: "Page not found",
-				beforePageText  : 'Page',
-				afterPageText   : 'from {0} Pages',
-				firstText       : 'First Page',
-				prevText        : 'Previous Page',
-				nextText        : 'Next page',
-				lastText        : 'Last Page',
-				plugins       	: Ext.create('Ext.ux.ProgressBarPager', {}),
+				// displayMsg		: 'Data {0} - {1} from {2} data',
+				// emptyMsg		: "Page not found",
+				// beforePageText  : 'Page',
+				// afterPageText   : 'from {0} Pages',
+				// firstText       : 'First Page',
+				// prevText        : 'Previous Page',
+				// nextText        : 'Next page',
+				// lastText        : 'Last Page',
+				// plugins       	: Ext.create('Ext.ux.ProgressBarPager', {}),
 				listeners 		: {
 					afterrender: function (cmp) {
 						cmp.getComponent("refresh").hide();
+						cmp.getComponent("first").hide();
+						cmp.getComponent("last").hide();
 					}
 				}
 			})

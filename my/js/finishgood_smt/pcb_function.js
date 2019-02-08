@@ -79,12 +79,180 @@ function renderImage(value, metaData, record, rowIndex, colIndex, store) {
         	return '<img class="imageZoomCls" src="data:image/jpg;base64,' + value +  '" width="50" height="50" />';
 		}
 }
+
+//	== EXTJS WIDTH COLUMN ===================================================================//
+function getWidthPCBSerialBigs(){
+	var width = $('html').width();
+	var setwidthPCBSerialBigs = "";
+	if (width <= 883) {
+		setwidthPCBSerialBigs = true;
+	}
+	else{
+		setwidthPCBSerialBigs = false;
+	}
+	// console.log('BIGS width = '+width);
+	// console.log('BIGS autoSizeColumn = '+setwidthPCBSerialBigs);
+	return setwidthPCBSerialBigs;
+}
+function getFlexPCBSerialBigs(){
+	var width = $('html').width();
+	var	setFlexPCBSerialBigs = "";
+	if (width <= 883) {
+		setFlexPCBSerialBigs = false;
+	}
+	else{
+		setFlexPCBSerialBigs = 1;
+	}
+	// console.log('BIGS width = '+width);
+	// console.log('BIGS flex = '+setFlexPCBSerialBigs);
+	return setFlexPCBSerialBigs;
+}
+//	== REPAIR ==========================================//
+function getWidthPCBSerialRepair(){
+	var width = $('html').width();
+	var setwidthPCBSerialRepair = "";
+	if (width <= 1167) {
+		setwidthPCBSerialRepair = true;
+	}
+	else{
+		setwidthPCBSerialRepair = false;
+	}
+	// console.log('Repair width = '+width);
+	// console.log('Repair autoSizeColumn = '+setwidthPCBSerialRepair);
+	return setwidthPCBSerialRepair;
+}
+function getFlexPCBSerialRepair(){
+	var width = $('html').width();
+	var	setFlexPCBSerialRepair = "";
+	if (width <= 1167) {
+		setFlexPCBSerialRepair = false;
+	}
+	else{
+		setFlexPCBSerialRepair = 1;
+	}
+	// console.log('Repair width = '+width);
+	// console.log('Repair flex = '+setFlexPCBSerialRepair);
+	return setFlexPCBSerialRepair;
+}
+//	== SPI =============================================//
+function getWidthPCBSerialSPI(){
+	var width = $('html').width();
+	var setwidthPCBSerialSPI = "";
+	if (width <= 620) {
+		setwidthPCBSerialSPI = true;
+	}
+	else{
+		setwidthPCBSerialSPI = false;
+	}
+	// console.log('SPI width = '+width);
+	// console.log('SPI autoSizeColumn = '+setwidthPCBSerialSPI);
+	return setwidthPCBSerialSPI;
+}
+function getFlexPCBSerialSPI(){
+	var width = $('html').width();
+	var	setFlexPCBSerialSPI = "";
+	if (width <= 620) {
+		setFlexPCBSerialSPI = false;
+	}
+	else{
+		setFlexPCBSerialSPI = 1;
+	}
+	// console.log('SPI width = '+width);
+	// console.log('SPI flex = '+setFlexPCBSerialSPI);
+	return setFlexPCBSerialSPI;
+}
+//	== MOUNTER =========================================//
+//	== REFLOW ==========================================//
+function getWidthPCBSerialReflow(){
+	var width = $('html').width();
+	var setwidthPCBSerialReflow = "";
+	if (width <= 633) {
+		setwidthPCBSerialReflow = true;
+	}
+	else{
+		setwidthPCBSerialReflow = false;
+	}
+	// console.log('Reflow width = '+width);
+	// console.log('Reflow autoSizeColumn = '+setwidthPCBSerialReflow);
+	return setwidthPCBSerialReflow;
+}
+function getFlexPCBSerialReflow(){
+	var width = $('html').width();
+	var	setFlexPCBSerialReflow = "";
+	if (width <= 633) {
+		setFlexPCBSerialReflow = false;
+	}
+	else{
+		setFlexPCBSerialReflow = 1;
+	}
+	// console.log('Reflow width = '+width);
+	// console.log('Reflow flex = '+setFlexPCBSerialReflow);
+	return setFlexPCBSerialReflow;
+}
+//	== AOI =============================================//
+function getWidthPCBSerialAOIBoard(){
+	var width = $('html').width();
+	var setwidthPCBSerialAOIBoard = "";
+	if (width <= 805) {
+		setwidthPCBSerialAOIBoard = true;
+	}
+	else{
+		setwidthPCBSerialAOIBoard = false;
+	}
+	// console.log('AOIBoard width = '+width);
+	// console.log('AOIBoard autoSizeColumn = '+setwidthPCBSerialAOIBoard);
+	return setwidthPCBSerialAOIBoard;
+}
+function getFlexPCBSerialAOIBoard(){
+	var width = $('html').width();
+	var	setFlexPCBSerialAOIBoard = "";
+	if (width <= 805) {
+		setFlexPCBSerialAOIBoard = false;
+	}
+	else{
+		setFlexPCBSerialAOIBoard = 1;
+	}
+	// console.log('AOIBoard width = '+width);
+	// console.log('AOIBoard flex = '+setFlexPCBSerialAOIBoard);
+	return setFlexPCBSerialAOIBoard;
+}
+function getWidthPCBSerialAOIPoint(){
+	var width = $('html').width();
+	var setwidthPCBSerialAOIPoint = "";
+	if (width <= 1043) {
+		setwidthPCBSerialAOIPoint = true;
+	}
+	else{
+		setwidthPCBSerialAOIPoint = false;
+	}
+	console.log('AOIPoint width = '+width);
+	console.log('AOIPoint autoSizeColumn = '+setwidthPCBSerialAOIPoint);
+	return setwidthPCBSerialAOIPoint;
+}
+function getFlexPCBSerialAOIPoint(){
+	var width = $('html').width();
+	var	setFlexPCBSerialAOIPoint = "";
+	if (width <= 1043) {
+		setFlexPCBSerialAOIPoint = false;
+	}
+	else{
+		setFlexPCBSerialAOIPoint = 1;
+	}
+	console.log('AOIPoint width = '+width);
+	console.log('AOIPoint flex = '+setFlexPCBSerialAOIPoint);
+	return setFlexPCBSerialAOIPoint;
+}
+//	== MAPROS ==========================================//
+
+// END width column ==============================================================//
+
+
 /*
 getColumnWidth:function(text){
-        let columnWidth = (text.length * 7) + 35  // giving 7 pixles for each letter in the text
-        //Optional This part is used to set a maximum column width in case there is too many charachter in the text
-        if(columnWidth>400){
-            columnWidth = 400
-        }
-        return columnWidth;
-    }*/ 
+    let columnWidth = (text.length * 7) + 35  // giving 7 pixles for each letter in the text
+    //Optional This part is used to set a maximum column width in case there is too many charachter in the text
+    if(columnWidth>400){
+        columnWidth = 400
+    }
+    return columnWidth;
+}*/ 	

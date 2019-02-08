@@ -60,7 +60,7 @@
 			$return[$i]['boardqty']		= (float)trim($rs->fields['20']);
 			$return[$i]['pointqty']		= (float)trim($rs->fields['21']);
 			$return[$i]['inputdate']	= $rs->fields['22'];
-			$return[$i]['totcount']		= $rs->fields['23'];
+			//$return[$i]['totcount']		= $rs->fields['23'];
 			/*$newdate					= date_create($rs->fields['20']);
 			$inputdate					= date_format($newdate, "Y-m-d H:i:s");
 			$return[$i]['inputdate']	= $inputdate;*/

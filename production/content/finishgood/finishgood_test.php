@@ -1,41 +1,40 @@
-<script type="text/javascript" src='./my/js/finishgood_smt/pcb_extjs_call.js'></script>
-<script type="text/javascript" src='./my/js/finishgood_smt/pcb_function.js'></script>
-<script type="text/javascript" src='./my/js/finishgood_smt/pcb_extjs_var.js'></script>
-<script type="text/javascript" src='./my/js/finishgood_smt/finishgood_smt.js'></script>
-<script type="text/javascript" src='./my/js/finishgood_smt/pcb_extjs_bigs.js'></script>
-<script type="text/javascript" src='./my/js/finishgood_smt/pcb_extjs_repair.js'></script>
-<script type="text/javascript" src='./my/js/finishgood_smt/pcb_extjs_spi.js'></script>
-<script type="text/javascript" src='./my/js/finishgood_smt/pcb_extjs_mounter.js'></script>
-<script type="text/javascript" src='./my/js/finishgood_smt/pcb_extjs_reflow.js'></script> 
-<script type="text/javascript" src='./my/js/finishgood_smt/pcb_extjs_aoi.js'></script>
-<script type="text/javascript" src='./my/js/finishgood_smt/pcb_extjs_mapros.js'></script>
-<script type="text/javascript" src='./my/js/finishgood_smt/pcb_extjs_inspection.js'></script>
-<script type="text/javascript" src='./my/js/finishgood_smt/pcb_extjs_warehouse.js'></script>
+<!-- <script type="text/javascript" src='./my/js/finishgood/pcb_extjs_call.js'></script> -->
 <section>
   <!--  Searching Traceability -->
   <div class="page-title">
     <div class="title_left">
-      <h3>PCB Serial</h3>
+      <h3>Finish Goods</h3>
     </div>
     <!-- YJ5224A01MN_00A7010A0002 -->
 
     <!-- SWITCH WITHOUT MOTHERCODE -->
     <!-- YJ5214A00SH_01A7015A0001  -->
     <!-- YJ5214A00SH_01A7013A0208  -->
-    <!-- YJ5224A02AO_00A7016A0601  -->
-    <!-- YJ5224A03VT_00A7024A0513  -->
-    <!-- YJ5224M01AO_00A7013A0062  -->
-    <!-- YJ5224M01AO_00A7013A0328  -->
-    <!-- YJ5224A01VT_00B7030A0175  -->
     
     <div class="title_right">
-      <div class="col-md-9 col-sm-9 col-xs-12 form-group pull-right top_search">
+      <div class="col-md-12 col-sm-12 col-xs-12 form-group pull-right top_search">
         <div class="input-group">
-          <input id="pcbserial" type="text" class="form-control" placeholder="Search For PCB Serial..." onkeypress="checkPcbSerial(event)" value="YJ5224A01VT_00B7030A0175" data-qtip="Search PCB Serial here" style="text-transform:uppercase">
+          <button class="form-control btn-danger input-group-btn" type="button" data-toggle="dropdown" data-qtip="Select Category Filter Data" >Filter By
+          <span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            <li><a href="#">Model & Lotno</a></li>
+            <li><a href="#">Model & Serial</a></li>
+            <li><a href="#">Dummy Serial/Panel</a></li>
+          </ul>
+          <input type="text" class="form-control col-md-12 col-sm-12 col-xs-12" placeholder="Search For PCB Serial..." onkeypress="checkPcbSerial(event)" value="YJ5214A00SH_01A7013A0208" data-qtip="Search PCB Serial here" style="text-transform:uppercase">
+        </div>
+        <div class="input-group">
+          
+          <input id="pcbserial" type="text" class="form-control" placeholder="Search For PCB Serial..." onkeypress="checkPcbSerial(event)" value="YJ5214A00SH_01A7013A0208" data-qtip="Search PCB Serial here" style="text-transform:uppercase">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button" onclick="checkPcbSerial(event)" data-qtip="Click Here for searching data">Go!</button>
+          </span>
+          <input id="pcbserial" type="text" class="form-control" placeholder="Search For PCB Serial..." onkeypress="checkPcbSerial(event)" value="YJ5214A00SH_01A7013A0208" data-qtip="Search PCB Serial here" style="text-transform:uppercase">
           <span class="input-group-btn">
             <button class="btn btn-default" type="button" onclick="checkPcbSerial(event)" data-qtip="Click Here for searching data">Go!</button>
           </span>
         </div>
+       
       </div>
     </div>
   </div>
@@ -172,7 +171,7 @@
       </div>
     </div>
   </div>
-  <div id="ma_tab" class="row" hidden>
+  <div id="ma_tab" class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="x_panel">
         <div class="x_title">
@@ -194,7 +193,7 @@
       </div>
     </div>
   </div>
-  <div id="insp_tab" class="row" hidden>
+  <div id="insp_tab" class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="x_panel">
         <div class="x_title">

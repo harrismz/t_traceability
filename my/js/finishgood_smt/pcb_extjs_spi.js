@@ -48,68 +48,86 @@ Ext.onReady(function() {
 				stripeRows 			: true,
 				emptyText 	 		: '<div class="empty-txt">Select Board ID Generator for this result.</div>',
 				deferEmptyText 		: false,
-				enableTextSelection	: true
+				enableTextSelection	: true,
+				listeners : {
+					refresh : function (dataview) {
+						Ext.each(dataview.panel.columns, function (column) {
+							if (column.autoSizeColumn === true)
+							column.autoSize();
+						})
+					}
+			    }
 			},
 			columns 	: [
-				{	header 		: 'BARCODE',
-					dataIndex 	: 'barcode',
-					flex 		: 1,
-					renderer	: upsize,
-					hidden 		: true
+				{	header 			: 'BARCODE',
+					dataIndex 		: 'barcode',
+					flex 			: getFlexPCBSerialSPI(),
+					autoSizeColumn 	: getWidthPCBSerialSPI(),
+					renderer		: upsize,
+					hidden 			: true
 				},
-				{	header 		: 'INSP DATE',
-					dataIndex 	: 'inspectiondatetime',
-					componentCls: 'headergrid',
-					flex 		: 1,
-					renderer	: upsize
+				{	header 			: 'INSP DATE',
+					dataIndex 		: 'inspectiondatetime',
+					componentCls 	: 'headergrid',
+					flex 			: getFlexPCBSerialSPI(),
+					autoSizeColumn 	: getWidthPCBSerialSPI(),
+					renderer		: upsize
 				},
-				{	header 		: 'MCH NAME',
-					dataIndex 	: 'mchname',
-					componentCls: 'headergrid',
-					flex 		: 1,
-					renderer	: upsize
+				{	header 			: 'MCH NAME',
+					dataIndex 		: 'mchname',
+					componentCls 	: 'headergrid',
+					flex 			: getFlexPCBSerialSPI(),
+					autoSizeColumn 	: getWidthPCBSerialSPI(),
+					renderer		: upsize
 				},
 				{	header 		: 'inspectiondate',
 					dataIndex 	: 'inspectiondate',
-					flex 		: 1,
+					flex 			: getFlexPCBSerialSPI(),
+					autoSizeColumn 	: getWidthPCBSerialSPI(),
 					renderer	: upsize,
 					hidden 		: true
 				},
 				{	header 		: 'inspectiontime',
 					dataIndex 	: 'inspectiontime',
-					flex 		: 1,
+					flex 			: getFlexPCBSerialSPI(),
+					autoSizeColumn 	: getWidthPCBSerialSPI(),
 					renderer	: upsize,
 					hidden 		: true
 				},
 				{	header 		: 'FILE NAME',
 					dataIndex 	: 'filename',
-					flex 		: 1,
+					flex 			: getFlexPCBSerialSPI(),
+					autoSizeColumn 	: getWidthPCBSerialSPI(),
 					renderer	: upsize,
 					hidden 		: true
 				},
 				{	header 		: 'PCB ID',
 					dataIndex 	: 'pcbid',
-					width 		: 70,
+					flex 			: getFlexPCBSerialSPI(),
+					autoSizeColumn 	: getWidthPCBSerialSPI(),
 					renderer	: upsize,
 					hidden 		: true
 				},
-				{	header 		: 'MCH JUDGE',
-					dataIndex 	: 'spijudge',
-					componentCls: 'headergrid',
-					flex 		: 1,
-					renderer	: spimchjudge
+				{	header 		 	: 'MCH JUDGE',
+					dataIndex 		: 'spijudge',
+					componentCls 	: 'headergrid',
+					flex 			: getFlexPCBSerialSPI(),
+					autoSizeColumn 	: getWidthPCBSerialSPI(),
+					renderer	 	: spimchjudge
 				},
-				{	header 		: 'OP JUDGE',
-					dataIndex 	: 'opjudge',
-					componentCls: 'headergrid',
-					flex 		: 1,
-					renderer	: spiopjudge
+				{	header 		 	: 'OP JUDGE',
+					dataIndex 	 	: 'opjudge',
+					componentCls 	: 'headergrid',
+					flex 			: getFlexPCBSerialSPI(),
+					autoSizeColumn 	: getWidthPCBSerialSPI(),
+					renderer	 	: spiopjudge
 				},
-				{	header 		: 'DEFECT CNT',
-					dataIndex 	: 'defectcnt',
-					componentCls: 'headergrid',
-					flex 		: 1,
-					renderer	: upsize
+				{	header 		 	: 'DEFECT CNT',
+					dataIndex 	 	: 'defectcnt',
+					componentCls 	: 'headergrid',
+					flex 			: getFlexPCBSerialSPI(),
+					autoSizeColumn 	: getWidthPCBSerialSPI(),
+					renderer		: upsize
 				}
 			],
 			listeners: {
@@ -129,18 +147,20 @@ Ext.onReady(function() {
 				pageSize		: itemperpage,
 				store			: store_smt_spi,
 				displayInfo		: true,
-				displayMsg		: 'Data {0} - {1} from {2} data',
-				emptyMsg		: "Page not found",
-				beforePageText  : 'Page',
-				afterPageText   : 'from {0} Pages',
-				firstText       : 'First Page',
-				prevText        : 'Previous Page',
-				nextText        : 'Next page',
-				lastText        : 'Last Page',
-				plugins       	: Ext.create('Ext.ux.ProgressBarPager', {}),
+				// displayMsg		: 'Data {0} - {1} of {2}',
+				// emptyMsg		: "Page not found",
+				// beforePageText  : 'Page',
+				// afterPageText   : 'from {0} Pages',
+				// firstText       : 'First Page',
+				// prevText        : 'Previous Page',
+				// nextText        : 'Next page',
+				// lastText        : 'Last Page',
+				//plugins       	: Ext.create('Ext.ux.ProgressBarPager', {}),
 				listeners 		: {
 					afterrender: function (cmp) {
 						cmp.getComponent("refresh").hide();
+						cmp.getComponent("first").hide();
+						cmp.getComponent("last").hide();
 					}
 				}
 			})

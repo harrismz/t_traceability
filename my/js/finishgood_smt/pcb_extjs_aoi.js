@@ -53,43 +53,57 @@ Ext.onReady(function() {
 			stripeRows 			: true,
 			emptyText 			: '<div class="empty-txt">Select Reflow for this result.</div>',
 			deferEmptyText 		: false,
-			enableTextSelection : true
+			enableTextSelection : true,
+			listeners : {
+				refresh : function (dataview) {
+					Ext.each(dataview.panel.columns, function (column) {
+						if (column.autoSizeColumn === true)
+						column.autoSize();
+					})
+				}
+		    }
 		},
 		columns: [
 			{ 	header 		: 'BARCODE',
 				dataIndex 	: 'barcode',
 				componentCls: 'headergrid',
-				width 	 	: 200,
+				flex 			: false,
+				autoSizeColumn 	: true,
 				renderer 	: upsize
 			},
 			{ 	header 		: 'MCH NAME',
 				dataIndex 	: 'linkedserver',
 				componentCls: 'headergrid',
-				width 	 	: 90,
+				flex 			: getFlexPCBSerialAOIBoard(),
+				autoSizeColumn 	: getWidthPCBSerialAOIBoard(),
 				renderer 	: upsize
 			}, 
 			{ 	header 		: 'PCB ID',
 				dataIndex 	: 'pcbid',
-				width 	 	: 75,
+				flex 			: getFlexPCBSerialAOIBoard(),
+				autoSizeColumn 	: getWidthPCBSerialAOIBoard(),
 				renderer 	: upsize,
 				hidden  	: true
 			}, 
 			{ 	header 		: 'PCB GUID',
 				dataIndex 	: 'pcbguid',
-				flex 		: 1,
+				flex 			: getFlexPCBSerialAOIBoard(),
+				autoSizeColumn 	: getWidthPCBSerialAOIBoard(),
 				renderer 	: upsize,
 				hidden  	: true
 			}, 
 			{ 	header 		: 'START DATE',
 				dataIndex 	: 'stdate',
 				componentCls: 'headergrid',
-				flex 		: 1,
+				flex 			: getFlexPCBSerialAOIBoard(),
+				autoSizeColumn 	: getWidthPCBSerialAOIBoard(),
 				renderer 	: upsize
 			},
 			{ 	header 		: 'END DATE',
 				dataIndex 	: 'enddate',
 				componentCls: 'headergrid',
-				flex 		: 1,
+				flex 			: getFlexPCBSerialAOIBoard(),
+				autoSizeColumn 	: getWidthPCBSerialAOIBoard(),
 				renderer 	: upsize,
 				filters 	: {
 					type 	: 'string'
@@ -98,14 +112,16 @@ Ext.onReady(function() {
 			{ 	header 		: 'MCH JUDGE',
 				dataIndex 	: 'aoijudgment',
 				componentCls: 'headergrid',
-				flex 		: 1,
+				flex 			: getFlexPCBSerialAOIBoard(),
+				autoSizeColumn 	: getWidthPCBSerialAOIBoard(),
 				renderer 	: upsize
 			}, 
 			{ 	header 		: 'OP JUDGE',
 				dataIndex 	: 'userjudgment',
 				componentCls: 'headergrid',
 				componentCls: 'headergrid',
-				flex 		: 1,
+				flex 			: getFlexPCBSerialAOIBoard(),
+				autoSizeColumn 	: getWidthPCBSerialAOIBoard(),
 				renderer 	: upsize
 			}
 		],
@@ -121,19 +137,21 @@ Ext.onReady(function() {
 		bbar	: Ext.create('Ext.PagingToolbar', {
 			pageSize		: itemperpage,
 			store			: store_good_smt_aoi_board,
-			//displayInfo		: true,
-			displayMsg		: 'Data {0} - {1} from {2} data',
-			emptyMsg		: "Page not found",
-			beforePageText  : 'Page',
-			afterPageText   : 'from {0} Pages',
-			firstText       : 'First Page',
-			prevText        : 'Previous Page',
-			nextText        : 'Next page',
-			lastText        : 'Last Page',
-			plugins       	: Ext.create('Ext.ux.ProgressBarPager', {}),
+			displayInfo		: true,
+			// displayMsg		: 'Data {0} - {1} from {2} data',
+			// emptyMsg		: "Page not found",
+			// beforePageText  : 'Page',
+			// afterPageText   : 'from {0} Pages',
+			// firstText       : 'First Page',
+			// prevText        : 'Previous Page',
+			// nextText        : 'Next page',
+			// lastText        : 'Last Page',
+			// plugins       	: Ext.create('Ext.ux.ProgressBarPager', {}),
 			listeners 		: {
 				afterrender: function (cmp) {
 					cmp.getComponent("refresh").hide();
+						cmp.getComponent("first").hide();
+						cmp.getComponent("last").hide();
 				}
 			}
 		})
@@ -157,97 +175,118 @@ Ext.onReady(function() {
 			stripeRows 			: true,
 			emptyText 			: '<div class="empty-txt">Select Reflow for this result.</div>',
 			deferEmptyText 		: false,
-			enableTextSelection : true
+			enableTextSelection : true,
+			listeners : {
+				refresh : function (dataview) {
+					Ext.each(dataview.panel.columns, function (column) {
+						if (column.autoSizeColumn === true)
+						column.autoSize();
+					})
+				}
+		    }
 		},
 		columns 	: [
-			{ 	header 		: 'BARCODE',
-				dataIndex 	: 'barcode',
-				componentCls: 'headergrid',
-				width 	 	: 200,
-				renderer 	: upsize
+			{ 	header 		 	: 'BARCODE',
+				dataIndex 	 	: 'barcode',
+				componentCls 	: 'headergrid',
+				flex 			: false,
+				autoSizeColumn 	: true,
+				renderer 	 	: upsize
 			}, 
-			{ 	header 		: 'MCH NAME',
-				dataIndex 	: 'linkedserver',
-				componentCls: 'headergrid',
-				width 	 	: 90,
-				renderer 	: upsize
+			{ 	header 		 	: 'MCH NAME',
+				dataIndex 	 	: 'linkedserver',
+				componentCls 	: 'headergrid',
+				flex 			: getFlexPCBSerialAOIPoint(),
+				autoSizeColumn 	: getWidthPCBSerialAOIPoint(),
+				renderer 		: upsize
 			}, 
-			{ 	header 		: 'PCB ID',
-				dataIndex 	: 'pcbid',
-				componentCls: 'headergrid',
-				width 	 	: 75,
-				renderer 	: upsize,
-				hidden  	: true
+			{ 	header 		 	: 'PCB ID',
+				dataIndex 	 	: 'pcbid',
+				componentCls 	: 'headergrid',
+				flex 			: getFlexPCBSerialAOIPoint(),
+				autoSizeColumn 	: getWidthPCBSerialAOIPoint(),
+				renderer 		: upsize,
+				hidden  		: true
 			}, 
-			{ 	header 		: 'PCB GUID',
-				dataIndex 	: 'pcbguid',
-				componentCls: 'headergrid',
-				flex 		: 1,
-				renderer 	: upsize,
-				hidden  	: true
+			{ 	header 		 	: 'PCB GUID',
+				dataIndex 		: 'pcbguid',
+				componentCls 	: 'headergrid',
+				flex 			: getFlexPCBSerialAOIPoint(),
+				autoSizeColumn 	: getWidthPCBSerialAOIPoint(),
+				renderer 	 	: upsize,
+				hidden  	 	: true
 			}, 
-			{ 	header 		: 'COMPONENT GUID',
-				dataIndex 	: 'componentguid',
-				componentCls: 'headergrid',
-				flex 		: 1,
-				renderer 	: upsize,
-				hidden 		: true
+			{ 	header 		 	: 'COMPONENT GUID',
+				dataIndex 	 	: 'componentguid',
+				componentCls 	: 'headergrid',
+				flex 			: getFlexPCBSerialAOIPoint(),
+				autoSizeColumn 	: getWidthPCBSerialAOIPoint(),
+				renderer 		: upsize,
+				hidden 			: true
 			}, 
-			{ 	header 		: 'UNAME',
-				dataIndex 	: 'uname',
-				componentCls: 'headergrid',
-				width 	 	: 75,
-				renderer 	: upsize,
-				hidden  	: true
+			{ 	header 			: 'UNAME',
+				dataIndex 		: 'uname',
+				componentCls 	: 'headergrid',
+				flex 			: getFlexPCBSerialAOIPoint(),
+				autoSizeColumn 	: getWidthPCBSerialAOIPoint(),
+				renderer 		: upsize,
+				hidden  		: true
 			}, 
-			{ 	header 		: 'INSP START',
-				dataIndex 	: 'stdate',
-				componentCls: 'headergrid',
-				flex 		: 1,
-				renderer 	: upsize
+			{ 	header 		 	: 'INSP START',
+				dataIndex 		: 'stdate',
+				componentCls 	: 'headergrid',
+				flex 			: getFlexPCBSerialAOIPoint(),
+				autoSizeColumn 	: getWidthPCBSerialAOIPoint(),
+				renderer 	 	: upsize
 			},
-			{ 	header 		: 'INSP END',
-				dataIndex 	: 'enddate',
-				componentCls: 'headergrid',
-				flex 		: 1,
-				renderer 	: upsize,
-				filters 	: {
-					type 	: 'string'
+			{ 	header 		 	: 'INSP END',
+				dataIndex 	 	: 'enddate',
+				componentCls 	: 'headergrid',
+				flex 			: getFlexPCBSerialAOIPoint(),
+				autoSizeColumn 	: getWidthPCBSerialAOIPoint(),
+				renderer 	 	: upsize,
+				filters 	 	: {
+					type 	 	: 'string'
 				}
 			}, 
-			{ 	header 		: 'PART NO',
-				dataIndex 	: 'partno',
-				componentCls: 'headergrid',
-				width 		: 150,
-				renderer 	: upsize,
-				filter 		: {
-					type 	: 'string'
+			{ 	header 			: 'PART NO',
+				dataIndex 		: 'partno',
+				componentCls 	: 'headergrid',
+				flex 			: getFlexPCBSerialAOIPoint(),
+				autoSizeColumn 	: getWidthPCBSerialAOIPoint(),
+				renderer 		: upsize,
+				filter 			: {
+					type 		: 'string'
 				}
 			}, 
-			{ 	header 		: 'PART NAME',
-				dataIndex 	: 'partname',
-				componentCls: 'headergrid',
-				flex 		: 1,
-				renderer 	: upsize
+			{ 	header 			: 'PART NAME',
+				dataIndex 		: 'partname',
+				componentCls	: 'headergrid',
+				flex 			: getFlexPCBSerialAOIPoint(),
+				autoSizeColumn 	: getWidthPCBSerialAOIPoint(),
+				renderer 		: upsize
 			}, 
-			{ 	header 		: 'IMAGE',
-				dataIndex 	: 'image2d',
-				componentCls: 'headergrid',
-				text 		: this.i18nColIconBmp,
-				width 		: 200,
-				renderer 	: renderImage
+			{ 	header 			: 'IMAGE',
+				dataIndex 		: 'image2d',
+				componentCls	: 'headergrid',
+				text 			: this.i18nColIconBmp,
+				flex 			: getFlexPCBSerialAOIPoint(),
+				autoSizeColumn 	: getWidthPCBSerialAOIPoint(),
+				renderer 		: renderImage
 			}, 
-			{ 	header 		: 'MCH JUDGE',
-				dataIndex 	: 'aoijudgment',
-				componentCls: 'headergrid',
-				flex 		: 1,
-				renderer 	: upsize
+			{ 	header 			: 'MCH JUDGE',
+				dataIndex 		: 'aoijudgment',
+				componentCls	: 'headergrid',
+				flex 			: getFlexPCBSerialAOIPoint(),
+				autoSizeColumn 	: getWidthPCBSerialAOIPoint(),
+				renderer 		: upsize
 			}, 
-			{ 	header 		: 'OP JUDGE',
-				dataIndex 	: 'userjudgment',
-				componentCls: 'headergrid',
-				flex 		: 1,
-				renderer 	: upsize
+			{ 	header 			: 'OP JUDGE',
+				dataIndex 		: 'userjudgment',
+				componentCls	: 'headergrid',
+				flex 			: getFlexPCBSerialAOIPoint(),
+				autoSizeColumn 	: getWidthPCBSerialAOIPoint(),
+				renderer 		: upsize
 			}
 		],
 		listeners: {
@@ -263,18 +302,20 @@ Ext.onReady(function() {
 			pageSize		: itemperpage,
 			store			: store_good_smt_aoi_point,
 			displayInfo		: true,
-			displayMsg		: 'Data {0} - {1} from {2} data',
-			emptyMsg		: "Page not found",
-			beforePageText  : 'Page',
-			afterPageText   : 'from {0} Pages',
-			firstText       : 'First Page',
-			prevText        : 'Previous Page',
-			nextText        : 'Next page',
-			lastText        : 'Last Page',
-			plugins       	: Ext.create('Ext.ux.ProgressBarPager', {}),
+			// displayMsg		: 'Data {0} - {1} from {2} data',
+			// emptyMsg		: "Page not found",
+			// beforePageText  : 'Page',
+			// afterPageText   : 'from {0} Pages',
+			// firstText       : 'First Page',
+			// prevText        : 'Previous Page',
+			// nextText        : 'Next page',
+			// lastText        : 'Last Page',
+			// plugins       	: Ext.create('Ext.ux.ProgressBarPager', {}),
 			listeners 		: {
 				afterrender: function (cmp) {
 					cmp.getComponent("refresh").hide();
+					cmp.getComponent("first").hide();
+					cmp.getComponent("last").hide();
 				}
 			}
 		})

@@ -7,25 +7,25 @@
     $start      = (($page*$limit)-$limit)+1;
 	
     $boardid    = @$_REQUEST['boardid'];
-    $smt_date2  = @$_REQUEST['smt_date'];
-    $getdate    = '';
-    $smt_date   = '';
+    // $smt_date2  = @$_REQUEST['smt_date'];
+    // $getdate    = '';
+    // $smt_date   = '';
 
-    if ($smt_date2) {
-        $getdate    = substr($_REQUEST['smt_date'],0,10);
-        $smt_date   = date('Y-m-d', strtotime($getdate));
-    }
-    else {
-        $smt_date   = '';
-    }
+    // if ($smt_date2) {
+    //     $getdate    = substr($_REQUEST['smt_date'],0,10);
+    //     $smt_date   = date('Y-m-d', strtotime($getdate));
+    // }
+    // else {
+    //     $smt_date   = '';
+    // }
 
     //echo "declare @totalcount as int; exec traceability_smt_good_aoi_board $start, $limit, '{$boardid}', '{$smt_date}', @totalcount=@totalcount out";
     // echo "declare @totalcount as int; exec traceability_smt_good_aoi_board $start, $limit, '{$boardid}', '{$smt_date}', @totalcount=@totalcount out";
     //$rs         = $db->Execute("exec traceability_smt_good_aoi_board '{$boardid}','{$smt_date}'");
     
-    echo $sql        = " declare @totalcount as int; 
-                    exec traceability_smt_good_aoi_board $start, $limit, '{$boardid}', '{$smt_date}', @totalcount=@totalcount out";
-    $rs         = $db->Execute($Sql);
+    $sql        = " declare @totalcount as int; 
+                    exec traceability_smt_good_aoi_board $start, $limit, '{$boardid}', @totalcount=@totalcount out";
+    $rs         = $db->Execute($sql);
     $totalcount = $rs->fields['8'];
     $return     = array();
 

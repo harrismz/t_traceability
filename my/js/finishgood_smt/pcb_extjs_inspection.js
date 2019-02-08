@@ -401,18 +401,20 @@ Ext.onReady(function() {
 			pageSize		: itemperpage,
 			store			: store_mapros_fwdn_detail,
 			displayInfo		: true,
-			displayMsg		: 'Data {0} - {1} from {2} data',
-			emptyMsg		: "Page not found",
-			beforePageText  : 'Page',
-			afterPageText   : 'from {0} Pages',
-			firstText       : 'First Page',
-			prevText        : 'Previous Page',
-			nextText        : 'Next page',
-			lastText        : 'Last Page',
-			plugins       	: Ext.create('Ext.ux.ProgressBarPager', {}),
+			// displayMsg		: 'Data {0} - {1} from {2} data',
+			// emptyMsg		: "Page not found",
+			// beforePageText  : 'Page',
+			// afterPageText   : 'from {0} Pages',
+			// firstText       : 'First Page',
+			// prevText        : 'Previous Page',
+			// nextText        : 'Next page',
+			// lastText        : 'Last Page',
+			// plugins       	: Ext.create('Ext.ux.ProgressBarPager', {}),
 			listeners 		: {
 				afterrender : function (cmp) {
 					cmp.getComponent("refresh").hide();
+					cmp.getComponent("first").hide();
+					cmp.getComponent("last").hide();
 				}
 			}
 		})
@@ -510,18 +512,20 @@ Ext.onReady(function() {
 							pageSize		: itemperpage,
 							store			: store_mapros_fwdn,
 							displayInfo		: true,
-							displayMsg		: 'Data {0} - {1} from {2} data',
-							emptyMsg		: "Page not found",
-							beforePageText  : 'Page',
-							afterPageText   : 'from {0} Pages',
-							firstText       : 'First Page',
-							prevText        : 'Previous Page',
-							nextText        : 'Next page',
-							lastText        : 'Last Page',
-							plugins       	: Ext.create('Ext.ux.ProgressBarPager', {}),
+							// displayMsg		: 'Data {0} - {1} from {2} data',
+							// emptyMsg		: "Page not found",
+							// beforePageText  : 'Page',
+							// afterPageText   : 'from {0} Pages',
+							// firstText       : 'First Page',
+							// prevText        : 'Previous Page',
+							// nextText        : 'Next page',
+							// lastText        : 'Last Page',
+							// plugins       	: Ext.create('Ext.ux.ProgressBarPager', {}),
 							listeners 		: {
 								afterrender : function (cmp) {
 									cmp.getComponent("refresh").hide();
+									cmp.getComponent("first").hide();
+									cmp.getComponent("last").hide();
 								}
 							}
 						}),
@@ -916,18 +920,20 @@ Ext.onReady(function() {
 			pageSize		: itemperpage,
 			store			: store_mapros_avmt_detail,
 			displayInfo		: true,
-			displayMsg		: 'Data {0} - {1} from {2} data',
-			emptyMsg		: "Page not found",
-			beforePageText  : 'Page',
-			afterPageText   : 'from {0} Pages',
-			firstText       : 'First Page',
-			prevText        : 'Previous Page',
-			nextText        : 'Next page',
-			lastText        : 'Last Page',
-			plugins       	: Ext.create('Ext.ux.ProgressBarPager', {}),
+			// displayMsg		: 'Data {0} - {1} from {2} data',
+			// emptyMsg		: "Page not found",
+			// beforePageText  : 'Page',
+			// afterPageText   : 'from {0} Pages',
+			// firstText       : 'First Page',
+			// prevText        : 'Previous Page',
+			// nextText        : 'Next page',
+			// lastText        : 'Last Page',
+			// plugins       	: Ext.create('Ext.ux.ProgressBarPager', {}),
 			listeners 		: {
 				afterrender : function (cmp) {
 					cmp.getComponent("refresh").hide();
+					cmp.getComponent("first").hide();
+					cmp.getComponent("last").hide();
 				}
 			}
 		}),
@@ -1145,18 +1151,20 @@ Ext.onReady(function() {
 			pageSize		: itemperpage,
 			store			: store_mapros_avntest_detail,
 			displayInfo		: true,
-			displayMsg		: 'Data {0} - {1} from {2} data',
-			emptyMsg		: "Page not found",
-			beforePageText  : 'Page',
-			afterPageText   : 'from {0} Pages',
-			firstText       : 'First Page',
-			prevText        : 'Previous Page',
-			nextText        : 'Next page',
-			lastText        : 'Last Page',
-			plugins       	: Ext.create('Ext.ux.ProgressBarPager', {}),
+			// displayMsg		: 'Data {0} - {1} from {2} data',
+			// emptyMsg		: "Page not found",
+			// beforePageText  : 'Page',
+			// afterPageText   : 'from {0} Pages',
+			// firstText       : 'First Page',
+			// prevText        : 'Previous Page',
+			// nextText        : 'Next page',
+			// lastText        : 'Last Page',
+			// plugins       	: Ext.create('Ext.ux.ProgressBarPager', {}),
 			listeners 		: {
 				afterrender : function (cmp) {
 					cmp.getComponent("refresh").hide();
+					cmp.getComponent("first").hide();
+					cmp.getComponent("last").hide();
 				}
 			}
 		}),
@@ -1388,18 +1396,20 @@ Ext.onReady(function() {
 			pageSize		: itemperpage_detail,
 			store			: store_mapros_line0_detail,
 			displayInfo		: true,
-			displayMsg		: 'Data {0} - {1} from {2} data',
-			emptyMsg		: "Page not found",
-			beforePageText  : 'Page',
-			afterPageText   : 'from {0} Pages',
-			firstText       : 'First Page',
-			prevText        : 'Previous Page',
-			nextText        : 'Next page',
-			lastText        : 'Last Page',
-			plugins       	: Ext.create('Ext.ux.ProgressBarPager', {}),
+			// displayMsg		: 'Data {0} - {1} from {2} data',
+			// emptyMsg		: "Page not found",
+			// beforePageText  : 'Page',
+			// afterPageText   : 'from {0} Pages',
+			// firstText       : 'First Page',
+			// prevText        : 'Previous Page',
+			// nextText        : 'Next page',
+			// lastText        : 'Last Page',
+			// plugins       	: Ext.create('Ext.ux.ProgressBarPager', {}),
 			listeners 		: {
 				afterrender : function (cmp) {
 					cmp.getComponent("refresh").hide();
+					cmp.getComponent("first").hide();
+					cmp.getComponent("last").hide();
 				}
 			}
 		}),
