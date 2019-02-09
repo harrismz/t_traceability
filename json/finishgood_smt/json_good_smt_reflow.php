@@ -20,7 +20,7 @@
 
 	//echo "exec traceability_good_smt_reflow '{$model}','{$proddate}'";
     //$rs    = $db->Execute("exec [traceability_good_smt_reflow] '{$model}','{$proddate}'");
-    $sql        = "declare @totalcount as int; exec traceability_good_smt_reflow $start, $limit, '{$boardid}', '{$smt_date}', @totalcount=@totalcount out";
+    $sql        = "declare @totalcount as int; exec traceability_good_smt_reflow_rev1 $start, $limit, '{$boardid}', '{$smt_date}', @totalcount=@totalcount out";
     $rs         = $db->Execute($sql);
     $totalcount = $rs->fields['7'];
     
