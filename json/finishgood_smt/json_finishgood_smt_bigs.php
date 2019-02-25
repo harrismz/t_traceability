@@ -1,14 +1,19 @@
 <?php
     date_default_timezone_set('Asia/jakarta');
-    $boardid = $_REQUEST['boardid'];
+    $boardid = @$_REQUEST['boardid'];
 	$pjgboard = strlen($boardid);
 
     if ( $pjgboard == 16 ){
         include '../../../adodb/con_big.php';
         
-        $sql    = "exec traceability_smt_big '{$boardid}'";
-        $rs     = $db->Execute($sql);
-        $return = array();
+         try{
+            $sql    = "exec traceability_smt_big '{$boardid}'";
+            $rs     = $db->Execute($sql);
+            $return = array();
+        }
+        catch (Exception $ex){
+            echo '[[[SQLSERVER-SVRDBN_TRC-BIG]]] :::'.$ex->getMessage();
+        }
         
         for($i=0;!$rs->EOF;$i++){
             $return[$i]['side']         = trim($rs->fields['0']);
@@ -37,9 +42,13 @@
     }
     else if($pjgboard == 24){
         include '../../../adodb/con_big24.php';
-        
-        $rs_big24   = $db_big24->Execute("exec traceability_smt_big24 '{$boardid}'");
-        $return     = array();
+        try{
+            $rs_big24   = $db_big24->Execute("exec traceability_smt_big24 '{$boardid}'");
+            $return     = array();
+        }
+        catch (Exception $ex){
+            echo '[[[SQLSERVER-SVRDBN_TRC-smtpros]]] :::'.$ex->getMessage();
+        }
 
         for($i=0;!$rs_big24->EOF;$i++){
             $return[$i]['side']         = trim($rs_big24->fields['0']);
@@ -56,6 +65,7 @@
            
             $rs_big24->MoveNext();
         }
+
         $j = array(
             "success"=>true,
             "rows"=>$return);

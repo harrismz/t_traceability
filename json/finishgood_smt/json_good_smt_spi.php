@@ -6,17 +6,18 @@
     $limit      = @$_REQUEST["limit"];
     $start      = (($page*$limit)-$limit)+1;
     $boardid    = @$_REQUEST['boardid'];
-    $sql    = "DECLARE  @return_value int,
-                        @totalcount int
+    $totcavity  = @$_REQUEST['totcavity'];
 
-                EXEC    @return_value = [dbo].[traceability_good_smt_spi_rev1]
-                        @start = '{$start}',
-                        @maxct = '{$limit}',
-                        @boardid = N'{$boardid}',
-                        @totalcount = @totalcount OUTPUT";
-    $rs    = $db->Execute($sql);
+    $sql        = " DECLARE  @return_value int,
+                            @totalcount int
+                    EXEC    @return_value = [dbo].[traceability_good_smt_spi_rev1]
+                            @start = '{$start}',
+                            @maxct = '{$limit}',
+                            @boardid = N'{$boardid}',
+                            @totalcount = @totalcount OUTPUT";
+    $rs         = $db->Execute($sql);
     $totalcount = $rs->fields['10'];
-    $return = array();
+    $return     = array();
     
     for($i=0;!$rs->EOF;$i++){
         $return[$i]['mchname']              = trim($rs->fields['0']);

@@ -21,11 +21,17 @@
 
     <!-- SWITCH WITHOUT MOTHERCODE -->
     <!-- YJ5214A00SH_01A7015A0001  -->
+    <!-- YJ5214A00SH_01A7013A0208  -->
+    <!-- YJ5224A02AO_00A7016A0601  -->
+    <!-- YJ5224A03VT_00A7024A0513  -->
+    <!-- YJ5224M01AO_00A7013A0062  -->
+    <!-- YJ5224M01AO_00A7013A0328  -->
+    <!-- YJ5224A01VT_00B7030A0175  -->
     
     <div class="title_right">
       <div class="col-md-9 col-sm-9 col-xs-12 form-group pull-right top_search">
         <div class="input-group">
-          <input id="pcbserial" type="text" class="form-control" placeholder="Search For PCB Serial..." onkeypress="checkPcbSerial(event)" value="YJ5224A01MN_00A7010A0002" data-qtip="Search PCB Serial here" style="text-transform:uppercase">
+          <input id="pcbserial" type="text" class="form-control" placeholder="Search For PCB Serial..." onkeypress="checkPcbSerial(event)" value="YJ5224A01VT_00B7030A0175" data-qtip="Search PCB Serial here" style="text-transform:uppercase">
           <span class="input-group-btn">
             <button class="btn btn-default" type="button" onclick="checkPcbSerial(event)" data-qtip="Click Here for searching data">Go!</button>
           </span>
@@ -166,7 +172,7 @@
       </div>
     </div>
   </div>
-  <div id="ma_tab" class="row">
+  <div id="ma_tab" class="row" hidden>
     <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="x_panel">
         <div class="x_title">
@@ -188,7 +194,7 @@
       </div>
     </div>
   </div>
-  <div id="insp_tab" class="row">
+  <div id="insp_tab" class="row" hidden>
     <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="x_panel">
         <div class="x_title">

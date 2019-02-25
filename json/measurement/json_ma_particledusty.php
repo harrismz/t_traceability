@@ -1,6 +1,6 @@
 <?php
 	date_default_timezone_set('Asia/jakarta');
-    include '../../../adodb/con_mapros_SQL.php';
+    include '../../../adodb/con_mapros_SQL_svrdbn.php';
 
     $page               = @$_REQUEST["page"];
     $limit              = @$_REQUEST["limit"];
