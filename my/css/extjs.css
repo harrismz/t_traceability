@@ -19,6 +19,13 @@
   top: 20%;
 }
 
+.x-column-header-text, .x-column-header-text-wrapper {
+  font-family: Times-new-roman;
+  font-weight: bold;
+  line-height: 1.3;
+  vertical-align: text-top;
+}
+
 .colorin {
   background-color: rgb(255, 253, 231, 0.2);
 }
@@ -61,7 +68,7 @@
 .empty-txt-main {
   color: #CC3336;
   text-align: center;
-  font-size: 14px;
+  font-size: 19px;
 }
 
 /* .x-grid-empty {

@@ -44,6 +44,7 @@ Ext.onReady(function() {
 	//	=======================================================	GRID 		=====================================
 	var grid_smt_aoi_board = Ext.create('Ext.grid.Panel', {
 		id 			: 'grid_smt_aoi_board',
+		title 		: '<div style="text-align:center;">AOI - Board</div>',
 		autoScroll 	: true,
 		maxHeight	: 450,
 		minHeight 	: 300, 	
@@ -167,6 +168,7 @@ Ext.onReady(function() {
 
 	var grid_smt_aoi_point = Ext.create('Ext.grid.Panel', {
 		id 			: 'grid_smt_aoi_point',
+		title 		: '<div style="text-align:center;">AOI - Point</div>',
 		maxHeight	: 450,
 		minHeight 	: 300,
 		autoScroll 	: true,
