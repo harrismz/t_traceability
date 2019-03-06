@@ -259,6 +259,92 @@ function checkFinishgood(event){
 		gridScanout.getView().emptyText = '<div class="empty-txt-main">Select Finishgood table for show this data.</div>';
         gridScanout.getView().refresh();
 
+        gridScanout.getStore().removeAll();
+		gridScanout.getView().emptyText = '<div class="empty-txt-main">Select Finishgood table for show this data.</div>';
+        gridScanout.getView().refresh();
+
+        grid_maprosBoard.getStore().removeAll();
+		grid_maprosBoard.getView().emptyText = '<div class="empty-txt-main">Select Plan Table for show this data.</div>';
+        grid_maprosBoard.getView().refresh();
+
+        grid_maprosPanel.getStore().removeAll();
+		grid_maprosPanel.getView().emptyText = '<div class="empty-txt-main">Select Plan Table for show this data.</div>';
+        grid_maprosPanel.getView().refresh();
+
+        grid_maprosLCD.getStore().removeAll();
+		grid_maprosLCD.getView().emptyText = '<div class="empty-txt-main">Select Plan Table for show this data.</div>';
+        grid_maprosLCD.getView().refresh();
+
+        grid_maprosMecha.getStore().removeAll();
+		grid_maprosMecha.getView().emptyText = '<div class="empty-txt-main">Select Plan Table for show this data.</div>';
+        grid_maprosMecha.getView().refresh();
+
+        grid_maprosMain.getStore().removeAll();
+		grid_maprosMain.getView().emptyText = '<div class="empty-txt-main">Select Plan Table for show this data.</div>';
+        grid_maprosMain.getView().refresh();
+
+        grid_maprosCritical.getStore().removeAll();
+		grid_maprosCritical.getView().emptyText = '<div class="empty-txt-main">Select Plan Table for show this data.</div>';
+        grid_maprosCritical.getView().refresh();
+
+        grid_maprosBoardSymptom.getStore().removeAll();
+		grid_maprosBoardSymptom.getView().emptyText = '<div class="empty-txt-main">Select Plan Table for show this data.</div>';
+        grid_maprosBoardSymptom.getView().refresh();
+
+        grid_maprosMainSymptom.getStore().removeAll();
+		grid_maprosMainSymptom.getView().emptyText = '<div class="empty-txt-main">Select Plan Table for show this data.</div>';
+        grid_maprosMainSymptom.getView().refresh();
+
+        grid_maQuality.getStore().removeAll();
+		grid_maQuality.getView().emptyText = '<div class="empty-txt-main">Select Mapros Main table for show this data.</div>';
+        grid_maQuality.getView().refresh();
+
+        grid_maFwdn.getStore().removeAll();
+		grid_maFwdn.getView().emptyText = '<div class="empty-txt-main">Select Mapros PCB Serial for show this data.</div>';
+        grid_maFwdn.getView().refresh();
+
+		grid_maFwdnDetail.getStore().removeAll();
+		grid_maFwdnDetail.getView().emptyText = '<div class="empty-txt-main">Select Header to show Detail</div>';
+        grid_maFwdnDetail.getView().refresh();
+		
+		grid_maFlash.getStore().removeAll();
+		grid_maFlash.getView().emptyText = '<div class="empty-txt-main">Select Mapros PCB Serial table for show this data.</div>';
+        grid_maFlash.getView().refresh();
+
+        grid_maAvntest.getStore().removeAll();
+		grid_maAvntest.getView().emptyText = '<div class="empty-txt-main">Select Mapros PCB Serial table for show this data.</div>';
+        grid_maAvntest.getView().refresh();
+
+        grid_maAvntestDetail.getStore().removeAll();
+		grid_maAvntestDetail.getView().emptyText = '<div class="empty-txt-main">Select Header to show Detail</div>';
+        grid_maAvntestDetail.getView().refresh();
+
+        grid_maAvmt.getStore().removeAll();
+		grid_maAvmt.getView().emptyText = '<div class="empty-txt-main">Select Mapros Main Table for show this data.</div>';
+        grid_maAvmt.getView().refresh();
+
+        grid_maAvmtDetail.getStore().removeAll();
+		grid_maAvmtDetail.getView().emptyText = '<div class="empty-txt-main">Select Header to show Detail</div>';
+        grid_maAvmtDetail.getView().refresh();
+
+        grid_maAuto0.getStore().removeAll();
+		grid_maAuto0.getView().emptyText = '<div class="empty-txt-main">Select Mapros PCB Serial table for show this data.</div>';
+        grid_maAuto0.getView().refresh();
+
+        grid_maAuto0Detail.getStore().removeAll();
+		grid_maAuto0Detail.getView().emptyText = '<div class="empty-txt-main">Select Header to show Detail</div>';
+        grid_maAuto0Detail.getView().refresh();
+
+        grid_mcIssueMa.getStore().removeAll();
+		grid_mcIssueMa.getView().emptyText = '<div class="empty-txt-main">Select Finishgood Table for showing this data.</div>';
+        grid_mcIssueMa.getView().refresh();
+
+        grid_mcIssueMecha.getStore().removeAll();
+		grid_mcIssueMecha.getView().emptyText = '<div class="empty-txt-main">Select Finishgood Table for showing this data.</div>';
+        grid_mcIssueMecha.getView().refresh();
+
+        
+
 		console.log('=========== START finishgood ===========');
 		console.log('cat 		 : '+rbCheck);
 		console.log('Model 		 : '+modelName);

@@ -559,7 +559,7 @@ Ext.onReady(function() {
 			store 			: storeMaFwdnDetail,
 			viewConfig 		: {
 				stripeRows 			: true,
-				emptyText 	 		: '<div class="empty-txt">Selected Header to show Detail</div>',
+				emptyText 	 		: '<div class="empty-txt">Select Header to show Detail</div>',
 				deferEmptyText 		: false,
 				enableTextSelection	: true
 			},
@@ -963,7 +963,7 @@ Ext.onReady(function() {
 			store 			: storeMaAvntestDetail,
 			viewConfig 		: {
 				stripeRows 			: true,
-				emptyText 	 		: '<div class="empty-txt">Selected Header to show Detail</div>',
+				emptyText 	 		: '<div class="empty-txt">Select Header to show Detail</div>',
 				deferEmptyText 		: false,
 				enableTextSelection	: true
 			},
