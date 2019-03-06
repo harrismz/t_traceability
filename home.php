@@ -34,17 +34,18 @@
 
   <?php
 	        $page = $_REQUEST['content'];
-	        if($page == 'finishgood'){
-	          $page_dir1 = 'my/js';
-	          $thispages1 = scandir($page_dir1);
-	          unset($thispages1[0], $thispages1[1]);
-	          if(in_array($page.'.js', $thispages1)){
-	           include_once($page_dir1.'/'.$page.'.js');
-	          } else {
-	           echo 'Page not found! :( finishgood js';
-	          }
-	        }
-	        elseif($page == 'singlepart'){
+	        // if($page == 'finishgood'){
+	        //   $page_dir1 = 'my/js';
+	        //   $thispages1 = scandir($page_dir1);
+	        //   unset($thispages1[0], $thispages1[1]);
+	        //   if(in_array($page.'.js', $thispages1)){
+	        //    include_once($page_dir1.'/'.$page.'.js');
+	        //   } else {
+	        //    echo 'Page not found! :( finishgood js';
+	        //   }
+	        // }
+	        // else
+	        	if($page == 'singlepart'){
 	          $page_dir2 = 'my/js';
 	          $thispages2 = scandir($page_dir2);
 	          unset($thispages2[0], $thispages2[1]);
