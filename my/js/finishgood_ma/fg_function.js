@@ -2,7 +2,7 @@
 function getFlexFgFinishgood(){
 	var width = $('html').width();
 	var	setFlexFgFinishgood = "";
-	if (width <= 943) {
+	if (width <= 790) {
 		setFlexFgFinishgood = false;
 	}
 	else{
@@ -15,7 +15,7 @@ function getFlexFgFinishgood(){
 function getWidthFgFinishgood(){
 	var width = $('html').width();
 	var setwidthFgFinishgood = "";
-	if (width <= 943) {
+	if (width <= 790) {
 		setwidthFgFinishgood = true;
 	}
 	else{

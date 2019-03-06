@@ -89,6 +89,14 @@ Ext.onReady(function() {
 					renderer 		: fontstyle
 				}
 			],
+			listeners: {
+				select: function(grid, rowIndex, colIndex){
+					var rec  	 	= this.getSelectionModel().getSelection();
+					var catMecha 	= $("#valOfCatMecha").val();
+					
+					Ext.getStore('storeMaprosBoard').loadPage(1);
+				}
+			},
 			bbar		: Ext.create('Ext.PagingToolbar', {
 				pageSize		: 5,
 				store			: store_sched,

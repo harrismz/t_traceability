@@ -1,107 +1,181 @@
 Ext.onReady(function() {
+	var item3 = 3;
+	var item5 = 5;
+	var item10 = 10;
 	//	=======================================================    MODEL        =====================================
-		Ext.define('model_mapros_board_fg',{
+		Ext.define('modelMaprosBoard',{
 	        extend: 'Ext.data.Model',
 	        fields: ['board_id','guid_master','guid_ticket','modelname','lotno',
 						'scanner_id','status','scan_nik','judge','created_at',
-						'updated_at','lineprocess','line','refno','ngsymptom']
+						'updated_at','lineprocess','line','totalCount']
 		});
-		Ext.define('model_mapros_panel_fg',{
+		Ext.define('modelMaprosBoardSymptom',{
+	        extend: 'Ext.data.Model',
+	        fields: ['pwbid','refno','category','lineprocess','boardid',
+						'guidmaster','guidticket','modelname','lotno','scannerid',
+						'status','scannik','judge','created_at','update_at']
+		});
+		Ext.define('modelMaprosPanel',{
             extend: 'Ext.data.Model',
             fields: ['ticket_no','guid_master','guid_ticket','modelname',
-					'scanner_id','status','scan_nik','judge','created_at','updated_at','lineprocess','line']
+					'scanner_id','status','scan_nik','judge','created_at',
+					'updated_at','lineprocess','line']
     	});
-    	Ext.define('model_mapros_master_fg',{
+  		Ext.define('modelMaprosLCD',{
+            extend: 'Ext.data.Model',
+            fields: ['barcode','guid_master','guid_ticket','modelname',
+					'scanner_id','status','scan_nik','judge','created_at',
+					'updated_at','lineprocess','line']
+    	});
+     	Ext.define('modelMaprosMecha',{
+            extend: 'Ext.data.Model',
+            fields: ['barcode','guid_master','guid_ticket','modelname',
+					'scanner_id','status','scan_nik','judge','created_at',
+					'updated_at','lineprocess','line']
+    	});
+    	Ext.define('modelMaprosMain',{
             extend: 'Ext.data.Model',
             fields: ['ticket_no_master','guid_master','modelname',
-					'scanner_id','status','scan_nik','judge','created_at','updated_at','lineprocess','line']
+					'scanner_id','status','scan_nik','judge','created_at',
+					'updated_at','lineprocess','line', 'serial_no']
    		});
-   		Ext.define('model_ma_qualityreport',{
-        	extend: 'Ext.data.Model',
-         	fields: ['tgl','bln','thn','date','line_name','shift','model_name','lot','prod_no','st_serial','serial_output','symptom','def_cause','p_disposal','responsible']
-		});
+   		Ext.define('modelMaprosMainSymptom',{
+            extend: 'Ext.data.Model',
+            fields: ['master_id','serial_no','judge',
+					'symptom_id','category','created_at','updated_at','line_id',
+					'lineprocess_id','lineprocess','line']
+   		});
+   		Ext.define('modelMaprosCritical',{
+            extend: 'Ext.data.Model',
+            fields: ['qrcode_mc','guid_master_ticket','supp_code',
+					'part_no','po','prod_date','qty','modelname','scan_nik',
+					'created_at','update_at', 'lineprocessname','line']
+   		});
 
-		Ext.define('model_mapros_fwdn',{
-            extend: 'Ext.data.Model',
-            fields: ['idfwdn','dateinspec','serial', 'sn','jigno','judge','inspectime',
-            		'artfilename','ngcontent','input_user','input_date']
-       	});
-      	Ext.define('model_mapros_fwdn_detail',{
-            extend: 'Ext.data.Model',
-            fields: ['idfwdn','step','stepdata', 'measure','measuredata','input_user','input_date']
-       	});
-      	Ext.define('model_mapros_flash',{
-            extend: 'Ext.data.Model',
-            fields: ['idflash','dateinspec','serial', 'sn','jigno','judge','inspectime',
-            		'artfilename','ngcontent','input_user','input_date']
-       	});
-		Ext.define('model_mapros_avntest',{
-			extend: 'Ext.data.Model',
-            fields: ['idavnt','dateinspec','serial', 'sn','jigno','judge','inspectime',
-            		'artfilename','ngcontent','input_user','input_date']
-       	});
-      	Ext.define('model_mapros_avntest_detail',{
-			extend: 'Ext.data.Model',
-            fields: ['idavnt','step','stepdata','measure','measuredata','input_user','input_date']
-       	});
-      	Ext.define('model_mapros_avmt',{
-			extend: 'Ext.data.Model',
-            fields: ['idavmt','barcode','sn', 'program','stdate','endate','lap',
-            		'judgment','input_user','input_date','update_user','update_date']
-       	});
-      	Ext.define('model_mapros_avmt_detail',{
-			extend: 'Ext.data.Model',
-			fields: ['autoid','idavmt','barcode', 'step','type','name','judgment',
-            		'volt','curr','freq','lvll','dstl','dstr','rell','relr','snl','snr','remark','input_user'
-            		,'input_date','update_user','update_date']
-       	});
-      	Ext.define('model_mapros_line0',{
-            extend: 'Ext.data.Model',
-            fields: ['idlinezero','dateinspec','serial', 'sn','jigno','judge','inspectime',
-            		'artfilename','ngcontent','input_user','input_date']
-       	});
-      	Ext.define('model_mapros_line0_detail',{
-            extend: 'Ext.data.Model',
-            fields: ['idlinezero','rownumber','step','stepdata', 'measure','measuredata','input_user','input_date']
-       	});
-       	Ext.define('model_mapros_critical',{
-            extend: 'Ext.data.Model',
-			fields: ['unique_id','supp_code','part_no','po', 'prodsup','lotnosup','qty','scan_nik','created_at','process','code','line']
-       	});
 	//	=======================================================    DATASTORE    =====================================
-		var store_mapros_board_fg = Ext.create('Ext.data.Store',{
-			model	: 'model_mapros_board_fg',
+			
+
+		var storeMaprosBoard = Ext.create('Ext.data.Store',{
+			storeId : 'storeMaprosBoard',
+			model	: 'modelMaprosBoard',
 			autoLoad: false,
-			pageSize: itemperpage,
+			// pageSize: item5,
 			proxy   : {
 				type    : 'ajax',
-				url     : 'json/finishgood_ma/json_mapros_board.php',
+				url     : 'json/finishgood_ma/json_maprosBoard.php',
+				reader  : {
+					type    : 'json',
+					root    : 'rows',
+					totalProperty : 'totalCount'
+				}
+			},
+			listeners: {
+				load: function(store, records) {
+					if (records != "") {
+						Ext.getStore('storeMaprosBoardSymptom').loadPage(1);
+						Ext.getStore('storeMaprosPanel').loadPage(1);
+					} 
+				}
+			}
+		});
+		var storeMaprosBoardSymptom = Ext.create('Ext.data.Store',{
+			storeId : 'storeMaprosBoardSymptom',
+			model	: 'modelMaprosBoardSymptom',
+			autoLoad: false,
+			// pageSize: item3,
+			proxy   : {
+				type    : 'ajax',
+				url     : 'json/finishgood_ma/json_maprosBoardSymptom.php',
 				reader  : {
 					type    : 'json',
 					root    : 'rows'
 				}
 			}
 		});
-		var store_mapros_panel_fg = Ext.create('Ext.data.Store',{
-			model	: 'model_mapros_panel_fg',
+		var storeMaprosPanel = Ext.create('Ext.data.Store',{
+			storeId : 'storeMaprosPanel',
+			model	: 'modelMaprosPanel',
 			autoLoad: false,
-			pageSize: itemperpage,
+			// pageSize: itemperpage,
 			proxy   : {
 				type    : 'ajax',
-				url     : 'json/finishgood_ma/json_mapros_panel.php',
+				url     : 'json/finishgood_ma/json_maprosPanel.php',
+				reader  : {
+					type    : 'json',
+					root    : 'rows'
+				}
+			},
+			listeners: {
+				load: function(store, records) {
+					if (records != "") {
+						var guidticket = store.getAt(0).get('guid_ticket');
+						///alert(guidticket);
+						Ext.getStore('storeMaprosLCD').loadPage(1);
+						Ext.getStore('storeMaprosMecha').loadPage(1);
+						Ext.getStore('storeMaprosMain').loadPage(1);
+						Ext.getStore('storeMaQualityReport').proxy.setExtraParam('valguidticket', guidticket);
+					} 
+				}
+			}
+		});
+		var storeMaprosLCD = Ext.create('Ext.data.Store',{
+			storeId : 'storeMaprosLCD',
+			model	: 'modelMaprosLCD',
+			autoLoad: false,
+			// pageSize: itemperpage,
+			proxy   : {
+				type    : 'ajax',
+				url     : 'json/finishgood_ma/json_maprosLCD.php',
 				reader  : {
 					type    : 'json',
 					root    : 'rows'
 				}
 			}
 		});
-		var store_mapros_master_fg = Ext.create('Ext.data.Store',{
-			model	: 'model_mapros_master_fg',
+		var storeMaprosMecha = Ext.create('Ext.data.Store',{
+			storeId : 'storeMaprosMecha',
+			model	: 'modelMaprosMecha',
 			autoLoad: false,
-			pageSize: itemperpage,
+			// pageSize: itemperpage,
 			proxy   : {
 				type    : 'ajax',
-				url     : 'json/finishgood_ma/json_mapros_master.php',
+				url     : 'json/finishgood_ma/json_maprosMecha.php',
+				reader  : {
+					type    : 'json',
+					root    : 'rows'
+				}
+			}
+		});
+		var storeMaprosMain = Ext.create('Ext.data.Store',{
+			storeId	: 'storeMaprosMain',
+			model	: 'modelMaprosMain',
+			autoLoad: false,
+			// pageSize: itemperpage,
+			proxy   : {
+				type    : 'ajax',
+				url     : 'json/finishgood_ma/json_maprosMain.php',
+				reader  : {
+					type    : 'json',
+					root    : 'rows'
+				}
+			},
+			listeners: {
+				load: function(store, records) {
+					if (records != "") {
+						Ext.getStore('storeMaprosMainSymptom').loadPage(1);
+						Ext.getStore('storeMaprosCritical').loadPage(1);
+					} 
+				}
+			}
+		});
+		var storeMaprosMainSymptom = Ext.create('Ext.data.Store',{
+			storeId	: 'storeMaprosMainSymptom',
+			model	: 'modelMaprosMainSymptom',
+			autoLoad: false,
+			// pageSize: itemperpage,
+			proxy   : {
+				type    : 'ajax',
+				url     : 'json/finishgood_ma/json_maprosMainSymptom.php',
 				reader  : {
 					type    : 'json',
 					root    : 'rows'
@@ -111,9 +185,36 @@ Ext.onReady(function() {
 			// 	load: function(store, records) {
 			// 		if (records != "") {
 
-			// 			store_mapros_board_fg.proxy.setExtraParam('model', boardid);
-			// 			store_mapros_board_fg.proxy.setExtraParam('serial_no', cavity);
-			// 			store_mapros_board_fg.loadPage(1);
+			// 			storeMaprosBoard.proxy.setExtraParam('model', boardid);
+			// 			storeMaprosBoard.proxy.setExtraParam('serial_no', cavity);
+			// 			storeMaprosBoard.loadPage(1);
+			// 			store_mapros_panel_fg.proxy.setExtraParam('boardid', boardid);
+			// 			store_mapros_panel_fg.proxy.setExtraParam('cavity', cavity);
+			// 			store_mapros_panel_fg.loadPage(1);
+			// 		} k
+			// 	}
+			// }
+		});
+		var storeMaprosCritical = Ext.create('Ext.data.Store',{
+			storeId	: 'storeMaprosCritical',
+			model	: 'modelMaprosCritical',
+			autoLoad: false,
+			// pageSize: itemperpage,
+			proxy   : {
+				type    : 'ajax',
+				url     : 'json/finishgood_ma/json_maprosCritical.php',
+				reader  : {
+					type    : 'json',
+					root    : 'rows'
+				}
+			},
+			// listeners: {
+			// 	load: function(store, records) {
+			// 		if (records != "") {
+
+			// 			storeMaprosBoard.proxy.setExtraParam('model', boardid);
+			// 			storeMaprosBoard.proxy.setExtraParam('serial_no', cavity);
+			// 			storeMaprosBoard.loadPage(1);
 			// 			store_mapros_panel_fg.proxy.setExtraParam('boardid', boardid);
 			// 			store_mapros_panel_fg.proxy.setExtraParam('cavity', cavity);
 			// 			store_mapros_panel_fg.loadPage(1);
@@ -121,162 +222,1127 @@ Ext.onReady(function() {
 			// 	}
 			// }
 		});
-		var store_mapros_critical = Ext.create('Ext.data.Store',{
-			model	: 'model_mapros_critical',
-			autoLoad: false,
-			pageSize: itemperpage,
-			proxy   : {
-				type    : 'ajax',
-				url     : 'json/finishgood_ma/json_mapros_critical.php',
-				reader  : {
-					type    : 'json',
-					root    : 'rows',
-					totalProperty: 'totalCount'
+	//	=======================================================    GRID         =====================================
+        var grid_maprosBoard = Ext.create('Ext.grid.Panel', {
+			id 				: 'grid_maprosBoard',
+			autoWidth 		: '100%',
+			height			: 300,
+			columnLines 	: true,
+			store 			: storeMaprosBoard,
+			viewConfig	: {
+				stripeRows 			: true,
+				emptyText 			: '<div class="empty-txt-main">Select Plan Table for show this data.</div>',
+				deferEmptyText 		: false,
+				enableTextSelection	: true,
+				getRowClass			: function(record, rowIndex, rowParams, store) {
+					if (record.get('status')==='IN') return 'colorin';
+					else if (record.get('status')==='OUT') return 'colorout';
+				},
+				listeners 			: {
+					refresh : function (dataview) {
+						Ext.each(dataview.panel.columns, function (column) {
+							if (column.autoSizeColumn === true)
+								column.autoSize();
+						})
+					}
+				}
+			},
+			columns 	: [
+				{	header 		: 'PCB SERIAL',
+					dataIndex 	: 'board_id',
+					componentCls	: 'headergrid',
+					flex 			: false,
+					autoSizeColumn 	: true,
+					renderer 		: fontstyle
+				},
+				{	header 		: 'guid_master',
+					dataIndex 	: 'guid_master',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer 		: fontstyle,
+					hidden		: true
+				},
+				{	header 		: 'guid_ticket',
+					dataIndex 	: 'guid_ticket',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer 		: fontstyle,
+					hidden		: true
+				},
+				{	header 		: 'MODEL',
+					dataIndex 	: 'modelname',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer 		: fontstyle,
+					hidden		: true
+				},
+				{	header 		: 'LINE',
+					dataIndex 	: 'line',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer	: fontstyle
+				},
+				{	header 		: 'lotno',
+					dataIndex 	: 'lotno',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer	: fontstyle,
+					hidden		: true
+				},
+				{	header 		: 'Process',
+					dataIndex 	: 'lineprocess',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer	: fontstyle
+				},
+				{	header 		: 'scanner_id',
+					dataIndex 	: 'scanner_id',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer	: fontstyle,
+					hidden		: true
+				},
+				{	header 		: 'Status',
+					dataIndex 	: 'status',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer	: fontstyle
+				},
+				{	header 		: 'Judge',
+					dataIndex 	: 'judge',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer	: fontstyle
+				},
+				{	header 		: 'Emp No',
+					dataIndex 	: 'scan_nik',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer	: fontstyle
+				},
+				{	header 		: 'Process Date',
+					dataIndex 	: 'created_at',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer	: fontstyle
+				},
+				{	header 		: 'updated_at',
+					dataIndex 	: 'updated_at',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer	: fontstyle,
+					hidden		: true
+				}
+			],
+			listeners: {
+				select: function(grid, rowIndex, colIndex){
+					var rec  	 	= this.getSelectionModel().getSelection();
+					var guidmaster  = rec[0].data.guid_ticket;
+					
+					Ext.getStore('storeMaQualityReport').proxy.setExtraParam('valguidmaster', guidmaster);
+					Ext.getStore('storeMaQualityReport').loadPage(1);
+					Ext.getStore('storeMaFwdn').loadPage(1);
+					Ext.getStore('storeMaFlash').loadPage(1);
+					Ext.getStore('storeMaLine0').loadPage(1);
+					Ext.getStore('storeMaAvntest').loadPage(1);
 				}
 			}
+			// bbar		: Ext.create('Ext.PagingToolbar', {
+			// 	// pageSize	: item5,
+			// 	store		: storeMaprosBoard,
+			// 	displayInfo	: true,
+			// 	listeners 	: {
+			// 		afterrender: function (cmp) {
+			// 			cmp.getComponent("refresh").hide();
+			// 			cmp.getComponent("first").hide();
+			// 			cmp.getComponent("last").hide();
+			// 		}
+			// 	}
+			// })
+			//features: [filters],
+			// selModel: {
+			// 	selType: 'cellmodel'
+			// },
+			// plugins: [cellEditing]
 		});
-		var store_ma_qualityreport = Ext.create('Ext.data.Store',{
-			model	: 'model_ma_qualityreport',
-			autoLoad: false,
-			pageSize: itemperpage,
-			proxy   : {
-                type    : 'ajax',
-                url     : 'json/finishgood_ma/json_ma_qualityreport.php',
-                reader  : {
-                    type    : 'json',
-                    root    : 'rows',
-                    totalProperty  : 'totalCount'
-                }
-            }
+		
+		grid_maprosBoard.getStore().on('load', function() {
+	        grid_maprosBoard.getView().stripeRows 			= true;
+			grid_maprosBoard.getView().deferEmptyText 		= false;
+			grid_maprosBoard.getView().enableTextSelection	= true;
+	        grid_maprosBoard.getView().emptyText = '<div class="empty-txt-main">Data Not Available.</div>';
+	        grid_maprosBoard.getView().refresh();
+	    });
+
+		var grid_maprosPanel = Ext.create('Ext.grid.Panel', {
+			id 				: 'grid_maprosPanel',
+			autoWidth 		: '100%',
+			maxHeight		: 600,
+			columnLines 	: true,
+			store 			: storeMaprosPanel,
+			viewConfig		: {
+				stripeRows 			: true,
+				emptyText 			: '<div class="empty-txt-main">Select Plan Table for show this data.</div>',
+				deferEmptyText 		: false,
+				enableTextSelection	: true,
+				getRowClass			: function(record, rowIndex, rowParams, store) {
+					if (record.get('status')==='IN') return 'colorin';
+					else if (record.get('status')==='OUT') return 'colorout';
+				},
+				listeners 			: {
+					refresh : function (dataview) {
+						Ext.each(dataview.panel.columns, function (column) {
+							if (column.autoSizeColumn === true)
+								column.autoSize();
+						})
+					}
+				}
+			},
+			columns 	: [
+				{	header 		: 'PANEL NO',
+					dataIndex 	: 'ticket_no',
+					componentCls	: 'headergrid',
+					flex 			: false,
+					autoSizeColumn 	: true,
+					renderer	: fontstyle
+				},
+				{	header 		: 'guid_master',
+					dataIndex 	: 'guid_master',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer	: fontstyle,
+					hidden		: true
+				},
+				{	header 		: 'guid_ticket',
+					dataIndex 	: 'guid_ticket',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer	: fontstyle,
+					hidden		: true
+				},
+				{	header 		: 'MODEL',
+					dataIndex 	: 'modelname',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer	: fontstyle,
+					hidden		: true
+				},
+				{	header 		: 'LINE',
+					dataIndex 	: 'line',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer	: fontstyle
+				},
+				{	header 		: 'PROCESS',
+					dataIndex 	: 'lineprocess',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer	: fontstyle
+				},
+				{	header 		: 'scanner_id',
+					dataIndex 	: 'scanner_id',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer	: fontstyle,
+					hidden		: true
+				},
+				{	header 		: 'STATUS',
+					dataIndex 	: 'status',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer	: fontstyle
+				},
+				{	header 		: 'JUDGE',
+					dataIndex 	: 'judge',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer	: fontstyle
+				},
+				{	header 		: 'PROCESS DATE',
+					dataIndex 	: 'created_at',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer	: fontstyle
+				},
+				{	header 		: 'EMP NO',
+					dataIndex 	: 'scan_nik',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer	: fontstyle
+				},
+				{	header 		: 'updated_at',
+					dataIndex 	: 'updated_at',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer	: fontstyle,
+					hidden		: true
+				}
+			],
+			//features: [filters],
+			// selModel: {
+			// 	selType: 'cellmodel'
+			// },
+			// plugins: [cellEditing]
 		});
-		var store_mapros_fwdn = Ext.create('Ext.data.Store',{
-			model	: 'model_mapros_fwdn',
-			autoLoad: false,
-			// pageSize: itemperpage,
-			proxy   : {
-				type    : 'ajax',
-				url     : 'json/finishgood_ma/json_ma_mapros_fwdn.php',
-				reader  : {
-					type    : 'json',
-					root    : 'rows',
-					// totalProperty: 'totalCount'
+
+		grid_maprosPanel.getStore().on('load', function() {
+	        grid_maprosPanel.getView().stripeRows 			= true;
+			grid_maprosPanel.getView().deferEmptyText 		= false;
+			grid_maprosPanel.getView().enableTextSelection	= true;
+	        grid_maprosPanel.getView().emptyText = '<div class="empty-txt-main">Data Not Available.</div>';
+	        grid_maprosPanel.getView().refresh();
+	    });
+
+		var grid_maprosLCD = Ext.create('Ext.grid.Panel', {
+			id 				: 'grid_maprosLCD',
+			autoWidth 		: '100%',
+			maxHeight		: 600,
+			columnLines 	: true,
+			store 			: storeMaprosLCD,
+			viewConfig		: {
+				stripeRows 			: true,
+				emptyText 			: '<div class="empty-txt-main">Select Plan Table for show this data.</div>',
+				deferEmptyText 		: false,
+				enableTextSelection	: true,
+				getRowClass			: function(record, rowIndex, rowParams, store) {
+					if (record.get('status')==='IN') return 'colorin';
+					else if (record.get('status')==='OUT') return 'colorout';
+				},
+				listeners 			: {
+					refresh : function (dataview) {
+						Ext.each(dataview.panel.columns, function (column) {
+							if (column.autoSizeColumn === true)
+								column.autoSize();
+						})
+					}
+				}
+			},
+			columns 	: [
+				{	header 		: 'LCD ID',
+					dataIndex 	: 'barcode',
+					componentCls	: 'headergrid',
+					flex 			: false,
+					autoSizeColumn 	: true,
+					renderer	: fontstyle
+				},
+				{	header 		: 'guid_master',
+					dataIndex 	: 'guid_master',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer	: fontstyle,
+					hidden		: true
+				},
+				{	header 		: 'guid_ticket',
+					dataIndex 	: 'guid_ticket',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer	: fontstyle,
+					hidden		: true
+				},
+				{	header 		: 'MODEL',
+					dataIndex 	: 'modelname',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer	: fontstyle,
+					hidden		: true
+				},
+				{	header 		: 'LINE',
+					dataIndex 	: 'line',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer	: fontstyle
+				},
+				{	header 		: 'PROCESS',
+					dataIndex 	: 'lineprocess',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer	: fontstyle
+				},
+				{	header 		: 'scanner_id',
+					dataIndex 	: 'scanner_id',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer	: fontstyle,
+					hidden		: true
+				},
+				{	header 		: 'STATUS',
+					dataIndex 	: 'status',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer	: fontstyle
+				},
+				{	header 		: 'JUDGE',
+					dataIndex 	: 'judge',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer	: fontstyle
+				},
+				{	header 		: 'PROCESS DATE',
+					dataIndex 	: 'created_at',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer	: fontstyle
+				},
+				{	header 		: 'EMP NO',
+					dataIndex 	: 'scan_nik',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer	: fontstyle
+				},
+				{	header 		: 'updated_at',
+					dataIndex 	: 'updated_at',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer	: fontstyle,
+					hidden		: true
+				}
+			],
+			//features: [filters],
+			// selModel: {
+			// 	selType: 'cellmodel'
+			// },
+			// plugins: [cellEditing]
+		});
+
+		grid_maprosLCD.getStore().on('load', function() {
+	        grid_maprosLCD.getView().stripeRows 			= true;
+			grid_maprosLCD.getView().deferEmptyText 		= false;
+			grid_maprosLCD.getView().enableTextSelection	= true;
+	        grid_maprosLCD.getView().emptyText = '<div class="empty-txt-main">Data Not Available.</div>';
+	        grid_maprosLCD.getView().refresh();
+	    });
+
+		var grid_maprosMecha = Ext.create('Ext.grid.Panel', {
+			id 				: 'grid_maprosMecha',
+			autoWidth 		: '100%',
+			maxHeight		: 600,
+			columnLines 	: true,
+			store 			: storeMaprosMecha,
+			viewConfig		: {
+				stripeRows 			: true,
+				emptyText 			: '<div class="empty-txt-main">Select Plan Table for show this data.</div>',
+				deferEmptyText 		: false,
+				enableTextSelection	: true,
+				getRowClass			: function(record, rowIndex, rowParams, store) {
+					if (record.get('status')==='IN') return 'colorin';
+					else if (record.get('status')==='OUT') return 'colorout';
+				},
+				listeners 			: {
+					refresh : function (dataview) {
+						Ext.each(dataview.panel.columns, function (column) {
+							if (column.autoSizeColumn === true)
+								column.autoSize();
+						})
+					}
+				}
+			},
+			columns 	: [
+				{	header 		: 'Mecha ID',
+					dataIndex 	: 'barcode',
+					componentCls	: 'headergrid',
+					flex 			: false,
+					autoSizeColumn 	: true,
+					renderer	: fontstyle
+				},
+				{	header 		: 'guid_master',
+					dataIndex 	: 'guid_master',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer	: fontstyle,
+					hidden		: true
+				},
+				{	header 		: 'guid_ticket',
+					dataIndex 	: 'guid_ticket',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer	: fontstyle,
+					hidden		: true
+				},
+				{	header 		: 'MODEL',
+					dataIndex 	: 'modelname',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer	: fontstyle,
+					hidden		: true
+				},
+				{	header 		: 'LINE',
+					dataIndex 	: 'line',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer	: fontstyle
+				},
+				{	header 		: 'PROCESS',
+					dataIndex 	: 'lineprocess',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer	: fontstyle
+				},
+				{	header 		: 'scanner_id',
+					dataIndex 	: 'scanner_id',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer	: fontstyle,
+					hidden		: true
+				},
+				{	header 		: 'STATUS',
+					dataIndex 	: 'status',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer	: fontstyle
+				},
+				{	header 		: 'JUDGE',
+					dataIndex 	: 'judge',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer	: fontstyle
+				},
+				{	header 		: 'PROCESS DATE',
+					dataIndex 	: 'created_at',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer	: fontstyle
+				},
+				{	header 		: 'EMP NO',
+					dataIndex 	: 'scan_nik',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer	: fontstyle
+				},
+				{	header 		: 'updated_at',
+					dataIndex 	: 'updated_at',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer	: fontstyle,
+					hidden		: true
+				}
+			],
+			//features: [filters],
+			// selModel: {
+			// 	selType: 'cellmodel'
+			// },
+			// plugins: [cellEditing]
+		});
+
+		grid_maprosMecha.getStore().on('load', function() {
+	        grid_maprosMecha.getView().stripeRows 			= true;
+			grid_maprosMecha.getView().deferEmptyText 		= false;
+			grid_maprosMecha.getView().enableTextSelection	= true;
+	        grid_maprosMecha.getView().emptyText = '<div class="empty-txt-main">Data Not Available.</div>';
+	        grid_maprosMecha.getView().refresh();
+	    });
+
+		var grid_maprosMain = Ext.create('Ext.grid.Panel', {
+			id 				: 'grid_maprosMain',
+			autoWidth 		: '100%',
+			height			: 300,
+			columnLines 	: true,
+			store 			: storeMaprosMain,
+			viewConfig		: {
+				stripeRows 			: true,
+				emptyText 			: '<div class="empty-txt-main">Select Plan Table for show this data.</div>',
+				deferEmptyText 		: false,
+				enableTextSelection	: true,
+				getRowClass			: function(record, rowIndex, rowParams, store) {
+					if (record.get('status')==='IN') return 'colorin';
+					else if (record.get('status')==='OUT') return 'colorout';
+				},
+				listeners 			: {
+					refresh : function (dataview) {
+						Ext.each(dataview.panel.columns, function (column) {
+							if (column.autoSizeColumn === true)
+								column.autoSize();
+						})
+					}
+				}
+			},
+			columns 	: [
+				{	header 		: 'DUMMY SERIAL',
+					dataIndex 	: 'ticket_no_master',
+					componentCls	: 'headergrid',
+					flex 			: false,
+					autoSizeColumn 	: true,
+					renderer	: fontstyle
+				},
+				{	header 		: 'guid_master',
+					dataIndex 	: 'guid_master',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer	: fontstyle,
+					hidden		: true
+				},
+				{	header 		: 'MODEL',
+					dataIndex 	: 'modelname',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer	: fontstyle,
+					hidden		: true
+				},
+				{	header 		: 'LINE',
+					dataIndex 	: 'line',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer	: fontstyle
+				},
+				{	header 		: 'PROCESS',
+					dataIndex 	: 'lineprocess',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer	: fontstyle
+				},
+				{	header 		: 'scanner_id',
+					dataIndex 	: 'scanner_id',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer	: fontstyle,
+					hidden		: true
+				},
+				{	header 		: 'STATUS',
+					dataIndex 	: 'status',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer	: fontstyle
+				},
+				{	header 		: 'JUDGE',
+					dataIndex 	: 'judge',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer	: fontstyle
+				},
+				{	header 		: 'PROCESS DATE',
+					dataIndex 	: 'created_at',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer	: fontstyle
+				},
+				{	header 		: 'EMP NO',
+					dataIndex 	: 'scan_nik',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer	: fontstyle
+				},
+				{	header 		: 'updated_at',
+					dataIndex 	: 'updated_at',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer	: fontstyle,
+					hidden		: true
+				},
+				{	header 		: 'serial_no',
+					dataIndex 	: 'serial_no',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer	: fontstyle,
+					hidden		: true
+				}
+			],
+			listeners: {
+				select: function(grid, rowIndex, colIndex){
+					var rec  	 	= this.getSelectionModel().getSelection();
+					var guidmaster  = rec[0].data.guid_master;
+					
+					Ext.getStore('storeMaQualityReport').proxy.setExtraParam('valguidmaster', guidmaster);
+					Ext.getStore('storeMaQualityReport').loadPage(1);
+					Ext.getStore('storeMaAvmt').loadPage(1);
 				}
 			}
+			//features: [filters],
+			// selModel: {
+			// 	selType: 'cellmodel'
+			// },
+			// plugins: [cellEditing]
 		});
-		var store_mapros_fwdn_detail = Ext.create('Ext.data.Store',{
-			model	: 'model_mapros_fwdn_detail',
-			autoLoad: false,
-			pageSize: 11,
-			proxy   : {
-				type    : 'ajax',
-				url     : 'json/finishgood_ma/json_good_smt_mapros_fwdn_detail.php',
-				reader  : {
-					type    : 'json',
-					root    : 'rows',
-					totalProperty: 'totalCount'
+
+		grid_maprosMain.getStore().on('load', function() {
+	        grid_maprosMain.getView().stripeRows 			= true;
+			grid_maprosMain.getView().deferEmptyText 		= false;
+			grid_maprosMain.getView().enableTextSelection	= true;
+	        grid_maprosMain.getView().emptyText = '<div class="empty-txt-main">Data Not Available.</div>';
+	        grid_maprosMain.getView().refresh();
+	    });
+
+		var grid_maprosCritical = Ext.create('Ext.grid.Panel', {
+			id 				: 'grid_maprosCritical',
+			autoWidth 		: '100%',
+			height			: 500,
+			columnLines 	: true,
+			store 			: storeMaprosCritical,
+			viewConfig		: {
+				stripeRows 			: true,
+				emptyText 			: '<div class="empty-txt-main">Select Plan Table for show this data.</div>',
+				deferEmptyText 		: false,
+				enableTextSelection	: true,
+				getRowClass			: function(record, rowIndex, rowParams, store) {
+					if (record.get('status')==='IN') return 'colorin';
+					else if (record.get('status')==='OUT') return 'colorout';
+				},
+				listeners 			: {
+					refresh : function (dataview) {
+						Ext.each(dataview.panel.columns, function (column) {
+							if (column.autoSizeColumn === true)
+								column.autoSize();
+						})
+					}
 				}
-			}
-		});
-		var store_mapros_flash = Ext.create('Ext.data.Store',{
-			model	: 'model_mapros_flash',
-			autoLoad: false,
-			pageSize: itemperpage,
-			proxy   : {
-				type    : 'ajax',
-				url     : 'json/finishgood_ma/json_ma_mapros_flash.php',
-				reader  : {
-					type    : 'json',
-					root    : 'rows',
-					totalProperty: 'totalCount'
+			},
+			columns 	: [
+
+				
+				{	header 		: 'MC Label',
+					dataIndex 	: 'qrcode_mc',
+					componentCls	: 'headergrid',
+					flex 			: false,
+					autoSizeColumn 	: true,
+					renderer	: fontstyle
+				},
+				{	header 		: 'Unique Code',
+					dataIndex 	: 'guid_master_ticket',
+					componentCls	: 'headergrid',
+					flex 			: false,
+					autoSizeColumn 	: true,
+					renderer	: fontstyle
+				},
+				{	header 		: 'Supp Code',
+					dataIndex 	: 'supp_code',
+					componentCls	: 'headergrid',
+					flex 			: false,
+					autoSizeColumn 	: true,
+					renderer	: fontstyle
+				},
+				{	header 		: 'Partno',
+					dataIndex 	: 'part_no',
+					componentCls	: 'headergrid',
+					flex 			: false,
+					autoSizeColumn 	: true,
+					renderer	: fontstyle
+				},
+				{	header 		: 'PO',
+					dataIndex 	: 'po',
+					componentCls	: 'headergrid',
+					flex 			: false,
+					autoSizeColumn 	: true,
+					renderer	: fontstyle
+				},
+				{	header 		: 'Prod. Date',
+					dataIndex 	: 'prod_date',
+					componentCls	: 'headergrid',
+					flex 			: false,
+					autoSizeColumn 	: true,
+					renderer	: fontstyle
+				},
+				{	header 		: 'QTY',
+					dataIndex 	: 'qty',
+					componentCls	: 'headergrid',
+					flex 			: false,
+					autoSizeColumn 	: true,
+					renderer	: fontstyle
+				},
+				{	header 		: 'Model',
+					dataIndex 	: 'modelname',
+					componentCls	: 'headergrid',
+					flex 			: false,
+					autoSizeColumn 	: true,
+					renderer	: fontstyle
+				},
+				{	header 		: 'Emp No',
+					dataIndex 	: 'scan_nik',
+					componentCls	: 'headergrid',
+					flex 			: false,
+					autoSizeColumn 	: true,
+					renderer	: fontstyle
+				},
+				{	header 		: 'Created Date',
+					dataIndex 	: 'created_at',
+					componentCls	: 'headergrid',
+					flex 			: false,
+					autoSizeColumn 	: true,
+					renderer	: fontstyle
+				},
+				{	header 		: 'Update Date',
+					dataIndex 	: 'updated_at',
+					componentCls	: 'headergrid',
+					flex 			: false,
+					autoSizeColumn 	: true,
+					renderer	: fontstyle
+				},
+				{	header 		: 'Line Process',
+					dataIndex 	: 'lineprocessname',
+					componentCls	: 'headergrid',
+					flex 			: false,
+					autoSizeColumn 	: true,
+					renderer	: fontstyle
+				},
+				{	header 		: 'Line',
+					dataIndex 	: 'line',
+					componentCls	: 'headergrid',
+					flex 			: false,
+					autoSizeColumn 	: true,
+					renderer	: fontstyle
 				}
-			}
+			],
+			//features: [filters],
+			// selModel: {
+			// 	selType: 'cellmodel'
+			// },
+			// plugins: [cellEditing]
 		});
-		var store_mapros_avntest = Ext.create('Ext.data.Store',{
-			model	: 'model_mapros_avntest',
-			autoLoad: false,
-			pageSize: itemperpage,
-			proxy   : {
-				type    : 'ajax',
-				url     : 'json/finishgood_ma/json_ma_mapros_avntest.php',
-				reader  : {
-					type    : 'json',
-					root    : 'rows',
-					//totalProperty: 'totalCount'
+
+		grid_maprosCritical.getStore().on('load', function() {
+	        grid_maprosCritical.getView().stripeRows 			= true;
+			grid_maprosCritical.getView().deferEmptyText 		= false;
+			grid_maprosCritical.getView().enableTextSelection	= true;
+	        grid_maprosCritical.getView().emptyText = '<div class="empty-txt-main">Data Not Available.</div>';
+	        grid_maprosCritical.getView().refresh();
+	    });
+		
+	//	=======================================================	 GRID DETAIL 	=====================================
+		var grid_maprosBoardSymptom = Ext.create('Ext.grid.Panel', {
+			id 				: 'grid_maprosBoardSymptom',
+			title 			: '<div style="text-align:center;">==== &nbsp; REFNO & SYMPTOM &nbsp; ====</div>',
+			autoWidth 		: '80%',
+			height			: 300,
+			columnLines 	: true,
+			store 			: storeMaprosBoardSymptom,
+			viewConfig	: {
+				stripeRows 			: true,
+				emptyText 			: '<div class="empty-txt-main">Select Plan Table for show this data.</div>',
+				deferEmptyText 		: false,
+				enableTextSelection	: true,
+				listeners 			: {
+					refresh : function (dataview) {
+						Ext.each(dataview.panel.columns, function (column) {
+							if (column.autoSizeColumn === true)
+								column.autoSize();
+						})
+					}
 				}
-			}
+			},
+			columns 	: [
+				{	header 			: 'PCB Serial',
+					dataIndex 		: 'boardid',
+					componentCls	: 'headergrid',
+					flex 			: false,
+					autoSizeColumn 	: true,
+					renderer 		: fontstyle
+				},
+				{	header 			: 'Line Process',
+					dataIndex 		: 'lineprocess',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer 		: fontstyle
+				},
+				{	header 			: 'REF No',
+					dataIndex 		: 'refno',
+					componentCls	: 'headergrid',
+					flex 			: false,
+					autoSizeColumn 	: true,
+					renderer 		: fontstyle
+				},
+				{	header 			: 'Category',
+					dataIndex 		: 'category',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer 		: fontstyle
+				},
+				{	header 			: 'PWB ID',
+					dataIndex 		: 'pwbid',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer 		: fontstyle,
+					hidden			: true
+				},
+				{	header 			: 'Judge',
+					dataIndex 		: 'judge',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer 		: fontstyle
+				},
+				{	header 			: 'Emp No',
+					dataIndex 		: 'scannik',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer 		: fontstyle
+				},
+				{	header 			: 'Created Date',
+					dataIndex 		: 'created_at',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer 		: fontstyle
+				},
+				{	header 			: 'Status',
+					dataIndex 		: 'status',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer 		: fontstyle,
+					hidden			: true
+				},
+				{	header 			: 'GUID Master',
+					dataIndex 		: 'guidmaster',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer 		: fontstyle,
+					hidden			: true
+				},
+				{	header 			: 'GUID Panel',
+					dataIndex 		: 'guidticket',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer 		: fontstyle,
+					hidden			: true
+				},
+				{	header 			: 'Model Name',
+					dataIndex 		: 'modelname',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer 		: fontstyle,
+					hidden			: true
+				},
+				{	header 			: 'Lot No',
+					dataIndex 		: 'lotno',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer 		: fontstyle,
+					hidden			: true
+				},
+				{	header 			: 'Scanner ID',
+					dataIndex 		: 'scannerid',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer 		: fontstyle,
+					hidden			: true
+				},
+				{	header 			: 'Update Date',
+					dataIndex 		: 'update_at',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer 		: fontstyle,
+					hidden			: true
+				},
+			],
+			// bbar		: Ext.create('Ext.PagingToolbar', {
+			// 	// pageSize	: item3,
+			// 	store		: storeMaprosBoardSymptom,
+			// 	displayInfo	: true,
+			// 	listeners 	: {
+			// 		afterrender: function (cmp) {
+			// 			cmp.getComponent("refresh").hide();
+			// 			cmp.getComponent("first").hide();
+			// 			cmp.getComponent("last").hide();
+			// 		}
+			// 	}
+			// })
+			//features: [filters],
+			// selModel: {
+			// 	selType: 'cellmodel'
+			// },
+			// plugins: [cellEditing]
 		});
-		var store_mapros_avntest_detail = Ext.create('Ext.data.Store',{
-			model	: 'model_mapros_avntest_detail',
-			autoLoad: false,
-			pageSize: 9,
-			proxy   : {
-				type    : 'ajax',
-				url     : 'json/finishgood_ma/json_good_smt_mapros_avntest_detail.php',
-				reader  : {
-					type    : 'json',
-					root    : 'rows',
-					totalProperty: 'totalCount'
+		
+		grid_maprosBoardSymptom.getStore().on('load', function() {
+	        grid_maprosBoardSymptom.getView().stripeRows 			= true;
+			grid_maprosBoardSymptom.getView().deferEmptyText 		= false;
+			grid_maprosBoardSymptom.getView().enableTextSelection	= true;
+	        grid_maprosBoardSymptom.getView().emptyText = '<div class="empty-txt-main">Data Not Available.</div>';
+	        grid_maprosBoardSymptom.getView().refresh();
+	    });
+
+		var grid_maprosMainSymptom = Ext.create('Ext.grid.Panel', {
+			id 				: 'grid_maprosMainSymptom',
+			title 			: '<div style="text-align:center;">==== &nbsp; SYMPTOM &nbsp; ====</div>',
+			autoWidth 		: '80%',
+			height			: 300,
+			columnLines 	: true,
+			store 			: storeMaprosMainSymptom,
+			viewConfig	: {
+				stripeRows 			: true,
+				emptyText 			: '<div class="empty-txt-main">Select Plan Table for show this data.</div>',
+				deferEmptyText 		: false,
+				enableTextSelection	: true,
+				listeners 			: {
+					refresh : function (dataview) {
+						Ext.each(dataview.panel.columns, function (column) {
+							if (column.autoSizeColumn === true)
+								column.autoSize();
+						})
+					}
 				}
-			}
+			},
+			columns 	: [
+				{	header 			: 'master_id',
+					dataIndex 		: 'master_id',
+					componentCls	: 'headergrid',
+					flex 			: false,
+					autoSizeColumn 	: true,
+					renderer 		: fontstyle
+				},
+				{	header 			: 'serial_no',
+					dataIndex 		: 'serial_no',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer 		: fontstyle
+				},
+				{	header 			: 'judge',
+					dataIndex 		: 'judge',
+					componentCls	: 'headergrid',
+					flex 			: false,
+					autoSizeColumn 	: true,
+					renderer 		: fontstyle
+				},
+				{	header 			: 'symptom_id',
+					dataIndex 		: 'symptom_id',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer 		: fontstyle
+				},
+				{	header 			: 'category',
+					dataIndex 		: 'category',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer 		: fontstyle
+				},
+				{	header 			: 'created_at',
+					dataIndex 		: 'created_at',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer 		: fontstyle
+				},
+				{	header 			: 'updated_at',
+					dataIndex 		: 'updated_at',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer 		: fontstyle
+				},
+				{	header 			: 'line_id',
+					dataIndex 		: 'line_id',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer 		: fontstyle
+				},
+				{	header 			: 'lineprocess_id',
+					dataIndex 		: 'lineprocess_id',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer 		: fontstyle
+				},
+				{	header 			: 'lineprocess',
+					dataIndex 		: 'lineprocess',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer 		: fontstyle
+				},
+				{	header 			: 'line',
+					dataIndex 		: 'line',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer 		: fontstyle
+				}				
+			],
+			// bbar		: Ext.create('Ext.PagingToolbar', {
+			// 	// pageSize	: item3,
+			// 	store		: storeMaprosBoardSymptom,
+			// 	displayInfo	: true,
+			// 	listeners 	: {
+			// 		afterrender: function (cmp) {
+			// 			cmp.getComponent("refresh").hide();
+			// 			cmp.getComponent("first").hide();
+			// 			cmp.getComponent("last").hide();
+			// 		}
+			// 	}
+			// })
+			//features: [filters],
+			// selModel: {
+			// 	selType: 'cellmodel'
+			// },
+			// plugins: [cellEditing]
 		});
-		var store_mapros_avmt = Ext.create('Ext.data.Store',{
-			model	: 'model_mapros_avmt',
-			autoLoad: false,
-			pageSize: itemperpage,
-			proxy   : {
-				type    : 'ajax',
-				url     : 'json/finishgood_ma/json_ma_mapros_avmt.php',
-				reader  : {
-					type    : 'json',
-					root    : 'rows',
-					//totalProperty: 'totalCount'
-				}
-			}
-		});
-		var store_mapros_avmt_detail = Ext.create('Ext.data.Store',{
-			model	: 'model_mapros_avmt_detail',
-			autoLoad: false,
-			pageSize: itemperpage,
-			proxy   : {
-				type    : 'ajax',
-				url     : 'json/finishgood_ma/json_good_smt_mapros_avmt_detail.php',
-				reader  : {
-					type    : 'json',
-					root    : 'rows',
-					totalProperty: 'totalCount'
-				}
-			}
-		});
-		var store_mapros_line0 = Ext.create('Ext.data.Store',{
-			model	: 'model_mapros_line0',
-			autoLoad: false,
-			pageSize: itemperpage,
-			proxy   : {
-				type    : 'ajax',
-				url     : 'json/finishgood_ma/json_ma_mapros_line0.php',
-				reader  : {
-					type    : 'json',
-					root    : 'rows',
-					// totalProperty: 'totalCount'
-				}
-			}
-		});
-		var store_mapros_line0_detail = Ext.create('Ext.data.Store',{
-			model	: 'model_mapros_line0_detail',
-			autoLoad: false,
-			pageSize: 7,
-			proxy   : {
-				type    : 'ajax',
-				url     : 'json/finishgood_ma/json_good_smt_mapros_line0_detail.php',
-				reader  : {
-					type    : 'json',
-					root    : 'rows',
-					totalProperty: 'totalCount'
-				}
-			}
-		});
+
+		grid_maprosMainSymptom.getStore().on('load', function() {
+	        grid_maprosMainSymptom.getView().stripeRows 			= true;
+			grid_maprosMainSymptom.getView().deferEmptyText 		= false;
+			grid_maprosMainSymptom.getView().enableTextSelection	= true;
+	        grid_maprosMainSymptom.getView().emptyText = '<div class="empty-txt-main">Data Not Available.</div>';
+	        grid_maprosMainSymptom.getView().refresh();
+	    });
+		
 	//  =======================================================	   PANEL GRID   =====================================	
-		var panel_fwdn = Ext.create('Ext.panel.Panel',{
+		var panel_board = Ext.create('Ext.panel.Panel',{
 		    border: true,
 		    layout: 'border',
 		   	defaults: {
@@ -286,14 +1352,14 @@ Ext.onReady(function() {
 		   	items: [{
 			   region: 'north', // GRID SIDE
 			   layout: 'fit',
-			   items: grid_mapros_fwdn
+			   items: grid_maprosBoard
 			   }, {
 			   region: 'center', // GRID SIDE
 			   layout: 'fit',
-			   items: grid_mapros_fwdn_detail
+			   items: grid_maprosBoardSymptom
 			   }]
 	  	});
-		var panel_avmt = Ext.create('Ext.panel.Panel',{
+	  	var panel_main = Ext.create('Ext.panel.Panel',{
 		    border: true,
 		    layout: 'border',
 		   	defaults: {
@@ -303,200 +1369,68 @@ Ext.onReady(function() {
 		   	items: [{
 			   region: 'north', // GRID SIDE
 			   layout: 'fit',
-			   items: grid_mapros_avmt
+			   items: grid_maprosMain
 			   }, {
 			   region: 'center', // GRID SIDE
 			   layout: 'fit',
-			   items: grid_mapros_avmt_detail
+			   items: grid_maprosMainSymptom
 			   }]
-		  });
-		var panel_avntest = Ext.create('Ext.panel.Panel',{
-		    border: true,
-		    layout: 'border',
-		   	defaults: {
-			     split: false,
-			     plain: true
-		    },
-		   	items: [{
-			   region: 'north', // GRID SIDE
-			   layout: 'fit',
-			   items: grid_mapros_avntest
-			   }, {
-			   region: 'center', // GRID SIDE
-			   layout: 'fit',
-			   items: grid_mapros_avntest_detail
-			   }]
-		  });
-		var panel_auto0 = Ext.create('Ext.panel.Panel',{
-		    border: true,
-		    layout: 'border',
-		   	defaults: {
-			     split: false,
-			     plain: true
-		    },
-		   	items: [{
-			   region: 'north', // GRID SIDE
-			   layout: 'fit',
-			   items: grid_mapros_auto0
-			   }, {
-			   region: 'center', // GRID SIDE
-			   layout: 'fit',
-			   items: grid_mapros_auto0_detail
-			   }]
-		  });
-
-	//	=======================================================    GRID         =====================================
-
+	  	});
 	//	=======================================================	TAB PANEL    	=====================================
 
-		//	PCB & MA Department
-			var part_ma = Ext.create('Ext.tab.Panel', {
-				id  		: 'part_ma',
-				renderTo 	: 'prod_mapros',
-				plain 		: true,
-				activeTab 	: 0,
-				autoWidth 	: '100%',
-				height		: 400,
-				autoScroll 	: true,
-				frame 		: true,
-				style 		: 'padding:5px;-background:#157FCC;',
-				tabBar 		: {
-					flex	: 1,
-					layout 	: {
-						pack 	: 'center',
-						align 	: 'stretch'
-					}
+		var part_ma = Ext.create('Ext.tab.Panel', {
+			id  		: 'part_ma',
+			renderTo 	: 'prod_mapros',
+			plain 		: true,
+			activeTab 	: 0,
+			autoWidth 	: '100%',
+			height		: 600,
+			autoScroll 	: true,
+			frame 		: true,
+			style 		: 'padding:5px;-background:#157FCC;',
+			tabBar 		: {
+				flex	: 1,
+				layout 	: {
+					pack 	: 'center',
+					align 	: 'stretch'
+				}
+			},
+			items 		: [
+				{	title 		: 'PCB Serial',
+				 	id  	 	: 'show_gridPCB',
+				 	layout 		: 'fit',
+					reorderable : false,
+					items 		: [panel_board]
 				},
-				items 		: [
-					{	title 		: 'PCB PROCESS',
-					 	id  	 	: 'show_grid_pcb_boardid',
-						reorderable : false,
-						items 		: [grid_mapros_board]
-					},
-					{	title 		: 'PANEL PROCESS',
-					 	id  		: 'show_grid_ma_panel',
-						reorderable : false,
-						items 		: [grid_mapros_panel]
-					},
-					{	title 		: 'MAIN PROCESS',
-					 	id  		: 'show_grid_ma_master',
-						reorderable : false,
-						items 		: [grid_mapros_master]
-					},
-					{	title 		: 'CRITICAL PROCESS',
-					 	id  		: 'show_grid_ma_critical',
-						reorderable : false,
-						items 		: [grid_mapros_critical]
-					}
-					// {	title 		: 'QUALITY REPORT',
-					//  	id  		: 'show_grid_ma_quality',
-					// 	reorderable : false,
-					// 	items 	: [grid_ma_quality]
-					// },
-
-					// {	id : 'show_grid_ma_oee',
-					// 	title: 'OCS',
-					// 	reorderable: false,
-					// 	//items: [grid_part_smt_install]
-					// },
-					// { 	id : 'show_grid_ma_losttime',
-					// 	title: 'Lost Time',
-					// 	reorderable: false,
-					// 	items: [grd_ma_losttime]
-					// },
-					// { 	id : 'show_grid_jncp',
-					// 	title: 'Jig and Checker Usage',
-					// 	reorderable: false,
-					// 	//items: [grid_part_smt_install]
-					// },
-					// { 	id : 'show_grid_fscr',
-					// 	title: 'FSCR (Part & Process verification on change model)',
-					// 	reorderable: false,
-					// 	//items: [grid_part_smt_install]
-					// },
-					
-				]
-			});
-		//	MA Inspection
-			var part_ma_inspection = Ext.create('Ext.tab.Panel', {
-				id  		: 'part_ma_inspection',
-				renderTo 	: 'prod_inpsection',
-				plain 		: true,
-				activeTab 	: 0,
-				autoWidth 	: '100%',
-				height		: 500,
-				autoScroll 	: true,
-				frame 		: true,
-				style 		: 'padding:5px;-background:#157FCC;',
-				tabBar 		: {
-					flex	: 1,
-					layout 	: {
-						pack 	: 'center',
-						align 	: 'stretch'
-					}
+				{	title 		: 'Panel',
+				 	id  		: 'show_gridPanel',
+					reorderable : false,
+					items 		: [grid_maprosPanel]
 				},
-				items 		: [
-					{	title 		: 'QUALITY REPORT',
-					 	id  		: 'show_grid_ma_quality',
-						reorderable : false,
-						items 	: [grid_ma_quality]
-					},
-					{	title 		: 'FWDN',
-					 	id  		: 'show_grid_fwdn',
-						reorderable : false,
-						layout		: 'fit',
-						items 		: [panel_fwdn]
-					}, 
-					{	title 		: 'FLASH',
-					 	id  		: 'show_grid_flash',
-						reorderable : false,
-						items 		: [grid_mapros_flash]
-					}, 
-					{	title 		: 'AVN TEST',
-					 	id  		: 'show_grid_avntest',
-						reorderable : false,
-						layout		: 'fit',
-						items 		: [panel_avntest]
-					}, 
-					{	title 		: 'AVMT',
-					 	id  		: 'show_grid_avmt',
-						reorderable : false,
-						layout		: 'fit',
-						items 		: [panel_avmt]
-					}, 
-					{	title 		: 'AUTO LINE ZERO',
-					 	id  		: 'show_grid_zero',
-						reorderable : false,
-						layout		: 'fit',
-						items 		: [panel_auto0]
-					},
-					// {	title 		: 'QUALITY REPORT',
-					//  	id  		: 'show_grid_ma_quality',
-					// 	reorderable : false,
-					// 	items 	: [grid_ma_quality]
-					// },
+				{	title 		: 'LCD',
+				 	id  		: 'show_gridLCD',
+					reorderable : false,
+					items 		: [grid_maprosLCD]
+				},
+				{	title 		: 'Mecha',
+				 	id  		: 'show_gridMecha',
+					reorderable : false,
+					items 		: [grid_maprosMecha]
+				},
+				{	title 		: 'Main',
+				 	id  		: 'show_gridMain',
+				 	layout 		: 'fit',
+					reorderable : false,
+					items 		: [panel_main]
+				},
+				{	title 		: 'Critical Part',
+				 	id  		: 'show_gridCritical',
+					reorderable : false,
+					items 		: [grid_maprosCritical]
+				}
+			]
+		});
 
-					// {	id : 'show_grid_ma_oee',
-					// 	title: 'OCS',
-					// 	reorderable: false,
-					// 	//items: [grid_part_smt_install]
-					// },
-					// { 	id : 'show_grid_ma_losttime',
-					// 	title: 'Lost Time',
-					// 	reorderable: false,
-					// 	items: [grd_ma_losttime]
-					// },
-					// { 	id : 'show_grid_jncp',
-					// 	title: 'Jig and Checker Usage',
-					// 	reorderable: false,
-					// 	//items: [grid_part_smt_install]
-					// },
-					// { 	id : 'show_grid_fscr',
-					// 	title: 'FSCR (Part & Process verification on change model)',
-					// 	reorderable: false,
-					// 	//items: [grid_part_smt_install]
-					// },
-					
-				]
-			});
+
+
 });

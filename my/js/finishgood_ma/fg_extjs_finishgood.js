@@ -246,6 +246,7 @@ Ext.onReady(function() {
 					var serialID  	= rec[0].data.serial_id;
 					var serialNoID 	= rec[0].data.serial_no_id;
 					var valLine		= rec[0].data.line_name;
+					var valProdDate	= rec[0].data.prod_date;
 
 					Ext.getStore('store_sched').proxy.setExtraParam('model', model);
 					Ext.getStore('store_sched').proxy.setExtraParam('prod_no', prodNo);
@@ -284,6 +285,68 @@ Ext.onReady(function() {
 					Ext.getStore('storeScanOUT').proxy.setExtraParam('valmodel', model);
 					Ext.getStore('storeScanOUT').proxy.setExtraParam('valserialno', serialNoID);
 					Ext.getStore('storeScanOUT').loadPage(1);
+
+					Ext.getStore('storeMaprosBoard').proxy.setExtraParam('valmodel', model);
+					Ext.getStore('storeMaprosBoard').proxy.setExtraParam('valserialno', serialNoID);
+
+					Ext.getStore('storeMaprosBoardSymptom').proxy.setExtraParam('valmodel', model);
+					Ext.getStore('storeMaprosBoardSymptom').proxy.setExtraParam('valserialno', serialNoID);
+
+					Ext.getStore('storeMaprosPanel').proxy.setExtraParam('valmodel', model);
+					Ext.getStore('storeMaprosPanel').proxy.setExtraParam('valserialno', serialNoID);
+
+					Ext.getStore('storeMaprosLCD').proxy.setExtraParam('valmodel', model);
+					Ext.getStore('storeMaprosLCD').proxy.setExtraParam('valserialno', serialNoID);
+
+					Ext.getStore('storeMaprosMecha').proxy.setExtraParam('valmodel', model);
+					Ext.getStore('storeMaprosMecha').proxy.setExtraParam('valserialno', serialNoID);
+					
+					Ext.getStore('storeMaprosMain').proxy.setExtraParam('valmodel', model);
+					Ext.getStore('storeMaprosMain').proxy.setExtraParam('valserialno', serialNoID);
+
+					Ext.getStore('storeMaprosMainSymptom').proxy.setExtraParam('valmodel', model);
+					Ext.getStore('storeMaprosMainSymptom').proxy.setExtraParam('valserialno', serialNoID);
+
+					Ext.getStore('storeMaprosCritical').proxy.setExtraParam('valmodel', model);
+					Ext.getStore('storeMaprosCritical').proxy.setExtraParam('valserialno', serialNoID);
+				
+					Ext.getStore('storeMaQualityReport').proxy.setExtraParam('valmodel', model);
+					Ext.getStore('storeMaQualityReport').proxy.setExtraParam('valserialno', serialNoID);
+					
+					Ext.getStore('storeMaFwdn').proxy.setExtraParam('valmodel', model);
+					Ext.getStore('storeMaFwdn').proxy.setExtraParam('valserialno', serialNoID);
+
+					Ext.getStore('storeMaFlash').proxy.setExtraParam('valmodel', model);
+					Ext.getStore('storeMaFlash').proxy.setExtraParam('valserialno', serialNoID);
+
+					Ext.getStore('storeMaLine0').proxy.setExtraParam('valmodel', model);
+					Ext.getStore('storeMaLine0').proxy.setExtraParam('valserialno', serialNoID);
+
+					Ext.getStore('storeMaAvntest').proxy.setExtraParam('valmodel', model);
+					Ext.getStore('storeMaAvntest').proxy.setExtraParam('valserialno', serialNoID);
+
+					Ext.getStore('storeMaAvmt').proxy.setExtraParam('valmodel', model);
+					Ext.getStore('storeMaAvmt').proxy.setExtraParam('valserialno', serialNoID);
+					
+					Ext.getStore('storeMcReceiving').proxy.setExtraParam('valmodel', model);
+					Ext.getStore('storeMcReceiving').proxy.setExtraParam('vallotno', prodNo);
+					Ext.getStore('storeMcReceiving').proxy.setExtraParam('valProdDate', valProdDate);
+					Ext.getStore('storeMcReceiving').loadPage(1);
+
+					// Ext.getStore('storeMcPartInspection').proxy.setExtraParam('valmodel', model);
+					// Ext.getStore('storeMcPartInspection').proxy.setExtraParam('vallotno', prodNo);
+					// Ext.getStore('storeMcPartInspection').proxy.setExtraParam('valProdDate', valProdDate);
+					// Ext.getStore('storeMcPartInspection').loadPage(1);
+
+					Ext.getStore('storeMcIssueMa').proxy.setExtraParam('valmodel', model);
+					Ext.getStore('storeMcIssueMa').proxy.setExtraParam('vallotno', prodNo);
+					Ext.getStore('storeMcIssueMa').proxy.setExtraParam('valProdDate', valProdDate);
+					Ext.getStore('storeMcIssueMa').loadPage(1);
+
+					Ext.getStore('storeMcIssueMecha').proxy.setExtraParam('valmodel', model);
+					Ext.getStore('storeMcIssueMecha').proxy.setExtraParam('vallotno', prodNo);
+					Ext.getStore('storeMcIssueMecha').proxy.setExtraParam('valProdDate', valProdDate);
+					Ext.getStore('storeMcIssueMecha').loadPage(1);
 				}
 			},
 			bbar	: Ext.create('Ext.PagingToolbar', {
