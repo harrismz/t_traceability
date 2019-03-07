@@ -10,10 +10,11 @@
 
     $model      = @$_REQUEST['valmodel'];
     $serialnoid = substr(@$_REQUEST['valserialno'],-8);
+    $dummySerial    = @$_REQUEST['dummySerial'];
 
 
 	// echo "call traceability_goodsmt_board ('{$boardid}','{$cavity}')";
-    $sql    = "call traceability_maprosLCD ('{$model}','{$serialnoid}')";
+    $sql    = "call traceability_maprosLCD ('{$model}','{$serialnoid}','{$dummySerial}')";
     $rs    = $db->Execute($sql);
     $return = array();
  

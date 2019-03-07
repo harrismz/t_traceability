@@ -288,46 +288,59 @@ Ext.onReady(function() {
 
 					Ext.getStore('storeMaprosBoard').proxy.setExtraParam('valmodel', model);
 					Ext.getStore('storeMaprosBoard').proxy.setExtraParam('valserialno', serialNoID);
+					Ext.getStore('storeMaprosBoard').proxy.setExtraParam('dummySerial', '');
 
 					Ext.getStore('storeMaprosBoardSymptom').proxy.setExtraParam('valmodel', model);
 					Ext.getStore('storeMaprosBoardSymptom').proxy.setExtraParam('valserialno', serialNoID);
+					Ext.getStore('storeMaprosBoardSymptom').proxy.setExtraParam('dummySerial', '');
 
 					Ext.getStore('storeMaprosPanel').proxy.setExtraParam('valmodel', model);
 					Ext.getStore('storeMaprosPanel').proxy.setExtraParam('valserialno', serialNoID);
+					Ext.getStore('storeMaprosPanel').proxy.setExtraParam('dummySerial', '');
 
 					Ext.getStore('storeMaprosLCD').proxy.setExtraParam('valmodel', model);
 					Ext.getStore('storeMaprosLCD').proxy.setExtraParam('valserialno', serialNoID);
+					Ext.getStore('storeMaprosLCD').proxy.setExtraParam('dummySerial', '');
 
 					Ext.getStore('storeMaprosMecha').proxy.setExtraParam('valmodel', model);
 					Ext.getStore('storeMaprosMecha').proxy.setExtraParam('valserialno', serialNoID);
-					
+					Ext.getStore('storeMaprosMecha').proxy.setExtraParam('dummySerial', '');
+
 					Ext.getStore('storeMaprosMain').proxy.setExtraParam('valmodel', model);
 					Ext.getStore('storeMaprosMain').proxy.setExtraParam('valserialno', serialNoID);
+					Ext.getStore('storeMaprosMain').proxy.setExtraParam('dummySerial', '');
 
 					Ext.getStore('storeMaprosMainSymptom').proxy.setExtraParam('valmodel', model);
 					Ext.getStore('storeMaprosMainSymptom').proxy.setExtraParam('valserialno', serialNoID);
+					Ext.getStore('storeMaprosMainSymptom').proxy.setExtraParam('dummySerial', '');
 
 					Ext.getStore('storeMaprosCritical').proxy.setExtraParam('valmodel', model);
 					Ext.getStore('storeMaprosCritical').proxy.setExtraParam('valserialno', serialNoID);
-				
+					Ext.getStore('storeMaprosCritical').proxy.setExtraParam('dummySerial', '');
+
 					Ext.getStore('storeMaQualityReport').proxy.setExtraParam('valmodel', model);
 					Ext.getStore('storeMaQualityReport').proxy.setExtraParam('valserialno', serialNoID);
 					
 					Ext.getStore('storeMaFwdn').proxy.setExtraParam('valmodel', model);
 					Ext.getStore('storeMaFwdn').proxy.setExtraParam('valserialno', serialNoID);
+					Ext.getStore('storeMaFwdn').proxy.setExtraParam('dummySerial', '');
 
 					Ext.getStore('storeMaFlash').proxy.setExtraParam('valmodel', model);
 					Ext.getStore('storeMaFlash').proxy.setExtraParam('valserialno', serialNoID);
+					Ext.getStore('storeMaFlash').proxy.setExtraParam('dummySerial', '');
 
 					Ext.getStore('storeMaLine0').proxy.setExtraParam('valmodel', model);
 					Ext.getStore('storeMaLine0').proxy.setExtraParam('valserialno', serialNoID);
+					Ext.getStore('storeMaLine0').proxy.setExtraParam('dummySerial', '');
 
 					Ext.getStore('storeMaAvntest').proxy.setExtraParam('valmodel', model);
 					Ext.getStore('storeMaAvntest').proxy.setExtraParam('valserialno', serialNoID);
+					Ext.getStore('storeMaAvntest').proxy.setExtraParam('dummySerial', '');
 
 					Ext.getStore('storeMaAvmt').proxy.setExtraParam('valmodel', model);
 					Ext.getStore('storeMaAvmt').proxy.setExtraParam('valserialno', serialNoID);
-					
+					Ext.getStore('storeMaAvmt').proxy.setExtraParam('dummySerial', '');
+
 					Ext.getStore('storeMcReceiving').proxy.setExtraParam('valmodel', model);
 					Ext.getStore('storeMcReceiving').proxy.setExtraParam('vallotno', prodNo);
 					Ext.getStore('storeMcReceiving').proxy.setExtraParam('valProdDate', valProdDate);

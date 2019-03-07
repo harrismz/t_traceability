@@ -4,7 +4,8 @@
 
     $model      = @$_REQUEST['valmodel'];
     $serialnoid = substr(@$_REQUEST['valserialno'],-8);
-    $sql        = "EXEC traceability_ma_avmt '{$model}','{$serialnoid}'";
+    $dummySerial= @$_REQUEST['dummySerial'];
+    $sql        = "EXEC traceability_ma_avmt '{$model}','{$serialnoid}','{$dummySerial}'";
     $rs         = $db->Execute($sql);
     $return     = array();
 

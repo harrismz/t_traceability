@@ -215,23 +215,90 @@ function checkFinishgood(event){
 				$("#dummy-serial").css({"background-color":"#ffcccc"});
 			}
 			else if(dummySerial.length > 1){
-				Ext.getStore('finishgood_store').proxy.setExtraParam('modelName', '');
-				Ext.getStore('finishgood_store').proxy.setExtraParam('serialNo', '');
-				Ext.getStore('finishgood_store').proxy.setExtraParam('lotNo', '');
-				// Ext.getStore('finishgood_store').loadPage(1);
-				console.log('Dummy Serial tidak ada di ocs_fa finishgood');
+				Ext.getStore('storeMaprosBoard').proxy.setExtraParam('valmodel', '');
+				Ext.getStore('storeMaprosBoard').proxy.setExtraParam('valserialno', '');
+				Ext.getStore('storeMaprosBoard').proxy.setExtraParam('dummySerial', dummySerial);
+				Ext.getStore('storeMaprosBoard').loadPage(1);
+				
+				Ext.getStore('storeMaprosBoardSymptom').proxy.setExtraParam('valmodel', '');
+				Ext.getStore('storeMaprosBoardSymptom').proxy.setExtraParam('valserialno', '');
+				Ext.getStore('storeMaprosBoardSymptom').proxy.setExtraParam('dummySerial', dummySerial);
+
+				Ext.getStore('storeMaprosPanel').proxy.setExtraParam('valmodel', '');
+				Ext.getStore('storeMaprosPanel').proxy.setExtraParam('valserialno', '');
+				Ext.getStore('storeMaprosPanel').proxy.setExtraParam('dummySerial', dummySerial);
+
+				Ext.getStore('storeMaprosLCD').proxy.setExtraParam('valmodel', '');
+				Ext.getStore('storeMaprosLCD').proxy.setExtraParam('valserialno', '');
+				Ext.getStore('storeMaprosLCD').proxy.setExtraParam('dummySerial', dummySerial);
+
+				Ext.getStore('storeMaprosMecha').proxy.setExtraParam('valmodel', '');
+				Ext.getStore('storeMaprosMecha').proxy.setExtraParam('valserialno', '');
+				Ext.getStore('storeMaprosMecha').proxy.setExtraParam('dummySerial', dummySerial);
+
+				Ext.getStore('storeMaprosMain').proxy.setExtraParam('valmodel', '');
+				Ext.getStore('storeMaprosMain').proxy.setExtraParam('valserialno', '');
+				Ext.getStore('storeMaprosMain').proxy.setExtraParam('dummySerial', dummySerial);
+				
+				Ext.getStore('storeMaprosMainSymptom').proxy.setExtraParam('valmodel', '');
+				Ext.getStore('storeMaprosMainSymptom').proxy.setExtraParam('valserialno', '');
+				Ext.getStore('storeMaprosMainSymptom').proxy.setExtraParam('dummySerial', dummySerial);
+				
+				Ext.getStore('storeMaprosCritical').proxy.setExtraParam('valmodel', '');
+				Ext.getStore('storeMaprosCritical').proxy.setExtraParam('valserialno', '');
+				Ext.getStore('storeMaprosCritical').proxy.setExtraParam('dummySerial', dummySerial);
+
+				Ext.getStore('storeMaFwdn').proxy.setExtraParam('valmodel','');
+				Ext.getStore('storeMaFwdn').proxy.setExtraParam('valserialno', '');
+				Ext.getStore('storeMaFwdn').proxy.setExtraParam('dummySerial', dummySerial);
+
+				Ext.getStore('storeMaFlash').proxy.setExtraParam('valmodel', '');
+				Ext.getStore('storeMaFlash').proxy.setExtraParam('valserialno', '');
+				Ext.getStore('storeMaFlash').proxy.setExtraParam('dummySerial', dummySerial);
+
+				Ext.getStore('storeMaLine0').proxy.setExtraParam('valmodel', '');
+				Ext.getStore('storeMaLine0').proxy.setExtraParam('valserialno', '');
+				Ext.getStore('storeMaLine0').proxy.setExtraParam('dummySerial', dummySerial);
+
+				Ext.getStore('storeMaAvntest').proxy.setExtraParam('valmodel', '');
+				Ext.getStore('storeMaAvntest').proxy.setExtraParam('valserialno', '');
+				Ext.getStore('storeMaAvntest').proxy.setExtraParam('dummySerial', dummySerial);
+
+				Ext.getStore('storeMaAvmt').proxy.setExtraParam('valmodel', '');
+				Ext.getStore('storeMaAvmt').proxy.setExtraParam('valserialno', '');
+				Ext.getStore('storeMaAvmt').proxy.setExtraParam('dummySerial', dummySerial);
 			}
 		}
 
-		var gridSchedule	= Ext.getCmp("finishgood_plan");
-		var gridOutput		= Ext.getCmp("finishgood_actual");
-		var gridStockcard	= Ext.getCmp("gridStockcard");
-		var gridShipmenthold= Ext.getCmp("gridShipmentHold");
-		var gridBorrow		= Ext.getCmp("gridBorrow");
-		var gridScanin		= Ext.getCmp("gridScanin");
-		var gridScanout		= Ext.getCmp("gridScanout");
-
-		gridSchedule.getStore().removeAll();
+		var gridSchedule			= Ext.getCmp("finishgood_plan");
+		var gridOutput				= Ext.getCmp("finishgood_actual");
+		var gridStockcard			= Ext.getCmp("gridStockcard");
+		var gridShipmenthold		= Ext.getCmp("gridShipmentHold");
+		var gridBorrow				= Ext.getCmp("gridBorrow");
+		var gridScanin				= Ext.getCmp("gridScanin");
+		var gridScanout				= Ext.getCmp("gridScanout");
+		var grid_maprosBoard		= Ext.getCmp("grid_maprosBoard");
+        var grid_maprosPanel		= Ext.getCmp("grid_maprosPanel");
+        var grid_maprosLCD			= Ext.getCmp("grid_maprosLCD");
+        var grid_maprosMecha		= Ext.getCmp("grid_maprosMecha");
+        var grid_maprosMain			= Ext.getCmp("grid_maprosMain");
+        var grid_maprosCritical		= Ext.getCmp("grid_maprosCritical");
+        var grid_maprosBoardSymptom	= Ext.getCmp("grid_maprosBoardSymptom");
+        var grid_maprosMainSymptom	= Ext.getCmp("grid_maprosMainSymptom");
+        var grid_maQuality			= Ext.getCmp("grid_maQuality");
+        var grid_maFwdn				= Ext.getCmp("grid_maFwdn");
+        var grid_maFwdnDetail		= Ext.getCmp("grid_maFwdnDetail");
+        var grid_maFlash			= Ext.getCmp("grid_maFlash");
+        var grid_maAvntest			= Ext.getCmp("grid_maAvntest");
+        var grid_maAvntestDetail	= Ext.getCmp("grid_maAvntestDetail");
+        var grid_maAvmt				= Ext.getCmp("grid_maAvmt");
+        var grid_maAvmtDetail		= Ext.getCmp("grid_maAvmtDetail");
+        var grid_maAuto0			= Ext.getCmp("grid_maAuto0");
+        var grid_maAuto0Detail		= Ext.getCmp("grid_maAuto0Detail");
+        var grid_mcIssueMa			= Ext.getCmp("grid_mcIssueMa");
+        var grid_mcIssueMecha		= Ext.getCmp("grid_mcIssueMecha");
+        
+        gridSchedule.getStore().removeAll();
 		gridSchedule.getView().emptyText = '<div class="empty-txt-main">Select Finishgood table for show this data.</div>';
         gridSchedule.getView().refresh();
 
@@ -270,8 +337,8 @@ function checkFinishgood(event){
         grid_maprosPanel.getStore().removeAll();
 		grid_maprosPanel.getView().emptyText = '<div class="empty-txt-main">Select Plan Table for show this data.</div>';
         grid_maprosPanel.getView().refresh();
-
-        grid_maprosLCD.getStore().removeAll();
+		
+		grid_maprosLCD.getStore().removeAll();
 		grid_maprosLCD.getView().emptyText = '<div class="empty-txt-main">Select Plan Table for show this data.</div>';
         grid_maprosLCD.getView().refresh();
 
@@ -303,7 +370,7 @@ function checkFinishgood(event){
 		grid_maFwdn.getView().emptyText = '<div class="empty-txt-main">Select Mapros PCB Serial for show this data.</div>';
         grid_maFwdn.getView().refresh();
 
-		grid_maFwdnDetail.getStore().removeAll();
+        grid_maFwdnDetail.getStore().removeAll();
 		grid_maFwdnDetail.getView().emptyText = '<div class="empty-txt-main">Select Header to show Detail</div>';
         grid_maFwdnDetail.getView().refresh();
 		
@@ -342,8 +409,6 @@ function checkFinishgood(event){
         grid_mcIssueMecha.getStore().removeAll();
 		grid_mcIssueMecha.getView().emptyText = '<div class="empty-txt-main">Select Finishgood Table for showing this data.</div>';
         grid_mcIssueMecha.getView().refresh();
-
-        
 
 		console.log('=========== START finishgood ===========');
 		console.log('cat 		 : '+rbCheck);

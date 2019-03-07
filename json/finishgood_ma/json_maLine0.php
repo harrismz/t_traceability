@@ -4,7 +4,8 @@
 
     $model      = @$_REQUEST['valmodel'];
     $serialnoid = substr(@$_REQUEST['valserialno'],-8);
-    $sql        = "EXEC traceability_ma_line0 '{$model}','{$serialnoid}'";
+    $dummySerial= @$_REQUEST['dummySerial'];
+    $sql        = "EXEC traceability_ma_line0 '{$model}','{$serialnoid}','{$dummySerial}'";
     $rs         = $db->Execute($sql);
     $return     = array();
 
@@ -20,6 +21,7 @@
         $return[$i]['ngcontent']    = trim($rs->fields['8']);   
         $return[$i]['input_user']   = trim($rs->fields['9']);
         $return[$i]['input_date']   = trim($rs->fields['10']);
+        $return[$i]['guid_master']  = trim($rs->fields['11']);
        
         $rs->MoveNext();
     }

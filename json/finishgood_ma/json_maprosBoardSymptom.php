@@ -9,10 +9,11 @@
     //  $smt_date   = date('Y-m-d', strtotime($getdate));
     $model      = @$_REQUEST['valmodel'];
     $serialnoid = substr(@$_REQUEST['valserialno'],-8);
+    $dummySerial    = @$_REQUEST['dummySerial'];
 
 
 	// echo "call traceability_goodsmt_board ('{$boardid}','{$cavity}')";
-    $sql    = "call traceability_maprosBoardSymptom ('{$model}','{$serialnoid}');";
+    $sql    = "call traceability_maprosBoardSymptom ('{$model}','{$serialnoid}','{$dummySerial}')";
     $rs    = $db->Execute($sql);
 
     $return = array();

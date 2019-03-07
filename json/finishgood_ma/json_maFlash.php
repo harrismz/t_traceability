@@ -6,9 +6,10 @@
     $limit      = @$_REQUEST["limit"];
     $model      = @$_REQUEST['valmodel'];
     $serialnoid = substr(@$_REQUEST['valserialno'],-8);
+    $dummySerial= @$_REQUEST['dummySerial'];
     $start      = (($page*$limit)-$limit)+1;
 	
-    $sql        = "declare @totalcount as int; EXEC traceability_ma_flash $start, $limit, '{$model}','{$serialnoid}',@totalcount=@totalcount out;";
+    $sql        = "declare @totalcount as int; EXEC traceability_ma_flash $start, $limit, '{$model}','{$serialnoid}','{$dummySerial}',@totalcount=@totalcount out;";
     $rs         = $db->Execute($sql);
     $totalcount = $rs->fields['11'];
     $return     = array();

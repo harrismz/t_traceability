@@ -47,7 +47,7 @@ Ext.onReady(function() {
       	Ext.define('modelMaLine0',{
             extend: 'Ext.data.Model',
             fields: ['idlinezero','dateinspec','serial', 'sn','jigno','judge','inspectime',
-            		'artfilename','ngcontent','input_user','input_date']
+            		'artfilename','ngcontent','input_user','input_date','guid_master']
        	});
       	Ext.define('modelMaLine0Detail',{
             extend: 'Ext.data.Model',
@@ -297,6 +297,13 @@ Ext.onReady(function() {
                 }
             })*/
         });
+		grid_maQuality.getStore().on('load', function() {
+	        grid_maQuality.getView().stripeRows 			= true;
+			grid_maQuality.getView().deferEmptyText 		= false;
+			grid_maQuality.getView().enableTextSelection	= true;
+	        grid_maQuality.getView().emptyText = '<div class="empty-txt-main">Data Not Available.</div>';
+	        grid_maQuality.getView().refresh();
+	    });
   		//       var grid_maprosBoard = Ext.create('Ext.grid.Panel', {
 			// 	id 				: 'grid_maprosBoard',
 			// 	autoWidth 		: '100%',
@@ -550,6 +557,13 @@ Ext.onReady(function() {
 	    		}
 	    	}
 		});
+		grid_maFwdn.getStore().on('load', function() {
+	        grid_maFwdn.getView().stripeRows 			= true;
+			grid_maFwdn.getView().deferEmptyText 		= false;
+			grid_maFwdn.getView().enableTextSelection	= true;
+	        grid_maFwdn.getView().emptyText = '<div class="empty-txt-main">Data Not Available.</div>';
+	        grid_maFwdn.getView().refresh();
+	    });
 		var grid_maFwdnDetail = Ext.create('Ext.grid.Panel', {
 			id 				: 'grid_maFwdnDetail',
 			title 			: '<div style="text-align:center;">==== &nbsp; DETAIL &nbsp; ====</div>',
@@ -637,6 +651,13 @@ Ext.onReady(function() {
 				}
 			})
 		});
+		grid_maFwdnDetail.getStore().on('load', function() {
+	        grid_maFwdnDetail.getView().stripeRows 			= true;
+			grid_maFwdnDetail.getView().deferEmptyText 		= false;
+			grid_maFwdnDetail.getView().enableTextSelection	= true;
+	        grid_maFwdnDetail.getView().emptyText = '<div class="empty-txt-main">Data Not Available.</div>';
+	        grid_maFwdnDetail.getView().refresh();
+	    });
 		var grid_maFlash = Ext.create('Ext.grid.Panel', {
 			id 				: 'grid_maFlash',
 			autoWidth 		: '100%',
@@ -776,6 +797,13 @@ Ext.onReady(function() {
 			// },
 			// plugins: [cellEditing]
 		});
+		grid_maFlash.getStore().on('load', function() {
+	        grid_maFlash.getView().stripeRows 			= true;
+			grid_maFlash.getView().deferEmptyText 		= false;
+			grid_maFlash.getView().enableTextSelection	= true;
+	        grid_maFlash.getView().emptyText = '<div class="empty-txt-main">Data Not Available.</div>';
+	        grid_maFlash.getView().refresh();
+	    });
 		var grid_maAvntest = Ext.create('Ext.grid.Panel', {
 			id 				: 'grid_maAvntest',
 			autoWidth 		: '100%',
@@ -954,6 +982,13 @@ Ext.onReady(function() {
 				// },
 				// plugins: [cellEditing]
 		});
+		grid_maAvntest.getStore().on('load', function() {
+	        grid_maAvntest.getView().stripeRows 			= true;
+			grid_maAvntest.getView().deferEmptyText 		= false;
+			grid_maAvntest.getView().enableTextSelection	= true;
+	        grid_maAvntest.getView().emptyText = '<div class="empty-txt-main">Data Not Available.</div>';
+	        grid_maAvntest.getView().refresh();
+	    });
 		var grid_maAvntestDetail = Ext.create('Ext.grid.Panel', {
 			id 				: 'grid_maAvntestDetail',
 			title 			: '<div style="text-align:center;">==== &nbsp; DETAIL &nbsp; ====</div>',
@@ -1046,6 +1081,13 @@ Ext.onReady(function() {
 			// },
 			// plugins: [cellEditing]
 		});
+		grid_maAvntestDetail.getStore().on('load', function() {
+	        grid_maAvntestDetail.getView().stripeRows 			= true;
+			grid_maAvntestDetail.getView().deferEmptyText 		= false;
+			grid_maAvntestDetail.getView().enableTextSelection	= true;
+	        grid_maAvntestDetail.getView().emptyText = '<div class="empty-txt-main">Data Not Available.</div>';
+	        grid_maAvntestDetail.getView().refresh();
+	    });
 		var grid_maAvmt = Ext.create('Ext.grid.Panel', {
 			id 				: 'grid_maAvmt',
 			autoWidth 		: '80%',
@@ -1315,8 +1357,15 @@ Ext.onReady(function() {
 				// },
 				// plugins: [cellEditing]
 		});
+		grid_maAvmt.getStore().on('load', function() {
+	        grid_maAvmt.getView().stripeRows 			= true;
+			grid_maAvmt.getView().deferEmptyText 		= false;
+			grid_maAvmt.getView().enableTextSelection	= true;
+	        grid_maAvmt.getView().emptyText = '<div class="empty-txt-main">Data Not Available.</div>';
+	        grid_maAvmt.getView().refresh();
+	    });
 		var grid_maAvmtDetail = Ext.create('Ext.grid.Panel', {
-			id 				: 'grid_maAvmt_detail',
+			id 				: 'grid_maAvmtDetail',
 			title 			: '<div style="text-align:center;">== &nbsp; DETAIL &nbsp; ==</div>',
 			autoWidth 		: '80%',
 			Height			: 450,
@@ -1530,6 +1579,13 @@ Ext.onReady(function() {
 			// },
 			// plugins: [cellEditing]
 		});
+		grid_maAvmtDetail.getStore().on('load', function() {
+	        grid_maAvmtDetail.getView().stripeRows 			= true;
+			grid_maAvmtDetail.getView().deferEmptyText 		= false;
+			grid_maAvmtDetail.getView().enableTextSelection	= true;
+	        grid_maAvmtDetail.getView().emptyText = '<div class="empty-txt-main">Data Not Available.</div>';
+	        grid_maAvmtDetail.getView().refresh();
+	    });
 		
 		var grid_maAuto0 = Ext.create('Ext.grid.Panel', {
 			id 				: 'grid_maAuto0',
@@ -1546,6 +1602,14 @@ Ext.onReady(function() {
 			columns 	: [
 				{ 	header 		: 'ID',
 					dataIndex 	: 'idlinezero',
+					componentCls	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+					renderer	: fontstyle,
+					hidden 		: true
+				},
+				{ 	header 		: 'GUID MASTER',
+					dataIndex 	: 'guid_master',
 					componentCls	: 'headergrid',
 					flex 			: getFlexFgFinishgood(),
 					autoSizeColumn 	: getWidthFgFinishgood(),
@@ -1716,6 +1780,13 @@ Ext.onReady(function() {
 			// },
 			// plugins: [cellEditing]
 		});
+		grid_maAuto0.getStore().on('load', function() {
+	        grid_maAuto0.getView().stripeRows 			= true;
+			grid_maAuto0.getView().deferEmptyText 		= false;
+			grid_maAuto0.getView().enableTextSelection	= true;
+	        grid_maAuto0.getView().emptyText = '<div class="empty-txt-main">Data Not Available.</div>';
+	        grid_maAuto0.getView().refresh();
+	    });
 		var grid_maAuto0Detail = Ext.create('Ext.grid.Panel', {
 			id 				: 'grid_maAuto0Detail',
 			title 			: '<div style="text-align:center;">==== &nbsp; DETAIL &nbsp; ====</div>',
@@ -1817,6 +1888,13 @@ Ext.onReady(function() {
 			// },
 			// plugins: [cellEditing]
 		});
+		grid_maAuto0Detail.getStore().on('load', function() {
+	        grid_maAuto0Detail.getView().stripeRows 			= true;
+			grid_maAuto0Detail.getView().deferEmptyText 		= false;
+			grid_maAuto0Detail.getView().enableTextSelection	= true;
+	        grid_maAuto0Detail.getView().emptyText = '<div class="empty-txt-main">Data Not Available.</div>';
+	        grid_maAuto0Detail.getView().refresh();
+	    });
 		
 	//  =======================================================	   PANEL GRID   =====================================	
 		// var panel_board = Ext.create('Ext.panel.Panel',{

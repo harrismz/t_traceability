@@ -93,7 +93,7 @@
                 Dummy Serial
               </label>
               <div class="col-md-6 col-sm-6 col-xs-12">
-                <input id="dummy-serial" class="form-control col-md-7 col-xs-12 text-uppercase" type="text" name="dummy-serial"  data-validate-length-range="13,13" placeholder="MAMST01700123" onkeypress="checkFinishgood(event)">
+                <input id="dummy-serial" class="form-control col-md-7 col-xs-12 text-uppercase" type="text" name="dummy-serial"  data-validate-length-range="13,13" placeholder="MAMST01700215" onkeypress="checkFinishgood(event)">
               </div>
             </div>
             <div class="ln_solid"></div>

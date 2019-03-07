@@ -4,7 +4,8 @@
 
     $model      = @$_REQUEST['valmodel'];
     $serialnoid = substr(@$_REQUEST['valserialno'],-8);
-    $sql        = "declare @totalcount as int; EXEC [traceability_ma_fwdn] '{$model}','{$serialnoid}'";
+    $dummySerial= @$_REQUEST['dummySerial'];
+    $sql        = "declare @totalcount as int; EXEC [traceability_ma_fwdn] '{$model}','{$serialnoid}','{$dummySerial}'";
     $rs         = $db->Execute($sql);
     $return     = array();
 
