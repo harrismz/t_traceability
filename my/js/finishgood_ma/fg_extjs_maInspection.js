@@ -54,34 +54,6 @@ Ext.onReady(function() {
             fields: ['idlinezero','rownumber','step','stepdata', 'measure','measuredata','input_user','input_date']
        	});
 	//	=======================================================    DATASTORE    =====================================
-		// var storeMaprosCritical = Ext.create('Ext.data.Store',{
-			// 	storeId	: 'storeMaprosCritical',
-			// 	model	: 'modelMaprosCritical',
-			// 	autoLoad: false,
-			// 	// pageSize: itemperpage,
-			// 	proxy   : {
-			// 		type    : 'ajax',
-			// 		url     : 'json/finishgood_ma/json_maprosCritical.php',
-			// 		reader  : {
-			// 			type    : 'json',
-			// 			root    : 'rows'
-			// 		}
-			// 	},
-			// 	// listeners: {
-			// 	// 	load: function(store, records) {
-			// 	// 		if (records != "") {
-
-			// 	// 			storeMaprosBoard.proxy.setExtraParam('model', boardid);
-			// 	// 			storeMaprosBoard.proxy.setExtraParam('serial_no', cavity);
-			// 	// 			storeMaprosBoard.loadPage(1);
-			// 	// 			store_mapros_panel_fg.proxy.setExtraParam('boardid', boardid);
-			// 	// 			store_mapros_panel_fg.proxy.setExtraParam('cavity', cavity);
-			// 	// 			store_mapros_panel_fg.loadPage(1);
-			// 	// 		} 
-			// 	// 	}
-			// 	// }
-			// });
-			
 		var storeMaQualityReport = Ext.create('Ext.data.Store',{
 			storeId	: 'storeMaQualityReport',
 			model	: 'modelMaQualityReport',

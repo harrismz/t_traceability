@@ -687,11 +687,11 @@ Ext.onReady(function() {
 			columns: [
 				// { header: 'No.', xtype: 'rownumberer', width: 50, height: 40, sortable: false },
 				{ text: 'Model',		dataIndex: 'model',			 componentCls : 'headergrid', flex:false, autoSizeColumn:true, renderer: combinemodelserial },
-				{ text: 'ID Number',	dataIndex: 'idnumber',		 componentCls : 'headergrid', flex:false, autoSizeColumn:true, renderer: fontStatus },
+				{ text: 'ID Number',	dataIndex: 'idnumber',		 componentCls : 'headergrid', flex:getFlexFgPlan(), autoSizeColumn:getWidthFgPlan(), renderer: fontStatus },
 				{ text: 'Status',		dataIndex: 'status',		 componentCls : 'headergrid', flex:false, autoSizeColumn:true, renderer: fontStatus, align: 'center' },
 				{ text: 'Lot Number',	dataIndex: 'lotno',			 componentCls : 'headergrid', flex:false, autoSizeColumn:true, renderer: fontstyle, hidden:true },
-				{ text: 'Created',		dataIndex: 'input_user',	 componentCls : 'headergrid', flex:false, autoSizeColumn:true, renderer: combinecolsinput, align: 'center' },
-				{ text: 'Last Update',	dataIndex: 'update_user',	 componentCls : 'headergrid', flex:false, autoSizeColumn:true, renderer: combinecolsupdate, align: 'center' }
+				{ text: 'Created',		dataIndex: 'input_user',	 componentCls : 'headergrid', flex:getFlexFgPlan(), autoSizeColumn:getWidthFgPlan(), renderer: combinecolsinput, align: 'center' },
+				{ text: 'Last Update',	dataIndex: 'update_user',	 componentCls : 'headergrid', flex:getFlexFgPlan(), autoSizeColumn:getWidthFgPlan(), renderer: combinecolsupdate, align: 'center' }
 			],
 			// listeners: {
 				// 	render: {

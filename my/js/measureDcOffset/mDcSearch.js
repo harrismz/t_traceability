@@ -45,17 +45,17 @@ $(document).ready(function(){
 				// $('#sLotNo').show();
 				console.log('ML-MA');
 			}
-			else if($(this).val() === 'DS'){
-				// alert('3. '+$(this).val());
-				hideTextField();
-				$("#lbCheckDS").removeClass('btn-default');
-				$("#lbCheckDS").addClass('btn-success active');
-				$("#lbCheckDS").prop("checked", true);
-				$("#lbCheckDS").prop("required", true);
-				$("#valOfCategory").val("DS");
-				$("#sDummySerial").show();
-				console.log('DS');
-			}
+			// else if($(this).val() === 'DS'){
+			// 	// alert('3. '+$(this).val());
+			// 	hideTextField();
+			// 	$("#lbCheckDS").removeClass('btn-default');
+			// 	$("#lbCheckDS").addClass('btn-success active');
+			// 	$("#lbCheckDS").prop("checked", true);
+			// 	$("#lbCheckDS").prop("required", true);
+			// 	$("#valOfCategory").val("DS");
+			// 	$("#sDummySerial").show();
+			// 	console.log('DS');
+			// }
 			else if($(this).val() === 'DC'){
 				// alert('3. '+$(this).val());
 				hideTextField();
@@ -181,14 +181,14 @@ function resetSearch(){
 		$("#sModelName").show();
 		$("#sSerialNo").show();
 }
-function checkFinishgood(event){
+function checkDcOffset(event){
 	var x = event.which || event.keyCode || event.button;
 	if (x == 13 || x == 0 || x == 1){
 		var rbCheck 	= $("#valOfCategory").val();
 		var modelName 	= $("#model-name").val().toUpperCase();
 		var serialNo 	= $("#serial-no").val().toUpperCase();
 		var lotNo 		= $("#lot-no").val().toUpperCase();
-		var dummySerial = $("#dummy-serial").val().toUpperCase();
+		var measurement_date = Ext.getCmp('src_mDcOffset').getValue();
 		
 		if (rbCheck == 'MS'){
 			if(modelName.length < 1){
@@ -200,10 +200,11 @@ function checkFinishgood(event){
 				$("#serial-no").css({"background-color":"#ffcccc"});
 			}
 			if(modelName.length > 1 && serialNo.length > 1){
-				Ext.getStore('finishgood_store').proxy.setExtraParam('modelName', modelName);
-				Ext.getStore('finishgood_store').proxy.setExtraParam('serialNo', serialNo);
-				Ext.getStore('finishgood_store').proxy.setExtraParam('lotNo', '');
-				Ext.getStore('finishgood_store').loadPage(1);
+				Ext.getStore('storeDcOffset').proxy.setExtraParam('valmodel', modelName);
+				Ext.getStore('storeDcOffset').proxy.setExtraParam('valserial', serialNo);
+				Ext.getStore('storeDcOffset').proxy.setExtraParam('vallotno', '');
+				Ext.getStore('storeDcOffset').proxy.setExtraParam('valrundate', '');
+				Ext.getStore('storeDcOffset').loadPage(1);
 			}
 		}
 		if (rbCheck == 'ML'){
@@ -216,222 +217,74 @@ function checkFinishgood(event){
 				$("#lot-no").css({"background-color":"#ffcccc"});
 			}
 			if(modelName.length > 1 && lotNo.length > 1){
-				Ext.getStore('finishgood_store').proxy.setExtraParam('modelName', modelName);
-				Ext.getStore('finishgood_store').proxy.setExtraParam('serialNo', '');
-				Ext.getStore('finishgood_store').proxy.setExtraParam('lotNo', lotNo);
-				Ext.getStore('finishgood_store').loadPage(1);
+				Ext.getStore('storeDcOffset').proxy.setExtraParam('valmodel', modelName);
+				Ext.getStore('storeDcOffset').proxy.setExtraParam('valserial', '');
+				Ext.getStore('storeDcOffset').proxy.setExtraParam('vallotno', lotNo);
+				Ext.getStore('storeDcOffset').proxy.setExtraParam('valrundate', '');
+				Ext.getStore('storeDcOffset').loadPage(1);
 			}
 		}
-		if (rbCheck == 'DS'){
-			if(dummySerial.length < 1){
-				$("#dummy-serial").css({"border-color":"red"});
-				$("#dummy-serial").css({"background-color":"#ffcccc"});
-			}
-			else if(dummySerial.length > 1){
-				Ext.getStore('storeMaprosBoard').proxy.setExtraParam('valmodel', '');
-				Ext.getStore('storeMaprosBoard').proxy.setExtraParam('valserialno', '');
-				Ext.getStore('storeMaprosBoard').proxy.setExtraParam('dummySerial', dummySerial);
-				Ext.getStore('storeMaprosBoard').loadPage(1);
-				
-				Ext.getStore('storeMaprosBoardSymptom').proxy.setExtraParam('valmodel', '');
-				Ext.getStore('storeMaprosBoardSymptom').proxy.setExtraParam('valserialno', '');
-				Ext.getStore('storeMaprosBoardSymptom').proxy.setExtraParam('dummySerial', dummySerial);
+		// else {
+		// 	if(dummySerial.length < 1){
+		// 		$("#dummy-serial").css({"border-color":"red"});
+		// 		$("#dummy-serial").css({"background-color":"#ffcccc"});
+		// 	}
+		// 	else if(dummySerial.length > 1){
+		// 		var measurement_date = Ext.getCmp('src_mDcOffset').getValue();
+		// 		if (!measurement_date) {
+		// 			Ext.Msg.alert('Warning', 'Measurement date cannot be null !!!');
+		// 		} else {
 
-				Ext.getStore('storeMaprosPanel').proxy.setExtraParam('valmodel', '');
-				Ext.getStore('storeMaprosPanel').proxy.setExtraParam('valserialno', '');
-				Ext.getStore('storeMaprosPanel').proxy.setExtraParam('dummySerial', dummySerial);
+		// 			Ext.getStore('storeDcOffset').proxy.setExtraParam('valmodel', '');
+		// 			Ext.getStore('storeDcOffset').proxy.setExtraParam('valserial', '');
+		// 			Ext.getStore('storeDcOffset').proxy.setExtraParam('vallotno', '');
+		// 			Ext.getStore('storeDcOffset').proxy.setExtraParam('valrundate', measurement_date);
+		// 			Ext.getStore('storeDcOffset').loadPage(1);
+		// 		}
+		// 	}
+		// }
 
-				Ext.getStore('storeMaprosLCD').proxy.setExtraParam('valmodel', '');
-				Ext.getStore('storeMaprosLCD').proxy.setExtraParam('valserialno', '');
-				Ext.getStore('storeMaprosLCD').proxy.setExtraParam('dummySerial', dummySerial);
-
-				Ext.getStore('storeMaprosMecha').proxy.setExtraParam('valmodel', '');
-				Ext.getStore('storeMaprosMecha').proxy.setExtraParam('valserialno', '');
-				Ext.getStore('storeMaprosMecha').proxy.setExtraParam('dummySerial', dummySerial);
-
-				Ext.getStore('storeMaprosMain').proxy.setExtraParam('valmodel', '');
-				Ext.getStore('storeMaprosMain').proxy.setExtraParam('valserialno', '');
-				Ext.getStore('storeMaprosMain').proxy.setExtraParam('dummySerial', dummySerial);
-				
-				Ext.getStore('storeMaprosMainSymptom').proxy.setExtraParam('valmodel', '');
-				Ext.getStore('storeMaprosMainSymptom').proxy.setExtraParam('valserialno', '');
-				Ext.getStore('storeMaprosMainSymptom').proxy.setExtraParam('dummySerial', dummySerial);
-				
-				Ext.getStore('storeMaprosCritical').proxy.setExtraParam('valmodel', '');
-				Ext.getStore('storeMaprosCritical').proxy.setExtraParam('valserialno', '');
-				Ext.getStore('storeMaprosCritical').proxy.setExtraParam('dummySerial', dummySerial);
-
-				Ext.getStore('storeMaFwdn').proxy.setExtraParam('valmodel','');
-				Ext.getStore('storeMaFwdn').proxy.setExtraParam('valserialno', '');
-				Ext.getStore('storeMaFwdn').proxy.setExtraParam('dummySerial', dummySerial);
-
-				Ext.getStore('storeMaFlash').proxy.setExtraParam('valmodel', '');
-				Ext.getStore('storeMaFlash').proxy.setExtraParam('valserialno', '');
-				Ext.getStore('storeMaFlash').proxy.setExtraParam('dummySerial', dummySerial);
-
-				Ext.getStore('storeMaLine0').proxy.setExtraParam('valmodel', '');
-				Ext.getStore('storeMaLine0').proxy.setExtraParam('valserialno', '');
-				Ext.getStore('storeMaLine0').proxy.setExtraParam('dummySerial', dummySerial);
-
-				Ext.getStore('storeMaAvntest').proxy.setExtraParam('valmodel', '');
-				Ext.getStore('storeMaAvntest').proxy.setExtraParam('valserialno', '');
-				Ext.getStore('storeMaAvntest').proxy.setExtraParam('dummySerial', dummySerial);
-
-				Ext.getStore('storeMaAvmt').proxy.setExtraParam('valmodel', '');
-				Ext.getStore('storeMaAvmt').proxy.setExtraParam('valserialno', '');
-				Ext.getStore('storeMaAvmt').proxy.setExtraParam('dummySerial', dummySerial);
-			}
-		}
-
-		var gridSchedule			= Ext.getCmp("finishgood_plan");
-		var gridOutput				= Ext.getCmp("finishgood_actual");
-		var gridStockcard			= Ext.getCmp("gridStockcard");
-		var gridShipmenthold		= Ext.getCmp("gridShipmentHold");
-		var gridBorrow				= Ext.getCmp("gridBorrow");
-		var gridScanin				= Ext.getCmp("gridScanin");
-		var gridScanout				= Ext.getCmp("gridScanout");
-		var grid_maprosBoard		= Ext.getCmp("grid_maprosBoard");
-        var grid_maprosPanel		= Ext.getCmp("grid_maprosPanel");
-        var grid_maprosLCD			= Ext.getCmp("grid_maprosLCD");
-        var grid_maprosMecha		= Ext.getCmp("grid_maprosMecha");
-        var grid_maprosMain			= Ext.getCmp("grid_maprosMain");
-        var grid_maprosCritical		= Ext.getCmp("grid_maprosCritical");
-        var grid_maprosBoardSymptom	= Ext.getCmp("grid_maprosBoardSymptom");
-        var grid_maprosMainSymptom	= Ext.getCmp("grid_maprosMainSymptom");
-        var grid_maQuality			= Ext.getCmp("grid_maQuality");
-        var grid_maFwdn				= Ext.getCmp("grid_maFwdn");
-        var grid_maFwdnDetail		= Ext.getCmp("grid_maFwdnDetail");
-        var grid_maFlash			= Ext.getCmp("grid_maFlash");
-        var grid_maAvntest			= Ext.getCmp("grid_maAvntest");
-        var grid_maAvntestDetail	= Ext.getCmp("grid_maAvntestDetail");
-        var grid_maAvmt				= Ext.getCmp("grid_maAvmt");
-        var grid_maAvmtDetail		= Ext.getCmp("grid_maAvmtDetail");
-        var grid_maAuto0			= Ext.getCmp("grid_maAuto0");
-        var grid_maAuto0Detail		= Ext.getCmp("grid_maAuto0Detail");
-        var grid_mcIssueMa			= Ext.getCmp("grid_mcIssueMa");
-        var grid_mcIssueMecha		= Ext.getCmp("grid_mcIssueMecha");
-        
-        gridSchedule.getStore().removeAll();
-		gridSchedule.getView().emptyText = '<div class="empty-txt-main">Select Finishgood table for show this data.</div>';
-        gridSchedule.getView().refresh();
-
-        gridOutput.getStore().removeAll();
-		gridOutput.getView().emptyText = '<div class="empty-txt-main">Select Finishgood table for show this data.</div>';
-        gridOutput.getView().refresh();
-
-        gridStockcard.getStore().removeAll();
-		gridStockcard.getView().emptyText = '<div class="empty-txt-main">Select Finishgood table for show this data.</div>';
-        gridStockcard.getView().refresh();
-
-        gridShipmenthold.getStore().removeAll();
-		gridShipmenthold.getView().emptyText = '<div class="empty-txt-main">Select Finishgood table for show this data.</div>';
-        gridShipmenthold.getView().refresh();
-
-        gridBorrow.getStore().removeAll();
-		gridBorrow.getView().emptyText = '<div class="empty-txt-main">Select Finishgood table for show this data.</div>';
-        gridBorrow.getView().refresh();
-
-        gridScanin.getStore().removeAll();
-		gridScanin.getView().emptyText = '<div class="empty-txt-main">Select Finishgood table for show this data.</div>';
-        gridScanin.getView().refresh();
-
-        gridScanout.getStore().removeAll();
-		gridScanout.getView().emptyText = '<div class="empty-txt-main">Select Finishgood table for show this data.</div>';
-        gridScanout.getView().refresh();
-
-        gridScanout.getStore().removeAll();
-		gridScanout.getView().emptyText = '<div class="empty-txt-main">Select Finishgood table for show this data.</div>';
-        gridScanout.getView().refresh();
-
-        grid_maprosBoard.getStore().removeAll();
-		grid_maprosBoard.getView().emptyText = '<div class="empty-txt-main">Select Plan Table for show this data.</div>';
-        grid_maprosBoard.getView().refresh();
-
-        grid_maprosPanel.getStore().removeAll();
-		grid_maprosPanel.getView().emptyText = '<div class="empty-txt-main">Select Plan Table for show this data.</div>';
-        grid_maprosPanel.getView().refresh();
+		var gridDcOffset			= Ext.getCmp("gridDcOffset");
 		
-		grid_maprosLCD.getStore().removeAll();
-		grid_maprosLCD.getView().emptyText = '<div class="empty-txt-main">Select Plan Table for show this data.</div>';
-        grid_maprosLCD.getView().refresh();
+        gridDcOffset.getStore().removeAll();
+		gridDcOffset.getView().emptyText = '<div class="empty-txt-main">Select Finishgood table for show this data.</div>';
+        gridDcOffset.getView().refresh();
 
-        grid_maprosMecha.getStore().removeAll();
-		grid_maprosMecha.getView().emptyText = '<div class="empty-txt-main">Select Plan Table for show this data.</div>';
-        grid_maprosMecha.getView().refresh();
-
-        grid_maprosMain.getStore().removeAll();
-		grid_maprosMain.getView().emptyText = '<div class="empty-txt-main">Select Plan Table for show this data.</div>';
-        grid_maprosMain.getView().refresh();
-
-        grid_maprosCritical.getStore().removeAll();
-		grid_maprosCritical.getView().emptyText = '<div class="empty-txt-main">Select Plan Table for show this data.</div>';
-        grid_maprosCritical.getView().refresh();
-
-        grid_maprosBoardSymptom.getStore().removeAll();
-		grid_maprosBoardSymptom.getView().emptyText = '<div class="empty-txt-main">Select Plan Table for show this data.</div>';
-        grid_maprosBoardSymptom.getView().refresh();
-
-        grid_maprosMainSymptom.getStore().removeAll();
-		grid_maprosMainSymptom.getView().emptyText = '<div class="empty-txt-main">Select Plan Table for show this data.</div>';
-        grid_maprosMainSymptom.getView().refresh();
-
-        grid_maQuality.getStore().removeAll();
-		grid_maQuality.getView().emptyText = '<div class="empty-txt-main">Select Mapros Main table for show this data.</div>';
-        grid_maQuality.getView().refresh();
-
-        grid_maFwdn.getStore().removeAll();
-		grid_maFwdn.getView().emptyText = '<div class="empty-txt-main">Select Mapros PCB Serial for show this data.</div>';
-        grid_maFwdn.getView().refresh();
-
-        grid_maFwdnDetail.getStore().removeAll();
-		grid_maFwdnDetail.getView().emptyText = '<div class="empty-txt-main">Select Header to show Detail</div>';
-        grid_maFwdnDetail.getView().refresh();
-		
-		grid_maFlash.getStore().removeAll();
-		grid_maFlash.getView().emptyText = '<div class="empty-txt-main">Select Mapros PCB Serial table for show this data.</div>';
-        grid_maFlash.getView().refresh();
-
-        grid_maAvntest.getStore().removeAll();
-		grid_maAvntest.getView().emptyText = '<div class="empty-txt-main">Select Mapros PCB Serial table for show this data.</div>';
-        grid_maAvntest.getView().refresh();
-
-        grid_maAvntestDetail.getStore().removeAll();
-		grid_maAvntestDetail.getView().emptyText = '<div class="empty-txt-main">Select Header to show Detail</div>';
-        grid_maAvntestDetail.getView().refresh();
-
-        grid_maAvmt.getStore().removeAll();
-		grid_maAvmt.getView().emptyText = '<div class="empty-txt-main">Select Mapros Main Table for show this data.</div>';
-        grid_maAvmt.getView().refresh();
-
-        grid_maAvmtDetail.getStore().removeAll();
-		grid_maAvmtDetail.getView().emptyText = '<div class="empty-txt-main">Select Header to show Detail</div>';
-        grid_maAvmtDetail.getView().refresh();
-
-        grid_maAuto0.getStore().removeAll();
-		grid_maAuto0.getView().emptyText = '<div class="empty-txt-main">Select Mapros PCB Serial table for show this data.</div>';
-        grid_maAuto0.getView().refresh();
-
-        grid_maAuto0Detail.getStore().removeAll();
-		grid_maAuto0Detail.getView().emptyText = '<div class="empty-txt-main">Select Header to show Detail</div>';
-        grid_maAuto0Detail.getView().refresh();
-
-        grid_mcIssueMa.getStore().removeAll();
-		grid_mcIssueMa.getView().emptyText = '<div class="empty-txt-main">Select Finishgood Table for showing this data.</div>';
-        grid_mcIssueMa.getView().refresh();
-
-        grid_mcIssueMecha.getStore().removeAll();
-		grid_mcIssueMecha.getView().emptyText = '<div class="empty-txt-main">Select Finishgood Table for showing this data.</div>';
-        grid_mcIssueMecha.getView().refresh();
-
-		console.log('=========== START finishgood ===========');
+		console.log('=========== SEARCH DC OFFSET ===========');
 		console.log('cat 		 : '+rbCheck);
 		console.log('Model 		 : '+modelName);
 		console.log('Serial 	 : '+serialNo);
 		console.log('lotno 		 : '+lotNo);
-		console.log('dummyserial : '+dummySerial);
-		console.log('=========== END finishgood ===========');
+		console.log('rundate 	 : '+measurement_date);
+		// console.log('dummyserial : '+dummySerial);
+		console.log('========= END SEARCH DC OFFSET =========');
 
 		
 
 	}
+}
+
+function downloadDcOffset() {
+    var rbCheck 	= $("#valOfCategory").val();
+	var modelName 	= $("#model-name").val().toUpperCase();
+	var serialNo 	= $("#serial-no").val().toUpperCase();
+	var lotNo 		= $("#lot-no").val().toUpperCase();
+	var measurement_date = Ext.getCmp('src_mDcOffset').getRawValue();
+
+	if (modelName != '' || serialNo != '' || lotNo != ''){
+		measurement_date = '';
+	}
+
+	console.log('=========== DOWNLOAD DC OFFSET ===========');
+		console.log('cat 		 : '+rbCheck);
+		console.log('Model 		 : '+modelName);
+		console.log('Serial 	 : '+serialNo);
+		console.log('lotno 		 : '+lotNo);
+		console.log('rundate 	 : '+measurement_date);
+		// console.log('dummyserial : '+dummySerial);
+	console.log('========= END DOWNLOAD DC OFFSET =========');
+
+   // console.log('modelName:'+modelName + '- serialNo:' + serialNo + '- lotNo:' + lotNo + '- measurement_date:' + measurement_date);
+    
+    window.open('resp/measureDcOffset/resp_measureDcOffset.php?valmodel='+modelName+'&valserial='+serialNo+'&vallotno='+lotNo+'&valrundate='+measurement_date);
 }

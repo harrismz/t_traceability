@@ -5,7 +5,7 @@
       <h3>Measurement of DC Offset</h3>
     </div>
     <div class="clearfix"></div>
-   <!--  <div class="row">
+    <div class="row">
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
           <div class="x_title">
@@ -31,12 +31,12 @@
                     <label id="lbCheckML" class="rbclick btn btn-default col-sm-6 col-md-6" data-toggle-class="btn-success" data-toggle-passive-class="btn-default">
                       <input type="radio" id="checkML" name="sCategory" value="ML"> Model & Lot No
                     </label>
-                    <label id="lbCheckDS" class="rbclick btn btn-default col-sm-6 col-md-6" data-toggle-class="btn-success" data-toggle-passive-class="btn-default">
+                    <!-- <label id="lbCheckDS" class="rbclick btn btn-default col-sm-4 col-md-4" data-toggle-class="btn-success" data-toggle-passive-class="btn-default">
                       <input type="radio" id="checkDS" name="sCategory" value="DS"> Dummy Serial
-                    </label>
-                    <label id="lbCheckDS" class="rbclick btn btn-default col-sm-6 col-md-6" data-toggle-class="btn-success" data-toggle-passive-class="btn-default">
+                    </label> -->
+                    <!-- <label id="lbCheckDS" class="rbclick btn btn-default col-sm-6 col-md-6" data-toggle-class="btn-success" data-toggle-passive-class="btn-default">
                       <input type="radio" id="checkDC" name="sCategory" value="DC"> Running Date
-                    </label>
+                    </label> -->
                   </div>
                 </div>
                 <div>
@@ -91,15 +91,15 @@
                 <input id="lot-no" class="form-control col-md-7 col-xs-12 text-uppercase" type="text" name="lot-no"  data-validate-length-range="4,4"placeholder="016A" onkeypress="checkDcOffset(event)">
               </div>
             </div>
-            <div class="form-group" id="sDummySerial">
+            <!-- <div class="form-group" id="sDummySerial">
               <label for="dummy-serial" class="control-label col-md-3 col-sm-3 col-xs-12">
                 Dummy Serial
               </label>
               <div class="col-md-6 col-sm-6 col-xs-12">
                 <input id="dummy-serial" class="form-control col-md-7 col-xs-12 text-uppercase" type="text" name="dummy-serial"  data-validate-length-range="13,13" placeholder="MAMST01700215" onkeypress="checkDcOffset(event)">
               </div>
-            </div>
-            <div class="form-group" id="sDCDate">
+            </div> -->
+            <!-- <div class="form-group" id="sDCDate">
               <label for="dcRunDate" class="control-label col-md-3 col-sm-3 col-xs-12">
                 Running Date
               </label>
@@ -117,7 +117,7 @@
                   </div>
                 </fieldset>
               </div>
-            </div>
+            </div> -->
             <div class="ln_solid"></div>
             <div class="form-group">
               <div class="col-md-12 col-sm-12 col-xs-12 text-center">
@@ -129,6 +129,10 @@
                   <i class="fas fa-search"></i>
                   &nbsp;&nbsp;Search
                 </button>
+                <button type="button" class="btn btn-primary" onclick="downloadDcOffset()">
+                  <i class="fas fa-download"></i>
+                  &nbsp;&nbsp;Download
+                </button>
               </div>
             </div>
             </form>
@@ -136,7 +140,7 @@
         </div>
       </div>
     </div> 
-  </div> -->
+  </div>
   <!-- ============================================================================== -->
   <!-- Process Operational Data -->
   <div  id="thermo_tab" class="row">

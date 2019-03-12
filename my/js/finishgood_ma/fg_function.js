@@ -141,11 +141,11 @@ function fontStatus(val) {
 	if (val == 'WAITING CHECK') {
 		return '<font style="font-family:Roboto; white-space:normal; line-height:1.5; color:gray;">' + val + '</font>';
 	} else if (val == 'ACCEPTED' || val == 'SHIPPING') {
-		return '<font style="font-family:Roboto; white-space:normal; line-height:1.5; color:green;">' + val + '</font>';
+		return '<font style="font-family:Roboto; white-space:normal; line-height:1.5; color:green; font-weight:bold;">' + val + '</font>';
 	} else if (val == 'REJECTED' || val == 'HOLD' || val == 'BORROW') {
 		return '<font style="font-family:Roboto; white-space:normal; line-height:1.5; color:red;">' + val + '</font>';
 	} else if (val == 'RELEASE') {
-		return '<font style="font-family:Roboto; white-space:normal; line-height:1.5; color:blue;">' + val + '</font>';
+		return '<font style="font-family:Roboto; white-space:normal; line-height:1.5; color:blue; font-weight:bold;">' + val + '</font>';
 	} else if (val == 'READY') {
 		return '<font style="font-family:Roboto; white-space:normal; color:blue;"> RETURN </font>';
 	} else if (val == 'YES') {

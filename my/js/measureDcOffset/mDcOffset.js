@@ -16,11 +16,12 @@ Ext.onReady(function() {
 		Ext.define('modelDcOffset',{
             extend: 'Ext.data.Model',
             fields: ['idlinezero', 'dateinspec', 'serial', 'guid_master', 'sn', 'judge', 'inspectime', 'ngcontent', 
-                   'rownumber', 'step', 'stepdata', 'measure', 'measuredata', 'input_user', 'input_date']
+                   'rownumber', 'step', 'stepdata', 'measure', 'measuredata', 'input_user', 'input_date', 'lotno']
        	});
 			
 	//	=======================================================    DATASTORE    =====================================
 		var storeDcOffset = Ext.create('Ext.data.Store',{
+			storeId	: 'storeDcOffset',
 			model	: 'modelDcOffset',
 			autoLoad: true,
 			pageSize: itemperpage,
@@ -75,7 +76,7 @@ Ext.onReady(function() {
 			id 				: 'gridDcOffset',
 			renderTo		: mDcOffset,
 			autoWidth 	 	: '100%',
-			maxHeight	 	: 330,
+			maxHeight	 	: 420,
 			columnLines 	: true,
 			store 			: storeDcOffset,
 			viewConfig	: {
@@ -93,17 +94,56 @@ Ext.onReady(function() {
 				}
 			},
 			columns: [
-				{	header 		: 'idlinezero',
-					dataIndex 	: 'idlinezero',
+				{	header       	: 'No', 
+   					xtype 			: 'rownumberer', 
+   					componentCls	: 'headergrid',
+   					width 			: 50, 
+   					sortable 		: false
+   				},
+   				{	header 			: 'Serial Number',
+					dataIndex 		: 'sn',
 					componentCls 	: 'headergrid',
-					autoSizeColumn : true,
-     				renderer 	: fontstyle,
-     				hidden 		: true
+     				flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+     				renderer 		: fontstyle
 				},
-				{	header 		: 'dateinspec',
-					dataIndex 	: 'dateinspec',
+				{	header 		: 'Lot No',
+					dataIndex 	: 'lotno',
 					componentCls 	: 'headergrid',
      				autoSizeColumn : true,
+     				renderer 	: fontstyle
+				},
+				{	header 		: 'Result',
+					dataIndex 	: 'measuredata',
+					componentCls 	: 'headergrid',
+     				autoSizeColumn : true,
+     				renderer 	: fontstyle
+				},
+				{	header 		: 'measurement',
+					dataIndex 	: 'measure',
+					componentCls 	: 'headergrid',
+     				autoSizeColumn : true,
+     				renderer 	: fontstyle,
+				},
+				{	header 		: 'Remark',
+					dataIndex 	: 'judge',
+					componentCls 	: 'headergrid',
+     				autoSizeColumn : true,
+     				renderer 	: fontStatus,
+				},
+				{	header 			: 'idlinezero',
+					dataIndex 		: 'idlinezero',
+					componentCls 	: 'headergrid',
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
+     				renderer 		: fontstyle,
+     				hidden 			: true
+				},
+				{	header 		: 'Inspection Date',
+					dataIndex 	: 'dateinspec',
+					componentCls 	: 'headergrid',
+     				flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
      				renderer 	: fontstyle
 				},
 				{	header 		: 'serial',
@@ -120,13 +160,7 @@ Ext.onReady(function() {
      				autoSizeColumn : true,
      				hidden 		: true
 				},
-				{	header 		: 'sn',
-					dataIndex 	: 'sn',
-					componentCls 	: 'headergrid',
-     				autoSizeColumn : true,
-     				renderer 	: fontstyle
-				},
-				{	header 		: 'inspectime',
+				{	header 		: 'Inspect Time',
 					dataIndex 	: 'inspectime',
 					componentCls 	: 'headergrid',
      				autoSizeColumn : true,
@@ -138,12 +172,6 @@ Ext.onReady(function() {
      				renderer 	: fontstyle,
      				autoSizeColumn : true,
      				hidden 		: true
-				},
-				{	header 		: 'measuredata <br> ( &deg;C )',
-					dataIndex 	: 'measuredata',
-					componentCls 	: 'headergrid',
-     				autoSizeColumn : true,
-     				renderer 	: fontstyle
 				},
 				{	header 		: 'rownumber',
 					dataIndex	: 'rownumber',
@@ -162,16 +190,12 @@ Ext.onReady(function() {
 				{	header 		: 'stepdata',
 					dataIndex 	: 'stepdata',
 					componentCls 	: 'headergrid',
-     				autoSizeColumn : true,
+     				flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
      				renderer 	: fontstyle,
+     				hidden 		: true
 				},
-				{	header 		: 'measure',
-					dataIndex 	: 'measure',
-					componentCls 	: 'headergrid',
-     				autoSizeColumn : true,
-     				renderer 	: fontstyle,
-				},
-				{	header 		: 'input_user',
+				{	header 		: 'MCH Name',
 					dataIndex 	: 'input_user',
 					componentCls 	: 'headergrid',
      				autoSizeColumn : true,
@@ -182,30 +206,34 @@ Ext.onReady(function() {
 					componentCls 	: 'headergrid',
      				autoSizeColumn : true,
      				renderer 	: fontstyle,
+     				hidden 		: true
 				}
 			],
-			bbar	: Ext.create('Ext.PagingToolbar', {
-				pageSize		: itemperpage,
-				store			: storeDcOffset,
-				displayInfo		: true,
-				displayMsg		: 'Data {0} - {1} from {2} data',
-				emptyMsg		: "Page not found",
-				beforePageText  : 'Page',
-				afterPageText   : 'from {0} Pages',
-				firstText       : 'First Page',
-				prevText        : 'Previous Page',
-				nextText        : 'Next page',
-				lastText        : 'Last Page',
-				plugins       	: Ext.create('Ext.ux.ProgressBarPager', {}),
-				listeners 		: {
-					afterrender: function (cmp) {
-						cmp.getComponent("refresh").hide();
-					}
-				}
-			})
+			// bbar	: Ext.create('Ext.PagingToolbar', {
+			// 	pageSize		: itemperpage,
+			// 	store			: storeDcOffset,
+			// 	displayInfo		: true,
+			// 	displayMsg		: 'Data {0} - {1} from {2} data',
+			// 	emptyMsg		: "Page not found",
+			// 	beforePageText  : 'Page',
+			// 	afterPageText   : 'from {0} Pages',
+			// 	firstText       : 'First Page',
+			// 	prevText        : 'Previous Page',
+			// 	nextText        : 'Next page',
+			// 	lastText        : 'Last Page',
+			// 	plugins       	: Ext.create('Ext.ux.ProgressBarPager', {}),
+			// 	listeners 		: {
+			// 		afterrender: function (cmp) {
+			// 			cmp.getComponent("refresh").hide();
+			// 		}
+			// 	}
+			// })
 		});
 
 	//	=======================================================    POPUP SEARCH DATA    =============================
+		var dtnow2 = new Date();
+		var dtnow = Ext.Date.format(dtnow2, 'Y-m-d');
+		  
 		Ext.create('Ext.form.field.Date',{
 			renderTo 	: src_mDcOffset,
 			width 		: '100%',
@@ -219,7 +247,7 @@ Ext.onReady(function() {
 			format		: 'd F Y',
 			submitFormat: 'Y-m-d',
 			mode		: 'local',  
-			value 		: new Date(),
+			value 		: dtnow,
 			editable 	: false,
 			listeners	: {
 					afterrender : function() {

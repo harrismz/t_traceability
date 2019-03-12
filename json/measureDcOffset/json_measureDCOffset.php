@@ -26,6 +26,7 @@
         $return[$i]['measuredata']  = trim($rs->fields['12']);
         $return[$i]['input_user']   = trim($rs->fields['13']);
         $return[$i]['input_date']   = trim($rs->fields['14']);
+        $return[$i]['lotno']        = trim($rs->fields['15']);
        
         $rs->MoveNext();
     }
