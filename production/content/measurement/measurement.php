@@ -1,15 +1,4 @@
-<script type="text/javascript" src='./my/js/measurement/measurement.js'></script>
 <section>
-  <!--  Searching Traceability -->
-  <!-- <div class="row">
-    <div class="x_panel">
-      <div class="form-inline">
-        <div id="src_measurement_date" class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <h5 class="x_title"><i class="fas fa-search"></i> Measurement date </h5>
-        </div>
-      </div>
-    </div>
-  </div> -->
   <!-- ============================================================================== -->
   <!-- THERMOHUMIDITY   -->
         <div  id="thermo_tab" class="row">
@@ -167,3 +156,8 @@
   <!-- Return to Top -->
   <a href="javascript:" id="return-to-top"><i class="fas fa-chevron-up"></i></a>
 </section>
+<script type="text/javascript" src='./my/js/measurement/mExtjsCall.js'></script>
+<script type="text/javascript" src='./my/js/measurement/mFunction.js'></script>
+<script type="text/javascript" src='./my/js/measurement/measurement.js'></script>
+<!-- <script type="text/javascript" src='./my/js/measurement/mDcOffset.js'></script> -->
+

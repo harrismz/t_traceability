@@ -463,6 +463,8 @@
   </div>
   <!-- END OF Part Handling -->
   <!-- ============================================================================== -->
+  <!-- Return to Top -->
+  <a href="javascript:" id="return-to-top"><i class="fas fa-chevron-up"></i></a>
 </section>
 <!-- jQuery -->
 <script src="./vendors/jquery/dist/jquery.min.js"></script>
