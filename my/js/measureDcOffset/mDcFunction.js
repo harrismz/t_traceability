@@ -52,7 +52,7 @@ function fontStatus(val) {
 		return '<font style="font-family:Roboto; white-space:normal; line-height:1.5; color:gray;">' + val + '</font>';
 	} else if (val == 'OK') {
 		return '<font style="font-family:Roboto; white-space:normal; line-height:1.5; color:green; font-weight:bold;">' + val + '</font>';
-	} else if (val == 'STOP') {
+	} else if (val == 'STOP' || val == 'NG') {
 		return '<font style="font-family:Roboto; white-space:normal; line-height:1.5; color:red; font-weight:bold;">' + val + '</font>';
 	} else if (val == '') {
 		return '<font style="font-family:Roboto; white-space:normal; color:red;"> NO ID </font>';

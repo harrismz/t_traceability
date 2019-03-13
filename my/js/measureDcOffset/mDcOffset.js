@@ -79,7 +79,8 @@ Ext.onReady(function() {
 			maxHeight	 	: 420,
 			columnLines 	: true,
 			store 			: storeDcOffset,
-			viewConfig	: {
+			plugins 		: 'gridfilters',
+    		viewConfig	: {
 				stripeRows 			: true,
 				emptyText 			: '<div class="empty-txt-main">Select Date for show this data.</div>',
 				deferEmptyText 		: false,
@@ -130,6 +131,16 @@ Ext.onReady(function() {
 					componentCls 	: 'headergrid',
      				autoSizeColumn : true,
      				renderer 	: fontStatus,
+			        filter: {
+			            // required configs
+			            type: 'string',
+			            // optional configs
+			            value: 'OK',  // setting a value makes the filter active.
+			            itemDefaults: {
+			                // any Ext.form.field.Text configs accepted
+			            }
+			        }
+
 				},
 				{	header 			: 'idlinezero',
 					dataIndex 		: 'idlinezero',
