@@ -16,7 +16,7 @@
     	$rundate1 = strtotime($rundate2);
     	$rundate    = date('Y-m-d', $rundate1);
     }
-    $sql        = "EXEC traceability_measureDcOffset '{$rundate}','{$model}','{$serialnoid}','{$lotno}'";
+    $sql        = "EXEC traceability_measureDcOffset_download '{$rundate}','{$model}','{$serialnoid}','{$lotno}'";
     $rs         = $db->Execute($sql);
     $return     = array();
 
@@ -55,8 +55,8 @@
         $get_sn 	        = trim($rs->fields['4']);
         $get_remark        	= trim($rs->fields['5']);
         $get_inspTime		= trim($rs->fields['6']);
-        $get_measure    	= trim($rs->fields['11']);
-        $get_measureData  	= trim($rs->fields['12']);
+        $get_measure    	= 'miliVolt [mV]';  //trim($rs->fields['11']);
+        $get_measureData  	= trim($rs->fields['12'])*1000;
         $get_mchName   		= trim($rs->fields['13']);
         $get_lotno        	= trim($rs->fields['15']);
 	

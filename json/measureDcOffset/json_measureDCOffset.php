@@ -22,8 +22,8 @@
         $return[$i]['rownumber']    = trim($rs->fields['8']);   
         $return[$i]['step']         = trim($rs->fields['9']);
         $return[$i]['stepdata']     = trim($rs->fields['10']);
-        $return[$i]['measure']      = trim($rs->fields['11']);
-        $return[$i]['measuredata']  = trim($rs->fields['12']);
+        $return[$i]['measure']      = 'miliVolt [mV]';  //trim($rs->fields['11']);
+        $return[$i]['measuredata']  = trim($rs->fields['12'])*1000;
         $return[$i]['input_user']   = trim($rs->fields['13']);
         $return[$i]['input_date']   = trim($rs->fields['14']);
         $return[$i]['lotno']        = trim($rs->fields['15']);
