@@ -200,6 +200,7 @@ Ext.onReady(function() {
 					componentCls 	: 'headergrid',
      				autoSizeColumn : true,
      				renderer 	: fontstyle,
+     				hidden 		: true
 				},
 				{	header 		: 'input_date',
 					dataIndex 	: 'input_date',
@@ -233,7 +234,7 @@ Ext.onReady(function() {
 	//	=======================================================    POPUP SEARCH DATA    =============================
 		var dtnow2 = new Date();
 		var dtnow = Ext.Date.format(dtnow2, 'Y-m-d');
-		  
+
 		Ext.create('Ext.form.field.Date',{
 			renderTo 	: src_mDcOffset,
 			width 		: '100%',

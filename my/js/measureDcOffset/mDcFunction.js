@@ -50,18 +50,10 @@ function fontstyle(val) {
 function fontStatus(val) {
 	if (val == 'WAITING CHECK') {
 		return '<font style="font-family:Roboto; white-space:normal; line-height:1.5; color:gray;">' + val + '</font>';
-	} else if (val == 'ACCEPTED' || val == 'SHIPPING' || val == 'OK') {
+	} else if (val == 'OK') {
 		return '<font style="font-family:Roboto; white-space:normal; line-height:1.5; color:green; font-weight:bold;">' + val + '</font>';
-	} else if (val == 'REJECTED' || val == 'HOLD' || val == 'BORROW') {
-		return '<font style="font-family:Roboto; white-space:normal; line-height:1.5; color:red;">' + val + '</font>';
-	} else if (val == 'RELEASE') {
-		return '<font style="font-family:Roboto; white-space:normal; line-height:1.5; color:blue;">' + val + '</font>';
-	} else if (val == 'READY') {
-		return '<font style="font-family:Roboto; white-space:normal; color:blue;"> RETURN </font>';
-	} else if (val == 'YES') {
-		return '<font style="font-family:Roboto; white-space:normal; color:green;"> ALREADY<br>SHIPPING </font>';
-	} else if (val == 'NO') {
-		return '<font style="font-family:Roboto; white-space:normal; color:red;"> WAITING<br>SHIPPING </font>';
+	} else if (val == 'STOP') {
+		return '<font style="font-family:Roboto; white-space:normal; line-height:1.5; color:red; font-weight:bold;">' + val + '</font>';
 	} else if (val == '') {
 		return '<font style="font-family:Roboto; white-space:normal; color:red;"> NO ID </font>';
 	} else {
