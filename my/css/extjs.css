@@ -45,6 +45,10 @@
   _font-weight: bold;
 }
 
+.download {
+  background-image: url(../../build/images/download.png) !important;
+}
+
 /* ==============================   OLD   ========================== */
 
 .fontsize12 {

@@ -120,24 +120,34 @@
   <div id="finishgood_tab" class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="x_panel">
-        <div class="x_title">
-          <h2>
-            <i class="fab fa-hubspot"></i>
-              Finished Good   
-            <small> ( OCS MA ) </small>
-          </h2>
-          <ul class="nav navbar-right panel_toolbox">
-            <li>
-              <a class="collapse-link">
-                <i class="fa fa-chevron-up"></i>
-              </a>
-            </li>
-            <li>
-              <a class="close-link">
-                <i class="fas fa-times"></i>
-              </a>
-            </li>
-          </ul>
+        <div class="row x_title">
+          <div class="col-md-6">
+            <h2>
+              <i class="fab fa-hubspot"></i>
+                Finished Good   
+              <small> ( OCS MA ) </small>
+            </h2>
+          </div>
+          <div class="col-md-4">
+            <button id="dlFinishgood" type="button" class="btn btn-info pull-right" onclick="downloadFinishgood()">
+              <i class="fas fa-download"></i>
+              &nbsp;&nbsp;Download
+            </button>
+          </div>
+          <div class="col-md-2">
+            <ul class="nav navbar-right panel_toolbox">
+              <li>
+                <a class="collapse-link">
+                  <i class="fa fa-chevron-up"></i>
+                </a>
+              </li>
+              <li>
+                <a class="close-link">
+                  <i class="fas fa-times"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
           <div class="clearfix"></div>
         </div>
         <div class="x_content">
@@ -152,16 +162,25 @@
   <div id="plan_tab" class="row">
     <div class="col-md-6 col-sm-6 col-xs-12">
       <div class="x_panel">
-        <div class="x_title">
-          <h2><i class="far fa-clipboard"></i> Plan  <small> ( OCS MA ) </small></h2>
-          <ul class="nav navbar-right panel_toolbox">
-            <li>
-              <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-            </li>
-            <li>
-              <a class="close-link"><i class="fas fa-times"></i></a>
-            </li>
-          </ul>
+        <div class="row x_title">
+          <div class="col-md-6">
+            <h2><i class="far fa-clipboard"></i> Plan  <small> ( OCS MA ) </small></h2>
+          </div>
+          <div class="col-md-4">
+            <button id="dlPlan" type="button" class="btn btn-info pull-right" onclick="downloadPlan()">
+              <i class="fas fa-download"></i>
+            </button>
+          </div>
+          <div class="col-md-2">
+            <ul class="nav navbar-right panel_toolbox">
+              <li>
+                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+              </li>
+              <li>
+                <a class="close-link"><i class="fas fa-times"></i></a>
+              </li>
+            </ul>
+          </div>
           <div class="clearfix"></div>
         </div>
         <div class="x_content">
@@ -172,20 +191,29 @@
     </div>
     <div class="col-md-6 col-sm-6 col-xs-12">
       <div class="x_panel">
-        <div class="x_title">
-          <h2>
-            <i class="far fa-calendar-check"></i>
-            Actual
-            <small> ( OCS MA ) </small>
-          </h2>
-          <ul class="nav navbar-right panel_toolbox">
-            <li>
-              <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-            </li>
-            <li>
-              <a class="close-link"><i class="fas fa-times"></i></a>
-            </li>
-          </ul>
+        <div class="row x_title">
+          <div class="col-md-6">
+            <h2>
+              <i class="far fa-calendar-check"></i>
+              Actual
+              <small> ( OCS MA ) </small>
+            </h2>
+          </div>
+          <div class="col-md-4">
+            <button id="dlActual" type="button" class="btn btn-info pull-right" onclick="downloadPlan()">
+              <i class="fas fa-download"></i>
+            </button>
+          </div>
+          <div class="col-md-2">
+            <ul class="nav navbar-right panel_toolbox">
+              <li>
+                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+              </li>
+              <li>
+                <a class="close-link"><i class="fas fa-times"></i></a>
+              </li>
+            </ul>
+          </div>
           <div class="clearfix"></div>
         </div>
         <div class="x_content">
@@ -196,127 +224,6 @@
     </div>
   </div>
   <!-- END OF Plan and Actual Data -->
-  <!-- ============================================================================== -->
-  <!-- warehouse -->
-  <div id="warehouse_tab" class="row">
-    <div class="col-md-4 col-sm-6 col-xs-6">
-      <div class="x_panel">
-        <div class="x_title">
-          <h2><i class="fas fa-boxes"></i> Stock Card <small> ( Logistic - OQC) </small></h2>
-          <ul class="nav navbar-right panel_toolbox">
-            <li>
-              <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-            </li>
-            <li>
-              <a class="close-link"><i class="fas fa-times"></i></a>
-            </li>
-          </ul>
-          <div class="clearfix"></div>
-        </div>
-        <div class="x_content">
-          <div id="wh_stockcard" class="extjs_border">
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4 col-sm-6 col-xs-6">
-      <div class="x_panel">
-        <div class="x_title">
-          <h2>
-            <i class="fas fa-boxes"></i> 
-            Shipment Hold 
-            <small> ( Logistic - QA ) </small>
-          </h2>
-          <ul class="nav navbar-right panel_toolbox">
-            <li>
-              <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-            </li>
-            <li>
-              <a class="close-link"><i class="fas fa-times"></i></a>
-            </li>
-          </ul>
-          <div class="clearfix"></div>
-        </div>
-        <div class="x_content">
-          <div id="wh_shipmenthold" class="extjs_border">
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4 col-sm-6 col-xs-6">
-      <div class="x_panel">
-        <div class="x_title">
-          <h2>
-            <i class="fas fa-boxes"></i> 
-            Borrow
-            <small> ( Logistic ) </small>
-          </h2>
-          <ul class="nav navbar-right panel_toolbox">
-            <li>
-              <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-            </li>
-            <li>
-              <a class="close-link"><i class="fas fa-times"></i></a>
-            </li>
-          </ul>
-          <div class="clearfix"></div>
-        </div>
-        <div class="x_content">
-          <div id="wh_borrow" class="extjs_border">
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-6 col-sm-6 col-xs-6">
-      <div class="x_panel">
-        <div class="x_title">
-          <h2>
-            <i class="fas fa-boxes"></i>
-            Scan IN
-            <small> ( Logistic ) </small>
-          </h2>
-          <ul class="nav navbar-right panel_toolbox">
-            <li>
-              <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-            </li>
-            <li>
-              <a class="close-link"><i class="fas fa-times"></i></a>
-            </li>
-          </ul>
-          <div class="clearfix"></div>
-        </div>
-        <div class="x_content">
-          <div id="wh_scanin" class="extjs_border">
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-6 col-sm-6 col-xs-6">
-      <div class="x_panel">
-        <div class="x_title">
-          <h2>
-            <i class="fas fa-boxes"></i> 
-            Scan OUT 
-            <small> ( Logistic ) </small>
-          </h2>
-          <ul class="nav navbar-right panel_toolbox">
-            <li>
-              <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-            </li>
-            <li>
-              <a class="close-link"><i class="fas fa-times"></i></a>
-            </li>
-          </ul>
-          <div class="clearfix"></div>
-        </div>
-        <div class="x_content">
-          <div id="wh_scanout" class="extjs_border">
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- END OF warehouse -->
   <!-- ============================================================================== -->
   <!-- Process Operational Data -->
   <div id="prod_tab" class="row">
@@ -462,6 +369,145 @@
     </div>
   </div>
   <!-- END OF Part Handling -->
+  <!-- ============================================================================== -->
+  <!-- warehouse -->
+  <div id="warehouse_tab" class="row">
+    <div class="col-md-4 col-sm-6 col-xs-6">
+      <div class="x_panel">
+        <div class="x_title">
+          <div class="col-md-6">
+            <h2><i class="fas fa-boxes"></i> Stock Card <small> ( Logistic - OQC) </small></h2>
+          </div>
+          <div class="col-md-4">
+            <button id="dlActual" type="button" class="btn btn-info pull-right" onclick="downloadStockCard()">
+              <i class="fas fa-download"></i>
+            </button>
+          </div>
+          <div class="col-md-2">
+            <ul class="nav navbar-right panel_toolbox">
+              <li>
+                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+              </li>
+              <li>
+                <a class="close-link"><i class="fas fa-times"></i></a>
+              </li>
+            </ul>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+          <div id="wh_stockcard" class="extjs_border">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 col-sm-6 col-xs-6">
+      <div class="x_panel">
+        <div class="x_title">
+          <div class="col-md-6">
+            <h2>
+              <i class="fas fa-boxes"></i> 
+              Shipment Hold 
+              <small> ( Logistic - QA ) </small>
+            </h2>
+          </div>
+          <div class="col-md-4">
+            <button id="dlActual" type="button" class="btn btn-info pull-right" onclick="downloadShipHold()">
+              <i class="fas fa-download"></i>
+            </button>
+          </div>
+          <div class="col-md-2">
+            <ul class="nav navbar-right panel_toolbox">
+              <li>
+                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+              </li>
+              <li>
+                <a class="close-link"><i class="fas fa-times"></i></a>
+              </li>
+            </ul>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+          <div id="wh_shipmenthold" class="extjs_border">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 col-sm-6 col-xs-6">
+      <div class="x_panel">
+        <div class="x_title">
+          <h2>
+            <i class="fas fa-boxes"></i> 
+            Borrow
+            <small> ( Logistic ) </small>
+          </h2>
+          <ul class="nav navbar-right panel_toolbox">
+            <li>
+              <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+            </li>
+            <li>
+              <a class="close-link"><i class="fas fa-times"></i></a>
+            </li>
+          </ul>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+          <div id="wh_borrow" class="extjs_border">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-6">
+      <div class="x_panel">
+        <div class="x_title">
+          <h2>
+            <i class="fas fa-boxes"></i>
+            Scan IN
+            <small> ( Logistic ) </small>
+          </h2>
+          <ul class="nav navbar-right panel_toolbox">
+            <li>
+              <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+            </li>
+            <li>
+              <a class="close-link"><i class="fas fa-times"></i></a>
+            </li>
+          </ul>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+          <div id="wh_scanin" class="extjs_border">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-6">
+      <div class="x_panel">
+        <div class="x_title">
+          <h2>
+            <i class="fas fa-boxes"></i> 
+            Scan OUT 
+            <small> ( Logistic ) </small>
+          </h2>
+          <ul class="nav navbar-right panel_toolbox">
+            <li>
+              <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+            </li>
+            <li>
+              <a class="close-link"><i class="fas fa-times"></i></a>
+            </li>
+          </ul>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+          <div id="wh_scanout" class="extjs_border">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- END OF warehouse -->
   <!-- ============================================================================== -->
   <!-- Return to Top -->
   <a href="javascript:" id="return-to-top"><i class="fas fa-chevron-up"></i></a>

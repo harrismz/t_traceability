@@ -53,8 +53,6 @@ Ext.onReady(function() {
    		});
 
 	//	=======================================================    DATASTORE    =====================================
-			
-
 		var storeMaprosBoard = Ext.create('Ext.data.Store',{
 			storeId : 'storeMaprosBoard',
 			model	: 'modelMaprosBoard',
@@ -247,6 +245,25 @@ Ext.onReady(function() {
 					}
 				}
 			},
+			tbar		: [
+				'->',{
+					xtype	: 'button',
+					id		: 'dlPCB',
+					iconCls	: 'download',
+					text 	: 'Download',
+					tooltip	: 'Download',
+					handler : function (){
+						var valstdate 		= Ext.Date.format(new Ext.getCmp('valstdate').getValue(), 'Ymd');
+						var valendate 		= Ext.Date.format(new Ext.getCmp('valendate').getValue(), 'Ymd');
+						var valstatus 		= Ext.getCmp('valstatus').getValue();
+						var validstockcard 	= Ext.getCmp('validstockcard').getValue();
+						var valmodel 		= Ext.getCmp('valmodel').getValue();
+						var valline 		= Ext.getCmp('valline').getValue();
+						var vallotno 		= Ext.getCmp('vallotno').getValue();
+						window.open('resp/down_stockcard.php?valstdate='+valstdate+'&valendate='+valendate+'&valstatus='+valstatus+'&validstockcard='+validstockcard+'&valmodel='+valmodel+'&valline='+valline+'&vallotno='+vallotno+'');
+					}
+				}
+			],
 			columns 	: [
 				{	header 		: 'PCB SERIAL',
 					dataIndex 	: 'board_id',
@@ -410,6 +427,25 @@ Ext.onReady(function() {
 					}
 				}
 			},
+			tbar		: [
+				'->',{
+					xtype	: 'button',
+					id		: 'dlPanel',
+					iconCls	: 'download',
+					text 	: 'Download',
+					tooltip	: 'Download',
+					handler : function (){
+						var valstdate 		= Ext.Date.format(new Ext.getCmp('valstdate').getValue(), 'Ymd');
+						var valendate 		= Ext.Date.format(new Ext.getCmp('valendate').getValue(), 'Ymd');
+						var valstatus 		= Ext.getCmp('valstatus').getValue();
+						var validstockcard 	= Ext.getCmp('validstockcard').getValue();
+						var valmodel 		= Ext.getCmp('valmodel').getValue();
+						var valline 		= Ext.getCmp('valline').getValue();
+						var vallotno 		= Ext.getCmp('vallotno').getValue();
+						window.open('resp/down_stockcard.php?valstdate='+valstdate+'&valendate='+valendate+'&valstatus='+valstatus+'&validstockcard='+validstockcard+'&valmodel='+valmodel+'&valline='+valline+'&vallotno='+vallotno+'');
+					}
+				}
+			],
 			columns 	: [
 				{	header 		: 'PANEL NO',
 					dataIndex 	: 'ticket_no',
@@ -540,6 +576,25 @@ Ext.onReady(function() {
 					}
 				}
 			},
+			tbar		: [
+				'->',{
+					xtype	: 'button',
+					id		: 'dlLCD',
+					iconCls	: 'download',
+					text 	: 'Download',
+					tooltip	: 'Download',
+					handler : function (){
+						var valstdate 		= Ext.Date.format(new Ext.getCmp('valstdate').getValue(), 'Ymd');
+						var valendate 		= Ext.Date.format(new Ext.getCmp('valendate').getValue(), 'Ymd');
+						var valstatus 		= Ext.getCmp('valstatus').getValue();
+						var validstockcard 	= Ext.getCmp('validstockcard').getValue();
+						var valmodel 		= Ext.getCmp('valmodel').getValue();
+						var valline 		= Ext.getCmp('valline').getValue();
+						var vallotno 		= Ext.getCmp('vallotno').getValue();
+						window.open('resp/down_stockcard.php?valstdate='+valstdate+'&valendate='+valendate+'&valstatus='+valstatus+'&validstockcard='+validstockcard+'&valmodel='+valmodel+'&valline='+valline+'&vallotno='+vallotno+'');
+					}
+				}
+			],
 			columns 	: [
 				{	header 		: 'LCD ID',
 					dataIndex 	: 'barcode',
@@ -670,6 +725,25 @@ Ext.onReady(function() {
 					}
 				}
 			},
+			tbar		: [
+				'->',{
+					xtype	: 'button',
+					id		: 'dlMecha',
+					iconCls	: 'download',
+					text 	: 'Download',
+					tooltip	: 'Download',
+					handler : function (){
+						var valstdate 		= Ext.Date.format(new Ext.getCmp('valstdate').getValue(), 'Ymd');
+						var valendate 		= Ext.Date.format(new Ext.getCmp('valendate').getValue(), 'Ymd');
+						var valstatus 		= Ext.getCmp('valstatus').getValue();
+						var validstockcard 	= Ext.getCmp('validstockcard').getValue();
+						var valmodel 		= Ext.getCmp('valmodel').getValue();
+						var valline 		= Ext.getCmp('valline').getValue();
+						var vallotno 		= Ext.getCmp('vallotno').getValue();
+						window.open('resp/down_stockcard.php?valstdate='+valstdate+'&valendate='+valendate+'&valstatus='+valstatus+'&validstockcard='+validstockcard+'&valmodel='+valmodel+'&valline='+valline+'&vallotno='+vallotno+'');
+					}
+				}
+			],
 			columns 	: [
 				{	header 		: 'Mecha ID',
 					dataIndex 	: 'barcode',
@@ -800,6 +874,25 @@ Ext.onReady(function() {
 					}
 				}
 			},
+			tbar		: [
+				'->',{
+					xtype	: 'button',
+					id		: 'dlMain',
+					iconCls	: 'download',
+					text 	: 'Download',
+					tooltip	: 'Download',
+					handler : function (){
+						var valstdate 		= Ext.Date.format(new Ext.getCmp('valstdate').getValue(), 'Ymd');
+						var valendate 		= Ext.Date.format(new Ext.getCmp('valendate').getValue(), 'Ymd');
+						var valstatus 		= Ext.getCmp('valstatus').getValue();
+						var validstockcard 	= Ext.getCmp('validstockcard').getValue();
+						var valmodel 		= Ext.getCmp('valmodel').getValue();
+						var valline 		= Ext.getCmp('valline').getValue();
+						var vallotno 		= Ext.getCmp('vallotno').getValue();
+						window.open('resp/down_stockcard.php?valstdate='+valstdate+'&valendate='+valendate+'&valstatus='+valstatus+'&validstockcard='+validstockcard+'&valmodel='+valmodel+'&valline='+valline+'&vallotno='+vallotno+'');
+					}
+				}
+			],
 			columns 	: [
 				{	header 		: 'DUMMY SERIAL',
 					dataIndex 	: 'ticket_no_master',
@@ -940,6 +1033,25 @@ Ext.onReady(function() {
 					}
 				}
 			},
+			tbar		: [
+				'->',{
+					xtype	: 'button',
+					id		: 'dlCritical',
+					iconCls	: 'download',
+					text 	: 'Download',
+					tooltip	: 'Download',
+					handler : function (){
+						var valstdate 		= Ext.Date.format(new Ext.getCmp('valstdate').getValue(), 'Ymd');
+						var valendate 		= Ext.Date.format(new Ext.getCmp('valendate').getValue(), 'Ymd');
+						var valstatus 		= Ext.getCmp('valstatus').getValue();
+						var validstockcard 	= Ext.getCmp('validstockcard').getValue();
+						var valmodel 		= Ext.getCmp('valmodel').getValue();
+						var valline 		= Ext.getCmp('valline').getValue();
+						var vallotno 		= Ext.getCmp('vallotno').getValue();
+						window.open('resp/down_stockcard.php?valstdate='+valstdate+'&valendate='+valendate+'&valstatus='+valstatus+'&validstockcard='+validstockcard+'&valmodel='+valmodel+'&valline='+valline+'&vallotno='+vallotno+'');
+					}
+				}
+			],
 			columns 	: [
 
 				

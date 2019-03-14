@@ -224,6 +224,25 @@ Ext.onReady(function() {
 					}
 				}
 			},
+			tbar		: [
+				'->',{
+					xtype	: 'button',
+					id		: 'dlQuality',
+					iconCls	: 'download',
+					text 	: 'Download',
+					tooltip	: 'Download',
+					handler : function (){
+						var valstdate 		= Ext.Date.format(new Ext.getCmp('valstdate').getValue(), 'Ymd');
+						var valendate 		= Ext.Date.format(new Ext.getCmp('valendate').getValue(), 'Ymd');
+						var valstatus 		= Ext.getCmp('valstatus').getValue();
+						var validstockcard 	= Ext.getCmp('validstockcard').getValue();
+						var valmodel 		= Ext.getCmp('valmodel').getValue();
+						var valline 		= Ext.getCmp('valline').getValue();
+						var vallotno 		= Ext.getCmp('vallotno').getValue();
+						window.open('resp/down_stockcard.php?valstdate='+valstdate+'&valendate='+valendate+'&valstatus='+valstatus+'&validstockcard='+validstockcard+'&valmodel='+valmodel+'&valline='+valline+'&vallotno='+vallotno+'');
+					}
+				}
+			],
             columns     : [
 				{ header      : 'Prod. Date',	  dataIndex   : 'date', 			componentCls : 'headergrid', flex:false, autoSizeColumn:true, renderer: fontstyle },
                 { header      : 'Line Name',	  dataIndex   : 'line_name',		componentCls : 'headergrid', flex:false, autoSizeColumn:true, renderer: fontstyle, hidden: true },
@@ -437,6 +456,25 @@ Ext.onReady(function() {
 					}
 				}
 			},
+			tbar		: [
+				'->',{
+					xtype	: 'button',
+					id		: 'dlFwdn',
+					iconCls	: 'download',
+					text 	: 'Download',
+					tooltip	: 'Download',
+					handler : function (){
+						var valstdate 		= Ext.Date.format(new Ext.getCmp('valstdate').getValue(), 'Ymd');
+						var valendate 		= Ext.Date.format(new Ext.getCmp('valendate').getValue(), 'Ymd');
+						var valstatus 		= Ext.getCmp('valstatus').getValue();
+						var validstockcard 	= Ext.getCmp('validstockcard').getValue();
+						var valmodel 		= Ext.getCmp('valmodel').getValue();
+						var valline 		= Ext.getCmp('valline').getValue();
+						var vallotno 		= Ext.getCmp('vallotno').getValue();
+						window.open('resp/down_stockcard.php?valstdate='+valstdate+'&valendate='+valendate+'&valstatus='+valstatus+'&validstockcard='+validstockcard+'&valmodel='+valmodel+'&valline='+valline+'&vallotno='+vallotno+'');
+					}
+				}
+			],
 			columns 		: [
 				{ 	header 		: 'FWDN',
 					dataIndex 	: 'idfwdn',
@@ -642,6 +680,25 @@ Ext.onReady(function() {
 				deferEmptyText 		: false,
 				enableTextSelection	: true
 			},
+			tbar		: [
+				'->',{
+					xtype	: 'button',
+					id		: 'dlFlash',
+					iconCls	: 'download',
+					text 	: 'Download',
+					tooltip	: 'Download',
+					handler : function (){
+						var valstdate 		= Ext.Date.format(new Ext.getCmp('valstdate').getValue(), 'Ymd');
+						var valendate 		= Ext.Date.format(new Ext.getCmp('valendate').getValue(), 'Ymd');
+						var valstatus 		= Ext.getCmp('valstatus').getValue();
+						var validstockcard 	= Ext.getCmp('validstockcard').getValue();
+						var valmodel 		= Ext.getCmp('valmodel').getValue();
+						var valline 		= Ext.getCmp('valline').getValue();
+						var vallotno 		= Ext.getCmp('vallotno').getValue();
+						window.open('resp/down_stockcard.php?valstdate='+valstdate+'&valendate='+valendate+'&valstatus='+valstatus+'&validstockcard='+validstockcard+'&valmodel='+valmodel+'&valline='+valline+'&vallotno='+vallotno+'');
+					}
+				}
+			],
 			columns 		: [
 				{	header 		: 'FLASH',
 					dataIndex 	: 'idflash',
@@ -788,6 +845,25 @@ Ext.onReady(function() {
 				deferEmptyText 		: false,
 				enableTextSelection	: true
 			},
+			tbar		: [
+				'->',{
+					xtype	: 'button',
+					id		: 'dlAvntest',
+					iconCls	: 'download',
+					text 	: 'Download',
+					tooltip	: 'Download',
+					handler : function (){
+						var valstdate 		= Ext.Date.format(new Ext.getCmp('valstdate').getValue(), 'Ymd');
+						var valendate 		= Ext.Date.format(new Ext.getCmp('valendate').getValue(), 'Ymd');
+						var valstatus 		= Ext.getCmp('valstatus').getValue();
+						var validstockcard 	= Ext.getCmp('validstockcard').getValue();
+						var valmodel 		= Ext.getCmp('valmodel').getValue();
+						var valline 		= Ext.getCmp('valline').getValue();
+						var vallotno 		= Ext.getCmp('vallotno').getValue();
+						window.open('resp/down_stockcard.php?valstdate='+valstdate+'&valendate='+valendate+'&valstatus='+valstatus+'&validstockcard='+validstockcard+'&valmodel='+valmodel+'&valline='+valline+'&vallotno='+vallotno+'');
+					}
+				}
+			],
 			columns 	: [
 				{	header 		: 'AVNTEST',
 					dataIndex 	: 'idavnt',
@@ -1072,6 +1148,25 @@ Ext.onReady(function() {
 				deferEmptyText 		: false,
 				enableTextSelection	: true
 			},
+			tbar		: [
+				'->',{
+					xtype	: 'button',
+					id		: 'dlAvmt',
+					iconCls	: 'download',
+					text 	: 'Download',
+					tooltip	: 'Download',
+					handler : function (){
+						var valstdate 		= Ext.Date.format(new Ext.getCmp('valstdate').getValue(), 'Ymd');
+						var valendate 		= Ext.Date.format(new Ext.getCmp('valendate').getValue(), 'Ymd');
+						var valstatus 		= Ext.getCmp('valstatus').getValue();
+						var validstockcard 	= Ext.getCmp('validstockcard').getValue();
+						var valmodel 		= Ext.getCmp('valmodel').getValue();
+						var valline 		= Ext.getCmp('valline').getValue();
+						var vallotno 		= Ext.getCmp('vallotno').getValue();
+						window.open('resp/down_stockcard.php?valstdate='+valstdate+'&valendate='+valendate+'&valstatus='+valstatus+'&validstockcard='+validstockcard+'&valmodel='+valmodel+'&valline='+valline+'&vallotno='+vallotno+'');
+					}
+				}
+			],
 			columns 	: [
 				{ 	header 		: 'AVMT',
 					dataIndex 	: 'idavmt',
@@ -1571,6 +1666,25 @@ Ext.onReady(function() {
 				deferEmptyText 		: false,
 				enableTextSelection	: true
 			},
+			tbar		: [
+				'->',{
+					xtype	: 'button',
+					id		: 'dlAutoLineZero',
+					iconCls	: 'download',
+					text 	: 'Download',
+					tooltip	: 'Download',
+					handler : function (){
+						var valstdate 		= Ext.Date.format(new Ext.getCmp('valstdate').getValue(), 'Ymd');
+						var valendate 		= Ext.Date.format(new Ext.getCmp('valendate').getValue(), 'Ymd');
+						var valstatus 		= Ext.getCmp('valstatus').getValue();
+						var validstockcard 	= Ext.getCmp('validstockcard').getValue();
+						var valmodel 		= Ext.getCmp('valmodel').getValue();
+						var valline 		= Ext.getCmp('valline').getValue();
+						var vallotno 		= Ext.getCmp('vallotno').getValue();
+						window.open('resp/down_stockcard.php?valstdate='+valstdate+'&valendate='+valendate+'&valstatus='+valstatus+'&validstockcard='+validstockcard+'&valmodel='+valmodel+'&valline='+valline+'&vallotno='+vallotno+'');
+					}
+				}
+			],
 			columns 	: [
 				{ 	header 		: 'ID',
 					dataIndex 	: 'idlinezero',
