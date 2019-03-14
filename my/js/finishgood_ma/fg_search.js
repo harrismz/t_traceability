@@ -18,7 +18,13 @@ $(document).ready(function(){
 				$("#lbCheckMS").addClass('btn-success active');
 				$("#lbCheckMS").prop("checked", true);
 				$("#lbCheckMS").prop("required", true);
+				
 				$("#valOfCategory").val("MS");
+				$("#finishgood_tab").show();
+				$("#plan_tab").show();
+				$("#warehouse_tab").show();
+				$("#mcissue_tab").show();
+				
 				$('#sModelName').show();
 				$('#sSerialNo').show();
 				console.log('MS');
@@ -39,6 +45,11 @@ $(document).ready(function(){
 				$("#lbCheckMA").prop("required", true);
 
 				$("#valOfCatMecha").val("MA");
+				$("#finishgood_tab").show();
+				$("#plan_tab").show();
+				$("#warehouse_tab").show();
+				$("#mcissue_tab").show();
+
 				$('#sModelName').show();
 				$('#sLotNo').show();
 				// $('#sModelName').show();
@@ -53,8 +64,13 @@ $(document).ready(function(){
 				$("#lbCheckDS").prop("checked", true);
 				$("#lbCheckDS").prop("required", true);
 				$("#valOfCategory").val("DS");
+				$("#finishgood_tab").hide();
+				$("#plan_tab").hide();
+				$("#warehouse_tab").hide();
+				$("#mcissue_tab").hide();
 				$("#sDummySerial").show();
 				console.log('DS');
+
 			}
 		}
 	);
