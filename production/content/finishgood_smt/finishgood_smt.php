@@ -17,8 +17,6 @@
     <div class="title_left">
       <h3>PCB Serial</h3>
     </div>
-<<<<<<< HEAD
-=======
     <!-- YJ5224A01MN_00A7010A0002 -->
 
     <!-- SWITCH WITHOUT MOTHERCODE -->
@@ -29,8 +27,7 @@
     <!-- YJ5224M01AO_00A7013A0062  -->
     <!-- YJ5224M01AO_00A7013A0328  -->
     <!-- YJ5224A01VT_00B7030A0175  -->
-    
->>>>>>> develop
+
     <div class="title_right">
       <div class="col-md-9 col-sm-9 col-xs-12 form-group pull-right top_search">
         <div class="input-group">

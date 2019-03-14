@@ -5,11 +5,8 @@
 @import url("../../../framework/extjs-6.2.0/build/classic/theme-crisp/resources/theme-crisp-all.css");
 @import url("../../build/css/custom.min.css");
 @import url("../../my/css/extjs.css");
-<<<<<<< HEAD
-=======
 @import url('../../docs/fonts/fonts/Asul/Asul-Regular.ttf');
 @import url('../../docs/fonts/fonts/Asul/Asul-Bold.ttf');
->>>>>>> develop
 
 .nav li > a {
   font-size: 14px;
@@ -131,6 +128,3 @@ h3 i {
 .x_title h2 {
   color: #887777;
 }
-
->>>>>>> develop
-/* ---  End Of Return To Top */
