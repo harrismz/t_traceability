@@ -265,15 +265,6 @@ Ext.onReady(function() {
 						console.log('lotNo 			= '+lotNo);
 						console.log('dummySerial 	= '+dummySerial);
 						window.open('resp/finishgood_ma/dlFgMaprosPcbSerial.php?rb='+rbCheck+'&mdl='+modelName+'&s='+serialNo+'&l='+lotNo+'&ds='+dummySerial+'');
-					
-						// var valstdate 		= Ext.Date.format(new Ext.getCmp('valstdate').getValue(), 'Ymd');
-						// var valendate 		= Ext.Date.format(new Ext.getCmp('valendate').getValue(), 'Ymd');
-						// var valstatus 		= Ext.getCmp('valstatus').getValue();
-						// var validstockcard 	= Ext.getCmp('validstockcard').getValue();
-						// var valmodel 		= Ext.getCmp('valmodel').getValue();
-						// var valline 		= Ext.getCmp('valline').getValue();
-						// var vallotno 		= Ext.getCmp('vallotno').getValue();
-						// window.open('resp/down_stockcard.php?valstdate='+valstdate+'&valendate='+valendate+'&valstatus='+valstatus+'&validstockcard='+validstockcard+'&valmodel='+valmodel+'&valline='+valline+'&vallotno='+vallotno+'');
 					}
 				}
 			],
