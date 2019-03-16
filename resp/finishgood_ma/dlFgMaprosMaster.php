@@ -46,7 +46,7 @@
 		
 		while(!$rs->EOF)
 		{
-			if(strlen($rs->fields['8']) > 5){
+			if(strlen($rs->fields['8']) > 5 && strlen($rs->fields['8']) < 9 ){
 				$empno = substr($rs->fields['8'], 2, 5);
 			}
 			else { 
@@ -106,7 +106,7 @@
 		
 		while(!$rs->EOF)
 		{
-			if(strlen($rs->fields['9']) > 5){
+			if(strlen($rs->fields['9']) > 5 && strlen($rs->fields['9']) < 9 ){
 				$empno = substr($rs->fields['9'], 2, 5);
 			}
 			else { 

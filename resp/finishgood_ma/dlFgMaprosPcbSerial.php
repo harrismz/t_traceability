@@ -49,7 +49,7 @@
 		
 		while(!$rs->EOF)
 		{
-			if(strlen($rs->fields['7']) > 5){
+			if(strlen($rs->fields['7']) > 5 && strlen($rs->fields['7']) < 9 ){
 				$empno = substr($rs->fields['7'], 2, 5);
 			}
 			else { 
