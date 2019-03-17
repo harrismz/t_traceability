@@ -163,14 +163,14 @@
     <div class="col-md-6 col-sm-6 col-xs-12">
       <div class="x_panel">
         <div class="row x_title">
-          <div class="col-md-6">
+          <div class="col-md-8">
             <h2><i class="far fa-clipboard"></i> Plan  <small> ( OCS MA ) </small></h2>
           </div>
-          <div class="col-md-4">
+          <!-- <div class="col-md-4">
             <button id="dlPlan" type="button" class="btn btn-info pull-right" onclick="downloadPlan()">
               <i class="fas fa-download"></i>
             </button>
-          </div>
+          </div> -->
           <div class="col-md-2">
             <ul class="nav navbar-right panel_toolbox">
               <li>
@@ -192,18 +192,18 @@
     <div class="col-md-6 col-sm-6 col-xs-12">
       <div class="x_panel">
         <div class="row x_title">
-          <div class="col-md-6">
+          <div class="col-md-8">
             <h2>
               <i class="far fa-calendar-check"></i>
               Actual
               <small> ( OCS MA ) </small>
             </h2>
           </div>
-          <div class="col-md-4">
+          <!-- <div class="col-md-4">
             <button id="dlActual" type="button" class="btn btn-info pull-right" onclick="downloadPlan()">
               <i class="fas fa-download"></i>
             </button>
-          </div>
+          </div> -->
           <div class="col-md-2">
             <ul class="nav navbar-right panel_toolbox">
               <li>
@@ -375,14 +375,14 @@
     <div class="col-md-4 col-sm-6 col-xs-6">
       <div class="x_panel">
         <div class="x_title">
-          <div class="col-md-6">
+          <div class="col-md-8">
             <h2><i class="fas fa-boxes"></i> Stock Card <small> ( Logistic - OQC) </small></h2>
           </div>
-          <div class="col-md-4">
+          <!-- <div class="col-md-4">
             <button id="dlActual" type="button" class="btn btn-info pull-right" onclick="downloadStockCard()">
               <i class="fas fa-download"></i>
             </button>
-          </div>
+          </div> -->
           <div class="col-md-2">
             <ul class="nav navbar-right panel_toolbox">
               <li>
@@ -404,18 +404,18 @@
     <div class="col-md-4 col-sm-6 col-xs-6">
       <div class="x_panel">
         <div class="x_title">
-          <div class="col-md-6">
+          <div class="col-md-8">
             <h2>
               <i class="fas fa-boxes"></i> 
               Shipment Hold 
               <small> ( Logistic - QA ) </small>
             </h2>
           </div>
-          <div class="col-md-4">
+          <!-- <div class="col-md-4">
             <button id="dlActual" type="button" class="btn btn-info pull-right" onclick="downloadShipHold()">
               <i class="fas fa-download"></i>
             </button>
-          </div>
+          </div> -->
           <div class="col-md-2">
             <ul class="nav navbar-right panel_toolbox">
               <li>
