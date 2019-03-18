@@ -3,7 +3,7 @@ Ext.onReady(function() {
 //	=======================================================    MODEL        =====================================
 	Ext.define('model_bigs', {
 		extend: 'Ext.data.Model',
-		fields: [ 'side', 'cavity', 'line', 'model', 'pwbname','pwbno', 'process', 'qty', 'ynumber', 'start_serial']
+		fields: [ 'side', 'start_code', 'end_code', 'cavity', 'line', 'model', 'pwbname','pwbno', 'process', 'qty', 'ynumber', 'start_serial']
 	});
 //	=======================================================    DATASTORE    =====================================
 	var store_bigs = Ext.create('Ext.data.Store', {

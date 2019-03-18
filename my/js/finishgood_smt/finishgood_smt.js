@@ -14,8 +14,34 @@ function checkPcbSerial(event){
 	if (x == 13 || x == 0 || x == 1) {
 		var pcbserial = document.getElementById('pcbserial').value;
 		
-		Ext.getStore('store_bigs').proxy.setExtraParam('boardid', pcbserial);
-		Ext.getStore('store_bigs').loadPage(1);
+		var splits = pcbserial.split('/');
+		var model = splits[0];
+		var lotno = splits[1];
+		var pwbname = splits[2];
+
+		console.log('pcbserial : '+pcbserial);
+		console.log('model : '+model);
+		console.log('lotno : '+lotno);
+		console.log('pwbname : '+pwbname);
+
+		if (typeof lotno === 'undefined'){
+			console.log('LOTNO KOSONG');
+			Ext.getStore('store_bigs').proxy.setExtraParam('boardid', pcbserial);
+			Ext.getStore('store_bigs').proxy.setExtraParam('model', '');
+			Ext.getStore('store_bigs').proxy.setExtraParam('lotno', '');
+			Ext.getStore('store_bigs').proxy.setExtraParam('pwbname', '');
+			Ext.getStore('store_bigs').loadPage(1);
+		}
+		else{
+			console.log('LOTNO ADA');
+			Ext.getStore('store_bigs').proxy.setExtraParam('boardid', '');
+			Ext.getStore('store_bigs').proxy.setExtraParam('model', model);
+			Ext.getStore('store_bigs').proxy.setExtraParam('lotno', lotno);
+			Ext.getStore('store_bigs').proxy.setExtraParam('pwbname', pwbname);
+			Ext.getStore('store_bigs').loadPage(1);
+		}
+
+		
 		//=============================================================================================================//
 
 		var gridSmtRepair 		= Ext.getCmp("grid_smt_repair");
