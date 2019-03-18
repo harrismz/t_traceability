@@ -6,14 +6,22 @@
     $limit      = @$_REQUEST["limit"];
     $start      = (($page*$limit)-$limit)+1;
     $boardid    = @$_REQUEST['boardid'];
+    $model    = @$_REQUEST['model'];
+    $lotno    = @$_REQUEST['lotno'];
+    $pwbname    = @$_REQUEST['pwbname'];
+    $side    = @$_REQUEST['side'];
     $totcavity  = @$_REQUEST['totcavity'];
 
     $sql        = " DECLARE  @return_value int,
                             @totalcount int
-                    EXEC    @return_value = [dbo].[traceability_good_smt_spi_rev1]
+                    EXEC    @return_value = [dbo].[traceability_good_smt_spi_rev3]
                             @start = '{$start}',
                             @maxct = '{$limit}',
                             @boardid = N'{$boardid}',
+                            @model = N'{$model}',
+                            @lotno = N'{$lotno}',
+                            @pwbno = N'{$pwbname}',
+                            @side = N'{$side}',
                             @totalcount = @totalcount OUTPUT";
     $rs         = $db->Execute($sql);
     $totalcount = $rs->fields['10'];
