@@ -59,12 +59,11 @@ Ext.onReady(function() {
 			    }
 			},
 			columns 	: [
-				{	header 			: 'BARCODE',
+				{	header 			: 'PCB SERIAL',
 					dataIndex 		: 'barcode',
-					flex 			: getFlexPCBSerialSPI(),
-					autoSizeColumn 	: getWidthPCBSerialSPI(),
-					renderer		: upsize,
-					hidden 			: true
+					flex 			: false,
+					autoSizeColumn 	: true,
+					renderer		: upsize
 				},
 				{	header 			: 'INSP DATE',
 					dataIndex 		: 'inspectiondatetime',
@@ -134,7 +133,8 @@ Ext.onReady(function() {
 	    		select: function(grid, rowIndex, colIndex) {
 	    			var rec 		= this.getSelectionModel().getSelection();
 	    			var spidate 	= store_smt_spi.getAt(0).get('inspectiondate');
-	    			var boardid 	= document.getElementById('pcbserial').value;
+	    			// var boardid 	= document.getElementById('pcbserial').value;
+	    			var boardid 	= rec[0].data.barcode;
 
 	    			Ext.getStore('store_smt_reflow').proxy.setExtraParam('boardid', boardid);
 					Ext.getStore('store_smt_reflow').proxy.setExtraParam('smt_date', spidate);
