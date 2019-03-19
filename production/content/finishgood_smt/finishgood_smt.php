@@ -261,15 +261,25 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="x_panel">
         <div class="x_title">
-          <h2><i class="far fa-calendar-check"></i> REFLOW  <small> ( SMT ) </small></h2>
-          <ul class="nav navbar-right panel_toolbox">
-            <li>
-              <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-            </li>
-            <li>
-              <a class="close-link"><i class="fas fa-times"></i></a>
-            </li>
-          </ul>
+          <div class="col-md-6">
+            <h2><i class="far fa-calendar-check"></i> REFLOW  <small> ( SMT ) </small></h2>
+          </div>
+          <div class="col-md-4">
+            <button id="dlFinishgood" type="button" class="btn btn-info pull-right" onclick="downloadFinishgood()">
+              <i class="fas fa-download"></i>
+              &nbsp;&nbsp;Download
+            </button>
+          </div>
+          <div class="col-md-2">
+            <ul class="nav navbar-right panel_toolbox">
+              <li>
+                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+              </li>
+              <li>
+                <a class="close-link"><i class="fas fa-times"></i></a>
+              </li>
+            </ul>
+          </div>
           <div class="clearfix"></div>
         </div>
         <div class="x_content">
