@@ -187,25 +187,54 @@ Ext.onReady(function() {
 
 				if (typeof lotno === 'undefined'){
 
-				Ext.getStore('store_smt_repair').proxy.setExtraParam('src_boardid', boardid);
-				Ext.getStore('store_smt_repair').loadPage(1);
-				Ext.getStore('store_mapros_board').proxy.setExtraParam('cavity', totCavity);
-				Ext.getStore('store_mapros_board').proxy.setExtraParam('model', srcModel);
-				Ext.getStore('store_mapros_board').proxy.setExtraParam('pwbname', srcPwbname);
+					Ext.getStore('store_smt_repair').proxy.setExtraParam('src_boardid', boardid);
+					Ext.getStore('store_smt_repair').proxy.setExtraParam('model', '');
+					Ext.getStore('store_smt_repair').proxy.setExtraParam('lotno', '');
+					Ext.getStore('store_smt_repair').proxy.setExtraParam('pwbname', '');
+					Ext.getStore('store_smt_repair').proxy.setExtraParam('side', '');
+					Ext.getStore('store_smt_repair').loadPage(1);
 					Ext.getStore('store_smt_spi').proxy.setExtraParam('boardid', boardid);
 					Ext.getStore('store_smt_spi').proxy.setExtraParam('model', '');
 					Ext.getStore('store_smt_spi').proxy.setExtraParam('lotno', '');
 					Ext.getStore('store_smt_spi').proxy.setExtraParam('pwbname', '');
 					Ext.getStore('store_smt_spi').proxy.setExtraParam('side', '');
 					Ext.getStore('store_smt_spi').loadPage(1);
+					Ext.getStore('store_mapros_board').proxy.setExtraParam('cavity', totCavity);
+					Ext.getStore('store_mapros_board').proxy.setExtraParam('model', srcModel);
+					Ext.getStore('store_mapros_board').proxy.setExtraParam('pwbname', srcPwbname);
+					Ext.getStore('store_mapros_board').proxy.setExtraParam('lotno', '');
+					Ext.getStore('store_mapros_board').proxy.setExtraParam('side', '');
 				}
 				else{
+					Ext.getStore('store_smt_repair').proxy.setExtraParam('src_boardid', '');
+					Ext.getStore('store_smt_repair').proxy.setExtraParam('model', model);
+					Ext.getStore('store_smt_repair').proxy.setExtraParam('lotno', lotno);
+					Ext.getStore('store_smt_repair').proxy.setExtraParam('pwbname', pwbname);
+					Ext.getStore('store_smt_repair').proxy.setExtraParam('side', side);
+					Ext.getStore('store_smt_repair').loadPage(1);
 					Ext.getStore('store_smt_spi').proxy.setExtraParam('boardid', '');
 					Ext.getStore('store_smt_spi').proxy.setExtraParam('model', model);
 					Ext.getStore('store_smt_spi').proxy.setExtraParam('lotno', lotno);
 					Ext.getStore('store_smt_spi').proxy.setExtraParam('pwbname', pwbname);
 					Ext.getStore('store_smt_spi').proxy.setExtraParam('side', side);
 					Ext.getStore('store_smt_spi').loadPage(1);
+					Ext.getStore('store_good_smt_aoi_board').proxy.setExtraParam('boardid', '');
+					Ext.getStore('store_good_smt_aoi_board').proxy.setExtraParam('model', model);
+					Ext.getStore('store_good_smt_aoi_board').proxy.setExtraParam('lotno', lotno);
+					Ext.getStore('store_good_smt_aoi_board').proxy.setExtraParam('pwbname', pwbname);
+					Ext.getStore('store_good_smt_aoi_board').proxy.setExtraParam('side', side);
+					Ext.getStore('store_good_smt_aoi_point').proxy.setExtraParam('boardid', '');
+					Ext.getStore('store_good_smt_aoi_point').proxy.setExtraParam('model', model);
+					Ext.getStore('store_good_smt_aoi_point').proxy.setExtraParam('lotno', lotno);
+					Ext.getStore('store_good_smt_aoi_point').proxy.setExtraParam('pwbname', pwbname);
+					Ext.getStore('store_good_smt_aoi_point').proxy.setExtraParam('side', side);
+
+					Ext.getStore('store_mapros_board').proxy.setExtraParam('cavity', totCavity);
+					Ext.getStore('store_mapros_board').proxy.setExtraParam('model', srcModel);
+					Ext.getStore('store_mapros_board').proxy.setExtraParam('pwbname', '');
+					Ext.getStore('store_mapros_board').proxy.setExtraParam('lotno', lotno);
+					Ext.getStore('store_mapros_board').proxy.setExtraParam('side', side);
+					
 				}
     		}
     	},
