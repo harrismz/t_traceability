@@ -27,7 +27,7 @@
     // echo "declare @totalcount as int; exec traceability_smt_good_aoi_board $start, $limit, '{$boardid}', '{$smt_date}', @totalcount=@totalcount out";
     //$rs         = $db->Execute("exec traceability_smt_good_aoi_board '{$boardid}','{$smt_date}'");
     
-    $sql        = " declare @totalcount as int; 
+    echo $sql        = " declare @totalcount as int; 
                     exec traceability_smt_good_aoi_board $start, $limit, '{$boardid}', '{$model}', '{$lotno}', '{$pwbname}', '{$size}', @totalcount=@totalcount out";
     $rs         = $db->Execute($sql);
     $totalcount = $rs->fields['8'];

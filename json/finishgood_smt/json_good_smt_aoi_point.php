@@ -6,6 +6,10 @@
 	$limit 		= @$_REQUEST["limit"];
 	$start		= (($page*$limit)-$limit)+1;
 	$boardid    = @$_REQUEST['boardid'];
+    $model    = @$_REQUEST['model'];
+    $lotno    = @$_REQUEST['lotno'];
+    $pwbname    = @$_REQUEST['pwbname'];
+    $side    = @$_REQUEST['side'];
     $smt_date2  = @$_REQUEST['smt_date'];
     $getdate    = '';
     $smt_date   = '';
@@ -21,7 +25,7 @@
     //$rs         = $db->Execute("exec traceability_smt_good_aoi_point '{$boardid}','{$smt_date}'");
     // $getimage        = $db->Execute("select cast((select image2d as '*' for xml path('')) as varchar(max)) as images from tblAOIResultPoint where barcode = '{$boardid}'");
 
-    $sql        = "declare @totalcount as int; exec traceability_smt_good_aoi_point $start, $limit, '{$boardid}', '{$smt_date}', @totalcount=@totalcount out";
+    $sql        = "declare @totalcount as int; exec traceability_smt_good_aoi_point $start, $limit, '{$boardid}', '{$model}', '{$lotno}', '{$pwbname}', '{$side}', '{$smt_date}', @totalcount=@totalcount out";
     $rs         = $db->Execute($sql);
     $totalcount = $rs->fields['13'];
     $return     = array();
