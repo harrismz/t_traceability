@@ -10,7 +10,7 @@
     $model    = @$_REQUEST['model'];
     $lotno    = @$_REQUEST['lotno'];
     $pwbname    = @$_REQUEST['pwbname'];
-    $size    = @$_REQUEST['size'];
+    $side    = @$_REQUEST['side'];
     // $smt_date2  = @$_REQUEST['smt_date'];
     // $getdate    = '';
     // $smt_date   = '';
@@ -27,8 +27,8 @@
     // echo "declare @totalcount as int; exec traceability_smt_good_aoi_board $start, $limit, '{$boardid}', '{$smt_date}', @totalcount=@totalcount out";
     //$rs         = $db->Execute("exec traceability_smt_good_aoi_board '{$boardid}','{$smt_date}'");
     
-    echo $sql        = " declare @totalcount as int; 
-                    exec traceability_smt_good_aoi_board $start, $limit, '{$boardid}', '{$model}', '{$lotno}', '{$pwbname}', '{$size}', @totalcount=@totalcount out";
+    $sql        = " declare @totalcount as int; 
+                    exec traceability_smt_good_aoi_board $start, $limit, '{$boardid}', '{$model}', '{$lotno}', '{$pwbname}', '{$side}', @totalcount=@totalcount out";
     $rs         = $db->Execute($sql);
     $totalcount = $rs->fields['8'];
     $return     = array();
