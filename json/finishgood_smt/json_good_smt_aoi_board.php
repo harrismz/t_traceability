@@ -7,6 +7,10 @@
     $start      = (($page*$limit)-$limit)+1;
 	
     $boardid    = @$_REQUEST['boardid'];
+    $model    = @$_REQUEST['model'];
+    $lotno    = @$_REQUEST['lotno'];
+    $pwbname    = @$_REQUEST['pwbname'];
+    $size    = @$_REQUEST['size'];
     // $smt_date2  = @$_REQUEST['smt_date'];
     // $getdate    = '';
     // $smt_date   = '';
@@ -24,7 +28,7 @@
     //$rs         = $db->Execute("exec traceability_smt_good_aoi_board '{$boardid}','{$smt_date}'");
     
     $sql        = " declare @totalcount as int; 
-                    exec traceability_smt_good_aoi_board $start, $limit, '{$boardid}', @totalcount=@totalcount out";
+                    exec traceability_smt_good_aoi_board $start, $limit, '{$boardid}', '{$model}', '{$lotno}', '{$pwbname}', '{$size}', @totalcount=@totalcount out";
     $rs         = $db->Execute($sql);
     $totalcount = $rs->fields['8'];
     $return     = array();
