@@ -127,5 +127,26 @@ function checkPcbSerial(event){
 		// Ext.getStore('store_mapros_line0_detail').proxy.setExtraParam('idline0','');
 		// Ext.getStore('store_mapros_line0_detail').loadPage(1);
 	}
-	
+}
+function downloadBigs(){
+	var pcbserial = document.getElementById('pcbserial').value;
+	var splits = pcbserial.split('/');
+	var model = splits[0];
+	var lotno = splits[1];
+	var pwbname = splits[2];
+
+	console.log('pcbserial : '+pcbserial);
+	console.log('model : '+model);
+	console.log('lotno : '+lotno);
+	console.log('pwbname : '+pwbname);
+
+	if (typeof lotno === 'undefined'){
+		console.log('DOWNLOAD BIGS PCB SERIAL');
+		window.open('resp/pcb_serial/dlPcbBigs.php?pcb='+pcbserial+'&mdl=&l=&pwb=');
+	}
+	else{
+		console.log('DOWNLOAD BIGS MODEL LOTNO');
+		window.open('resp/pcb_serial/dlPcbBigs.php?pcb=&mdl='+model+'&l='+lotno+'&pwb='+pwbname+'');
+	}
+}
 }
