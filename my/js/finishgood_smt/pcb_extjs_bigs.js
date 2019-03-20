@@ -185,6 +185,8 @@ Ext.onReady(function() {
 				var lotno 		= splits[1];
 				var pwbname 	= splits[2];
 
+				document.getElementById('spiSide').value = '';
+				document.getElementById('spiSide').value = side;
 				if (typeof lotno === 'undefined'){
 
 					Ext.getStore('store_smt_repair').proxy.setExtraParam('src_boardid', boardid);

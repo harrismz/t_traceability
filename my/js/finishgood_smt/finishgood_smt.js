@@ -149,4 +149,26 @@ function downloadBigs(){
 		window.open('resp/pcb_serial/dlPcbBigs.php?pcb=&mdl='+model+'&l='+lotno+'&pwb='+pwbname+'');
 	}
 }
+function downloadSpi(){
+	var pcbserial = document.getElementById('pcbserial').value;
+	var side = document.getElementById('spiSide').value;
+	var splits = pcbserial.split('/');
+	var model = splits[0];
+	var lotno = splits[1];
+	var pwbname = splits[2];
+
+	console.log('pcbserial : '+pcbserial);
+	console.log('model : '+model);
+	console.log('lotno : '+lotno);
+	console.log('pwbname : '+pwbname);
+	console.log('side : '+side);
+
+	if (typeof lotno === 'undefined'){
+		console.log('DOWNLOAD BIGS PCB SERIAL');
+		window.open('resp/pcb_serial/dlPcbSpi.php?pcb='+pcbserial+'&mdl=&l=&pwb=&sd=');
+	}
+	else{
+		console.log('DOWNLOAD BIGS MODEL LOTNO');
+		window.open('resp/pcb_serial/dlPcbSpi.php?pcb=&mdl='+model+'&l='+lotno+'&pwb='+pwbname+'&sd='+side+'');
+	}
 }
