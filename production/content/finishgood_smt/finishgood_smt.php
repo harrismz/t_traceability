@@ -318,7 +318,7 @@
             <h2><i class="far fa-clipboard"></i> AOI  <small> ( SMT ) </small></h2>
           </div>
           <div class="col-md-4">
-            <button id="dlFinishgood" type="button" class="btn btn-info pull-right" onclick="downloadFinishgood()">
+            <button id="dlAOI" type="button" class="btn btn-info pull-right" onclick="downloadAOI()">
               <i class="fas fa-download"></i>
               &nbsp;&nbsp;Download
             </button>
