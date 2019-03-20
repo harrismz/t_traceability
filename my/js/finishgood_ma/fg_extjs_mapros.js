@@ -1566,7 +1566,4 @@ Ext.onReady(function() {
 				}
 			]
 		});
-
-
-
 });

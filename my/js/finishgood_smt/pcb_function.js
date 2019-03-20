@@ -225,8 +225,8 @@ function getWidthPCBSerialAOIPoint(){
 	else{
 		setwidthPCBSerialAOIPoint = false;
 	}
-	console.log('AOIPoint width = '+width);
-	console.log('AOIPoint autoSizeColumn = '+setwidthPCBSerialAOIPoint);
+	// console.log('AOIPoint width = '+width);
+	// console.log('AOIPoint autoSizeColumn = '+setwidthPCBSerialAOIPoint);
 	return setwidthPCBSerialAOIPoint;
 }
 function getFlexPCBSerialAOIPoint(){
@@ -238,8 +238,8 @@ function getFlexPCBSerialAOIPoint(){
 	else{
 		setFlexPCBSerialAOIPoint = 1;
 	}
-	console.log('AOIPoint width = '+width);
-	console.log('AOIPoint flex = '+setFlexPCBSerialAOIPoint);
+	// console.log('AOIPoint width = '+width);
+	// console.log('AOIPoint flex = '+setFlexPCBSerialAOIPoint);
 	return setFlexPCBSerialAOIPoint;
 }
 //	== MAPROS ==========================================//
