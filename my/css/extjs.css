@@ -69,6 +69,11 @@
   margin-top: 15px;
 }
 
+.empty-txt2 a {
+  font-size: 18px;
+  line-height: 20px;
+}
+
 .empty-txt-main {
   color: #CC3336;
   text-align: center;

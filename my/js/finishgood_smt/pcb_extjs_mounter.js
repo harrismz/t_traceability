@@ -139,7 +139,7 @@ Ext.onReady(function() {
             grid_smt_mounter.getView().stripeRows 			= true;
 			grid_smt_mounter.getView().deferEmptyText 		= false;
 			grid_smt_mounter.getView().enableTextSelection	= true;
-            grid_smt_mounter.getView().emptyText = '<div class="empty-txt2">Data Not Available.</div>';
+            grid_smt_mounter.getView().emptyText = '<div class="empty-txt2">Please generate your Mounter.<br><br><a href="http://136.198.117.48/mounter/index.php?content=mounter">Click Here to going to Generate Mounter System</a></div>';
             grid_smt_mounter.getView().refresh();
         });
 			
