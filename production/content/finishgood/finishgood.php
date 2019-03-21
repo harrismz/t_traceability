@@ -96,6 +96,14 @@
                 <input id="dummy-serial" class="form-control col-md-7 col-xs-12 text-uppercase" type="text" name="dummy-serial"  data-validate-length-range="13,13" placeholder="MAMST01700215" onkeypress="checkFinishgood(event)">
               </div>
             </div>
+            <!-- <div class="form-group" id="serial_avmt">
+              <label for="serial_avmt" class="control-label col-md-3 col-sm-3 col-xs-12">
+                Serial AVMT
+              </label>
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <input id="serial_avmt" class="form-control col-md-7 col-xs-12 text-uppercase" type="text" name="serial_avmt"  data-validate-length-range="13,13">
+              </div>
+            </div> -->
             <div class="ln_solid"></div>
             <div class="form-group">
               <div class="col-md-12 col-sm-12 col-xs-12 text-center">

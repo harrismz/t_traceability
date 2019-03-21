@@ -360,6 +360,10 @@ Ext.onReady(function() {
 					Ext.getStore('storeMcIssueMecha').proxy.setExtraParam('vallotno', prodNo);
 					Ext.getStore('storeMcIssueMecha').proxy.setExtraParam('valProdDate', valProdDate);
 					Ext.getStore('storeMcIssueMecha').loadPage(1);
+
+					Ext.getCmp('serial_avmt').setValue(serialNoID.substr(-8));
+					$("#serial_avmt").value = serialNoID.substr(-8);
+					console.log (serialNoID.substr(-8));
 				}
 			},
 			bbar	: Ext.create('Ext.PagingToolbar', {

@@ -1149,21 +1149,57 @@ Ext.onReady(function() {
 				enableTextSelection	: true
 			},
 			tbar		: [
-				'->',{
+				{	xtype : 'textfield',
+					id : 'serial_avmt',
+					hidden: true
+				},
+				{
 					xtype	: 'button',
 					id		: 'dlAvmt',
 					iconCls	: 'download',
-					text 	: 'Download',
+					text 	: 'Download Header',
 					tooltip	: 'Download',
 					handler : function (){
-						var valstdate 		= Ext.Date.format(new Ext.getCmp('valstdate').getValue(), 'Ymd');
-						var valendate 		= Ext.Date.format(new Ext.getCmp('valendate').getValue(), 'Ymd');
-						var valstatus 		= Ext.getCmp('valstatus').getValue();
-						var validstockcard 	= Ext.getCmp('validstockcard').getValue();
-						var valmodel 		= Ext.getCmp('valmodel').getValue();
-						var valline 		= Ext.getCmp('valline').getValue();
-						var vallotno 		= Ext.getCmp('vallotno').getValue();
-						window.open('resp/down_stockcard.php?valstdate='+valstdate+'&valendate='+valendate+'&valstatus='+valstatus+'&validstockcard='+validstockcard+'&valmodel='+valmodel+'&valline='+valline+'&vallotno='+vallotno+'');
+						var rbCheck 	= $("#valOfCategory").val();
+						var modelName 	= $("#model-name").val().toUpperCase();
+						var serialNo 	= Ext.getCmp('serial_avmt').getValue();
+						// $("#serial-no").val().toUpperCase();
+						var lotNo 		= "";
+						// $("#lot-no").val().toUpperCase();
+						var dummySerial = $("#dummy-serial").val().toUpperCase();
+
+						// console.log('rbCheck 		= '+rbCheck);
+						// console.log('modelName 		= '+modelName);
+						// console.log('serialNo 		= '+serialNo);
+						// console.log('lotNo 			= '+lotNo);
+						// console.log('dummySerial 	= '+dummySerial);
+						// console.log('resp/finishgood_ma/dlFgAvmt.php?rb='+rbCheck+'&mdl='+modelName+'&s='+serialNo+'&l='+lotNo+'&ds='+dummySerial+'');
+						window.open('resp/finishgood_ma/dlFgAvmt.php?rb='+rbCheck+'&mdl='+modelName+'&s='+serialNo+'&l='+lotNo+'&ds='+dummySerial+'');
+						window.open('resp/finishgood_ma/dlFgAvmtDetail.php?rb='+rbCheck+'&mdl='+modelName+'&s='+serialNo+'&l='+lotNo+'&ds='+dummySerial+'');
+					}
+				},
+				{
+					xtype	: 'button',
+					id		: 'dlAvmtDetail',
+					iconCls	: 'download',
+					text 	: 'Download Detail',
+					tooltip	: 'Download',
+					handler : function (){
+						var rbCheck 	= $("#valOfCategory").val();
+						var modelName 	= $("#model-name").val().toUpperCase();
+						var serialNo 	= Ext.getCmp('serial_avmt').getValue();
+						// $("#serial-no").val().toUpperCase();
+						var lotNo 		= "";
+						// $("#lot-no").val().toUpperCase();
+						var dummySerial = $("#dummy-serial").val().toUpperCase();
+
+						// console.log('rbCheck 		= '+rbCheck);
+						// console.log('modelName 		= '+modelName);
+						// console.log('serialNo 		= '+serialNo);
+						// console.log('lotNo 			= '+lotNo);
+						// console.log('dummySerial 	= '+dummySerial);
+						// console.log('resp/finishgood_ma/dlFgAvmtDetail.php?rb='+rbCheck+'&mdl='+modelName+'&s='+serialNo+'&l='+lotNo+'&ds='+dummySerial+'');
+						window.open('resp/finishgood_ma/dlFgAvmtDetail.php?rb='+rbCheck+'&mdl='+modelName+'&s='+serialNo+'&l='+lotNo+'&ds='+dummySerial+'');
 					}
 				}
 			],
