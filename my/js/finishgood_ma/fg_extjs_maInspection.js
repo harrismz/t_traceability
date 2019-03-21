@@ -1157,7 +1157,7 @@ Ext.onReady(function() {
 					xtype	: 'button',
 					id		: 'dlAvmt',
 					iconCls	: 'download',
-					text 	: 'Download Header',
+					text 	: 'Download',
 					tooltip	: 'Download',
 					handler : function (){
 						var rbCheck 	= $("#valOfCategory").val();
@@ -1168,38 +1168,16 @@ Ext.onReady(function() {
 						// $("#lot-no").val().toUpperCase();
 						var dummySerial = $("#dummy-serial").val().toUpperCase();
 
-						// console.log('rbCheck 		= '+rbCheck);
-						// console.log('modelName 		= '+modelName);
-						// console.log('serialNo 		= '+serialNo);
-						// console.log('lotNo 			= '+lotNo);
-						// console.log('dummySerial 	= '+dummySerial);
-						// console.log('resp/finishgood_ma/dlFgAvmt.php?rb='+rbCheck+'&mdl='+modelName+'&s='+serialNo+'&l='+lotNo+'&ds='+dummySerial+'');
-						window.open('resp/finishgood_ma/dlFgAvmt.php?rb='+rbCheck+'&mdl='+modelName+'&s='+serialNo+'&l='+lotNo+'&ds='+dummySerial+'');
-						window.open('resp/finishgood_ma/dlFgAvmtDetail.php?rb='+rbCheck+'&mdl='+modelName+'&s='+serialNo+'&l='+lotNo+'&ds='+dummySerial+'');
-					}
-				},
-				{
-					xtype	: 'button',
-					id		: 'dlAvmtDetail',
-					iconCls	: 'download',
-					text 	: 'Download Detail',
-					tooltip	: 'Download',
-					handler : function (){
-						var rbCheck 	= $("#valOfCategory").val();
-						var modelName 	= $("#model-name").val().toUpperCase();
-						var serialNo 	= Ext.getCmp('serial_avmt').getValue();
-						// $("#serial-no").val().toUpperCase();
-						var lotNo 		= "";
-						// $("#lot-no").val().toUpperCase();
-						var dummySerial = $("#dummy-serial").val().toUpperCase();
-
-						// console.log('rbCheck 		= '+rbCheck);
-						// console.log('modelName 		= '+modelName);
-						// console.log('serialNo 		= '+serialNo);
-						// console.log('lotNo 			= '+lotNo);
-						// console.log('dummySerial 	= '+dummySerial);
-						// console.log('resp/finishgood_ma/dlFgAvmtDetail.php?rb='+rbCheck+'&mdl='+modelName+'&s='+serialNo+'&l='+lotNo+'&ds='+dummySerial+'');
-						window.open('resp/finishgood_ma/dlFgAvmtDetail.php?rb='+rbCheck+'&mdl='+modelName+'&s='+serialNo+'&l='+lotNo+'&ds='+dummySerial+'');
+						console.log('rbCheck 		= '+rbCheck);
+						console.log('modelName 		= '+modelName);
+						console.log('serialNo 		= '+serialNo);
+						console.log('lotNo 			= '+lotNo);
+						console.log('dummySerial 	= '+dummySerial);
+						console.log('ALOW POP UP !!!');
+						console.log('resp/finishgood_ma/dlFgAvmt.php?rb='+rbCheck+'&mdl='+modelName+'&s='+serialNo+'&l='+lotNo+'&ds='+dummySerial+'');
+						window.open('resp/finishgood_ma/dlFgAvmt.php?rb='+rbCheck+'&mdl='+modelName+'&s='+serialNo+'&l='+lotNo+'&ds='+dummySerial+'', target='_blank');
+						console.log('resp/finishgood_ma/dlFgAvmtDetail.php?rb='+rbCheck+'&mdl='+modelName+'&s='+serialNo+'&l='+lotNo+'&ds='+dummySerial+'');
+						window.open('resp/finishgood_ma/dlFgAvmtDetail.php?rb='+rbCheck+'&mdl='+modelName+'&s='+serialNo+'&l='+lotNo+'&ds='+dummySerial+'', target='_blank');
 					}
 				}
 			],
