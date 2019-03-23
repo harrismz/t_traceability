@@ -438,3 +438,17 @@ function checkFinishgood(event){
 
 	}
 }
+function downloadFinishgood(){
+	var rbCheck 	= $("#valOfCategory").val();
+	var modelName 	= $("#model-name").val().toUpperCase();
+	var serialNo 	= $("#serial-no").val().toUpperCase();
+	var lotNo 		= $("#lot-no").val().toUpperCase();
+	var dummySerial = $("#dummy-serial").val().toUpperCase();
+
+	console.log('rbCheck 		= '+rbCheck);
+	console.log('modelName 		= '+modelName);
+	console.log('serialNo 		= '+serialNo);
+	console.log('lotNo 			= '+lotNo);
+	console.log('dummySerial 	= '+dummySerial);
+	window.open('resp/finishgood_ma/dlFgOCS.php?rb='+rbCheck+'&mdl='+modelName+'&s='+serialNo+'&l='+lotNo+'&ds='+dummySerial+'');
+}
