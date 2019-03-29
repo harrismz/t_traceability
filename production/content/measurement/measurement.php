@@ -61,7 +61,7 @@
           </div>
         </div>
   <!-- TORQUE METER   -->
-        <div  id="torque_tab" class="row">
+        <div  id="torque_tab" class="row" hidden>
           <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
               <div class="x_title">
@@ -91,7 +91,7 @@
           </div>
         </div>
   <!-- TEMPERATURE   -->
-       <div id="temperature_tab" class="row">
+       <div id="temperature_tab" class="row" hidden>
           <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
               <div class="x_title">
@@ -121,7 +121,7 @@
           </div> 
         </div>
   <!-- PARTICLE   -->
-        <div id="particle_tab" class="row">
+        <div id="particle_tab" class="row" hidden>
           <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
               <div class="x_title">
