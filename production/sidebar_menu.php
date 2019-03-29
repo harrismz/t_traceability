@@ -11,9 +11,9 @@
     <div class="menu_section">
       <ul class="nav side-menu">
         <li><a href="home.php?content=finishgood_smt"><i class="fas fa-microchip"></i> PCB Serial </a></li>
-        <li><a href="home.php?content=finishgood"><i class="fas fa-box"></i> Finished Goods </a></li>
+        <li><a href="home.php?content=finishgood"><i class="fas fa-box-open"></i> Finished Goods </a></li>
         <li><a href="home.php?content=measurement"><i class="fas fa-thermometer-half"></i> Measurement </a></li>
-        <li><a href="home.php?content=measureDcOffset"><i class="fas fa-thermometer-half"></i> DC Offset </a></li>
+        <li><a href="home.php?content=measureDcOffset"><i class="fas fa-bolt"></i> DC Offset </a></li>
       </ul>
     </div>
   </div>

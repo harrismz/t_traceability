@@ -109,53 +109,107 @@ function convertToRupiah(angka){
 	for(var i = 0; i < angkarev.length; i++) if(i%3 == 0) rupiah += angkarev.substr(i,3)+'.';
 	return rupiah.split('',rupiah.length-1).reverse().join('');
 }
+
+
+// function numeric(val) {
+// 	if (val > 0) {		
+// 		return '<font style="font-family:Roboto; white-space:normal; color:green; float:right;">' + convertToRupiah(val) + '</font>';
+// 	} else if (val <= 0) {
+// 		return '<font style="font-family:Roboto; white-space:normal; color:red; float:right;">' + convertToRupiah(val) + '</font>';
+// 	} else {
+// 		return '<font style="font-family:Roboto; white-space:normal; color:gray; float:right;">' + val + '</font>';
+// 	}
+// 	return val;
+// }
+// function numericStyle(val) {
+// 	return '<font style="font-family:Roboto; white-space:normal; color:black; float:right;">' + val + '</font>';	
+// }
+// function fontstyle(val) {
+// 	return '<font style="font-family:Roboto; white-space:normal; line-height:1.5;">' + val + '</font>';
+// }
+// function combinecolsinput(value, meta, record, rowIndex, colIndex, store) {
+// 	value2 = record.get('input_date');
+// 	return '<font style="font-family:Roboto; white-space:normal; line-height:1.5;">' + value + '<br>' + value2 + '</font>';
+// }
+// function combinecolsupdate(value, meta, record, rowIndex, colIndex, store) {
+// 	value3 = record.get('update_date');
+// 	return '<font style="font-family:Roboto; white-space:normal; line-height:1.5;">' + value + '<br>' + value3 + '</font>';
+// }
+// function combinemodelserial(value, meta, record, rowIndex, colIndex, store) {
+// 	value4 = record.get('serial');
+// 	return '<font style="font-family:Roboto; white-space:normal; line-height:1.5;">' + value + '<br>' + value4 + '</font>';
+// }
+// function fontStatus(val) {
+// 	if (val == 'WAITING CHECK') {
+// 		return '<font style="font-family:Roboto; white-space:normal; line-height:1.5; color:gray;">' + val + '</font>';
+// 	} else if (val == 'ACCEPTED' || val == 'SHIPPING') {
+// 		return '<font style="font-family:Roboto; white-space:normal; line-height:1.5; color:green; font-weight:bold;">' + val + '</font>';
+// 	} else if (val == 'REJECTED' || val == 'HOLD' || val == 'BORROW') {
+// 		return '<font style="font-family:Roboto; white-space:normal; line-height:1.5; color:red;">' + val + '</font>';
+// 	} else if (val == 'RELEASE') {
+// 		return '<font style="font-family:Roboto; white-space:normal; line-height:1.5; color:blue; font-weight:bold;">' + val + '</font>';
+// 	} else if (val == 'READY') {
+// 		return '<font style="font-family:Roboto; white-space:normal; color:blue;"> RETURN </font>';
+// 	} else if (val == 'YES') {
+// 		return '<font style="font-family:Roboto; white-space:normal; color:green;"> ALREADY<br>SHIPPING </font>';
+// 	} else if (val == 'NO') {
+// 		return '<font style="font-family:Roboto; white-space:normal; color:red;"> WAITING<br>SHIPPING </font>';
+// 	} else if (val == '') {
+// 		return '<font style="font-family:Roboto; white-space:normal; color:red;"> NO ID </font>';
+// 	} else {
+// 		return '<font style="font-family:Roboto; white-space:normal; line-height:1.5; color:black;">' + val + '</font>';
+// 	}
+// 	return val;
+// }
+
+
 function numeric(val) {
 	if (val > 0) {		
-		return '<font style="font-family:Roboto; white-space:normal; color:green; float:right;">' + convertToRupiah(val) + '</font>';
+		return '<font style="white-space:normal; color:green; float:right;">' + convertToRupiah(val) + '</font>';
 	} else if (val <= 0) {
-		return '<font style="font-family:Roboto; white-space:normal; color:red; float:right;">' + convertToRupiah(val) + '</font>';
+		return '<font style="white-space:normal; color:red; float:right;">' + convertToRupiah(val) + '</font>';
 	} else {
-		return '<font style="font-family:Roboto; white-space:normal; color:gray; float:right;">' + val + '</font>';
+		return '<font style="white-space:normal; color:gray; float:right;">' + val + '</font>';
 	}
 	return val;
 }
 function numericStyle(val) {
-	return '<font style="font-family:Roboto; white-space:normal; color:black; float:right;">' + val + '</font>';	
+	return '<font style="white-space:normal; color:black; float:right;">' + val + '</font>';	
 }
 function fontstyle(val) {
-	return '<font style="font-family:Roboto; white-space:normal; line-height:1.5;">' + val + '</font>';
+	return '<font style="white-space:normal; line-height:1.5;">' + val + '</font>';
 }
 function combinecolsinput(value, meta, record, rowIndex, colIndex, store) {
 	value2 = record.get('input_date');
-	return '<font style="font-family:Roboto; white-space:normal; line-height:1.5;">' + value + '<br>' + value2 + '</font>';
+	return '<font style="white-space:normal; line-height:1.5;">' + value + '<br>' + value2 + '</font>';
 }
 function combinecolsupdate(value, meta, record, rowIndex, colIndex, store) {
 	value3 = record.get('update_date');
-	return '<font style="font-family:Roboto; white-space:normal; line-height:1.5;">' + value + '<br>' + value3 + '</font>';
+	return '<font style="white-space:normal; line-height:1.5;">' + value + '<br>' + value3 + '</font>';
 }
 function combinemodelserial(value, meta, record, rowIndex, colIndex, store) {
 	value4 = record.get('serial');
-	return '<font style="font-family:Roboto; white-space:normal; line-height:1.5;">' + value + '<br>' + value4 + '</font>';
+	return '<font style="white-space:normal; line-height:1.5;">' + value + '<br>' + value4 + '</font>';
 }
 function fontStatus(val) {
 	if (val == 'WAITING CHECK') {
-		return '<font style="font-family:Roboto; white-space:normal; line-height:1.5; color:gray;">' + val + '</font>';
+		return '<font style="white-space:normal; line-height:1.5; color:gray;">' + val + '</font>';
 	} else if (val == 'ACCEPTED' || val == 'SHIPPING') {
-		return '<font style="font-family:Roboto; white-space:normal; line-height:1.5; color:green; font-weight:bold;">' + val + '</font>';
+		return '<font style="white-space:normal; line-height:1.5; color:green; font-weight:bold;">' + val + '</font>';
 	} else if (val == 'REJECTED' || val == 'HOLD' || val == 'BORROW') {
-		return '<font style="font-family:Roboto; white-space:normal; line-height:1.5; color:red;">' + val + '</font>';
+		return '<font style="white-space:normal; line-height:1.5; color:red;">' + val + '</font>';
 	} else if (val == 'RELEASE') {
-		return '<font style="font-family:Roboto; white-space:normal; line-height:1.5; color:blue; font-weight:bold;">' + val + '</font>';
+		return '<font style="white-space:normal; line-height:1.5; color:blue; font-weight:bold;">' + val + '</font>';
 	} else if (val == 'READY') {
-		return '<font style="font-family:Roboto; white-space:normal; color:blue;"> RETURN </font>';
+		return '<font style="white-space:normal; color:blue;"> RETURN </font>';
 	} else if (val == 'YES') {
-		return '<font style="font-family:Roboto; white-space:normal; color:green;"> ALREADY<br>SHIPPING </font>';
+		return '<font style="white-space:normal; color:green;"> ALREADY<br>SHIPPING </font>';
 	} else if (val == 'NO') {
-		return '<font style="font-family:Roboto; white-space:normal; color:red;"> WAITING<br>SHIPPING </font>';
+		return '<font style="white-space:normal; color:red;"> WAITING<br>SHIPPING </font>';
 	} else if (val == '') {
-		return '<font style="font-family:Roboto; white-space:normal; color:red;"> NO ID </font>';
+		return '<font style="white-space:normal; color:red;"> NO ID </font>';
 	} else {
-		return '<font style="font-family:Roboto; white-space:normal; line-height:1.5; color:black;">' + val + '</font>';
+		return '<font style="white-space:normal; line-height:1.5; color:black;">' + val + '</font>';
 	}
 	return val;
 }

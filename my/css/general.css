@@ -5,8 +5,9 @@
 @import url("../../../framework/extjs-6.2.0/build/classic/theme-crisp/resources/theme-crisp-all.css");
 @import url("../../build/css/custom.min.css");
 @import url("../../my/css/extjs.css");
-@import url('../../docs/fonts/fonts/Asul/Asul-Regular.ttf');
-@import url('../../docs/fonts/fonts/Asul/Asul-Bold.ttf');
+
+/*@import url('../../docs/fonts/fonts/Asul/Asul-Regular.ttf');
+@import url('../../docs/fonts/fonts/Asul/Asul-Bold.ttf');*/
 
 .nav li > a {
   font-size: 14px;
