@@ -135,12 +135,26 @@ Ext.onReady(function() {
 	    			var spidate 	= store_smt_spi.getAt(0).get('inspectiondate');
 	    			// var boardid 	= document.getElementById('pcbserial').value;
 	    			var boardid 	= rec[0].data.barcode;
+					console.log('SPI SELECTED : '+boardid);
 
 	    			Ext.getStore('store_smt_reflow').proxy.setExtraParam('boardid', boardid);
 					Ext.getStore('store_smt_reflow').proxy.setExtraParam('smt_date', spidate);
 					Ext.getStore('store_smt_reflow').loadPage(1);	
 					Ext.getStore('store_smt_mounter_header').proxy.setExtraParam('boardid', boardid);
 					Ext.getStore('store_smt_mounter_header').loadPage(1);
+
+	    			Ext.getStore('store_good_smt_aoi_board').proxy.setExtraParam('boardid', boardid);
+	    			Ext.getStore('store_good_smt_aoi_board').proxy.setExtraParam('model', '');
+	    			Ext.getStore('store_good_smt_aoi_board').proxy.setExtraParam('lotno', '');
+	    			Ext.getStore('store_good_smt_aoi_board').proxy.setExtraParam('pwbname', '');
+	    			Ext.getStore('store_good_smt_aoi_board').proxy.setExtraParam('side', '');
+					Ext.getStore('store_good_smt_aoi_board').loadPage(1);
+					Ext.getStore('store_good_smt_aoi_point').proxy.setExtraParam('boardid', boardid);
+					Ext.getStore('store_good_smt_aoi_point').proxy.setExtraParam('model', '');
+					Ext.getStore('store_good_smt_aoi_point').proxy.setExtraParam('lotno', '');
+					Ext.getStore('store_good_smt_aoi_point').proxy.setExtraParam('pwbname', '');
+					Ext.getStore('store_good_smt_aoi_point').proxy.setExtraParam('side', '');
+					Ext.getStore('store_good_smt_aoi_point').loadPage(1);
 	    		}
 	    	},
 			bbar	: Ext.create('Ext.PagingToolbar', {
