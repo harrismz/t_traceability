@@ -219,7 +219,7 @@ function getFlexPCBSerialAOIBoard(){
 function getWidthPCBSerialAOIPoint(){
 	var width = $('html').width();
 	var setwidthPCBSerialAOIPoint = "";
-	if (width <= 1043) {
+	if (width <= 900) {
 		setwidthPCBSerialAOIPoint = true;
 	}
 	else{
@@ -232,7 +232,7 @@ function getWidthPCBSerialAOIPoint(){
 function getFlexPCBSerialAOIPoint(){
 	var width = $('html').width();
 	var	setFlexPCBSerialAOIPoint = "";
-	if (width <= 1043) {
+	if (width <= 900) {
 		setFlexPCBSerialAOIPoint = false;
 	}
 	else{
