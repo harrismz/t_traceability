@@ -172,6 +172,31 @@ function downloadSpi(){
 		window.open('resp/pcb_serial/dlPcbSpi.php?pcb=&mdl='+model+'&l='+lotno+'&pwb='+pwbname+'&sd='+side+'');
 	}
 }
+function downloadMounter(){
+	var pcbserial = document.getElementById('pcbserial').value;
+	var pcbmounter = document.getElementById('pcbmounter').value;
+	var side = document.getElementById('spiSide').value;
+	var splits = pcbserial.split('/');
+	var model = splits[0];
+	var lotno = splits[1];
+	var pwbname = splits[2];
+
+	console.log('pcbmounter : '+pcbmounter);
+	console.log('pcbserial : '+pcbserial);
+	console.log('model : '+model);
+	console.log('lotno : '+lotno);
+	console.log('pwbname : '+pwbname);
+	console.log('side : '+side);
+
+	if (typeof lotno === 'undefined'){
+		console.log('DOWNLOAD MOUNTER PCB SERIAL');
+		window.open('resp/pcb_serial/dlPcbMounter.php?pcb='+pcbserial+'&mdl=&l=&pwb=&sd=');
+	}
+	else{
+		console.log('DOWNLOAD MOUNTER MODEL LOTNO');
+		window.open('resp/pcb_serial/dlPcbMounter.php?pcb='+pcbmounter+'&mdl=&l=&pwb=&sd=');
+	}
+}
 function downloadAOI(){
 	var pcbserial = document.getElementById('pcbserial').value;
 	var side = document.getElementById('spiSide').value;

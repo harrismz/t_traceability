@@ -254,7 +254,8 @@
             <h2><i class="far fa-calendar-check"></i> MOUNTER  <small> ( SMT ) </small></h2>
           </div>
           <div class="col-md-4">
-            <button id="dlFinishgood" type="button" class="btn btn-info pull-right" onclick="downloadFinishgood()">
+            <input type="text" id="pcbmounter" hidden/>
+            <button id="dlFinishgood" type="button" class="btn btn-info pull-right" onclick="downloadMounter()">
               <i class="fas fa-download"></i>
               &nbsp;&nbsp;Download
             </button>
