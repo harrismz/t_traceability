@@ -152,6 +152,7 @@ function downloadBigs(){
 function downloadSpi(){
 	var pcbserial = document.getElementById('pcbserial').value;
 	var side = document.getElementById('spiSide').value;
+	var totcavity = document.getElementById('bigcavity').value;
 	var splits = pcbserial.split('/');
 	var model = splits[0];
 	var lotno = splits[1];
@@ -162,14 +163,15 @@ function downloadSpi(){
 	console.log('lotno : '+lotno);
 	console.log('pwbname : '+pwbname);
 	console.log('side : '+side);
+	console.log('totcavity : '+totcavity);
 
 	if (typeof lotno === 'undefined'){
 		console.log('DOWNLOAD SPI PCB SERIAL');
-		window.open('resp/pcb_serial/dlPcbSpi.php?pcb='+pcbserial+'&mdl=&l=&pwb=&sd=');
+		window.open('resp/pcb_serial/dlPcbSpi.php?pcb='+pcbserial+'&mdl=&l=&pwb=&sd=&tc='+totcavity+'');
 	}
 	else{
 		console.log('DOWNLOAD SPI MODEL LOTNO');
-		window.open('resp/pcb_serial/dlPcbSpi.php?pcb=&mdl='+model+'&l='+lotno+'&pwb='+pwbname+'&sd='+side+'');
+		window.open('resp/pcb_serial/dlPcbSpi.php?pcb=&mdl='+model+'&l='+lotno+'&pwb='+pwbname+'&sd='+side+'&tc='+totcavity+'');
 	}
 }
 function downloadMounter(){

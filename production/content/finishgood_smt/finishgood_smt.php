@@ -221,6 +221,7 @@
             <h2><i class="far fa-calendar-check"></i> SPI  <small> ( SMT ) </small></h2>
           </div>
           <div class="col-md-4">
+            <input type="text" id="bigcavity" hidden/>
             <input type="text" id="spiSide" hidden/>
             <button id="dlSpi" type="button" class="btn btn-info pull-right" onclick="downloadSpi()">
               <i class="fas fa-download"></i>

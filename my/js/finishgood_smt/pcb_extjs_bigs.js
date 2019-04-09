@@ -198,6 +198,9 @@ Ext.onReady(function() {
 
 				document.getElementById('spiSide').value = '';
 				document.getElementById('spiSide').value = side;
+				document.getElementById('bigcavity').value = '';
+				document.getElementById('bigcavity').value = totCavity;
+				
 				if (typeof lotno === 'undefined'){
 
 					console.log('board id :: '+boardid);
