@@ -107,7 +107,7 @@
             $return[$i]['process']      = trim($rs_big24->fields['9']);
             $return[$i]['qty']          = trim($rs_big24->fields['10']);
             $return[$i]['ynumber']      = trim($rs_big24->fields['11']);
-            $return[$i]['start_serial'] = trim($rs_big24->fields['10']);
+            $return[$i]['start_serial'] = trim($rs_big24->fields['12']);
            
             $rs_big24->MoveNext();
         }
