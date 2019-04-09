@@ -10,11 +10,11 @@
     $lotno    = @$_REQUEST['lotno'];
     $pwbname    = @$_REQUEST['pwbname'];
     $side    = @$_REQUEST['side'];
-    $totcavity  = @$_REQUEST['totcavity'];
+    $totcavity  = @$_REQUEST['cavity'];
 
     $sql        = " DECLARE  @return_value int,
                             @totalcount int
-                    EXEC    @return_value = [dbo].[traceability_good_smt_spi_rev3]
+                    EXEC    @return_value = [dbo].[traceability_good_smt_spi_rev4]
                             @start = '{$start}',
                             @maxct = '{$limit}',
                             @boardid = N'{$boardid}',
@@ -22,6 +22,7 @@
                             @lotno = N'{$lotno}',
                             @pwbno = N'{$pwbname}',
                             @side = N'{$side}',
+                            @totcavity = N'{$totcavity}',
                             @totalcount = @totalcount OUTPUT";
     $rs         = $db->Execute($sql);
     $totalcount = $rs->fields['10'];

@@ -184,7 +184,12 @@ Ext.onReady(function() {
     			var srcModel	= rec[0].data.model;
     			var srcPwbname  = rec[0].data.pwbname;
     			var side  		= rec[0].data.side;
-				
+    			
+    			var side  		= rec[0].data.side;
+    			var sserial 	= rec[0].data.start_serial;
+    			var dmsides 	= rec[0].data.process;
+    			var srcprodno 	= rec[0].data.prod_no;
+			
     			var boardid 	= document.getElementById('pcbserial').value;
     			var splits 		= boardid.split('/');
 				var model 		= splits[0];
@@ -194,6 +199,9 @@ Ext.onReady(function() {
 				document.getElementById('spiSide').value = '';
 				document.getElementById('spiSide').value = side;
 				if (typeof lotno === 'undefined'){
+
+					console.log('board id :: '+boardid);
+					console.log('totcavity :: '+totCavity);
 
 					Ext.getStore('store_smt_repair').proxy.setExtraParam('src_boardid', boardid);
 					Ext.getStore('store_smt_repair').proxy.setExtraParam('model', '');
@@ -206,14 +214,29 @@ Ext.onReady(function() {
 					Ext.getStore('store_smt_spi').proxy.setExtraParam('lotno', '');
 					Ext.getStore('store_smt_spi').proxy.setExtraParam('pwbname', '');
 					Ext.getStore('store_smt_spi').proxy.setExtraParam('side', '');
+					Ext.getStore('store_smt_spi').proxy.setExtraParam('cavity', totCavity);
 					Ext.getStore('store_smt_spi').loadPage(1);
 					Ext.getStore('store_mapros_board').proxy.setExtraParam('cavity', totCavity);
 					Ext.getStore('store_mapros_board').proxy.setExtraParam('model', srcModel);
 					Ext.getStore('store_mapros_board').proxy.setExtraParam('pwbname', srcPwbname);
 					Ext.getStore('store_mapros_board').proxy.setExtraParam('lotno', '');
 					Ext.getStore('store_mapros_board').proxy.setExtraParam('side', '');
+					
+					Ext.getStore('storeSmtQuality').proxy.setExtraParam('model', srcModel)
+					Ext.getStore('storeSmtQuality').proxy.setExtraParam('start_serial', sserial)
+					Ext.getStore('storeSmtQuality').proxy.setExtraParam('pcbname', srcPwbname)
+					Ext.getStore('storeSmtQuality').proxy.setExtraParam('lotno', srcprodno)
+					Ext.getStore('storeSmtQuality').proxy.setExtraParam('dmsides',dmsides)
 				}
 				else{
+					console.log('board id :: '+boardid);
+					console.log('model :: '+model);
+					console.log('lotno :: '+lotno);
+					console.log('pwbname :: '+pwbname);
+					console.log('side :: '+side);
+					console.log('totcavity :: '+totCavity);
+
+
 					Ext.getStore('store_smt_repair').proxy.setExtraParam('src_boardid', '');
 					Ext.getStore('store_smt_repair').proxy.setExtraParam('model', model);
 					Ext.getStore('store_smt_repair').proxy.setExtraParam('lotno', lotno);
@@ -225,6 +248,7 @@ Ext.onReady(function() {
 					Ext.getStore('store_smt_spi').proxy.setExtraParam('lotno', lotno);
 					Ext.getStore('store_smt_spi').proxy.setExtraParam('pwbname', pwbname);
 					Ext.getStore('store_smt_spi').proxy.setExtraParam('side', side);
+					Ext.getStore('store_smt_spi').proxy.setExtraParam('cavity', totCavity);
 					Ext.getStore('store_smt_spi').loadPage(1);
 					Ext.getStore('store_good_smt_aoi_board').proxy.setExtraParam('boardid', '');
 					Ext.getStore('store_good_smt_aoi_board').proxy.setExtraParam('model', model);
@@ -237,11 +261,25 @@ Ext.onReady(function() {
 					Ext.getStore('store_good_smt_aoi_point').proxy.setExtraParam('pwbname', pwbname);
 					Ext.getStore('store_good_smt_aoi_point').proxy.setExtraParam('side', side);
 
+					Ext.getStore('storeSmtQuality').proxy.setExtraParam('model', srcModel)
+					Ext.getStore('storeSmtQuality').proxy.setExtraParam('start_serial', sserial)
+					Ext.getStore('storeSmtQuality').proxy.setExtraParam('pcbname', srcPwbname)
+					Ext.getStore('storeSmtQuality').proxy.setExtraParam('lotno', srcprodno)
+					Ext.getStore('storeSmtQuality').proxy.setExtraParam('dmsides',dmsides)
+					
+					Ext.getStore('storeSmtProdRes').proxy.setExtraParam('model', srcModel)
+					Ext.getStore('storeSmtProdRes').proxy.setExtraParam('start_serial', '')
+					Ext.getStore('storeSmtProdRes').proxy.setExtraParam('pcbname', '')
+					Ext.getStore('storeSmtProdRes').proxy.setExtraParam('lotno', srcprodno)
+					Ext.getStore('storeSmtProdRes').proxy.setExtraParam('dmsides','')
+					Ext.getStore('storeSmtProdRes').proxy.setExtraParam('src_cat','ml')
+
 					Ext.getStore('store_mapros_board').proxy.setExtraParam('cavity', totCavity);
 					Ext.getStore('store_mapros_board').proxy.setExtraParam('model', srcModel);
 					Ext.getStore('store_mapros_board').proxy.setExtraParam('pwbname', '');
 					Ext.getStore('store_mapros_board').proxy.setExtraParam('lotno', lotno);
 					Ext.getStore('store_mapros_board').proxy.setExtraParam('side', side);
+
 					
 				}
     		}
