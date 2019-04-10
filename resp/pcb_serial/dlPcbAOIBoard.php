@@ -15,10 +15,11 @@ $model 		= @$_REQUEST['mdl'];
 $lotno 		= @$_REQUEST['l'];
 $pwbname 	= @$_REQUEST['pwb'];
 $side 		= @$_REQUEST['sd'];
+$totcavity	= @$_REQUEST['tc'];
 $pjgboard 	= strlen($boardid);
 
 try{
-	$sql    = "exec download_aoiBoard '{$boardid}','{$model}','{$lotno}','{$pwbname}','{$side}'";
+	$sql    = "exec download_aoiBoard '{$boardid}','{$model}','{$lotno}','{$pwbname}','{$side}','{$totcavity}'";
 	$rs_board     = $db->Execute($sql);
 	$return = array();
 }
