@@ -19,7 +19,7 @@ $totcavity	= @$_REQUEST['tc'];
 $pjgboard 	= strlen($boardid);
 
 try{
-	echo $sql    = "exec download_aoiBoard '{$boardid}','{$model}','{$lotno}','{$pwbname}','{$side}','{$totcavity}'";
+	$sql    = "exec download_aoiBoard '{$boardid}','{$model}','{$lotno}','{$pwbname}','{$side}','{$totcavity}'";
 	$rs_board     = $db->Execute($sql);
 	$return = array();
 }
