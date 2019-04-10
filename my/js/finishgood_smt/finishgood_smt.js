@@ -202,6 +202,7 @@ function downloadMounter(){
 function downloadAOI(){
 	var pcbserial = document.getElementById('pcbserial').value;
 	var side = document.getElementById('spiSide').value;
+	var totcavity = document.getElementById('bigcavity').value;
 	var splits = pcbserial.split('/');
 	var model = splits[0];
 	var lotno = splits[1];
@@ -212,15 +213,16 @@ function downloadAOI(){
 	console.log('lotno : '+lotno);
 	console.log('pwbname : '+pwbname);
 	console.log('side : '+side);
+	console.log('totcavity : '+totcavity);
 
 	if (typeof lotno === 'undefined'){
 		console.log('DOWNLOAD AOI PCB SERIAL');
-		window.open('resp/pcb_serial/dlPcbAOIBoard.php?pcb='+pcbserial+'&mdl=&l=&pwb=&sd=');
-		window.open('resp/pcb_serial/dlPcbAOIPoint.php?pcb='+pcbserial+'&mdl=&l=&pwb=&sd=');
+		window.open('resp/pcb_serial/dlPcbAOIBoard.php?pcb='+pcbserial+'&mdl=&l=&pwb=&sd=&tc='+totcavity+'');
+		window.open('resp/pcb_serial/dlPcbAOIPoint.php?pcb='+pcbserial+'&mdl=&l=&pwb=&sd=&tc='+totcavity+'');
 	}
 	else{
 		console.log('DOWNLOAD AOI MODEL LOTNO');
-		window.open('resp/pcb_serial/dlPcbAOIBoard.php?pcb=&mdl='+model+'&l='+lotno+'&pwb='+pwbname+'&sd='+side+'');
-		window.open('resp/pcb_serial/dlPcbAOIPoint.php?pcb=&mdl='+model+'&l='+lotno+'&pwb='+pwbname+'&sd='+side+'');
+		window.open('resp/pcb_serial/dlPcbAOIBoard.php?pcb=&mdl='+model+'&l='+lotno+'&pwb='+pwbname+'&sd='+side+'&tc='+totcavity+'');
+		window.open('resp/pcb_serial/dlPcbAOIPoint.php?pcb=&mdl='+model+'&l='+lotno+'&pwb='+pwbname+'&sd='+side+'&tc='+totcavity+'');
 	}
 }
