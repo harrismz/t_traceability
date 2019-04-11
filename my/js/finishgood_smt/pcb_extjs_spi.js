@@ -136,6 +136,7 @@ Ext.onReady(function() {
 	    			// var boardid 	= document.getElementById('pcbserial').value;
 	    			var boardid 	= rec[0].data.barcode;
 	    			$("#pcbmounter").val(boardid);
+	    			$("#smtdate").val(spidate);
 					console.log('SPI SELECTED : '+boardid);
 
 	    			Ext.getStore('store_smt_reflow').proxy.setExtraParam('boardid', boardid);

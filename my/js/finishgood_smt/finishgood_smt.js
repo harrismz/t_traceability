@@ -174,6 +174,35 @@ function downloadSpi(){
 		window.open('resp/pcb_serial/dlPcbSpi.php?pcb=&mdl='+model+'&l='+lotno+'&pwb='+pwbname+'&sd='+side+'&tc='+totcavity+'');
 	}
 }
+function downloadReflow(){
+	// var pcbserial = document.getElementById('pcbserial').value;
+	var pcbserial = document.getElementById('pcbmounter').value;
+	var side = document.getElementById('spiSide').value;
+	var totcavity = document.getElementById('bigcavity').value;
+	var smtdate = document.getElementById('smtdate').value;
+	var splits = pcbserial.split('/');
+	var model = splits[0];
+	var lotno = splits[1];
+	var pwbname = splits[2];
+
+	console.log('pcbserial : '+pcbserial);
+	console.log('model : '+model);
+	console.log('lotno : '+lotno);
+	console.log('pwbname : '+pwbname);
+	console.log('side : '+side);
+	console.log('totcavity : '+totcavity);
+	console.log('smt date : '+smtdate);
+
+	if (typeof lotno === 'undefined'){
+		console.log('DOWNLOAD REFLOW PCB SERIAL');
+		window.open('resp/pcb_serial/dlPcbReflow.php?pcb='+pcbserial+'&smtdt='+smtdate+'&mdl=&l=&pwb=&sd=&tc='+totcavity+'');
+	}
+	else{
+		console.log('DOWNLOAD REFLOW MODEL LOTNO');
+		window.open('resp/pcb_serial/dlPcbReflow.php?pcb='+pcbserial+'&smtdt='+smtdate+'&mdl=&l=&pwb=&sd=&tc='+totcavity+'');
+		// window.open('resp/pcb_serial/dlPcbReflow.php?pcb=&smtdt='+smtdate+'&mdl='+model+'&l='+lotno+'&pwb='+pwbname+'&sd='+side+'&tc='+totcavity+'');
+	}
+}
 function downloadMounter(){
 	var pcbserial = document.getElementById('pcbserial').value;
 	var pcbmounter = document.getElementById('pcbmounter').value;
