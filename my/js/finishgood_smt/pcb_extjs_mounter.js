@@ -9,7 +9,7 @@ Ext.onReady(function() {
             extend: 'Ext.data.Model',
 			fields: ['row','line','boardid','model','pwbno','pwbname','process','lotno',
             			'datein','dateout','jobno','partloc','mode','partno','feeder',
-            			'feederserial','feederno','compid1','scandate','lot']
+            			'feederserial','feederno','compid1','scandate','lot','compid2']
        	});
 	           	
            	
@@ -91,7 +91,11 @@ Ext.onReady(function() {
 				stripeRows 			: true,
 				emptyText 	 		: '<div class="empty-txt">Select Header of Mounter for this result.</div>',
 				deferEmptyText 		: false,
-				enableTextSelection	: true
+				enableTextSelection	: true,
+				getRowClass			: function(record, rowIndex, rowParams, store) {
+					if (record.get('mode')==='Rework-01 - Mode4') return 'colorout';
+					else return 'colorin';
+				},
 			},
 			columns 	: [
 				{ 	header : 'NO',				dataIndex : 'row', 			componentCls: 'headergrid',	width : 50,		renderer : upsize },
@@ -104,11 +108,12 @@ Ext.onReady(function() {
 				{ 	header : 'LOT NO', 			dataIndex : 'lotno', 		width : 75, 	renderer : upsize,	hidden : true },
 				{ 	header : 'LOCATION', 		dataIndex : 'partloc', 		componentCls: 'headergrid',	width : 90, 	renderer : upsize },
 				{ 	header : 'MODE',			dataIndex : 'mode', 		componentCls: 'headergrid',	width : 75,		renderer : upsize },
+				{ 	header : 'COMPID 1', 		dataIndex : 'compid1', 		componentCls: 'headergrid',	width : 140,	renderer : upsize },
+				{ 	header : 'COMPID 2', 		dataIndex : 'compid2', 		componentCls: 'headergrid',	width : 140,	renderer : upsize },
 				{ 	header : 'PARTNO', 			dataIndex : 'partno', 		componentCls: 'headergrid',	width : 120, 	renderer : upsize },
 				{ 	header : 'FEEDER', 			dataIndex : 'feeder', 		componentCls: 'headergrid',	width : 75, 	renderer : upsize },
 				{ 	header : 'FEEDER SERIAL', 	dataIndex : 'feederserial',	componentCls: 'headergrid',	width : 130,	renderer : upsize },
 				{ 	header : 'FEEDER NO', 		dataIndex : 'feederno', 	componentCls: 'headergrid',	width : 100,	renderer : upsize },
-				{ 	header : 'SCANNING', 		dataIndex : 'compid1', 		componentCls: 'headergrid',	width : 140,	renderer : upsize },
 				{ 	header : 'LOT', 			dataIndex : 'lot', 			componentCls: 'headergrid',	width : 90,		renderer : upsize },
 				{ 	header : 'JOBNO', 			dataIndex : 'jobno', 		componentCls: 'headergrid',	width : 150, 	renderer : upsize }
 			],

@@ -45,14 +45,14 @@ try{
 	$return = array();
 
 	$fp = fopen("php://output", "w");
-	$headers = 'LINE, PCB SERIAL, MODEL, PWB NO, PWB NAME, PROCESS, LOT NO, DATE IN, DATE OUT, JOB NO, PART LOC, MODE, PART NO, FEEDER, FEEDER SERIAL, FEEDER NO, COMP ID, SCAN DATE, START SERIAL' . "\n";
+	$headers = 'LINE, PCB SERIAL, MODEL, PWB NO, PWB NAME, PROCESS, LOT NO, DATE IN, DATE OUT, JOB NO, PART LOC, MODE, PART NO, FEEDER, FEEDER SERIAL, FEEDER NO, COMPID 1, COMPID 2, SCAN DATE, START SERIAL' . "\n";
 	fwrite($fp,$headers);
 	while(!$rs->EOF){
 		fputcsv($fp, array(	$rs->fields['0'], $rs->fields['1'], $rs->fields['2'], $rs->fields['3'], 
 							$rs->fields['4'], $rs->fields['5'], $rs->fields['6'], $rs->fields['7'], 
 							$rs->fields['8'], $rs->fields['9'], $rs->fields['10'], $rs->fields['11'], 
 							$rs->fields['12'], $rs->fields['13'], $rs->fields['14'], $rs->fields['15'], 
-							$rs->fields['16'], $rs->fields['17'], $rs->fields['18']
+							$rs->fields['16'], $rs->fields['19'], $rs->fields['17'], $rs->fields['18']
 							));
 		$rs->MoveNext();
 	}
