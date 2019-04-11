@@ -209,7 +209,7 @@ function fontStatus(val) {
 	} else if (val == '') {
 		return '<font style="white-space:normal; color:red;"> NO ID </font>';
 	} else {
-		return '<font style="white-space:normal; line-height:1.5; color:black;">' + val + '</font>';
+		return '<font style="color:black;">' + val + '</font>';
 	}
 	return val;
 }

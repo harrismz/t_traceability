@@ -295,9 +295,6 @@ Ext.onReady(function() {
     		select: function(grid, rowIndex, colIndex) {
     			var rec 		= this.getSelectionModel().getSelection();
     			var boardid 	= document.getElementById('pcbserial').value;
-
-    			Ext.getStore('store_mapros_board').proxy.setExtraParam('boardid', boardid);
-				Ext.getStore('store_mapros_board').loadPage(1);
     		}
     	},
 		bbar	: Ext.create('Ext.PagingToolbar', {

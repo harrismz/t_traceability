@@ -195,6 +195,34 @@ Ext.onReady(function() {
 				var model 		= splits[0];
 				var lotno 		= splits[1];
 				var pwbname 	= splits[2];
+				
+				var gridSmtMounterHeader= Ext.getCmp("grid_smt_mounter_header");
+				var gridSmtMounter 		= Ext.getCmp("grid_smt_mounter");
+				var gridSmtReflow 		= Ext.getCmp("grid_smt_reflow");
+				var gridSmtAoiBoard		= Ext.getCmp("grid_smt_aoi_board");
+				var gridSmtAoiPoint		= Ext.getCmp("grid_smt_aoi_point");
+				
+				gridSmtMounterHeader.getStore().removeAll();
+				gridSmtMounterHeader.getView().emptyText = '<div class="empty-txt2">Select SPI for this result.</div>';
+		        gridSmtMounterHeader.getView().refresh();
+		        
+		        gridSmtMounter.getStore().removeAll();
+				gridSmtMounter.getView().emptyText = '<div class="empty-txt2">Select Header of Mounter for this result.</div>';
+		        gridSmtMounter.getView().refresh();
+		        
+		        gridSmtReflow.getStore().removeAll();
+				gridSmtReflow.getView().emptyText = '<div class="empty-txt2">Select SPI for this result.</div>';
+		        gridSmtReflow.getView().refresh();
+
+		        gridSmtAoiBoard.getStore().removeAll();
+				gridSmtAoiBoard.getView().emptyText = '<div class="empty-txt2">Select Reflow for this result.</div>';
+		        gridSmtAoiBoard.getView().refresh();
+
+		        gridSmtAoiPoint.getStore().removeAll();
+				gridSmtAoiPoint.getView().emptyText = '<div class="empty-txt2">Select Reflow for this result.</div>';
+		        gridSmtAoiPoint.getView().refresh();
+
+
 
 				document.getElementById('spiSide').value = '';
 				document.getElementById('spiSide').value = side;
