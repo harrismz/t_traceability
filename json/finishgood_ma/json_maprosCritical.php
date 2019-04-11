@@ -29,7 +29,7 @@
         $return[$i]['modelname']            = trim($rs->fields['7']);
         $return[$i]['scan_nik']             = trim($rs->fields['8']);
         $return[$i]['created_at']           = trim($rs->fields['9']);
-        $return[$i]['update_at']            = trim($rs->fields['10']);
+        $return[$i]['updated_at']            = trim($rs->fields['10']);
         $return[$i]['lineprocessname']      = trim($rs->fields['11']);
         $return[$i]['line']                 = trim($rs->fields['12']);
         $rs->MoveNext();

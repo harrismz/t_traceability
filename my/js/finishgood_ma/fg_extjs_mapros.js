@@ -49,7 +49,7 @@ Ext.onReady(function() {
             extend: 'Ext.data.Model',
             fields: ['qrcode_mc','guid_master_ticket','supp_code',
 					'part_no','po','prod_date','qty','modelname','scan_nik',
-					'created_at','update_at', 'lineprocessname','line']
+					'created_at','updated_at', 'lineprocessname','line']
    		});
 
 	//	=======================================================    DATASTORE    =====================================
@@ -1082,15 +1082,15 @@ Ext.onReady(function() {
 				{	header 		: 'MC Label',
 					dataIndex 	: 'qrcode_mc',
 					componentCls	: 'headergrid',
-					flex 			: false,
-					autoSizeColumn 	: true,
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
 					renderer	: fontstyle
 				},
 				{	header 		: 'Unique Code',
 					dataIndex 	: 'guid_master_ticket',
 					componentCls	: 'headergrid',
-					flex 			: false,
-					autoSizeColumn 	: true,
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
 					renderer	: fontstyle
 				},
 				{	header 		: 'Supp Code',
@@ -1103,8 +1103,8 @@ Ext.onReady(function() {
 				{	header 		: 'Partno',
 					dataIndex 	: 'part_no',
 					componentCls	: 'headergrid',
-					flex 			: false,
-					autoSizeColumn 	: true,
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
 					renderer	: fontstyle
 				},
 				{	header 		: 'PO',

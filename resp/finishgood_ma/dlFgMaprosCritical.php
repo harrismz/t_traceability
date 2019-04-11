@@ -102,7 +102,7 @@
 		header("Expires: 0");
 		
 		$fp = fopen("php://output", "w");
-		$headers = 'SERIAL NO, MODEL, LOTNO, DUMMY SERIAL, DUMMY PANEL, GUID MASTER, GUID TICKET, LCD SERIAL, PROCESS, JUDGE, EMP NO, PROCESS DATE' . "\n";
+		$headers = 'SERIAL NO, MODEL, LOTNO, DUMMY SERIAL, DUMMY PANEL, GUID MASTER, GUID TICKET, CRITICAL SERIAL, PROCESS, JUDGE, EMP NO, PROCESS DATE' . "\n";
 		fwrite($fp,$headers);
 		
 		while(!$rs->EOF)
