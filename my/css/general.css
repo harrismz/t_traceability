@@ -1,5 +1,7 @@
 @import url("../../vendors/bootstrap/dist/css/bootstrap.min.css");
-@import url("../../vendors/font-awesome/css/fontawesome-all.css");
+
+/*@import url("../../vendors/font-awesome/css/fontawesome-all.css");*/
+@import url("../../vendors/font-awesome/css/all.css");
 
 /* @import url("../../../extjs-4.2.2/resources/css/ext-all-neptune.css"); */
 @import url("../../../framework/extjs-6.2.0/build/classic/theme-crisp/resources/theme-crisp-all.css");
