@@ -93,7 +93,7 @@
               <!-- <span class="badge bg-orange">12</span> -->
               <i class="fa fa-retweet"></i> Register Rework OEM
             </a>
-            <a class="btn btn-app" href="http://136.198.117.78/mapros_system54/public/login/" target=_blank>
+            <a class="btn btn-app" href="http://136.198.117.78/mapros_system54/public/login#/" target=_blank>
               <!-- <span class="badge bg-orange">12</span> -->
               <i class="fa fa-clipboard-list"></i> Data Transaction Mapros
             </a>
