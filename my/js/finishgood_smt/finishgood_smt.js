@@ -8,7 +8,7 @@
 // value:  	'YJ5214A00SH-01B7010A0089',
 // value:  	'YJ5224A01VT_00A7011A0021',
 // value:  	'YJ5224A01MN_00A7014A0001',
-
+// DPXGT703LA9N/015A/SWITCH
 function checkPcbSerial(event){
 	var x = event.which || event.keyCode || event.button;
 	if (x == 13 || x == 0 || x == 1) {
