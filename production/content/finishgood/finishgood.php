@@ -264,7 +264,7 @@
     </div>
     <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="x_panel">
-        <div class="x_title">
+        <div class="x_title" id="insp_tab">
           <h2>
             <i class="fas fa-boxes"></i>
             Data Inspection 

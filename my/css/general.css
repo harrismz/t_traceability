@@ -11,6 +11,17 @@
 /*@import url('../../docs/fonts/fonts/Asul/Asul-Regular.ttf');
 @import url('../../docs/fonts/fonts/Asul/Asul-Bold.ttf');*/
 
+#title_top {
+  color: #008FDB;
+  padding-top: 6px;
+  font-size: 24px;
+}
+
+#title_top small {
+  color: #26B99A;
+  font-size: 13px;
+}
+
 .nav li > a {
   font-size: 14px;
 }
