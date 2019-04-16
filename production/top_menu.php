@@ -1,5 +1,5 @@
-<!-- <div class="nav_menu"> -->
-<div class="nav_menu navbar-static-top">
+<div class="nav_menu">
+<!-- <div class="nav_menu navbar-static-top"> -->
   <nav>
     <div class="nav toggle" data-qtip="Enlarge Side Menu">
       <a id="menu_toggle"><i class="fas fa-bars"></i></a>
