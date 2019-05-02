@@ -31,6 +31,10 @@
         $return[$i]['scannerid']    = trim($rs->fields['9']);
         $return[$i]['status']       = trim($rs->fields['10']);
         $return[$i]['scannik']      = trim($rs->fields['11']);
+        if ((strlen(trim($rs->fields['11']))) == 8)
+        { $return[$i]['scan_nik']  =substr(trim($rs->fields['11']),2,5); } 
+        else 
+        { $return[$i]['scan_nik']  =trim($rs->fields['11']); }
         $return[$i]['judge']        = trim($rs->fields['12']);
         $return[$i]['created_at']   = trim($rs->fields['13']);
         $return[$i]['update_at']    = trim($rs->fields['14']);
