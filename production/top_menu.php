@@ -5,7 +5,7 @@
       <a id="menu_toggle"><i class="fas fa-bars"></i></a>
     </div>
     <div class="nav navbar-nav">
-      <h2 id="title_top">TRACEABILITY  <small>v.3.5.5</small></h2>
+      <h2 id="title_top">OEM TRACEABILITY  <small>v.3.5.5</small></h2>
     </div>
     <ul class="nav navbar-nav navbar-right scrolltoid">
       <?php include 'menu/TopMenuSection.php';?>
