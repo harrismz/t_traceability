@@ -26,7 +26,7 @@
     
     for($i=0;!$rs->EOF;$i++){
         $return[$i]['line_name']    = trim($rs->fields['0']);
-        $return[$i]['prod_date']    = trim(date('Y-m-d', strtotime($rs->fields['1'])));
+        $return[$i]['prod_date']    = trim(date("Y-m-d H:i:s", strtotime($rs->fields['1'])));
         $return[$i]['host_ip']      = $rs->fields['2'];
         $return[$i]['model_name']   = $rs->fields['3'];
         $return[$i]['prod_no']      = $rs->fields['4'];
