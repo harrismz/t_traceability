@@ -114,7 +114,7 @@ Ext.onReady(function() {
 				{ 	header : 'FEEDER', 			dataIndex : 'feeder', 		componentCls: 'headergrid',	width : 75, 	renderer : upsize },
 				{ 	header : 'FEEDER SERIAL', 	dataIndex : 'feederserial',	componentCls: 'headergrid',	width : 130,	renderer : upsize },
 				{ 	header : 'FEEDER NO', 		dataIndex : 'feederno', 	componentCls: 'headergrid',	width : 100,	renderer : upsize },
-				{ 	header : 'LOT', 			dataIndex : 'lot', 			componentCls: 'headergrid',	width : 90,		renderer : upsize },
+				{ 	header : 'START SERIAL',	dataIndex : 'lot', 			componentCls: 'headergrid',	width : 90,		renderer : upsize },
 				{ 	header : 'JOBNO', 			dataIndex : 'jobno', 		componentCls: 'headergrid',	width : 150, 	renderer : upsize }
 			],
 			bbar	: Ext.create('Ext.PagingToolbar', {

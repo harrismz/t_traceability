@@ -61,6 +61,7 @@ Ext.onReady(function() {
 			columns 	: [
 				{	header 			: 'PCB SERIAL',
 					dataIndex 		: 'barcode',
+					componentCls 	: 'headergrid',
 					flex 			: false,
 					autoSizeColumn 	: true,
 					renderer		: upsize
