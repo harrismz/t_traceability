@@ -133,6 +133,9 @@ Ext.onReady(function() {
 
     			Ext.getStore('store_mapros_board').proxy.setExtraParam('boardid', boardid);
 				Ext.getStore('store_mapros_board').loadPage(1);
+				
+    			Ext.getStore('storeSmtQuality').loadPage(1);
+    			Ext.getStore('storeSmtProdRes').loadPage(1);
     		}
     	},
 		bbar	: Ext.create('Ext.PagingToolbar', {

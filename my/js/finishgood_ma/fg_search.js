@@ -188,11 +188,13 @@ function checkFinishgood(event){
 	var x = event.which || event.keyCode || event.button;
 	if (x == 13 || x == 0 || x == 1){
 		var rbCheck 	= $("#valOfCategory").val();
+		var slcMecha 	= $("#valOfCatMecha").val();
 		var modelName 	= $("#model-name").val().toUpperCase();
 		var serialNo 	= $("#serial-no").val().toUpperCase();
 		var lotNo 		= $("#lot-no").val().toUpperCase();
 		var dummySerial = $("#dummy-serial").val().toUpperCase();
 		
+
 		if (rbCheck == 'MS'){
 			if(modelName.length < 1){
 				$("#model-name").css({"border-color":"red"});
@@ -223,6 +225,22 @@ function checkFinishgood(event){
 				Ext.getStore('finishgood_store').proxy.setExtraParam('serialNo', '');
 				Ext.getStore('finishgood_store').proxy.setExtraParam('lotNo', lotNo);
 				Ext.getStore('finishgood_store').loadPage(1);
+
+				// $model      = $_REQUEST['valmodel'];
+				// $serialnoid = substr(@$_REQUEST['valserialno'],-8);
+				// $guidmaster = $_REQUEST['valguidmaster'];
+				// $guidticket = $_REQUEST['valguidticket'];
+			 //    $pcbserial  = $_REQUEST['valpcbserial'];
+			 //    $lotno      = $_REQUEST['vallotno'];
+
+				// Ext.getStore('storeMaQualityReport').proxy.setExtraParam('valmodel', modelName);
+				// Ext.getStore('storeMaQualityReport').proxy.setExtraParam('valserialno', modelName);
+				// Ext.getStore('storeMaQualityReport').proxy.setExtraParam('valguidmaster', modelName);
+				// Ext.getStore('storeMaQualityReport').proxy.setExtraParam('valguidticket', modelName);
+				// Ext.getStore('storeMaQualityReport').proxy.setExtraParam('valpcbserial', modelName);
+				// Ext.getStore('storeMaQualityReport').proxy.setExtraParam('vallotno', modelName);
+				// Ext.getStore('storeMaQualityReport').loadPage(1);
+				Ext.getStore('storeMaAvmt').loadPage(1);
 			}
 		}
 		if (rbCheck == 'DS'){

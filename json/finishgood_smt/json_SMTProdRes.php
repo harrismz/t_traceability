@@ -1,28 +1,48 @@
 <?php
 	date_default_timezone_set('Asia/Jakarta');
     //error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
-    include '../../../adodb/con_fadaq.php';
-    /*
+    include '../../adodb/con_fadaq.php';
+
+
+
+    
     $page 		= @$_REQUEST["page"]-1;
 	$limit 		= @$_REQUEST["limit"];
 	//$limit 		= 10;
 	//$start		= 1;
 	$start		= ($page*$limit)+1;
-	*/
-	$model      = $_REQUEST['valmodel'];
-	$serialnoid = substr(@$_REQUEST['valserialno'],-8);
-	$guidmaster = $_REQUEST['valguidmaster'];
-	$guidticket = $_REQUEST['valguidticket'];
-    $pcbserial  = $_REQUEST['valpcbserial'];
-    $lotno      = $_REQUEST['vallotno'];
 	
-	$sql 			= "select * from traceability_qualityreport('{$model}', '{$serialnoid}', '{$guidmaster}', '{$guidticket}','{$lotno}', '{$pcbserial}')";
-    $rs    			= $db->Execute($sql);
+	 $src_cat		= $_REQUEST['src_cat'];
+	 if ($src_cat == "sp"){
+	 	$model      = $_REQUEST['model'];
+	 	$sno     	= 0;
+	 	$line		= $_REQUEST['line_name'];
+	 	$hari		= substr($_REQUEST['prod_date'],0,4);
+	 	$bln		= substr($_REQUEST['prod_date'],5,2);
+	 	$thn		= substr($_REQUEST['prod_date'],8,2);
+	 } elseif ($src_cat == "ml"){
+	 	$model      = $_REQUEST['model'];
+	 	$sno     	= $_REQUEST['lotno'];
+	 	$line		= NULL;
+	 	$hari		= NULL;
+	 	$bln		= NULL;
+	 	$thn		= NULL;
+	 } else {
+	 	$model      = $_REQUEST['model'];
+	 	$sno     	= $_REQUEST['serial_no'];
+	 	$line		= NULL;
+	 	$hari		= NULL;
+	 	$bln		= NULL;
+	 	$thn		= NULL;
+	// }
+
+    //$rs    			= $db->Execute("select * from show_prd_res('{$model}', '{$sno}', '{$start}', '{$limit}')");
+    $rs    			= $db->Execute("select * from traceability_prodres ('{$model}', '{$sno}', '{$line}', '{$thn}', '{$bln}', '{$hari}', '{$src_cat}')");
 	$totalcount 	= $rs->fields['13'];
     $return 		= array();
 
     for($i=0;!$rs->EOF;$i++){
-    	$return[$i]['tgl']   		= $rs->fields['0'];
+        $return[$i]['tgl']   		= $rs->fields['0'];
         $return[$i]['bln']   		= $rs->fields['1'];
         $return[$i]['thn']   		= $rs->fields['2'];
         $return[$i]['line_name']   	= $rs->fields['3'];
@@ -35,14 +55,7 @@
         $return[$i]['symptom']		= trim($rs->fields['10']);
         $return[$i]['def_cause']	= trim($rs->fields['11']);
         $return[$i]['p_disposal']	= trim($rs->fields['12']);
-		$return[$i]['responsible']	= trim($rs->fields['22']);
-		$return[$i]['id_quality']	= trim($rs->fields['23']);
-		$return[$i]['board']		= trim($rs->fields['24']);
-		$return[$i]['pic_nik']		= trim($rs->fields['25']);
-		$return[$i]['process_code']	= trim($rs->fields['26']);
-		$return[$i]['process_name']	= trim($rs->fields['27']);
-		$return[$i]['ip_addrs']		= trim($rs->fields['28']);
-		$return[$i]['action_item']	= trim($rs->fields['29']);
+        $return[$i]['responsible']	= trim($rs->fields['22']);
 		
 		
         $return[$i]['date']    = $rs->fields['2'].'-'.$rs->fields['1'].'-'.$rs->fields['0'];
@@ -55,6 +68,6 @@
         "rows"=>$return);
 
     echo json_encode($x);
-    $rs->Close();
+
     $db->Close();
 ?>

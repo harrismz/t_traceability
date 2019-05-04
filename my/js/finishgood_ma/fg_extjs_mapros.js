@@ -373,8 +373,10 @@ Ext.onReady(function() {
 				select: function(grid, rowIndex, colIndex){
 					var rec  	 	= this.getSelectionModel().getSelection();
 					var guidmaster  = rec[0].data.guid_ticket;
+					var pcbserial  = rec[0].data.board_id;
 					
 					Ext.getStore('storeMaQualityReport').proxy.setExtraParam('valguidmaster', guidmaster);
+					Ext.getStore('storeMaQualityReport').proxy.setExtraParam('valpcbserial', pcbserial);
 					Ext.getStore('storeMaQualityReport').loadPage(1);
 					Ext.getStore('storeMaFwdn').loadPage(1);
 					Ext.getStore('storeMaFlash').loadPage(1);
