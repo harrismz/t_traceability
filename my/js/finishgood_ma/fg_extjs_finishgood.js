@@ -172,7 +172,7 @@ Ext.onReady(function() {
 					autoSizeColumn 	: true,
 					renderer 		: fontstyle
 				}, 	
-				{	header 	  		: 'Prod Date',
+				{	header 	  		: 'Output Packing Date',
 					dataIndex 		: 'prod_date',
 					componentCls	: 'headergrid',
 					flex 			: getFlexFgFinishgood(),
