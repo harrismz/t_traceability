@@ -159,8 +159,9 @@ Ext.onReady(function() {
 				{ 	header 	  		: 'Serial No ID',
 					dataIndex 		: 'serial_no_id',
 					componentCls	: 'headergrid',
-					flex 			: getFlexFgFinishgood(),
-					autoSizeColumn 	: getWidthFgFinishgood(),
+					// flex 			: getFlexFgFinishgood(),
+					// autoSizeColumn 	: getWidthFgFinishgood(),
+					width 			: 200,
 					renderer 		: fontstyle,
 					items : Ext.custom.getGridItems('serial_no_id')
 				}, 
@@ -181,30 +182,30 @@ Ext.onReady(function() {
 				{	header 	  		: 'Model Name',
 					dataIndex 		: 'model_name',
 					componentCls	: 'headergrid',
-					flex 			: false,
-					autoSizeColumn 	: true,
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
 					renderer 		: fontstyle,
 					hidden 			: true
 				},
 				{ 	header 	  		: 'Prod No',
 					dataIndex 		: 'prod_no',
 					componentCls	: 'headergrid',
-					flex 			: false,
-					autoSizeColumn 	: true,
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
 					renderer 		: fontstyle
 				}, 
 				{ 	header 	  		: 'Lot Size',
 					dataIndex 		: 'lot_size',
 					componentCls	: 'headergrid',
-					flex 			: false,
-					autoSizeColumn 	: true,
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
 					renderer 		: fontstyle
 				},
 				{ 	header 	  		: 'Start Serial',
 					dataIndex 		: 'start_serial',
 					componentCls	: 'headergrid',
-					flex 			: false,
-					autoSizeColumn 	: true,
+					flex 			: getFlexFgFinishgood(),
+					autoSizeColumn 	: getWidthFgFinishgood(),
 					renderer 		: fontstyle
 				}, 
 				{ 	header 	  		: 'Host IP',
@@ -226,14 +227,16 @@ Ext.onReady(function() {
 					componentCls	: 'headergrid',
 					flex 			: getFlexFgFinishgood(),
 					autoSizeColumn 	: getWidthFgFinishgood(),
-					renderer 		: fontstyle
+					renderer 		: fontstyle,
+					hidden			: true
 				}, 
 				{ 	header 			: 'Mecha Lot',
 					dataIndex 		: 'mecha_lot',
 					componentCls	: 'headergrid',
 					flex 			: getFlexFgFinishgood(),
 					autoSizeColumn 	: getWidthFgFinishgood(),
-					renderer 		: fontstyle
+					renderer 		: fontstyle,
+					hidden			: true
 				}
 			],
 			listeners: {
