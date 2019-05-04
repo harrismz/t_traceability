@@ -29,6 +29,7 @@
 	<!-- <script src="../framework/extjs-6.2.0/build/ext-all.js" type="text/javascript"> </script>
 	<script src="../framework/extjs-6.2.0/build/classic/theme-crisp/theme-crisp.js" type="text/javascript"></script> -->
 	<script type="text/javascript" src='./ext/ext-all.js'></script>
+	<script type="text/javascript" src='./my/custom-helper.js'></script>
 	<script type="text/javascript" src='./ext/theme-crisp.js'></script>
   <!-- <script type="text/javascript" src="../extjs-4.2.2/ext-all.js"></script> -->
 
