@@ -1,53 +1,56 @@
 <?php
-	date_default_timezone_set('Asia/jakarta');
-  	include '../../../adodb/con_mc.php';
-  	
-  	$page       = @$_REQUEST["page"];
-    $limit      = @$_REQUEST["limit"];
-    $start      = (($page*$limit)-$limit)+1;
-    $model      = $_REQUEST['valmodel'];
-    $lot        = $_REQUEST['vallotno'];
-    $getdate2   = substr($_REQUEST['valProdDate'],0,10);
-    $proddate   = '';
-   
-    if ($getdate2) {
-        $getdate1    = substr($getdate2,0,10);
-        $proddate   = date('Y-m-d', strtotime($getdate1));
-    }
-    else {
-        $proddate   = '';
-    }
+include '../../../adodb/con_mc.php';
+include '../Helper.php';
+$ADODB_FETCH_MODE = ADODB_FETCH_ASSOC;
 
-    $sql		= "declare @totalcount as int; exec traceability_partiss  $start, $limit, '{$model}','{$lot}','{$proddate}','ma', @totalcount=@totalcount out";
-	$rs 		= $db->Execute($sql);
-	$totalcount = $rs->fields['12'];
 
-  	$return 	= array();
+$prodDate   = substr($_REQUEST['valProdDate'],0,10);
+$days_ago = date('Y-m-d', strtotime('-10 days', strtotime( $prodDate )));
 
-  	for($i=0;!$rs->EOF;$i++){
-	    $return[$i]['issdate']	  = trim(date('Y-m-d H:i:s', strtotime($rs->fields['0'])));
-		$return[$i]['partno']	  = trim($rs->fields['1']);
-		$return[$i]['partname']	  = trim($rs->fields['2']);
-		$return[$i]['scanqty']	  = (float)trim($rs->fields['3']);
-		$return[$i]['po']		  = trim($rs->fields['4']);
-		$return[$i]['model_name'] = trim($rs->fields['5']);
-		$return[$i]['lot']		  = trim($rs->fields['6']);
-		$return[$i]['line']		  = trim($rs->fields['7']);
-		$return[$i]['so']    	  = trim($rs->fields['8']);
-	    $return[$i]['reqqty']	  = (float)trim($rs->fields['9']);
-	    $return[$i]['proddatesupp'] = trim($rs->fields['10']);
-	    $return[$i]['lotnosupp']  = trim($rs->fields['11']);
-	    $rs->MoveNext();
-  	}
+$request = $_GET;
+$request['custom_filter'] = [
+    [
+        'property'=> 'model', 
+        'value'   => $_REQUEST['valmodel']
+    ],[
+        'property' => 'lot',   
+        'value' => $_REQUEST['vallotno']
+    ],
+];
+$table = "PARTISS";
+$query = "SELECT
+    RTRIM( row.issdate ) as issdate
+    ,RTRIM( row.partno ) as partno
+    ,RTRIM( row.partname ) as partname
+    ,RTRIM( row.scanqty ) as scanqty
+    ,RTRIM( row.po ) as po
+    ,RTRIM( row.model ) as model_name
+    ,RTRIM( row.lot ) as lot
+    ,RTRIM( row.line ) as line
+    ,RTRIM( row.so ) as so
+    ,RTRIM( row.reqqty ) as reqqty
+    ,RTRIM( row.proddate ) as proddatesupp
+    ,RTRIM( row.lotnosup ) as lotnosupp
+FROM {$table} row ";
+$changeProperty = [];
+$primaryKey = 'replikasi';
 
-  	$o = array(
-	    "success"=>true,
-        "totalCount"=>$totalcount,
-        "rows"=>$return
-	);
+$helper = new Helper($db, $table, $primaryKey, $query, $request, $changeProperty);
+$helper->setExtraWhere(" WHERE 
+    ( CONVERT(VARCHAR(20), ISSDATE, 120) >= '{$days_ago}' 
+    AND CONVERT(VARCHAR(20), ISSDATE, 120) <= '{$prodDate}' )
+    AND		line like 'N0%' ");
 
-  	echo json_encode($o);
+/* echo json_encode([
+    'prod_date' => $prodDate,
+    'days_ago'  => $days_ago,
+    'extraWhere'=> $helper->getExtraWhere(),
+    'query' => $helper->getQuery(),
+    'countQuery' => $helper->getCountQuery(),
+    'getFilter' => $helper->getFilter()
+]); 
+return;
+ */
 
-    $rs->Close();
-  	$db->Close();
-?>
+echo json_encode($helper->getResult(), JSON_NUMERIC_CHECK);
+
