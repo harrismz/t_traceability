@@ -13,8 +13,10 @@
 	$serialnoid = substr(@$_REQUEST['valserialno'],-8);
 	$guidmaster = $_REQUEST['valguidmaster'];
 	$guidticket = $_REQUEST['valguidticket'];
+    $pcbserial  = $_REQUEST['valpcbserial'];
+    $lotno      = $_REQUEST['vallotno'];
 	
-	$sql 			= "select * from traceability_qualityreport('{$model}', '{$serialnoid}', '{$guidmaster}', '{$guidticket}')";
+	$sql 			= "select * from traceability_qualityreport('{$model}', '{$serialnoid}', '{$guidmaster}', '{$guidticket}','{$lotno}', '{$pcbserial}')";
     $rs    			= $db->Execute($sql);
 	$totalcount 	= $rs->fields['13'];
     $return 		= array();
