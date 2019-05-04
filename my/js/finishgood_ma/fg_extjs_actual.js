@@ -87,7 +87,7 @@ Ext.onReady(function() {
 					autoSizeColumn 	: getWidthFgActual(),
 					renderer 		: fontstyle
 				},
-				{ 	header 			: 'Output',
+				{ 	header 			: 'Qty Output',
 					dataIndex 		: 'output',
 					componentCls 	: 'headergrid',
 					flex 			: false,

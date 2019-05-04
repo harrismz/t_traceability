@@ -203,7 +203,7 @@
           <div class="col-md-8">
             <h2>
               <i class="far fa-calendar-check"></i>
-              Actual
+              Actual Output
               <small> ( OCS MA ) </small>
             </h2>
           </div>
