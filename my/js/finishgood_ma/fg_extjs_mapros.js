@@ -1131,7 +1131,8 @@ Ext.onReady(function() {
 					componentCls	: 'headergrid',
 					flex 			: false,
 					autoSizeColumn 	: true,
-					renderer	: fontstyle
+					renderer	: fontstyle,
+					hidden 		: true
 				},
 				{	header 		: 'Model',
 					dataIndex 	: 'modelname',
