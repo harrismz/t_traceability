@@ -57,16 +57,17 @@ Ext.onReady(function() {
 				componentCls 	: 'headergrid',
 				flex 			: getFlexPCBSerialReflow(),
 				autoSizeColumn 	: getWidthPCBSerialReflow(),
-				renderer 		: upsize
+				renderer 		: upsize,
+				hidden 			: true
 			}, {
-				header 			: 'IN',
+				header 			: 'IN Time',
 				dataIndex 		: 'reflow_start_time',
 				componentCls 	: 'headergrid',
 				flex 			: getFlexPCBSerialReflow(),
 				autoSizeColumn 	: getWidthPCBSerialReflow(),
 				renderer 		: upsize
 			}, {
-				header 			: 'OUT',
+				header 			: 'OUT Time',
 				dataIndex 		: 'reflow_end_time',
 				componentCls 	: 'headergrid',
 				flex 			: getFlexPCBSerialReflow(),
