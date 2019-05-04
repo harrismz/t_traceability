@@ -69,8 +69,8 @@ Ext.onReady(function() {
 			{ 	header : 'LOC', 			dataIndex : 'loc', 			componentCls: 'headergrid',	flex: getFlexPCBSerialRepair(), autoSizeColumn: getWidthPCBSerialRepair(),	renderer : upsize },
 			{ 	header : 'MAGZ NO', 		dataIndex : 'magazineno', 	componentCls: 'headergrid',	flex: getFlexPCBSerialRepair(), autoSizeColumn: getWidthPCBSerialRepair(),	renderer : upsize },
 			{ 	header : 'NG FOUND BY', 	dataIndex : 'ng',			componentCls: 'headergrid',	flex: getFlexPCBSerialRepair(), autoSizeColumn: getWidthPCBSerialRepair(),	renderer : upsize },
-			{ 	header : 'BOARD NG QTY', 	dataIndex : 'boardqty', 	componentCls: 'headergrid',	flex: getFlexPCBSerialRepair(), autoSizeColumn: getWidthPCBSerialRepair(),	renderer : upsize },
-			{ 	header : 'POINT NG QTY', 	dataIndex : 'pointqty', 	componentCls: 'headergrid',	flex: getFlexPCBSerialRepair(), autoSizeColumn: getWidthPCBSerialRepair(),	renderer : upsize },
+			{ 	header : 'BOARD NG QTY', 	dataIndex : 'boardqty', 	componentCls: 'headergrid',	flex: getFlexPCBSerialRepair(), autoSizeColumn: getWidthPCBSerialRepair(),	renderer : upsize, hidden: true },
+			{ 	header : 'POINT NG QTY', 	dataIndex : 'pointqty', 	componentCls: 'headergrid',	flex: getFlexPCBSerialRepair(), autoSizeColumn: getWidthPCBSerialRepair(),	renderer : upsize, hidden: true },
 			{ 	header : 'REPAIR DATE', 	dataIndex : 'inputdate', 	width : 90,		renderer : upsize,	hidden : true }
 		],
 		bbar	: Ext.create('Ext.PagingToolbar', {
