@@ -239,6 +239,7 @@ Ext.onReady(function() {
 					Ext.getStore('store_smt_repair').proxy.setExtraParam('lotno', '');
 					Ext.getStore('store_smt_repair').proxy.setExtraParam('pwbname', '');
 					Ext.getStore('store_smt_repair').proxy.setExtraParam('side', '');
+					Ext.getStore('store_smt_repair').proxy.setExtraParam('process', '');
 					Ext.getStore('store_smt_repair').loadPage(1);
 					Ext.getStore('store_smt_spi').proxy.setExtraParam('boardid', boardid);
 					Ext.getStore('store_smt_spi').proxy.setExtraParam('model', '');
@@ -273,6 +274,7 @@ Ext.onReady(function() {
 					Ext.getStore('store_smt_repair').proxy.setExtraParam('lotno', lotno);
 					Ext.getStore('store_smt_repair').proxy.setExtraParam('pwbname', pwbname);
 					Ext.getStore('store_smt_repair').proxy.setExtraParam('side', side);
+					Ext.getStore('store_smt_repair').proxy.setExtraParam('process', dmsides);
 					Ext.getStore('store_smt_repair').loadPage(1);
 					Ext.getStore('store_smt_spi').proxy.setExtraParam('boardid', '');
 					Ext.getStore('store_smt_spi').proxy.setExtraParam('model', model);

@@ -3,9 +3,8 @@ Ext.onReady(function() {
 //	=======================================================    MODEL        =====================================
 	Ext.define('model_smt_repair',{
         extend: 'Ext.data.Model',
-		fields: ['inputid','dateid','group','shift','mch','model_name','start_serial','serial_no',
-        			'lot_no','lot_qty','pcb_name','pwb_no','process','ai','smt',
-        			'loc','magazineno','ng','boardid','boardke','boardqty','pointqty','inputdate']
+		fields: ['inputdate','group','shift','mch','start_serial','lot_no','lot_qty','pwb_no','process','problem',
+        			'loc','magazineno','ng','picrepair','howtorepair','partno']
     });
 //	=======================================================    DATASTORE    =====================================
 	var store_smt_repair = Ext.create('Ext.data.Store',{
@@ -51,27 +50,22 @@ Ext.onReady(function() {
 			}
 		},
 		columns 	: [
-			{ 	header : 'ID',				dataIndex : 'inputid', 		width : 50,		renderer : upsize,	hidden : true },
-			{ 	header : 'BOARD ID', 		dataIndex : 'boardid', 		width : 200,	renderer : upsize,	hidden : true  },
-			{ 	header : 'REPAIR DATE',		dataIndex : 'dateid', 		componentCls: 'headergrid',	flex: getFlexPCBSerialRepair(), autoSizeColumn: getWidthPCBSerialRepair(),	renderer : upsize },
-			{ 	header : 'GROUP',			dataIndex : 'group',		componentCls: 'headergrid',	flex: getFlexPCBSerialRepair(), autoSizeColumn: getWidthPCBSerialRepair(),	renderer : upsize },
+			{ 	header : 'REPAIR DATE',		dataIndex : 'inputdate', 	componentCls: 'headergrid',	flex: getFlexPCBSerialRepair(), autoSizeColumn: getWidthPCBSerialRepair(),	renderer : upsize },
+			{ 	header : 'GROUP',			dataIndex : 'group',		componentCls: 'headergrid',	flex: getFlexPCBSerialRepair(), autoSizeColumn: getWidthPCBSerialRepair(),	renderer : upsize, hidden : true },
 			{ 	header : 'SHIFT',			dataIndex : 'shift',		componentCls: 'headergrid',	flex: getFlexPCBSerialRepair(), autoSizeColumn: getWidthPCBSerialRepair(),	renderer : upsize },
-			{ 	header : 'MCH NAME', 		dataIndex : 'mch', 			componentCls: 'headergrid',	flex: getFlexPCBSerialRepair(), autoSizeColumn: getWidthPCBSerialRepair(),	renderer : upsize },
-			{ 	header : 'MODEL NAME', 		dataIndex : 'model_name', 	width : 130, 	renderer : upsize,	hidden : true },
+			{ 	header : 'M/C NAME', 		dataIndex : 'mch', 			componentCls: 'headergrid',	flex: getFlexPCBSerialRepair(), autoSizeColumn: getWidthPCBSerialRepair(),	renderer : upsize },
 			{ 	header : 'START SERIAL', 	dataIndex : 'start_serial', componentCls: 'headergrid',	flex: getFlexPCBSerialRepair(), autoSizeColumn: getWidthPCBSerialRepair(),	renderer : upsize },
-			{ 	header : 'SERIAL NO', 		dataIndex : 'serial_no', 	width : 75, 	renderer : upsize,	hidden : true },
-			{ 	header : 'LOT NO', 			dataIndex : 'lot_no', 		width : 80, 	renderer : upsize,	hidden : true },
-			{ 	header : 'PCB NAME', 		dataIndex : 'pcb_name', 	width : 80, 	renderer : upsize,	hidden : true  },
+			{ 	header : 'LOT NO', 			dataIndex : 'lot_no', 		componentCls: 'headergrid', width : 80, 	renderer : upsize,	hidden : true },
+			{ 	header : 'LOT QTY', 		dataIndex : 'lot_qty', 		componentCls: 'headergrid', width : 80, 	renderer : upsize,	hidden : true },
 			{ 	header : 'PWB NO', 			dataIndex : 'pwb_no', 		componentCls: 'headergrid',	flex: getFlexPCBSerialRepair(), autoSizeColumn: getWidthPCBSerialRepair(),	renderer : upsize },
-			{ 	header : 'PROCESS', 		dataIndex : 'process', 		width : 90, 	renderer : upsize,	hidden : true },
-			{ 	header : 'AI',				dataIndex : 'ai', 			width : 75,		renderer : upsize,	hidden : true },
-			{ 	header : 'SYMPTOM', 		dataIndex : 'smt', 			componentCls: 'headergrid',	flex: getFlexPCBSerialRepair(), autoSizeColumn: getWidthPCBSerialRepair(),	renderer : upsize },
+			{ 	header : 'PROCESS', 		dataIndex : 'process', 		componentCls: 'headergrid', width : 90, 	renderer : upsize,	hidden : true },
+			{ 	header : 'SYMPTOM', 		dataIndex : 'problem', 		componentCls: 'headergrid',	flex: getFlexPCBSerialRepair(), autoSizeColumn: getWidthPCBSerialRepair(),	renderer : upsize },
 			{ 	header : 'LOC', 			dataIndex : 'loc', 			componentCls: 'headergrid',	flex: getFlexPCBSerialRepair(), autoSizeColumn: getWidthPCBSerialRepair(),	renderer : upsize },
-			{ 	header : 'MAGZ NO', 		dataIndex : 'magazineno', 	componentCls: 'headergrid',	flex: getFlexPCBSerialRepair(), autoSizeColumn: getWidthPCBSerialRepair(),	renderer : upsize },
+			{ 	header : 'MAGZ NO', 		dataIndex : 'magazineno', 	componentCls: 'headergrid',	flex: getFlexPCBSerialRepair(), autoSizeColumn: getWidthPCBSerialRepair(),	renderer : upsize, hidden : true },
 			{ 	header : 'NG FOUND BY', 	dataIndex : 'ng',			componentCls: 'headergrid',	flex: getFlexPCBSerialRepair(), autoSizeColumn: getWidthPCBSerialRepair(),	renderer : upsize },
-			{ 	header : 'BOARD NG QTY', 	dataIndex : 'boardqty', 	componentCls: 'headergrid',	flex: getFlexPCBSerialRepair(), autoSizeColumn: getWidthPCBSerialRepair(),	renderer : upsize, hidden: true },
-			{ 	header : 'POINT NG QTY', 	dataIndex : 'pointqty', 	componentCls: 'headergrid',	flex: getFlexPCBSerialRepair(), autoSizeColumn: getWidthPCBSerialRepair(),	renderer : upsize, hidden: true },
-			{ 	header : 'REPAIR DATE', 	dataIndex : 'inputdate', 	width : 90,		renderer : upsize,	hidden : true }
+			{ 	header : 'PIC REPAIR', 		dataIndex : 'picrepair', 	componentCls: 'headergrid',	flex: getFlexPCBSerialRepair(), autoSizeColumn: getWidthPCBSerialRepair(),	renderer : upsize },
+			{ 	header : 'HOW TO REPAIR', 	dataIndex : 'howtorepair', 	componentCls: 'headergrid',	flex: getFlexPCBSerialRepair(), autoSizeColumn: getWidthPCBSerialRepair(),	renderer : upsize, hidden: true },
+			{ 	header : 'PART NO', 		dataIndex : 'partno', 		componentCls: 'headergrid',	flex: getFlexPCBSerialRepair(), autoSizeColumn: getWidthPCBSerialRepair(),	renderer : upsize, hidden : true }
 		],
 		bbar	: Ext.create('Ext.PagingToolbar', {
 			pageSize		: itemperpage,
