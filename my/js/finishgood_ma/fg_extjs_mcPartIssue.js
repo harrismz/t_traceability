@@ -145,14 +145,16 @@ Ext.onReady(function() {
 					componentCls	: 'headergrid',
 					flex 			: getFlexFgFinishgood(),
 					autoSizeColumn 	: getWidthFgFinishgood(),
-					renderer 		: fontstyle
+					renderer 		: fontstyle,
+					hidden 	: true
 				},
 				{ header		: 'Lotno Supplier',
 					dataIndex	: 'lotnosupp',
 					componentCls	: 'headergrid',
 					flex 			: getFlexFgFinishgood(),
 					autoSizeColumn 	: getWidthFgFinishgood(),
-					renderer 		: fontstyle
+					renderer 		: fontstyle,
+					hidden 	: true
 				}
 			],
 			bbar	: Ext.create('Ext.PagingToolbar', {
