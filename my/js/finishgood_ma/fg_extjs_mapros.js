@@ -765,7 +765,7 @@ Ext.onReady(function() {
 				}
 			],
 			columns 	: [
-				{	header 		: 'Mecha Serial',
+				{	header 		: 'MECHA SERIAL',
 					dataIndex 	: 'barcode',
 					componentCls	: 'headergrid',
 					flex 			: false,
