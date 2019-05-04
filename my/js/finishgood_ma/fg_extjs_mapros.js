@@ -274,7 +274,8 @@ Ext.onReady(function() {
 					componentCls	: 'headergrid',
 					flex 			: false,
 					autoSizeColumn 	: true,
-					renderer 		: fontstyle
+					renderer 		: fontstyle,
+					items: Ext.custom.getGridItems('gridboard_board_id')
 				},
 				{	header 		: 'guid_master',
 					dataIndex 	: 'guid_master',
@@ -320,7 +321,8 @@ Ext.onReady(function() {
 					componentCls	: 'headergrid',
 					flex 			: getFlexFgFinishgood(),
 					autoSizeColumn 	: getWidthFgFinishgood(),
-					renderer	: fontstyle
+					renderer	: fontstyle,
+					items: Ext.custom.getGridItems('gridboard_process')
 				},
 				{	header 		: 'scanner_id',
 					dataIndex 	: 'scanner_id',
@@ -498,7 +500,8 @@ Ext.onReady(function() {
 					componentCls	: 'headergrid',
 					flex 			: getFlexFgFinishgood(),
 					autoSizeColumn 	: getWidthFgFinishgood(),
-					renderer	: fontstyle
+					renderer	: fontstyle,
+					items: Ext.custom.getGridItems('gridpanel_board_id')
 				},
 				{	header 		: 'scanner_id',
 					dataIndex 	: 'scanner_id',
@@ -949,7 +952,8 @@ Ext.onReady(function() {
 					componentCls	: 'headergrid',
 					flex 			: getFlexFgFinishgood(),
 					autoSizeColumn 	: getWidthFgFinishgood(),
-					renderer	: fontstyle
+					renderer	: fontstyle,
+					items: Ext.custom.getGridItems('gridmaster_board_id')
 				},
 				{	header 		: 'scanner_id',
 					dataIndex 	: 'scanner_id',
