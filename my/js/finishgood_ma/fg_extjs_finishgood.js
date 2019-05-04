@@ -161,7 +161,8 @@ Ext.onReady(function() {
 					componentCls	: 'headergrid',
 					flex 			: getFlexFgFinishgood(),
 					autoSizeColumn 	: getWidthFgFinishgood(),
-					renderer 		: fontstyle
+					renderer 		: fontstyle,
+					items : Ext.custom.getGridItems('serial_no_id')
 				}, 
 				{	header 	 		: 'Line',
 					dataIndex		: 'line_name',

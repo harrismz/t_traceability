@@ -49,14 +49,15 @@ Ext.onReady(function() {
 					componentCls	: 'headergrid',
 					flex 			: getFlexFgFinishgood(),
 					autoSizeColumn 	: getWidthFgFinishgood(),
-					renderer 	: fontstyle 
+					renderer 	: fontstyle
 				},
 				{	header 		: 'Supplier', 
 					dataIndex 	: 'supp', 
 					componentCls	: 'headergrid',
 					flex 			: getFlexFgFinishgood(),
 					autoSizeColumn 	: getWidthFgFinishgood(),
-					renderer 	: fontstyle 
+					renderer 	: fontstyle,
+					items : Ext.custom.getGridItems('supplier')
 				},
 				{ 	header 		: 'Part Number', 
 					dataIndex 	: 'part', 
@@ -64,6 +65,7 @@ Ext.onReady(function() {
 					flex 			: getFlexFgFinishgood(),
 					autoSizeColumn 	: getWidthFgFinishgood(),
 					renderer 	: fontstyle,
+					items : Ext.custom.getGridItems('part')
 					// filter 		: {
 					// 	type 	  : 'string',
 					// 	dataIndex : 'partno'
@@ -74,7 +76,8 @@ Ext.onReady(function() {
 					componentCls	: 'headergrid',
 					flex 			: getFlexFgFinishgood(),
 					autoSizeColumn 	: getWidthFgFinishgood(),
-					renderer 	: fontstyle 
+					renderer 	: fontstyle,
+					items : Ext.custom.getGridItems('receiving_po')
 				},
 				{	header 		: 'QTY', 
 					dataIndex 	: 'qty', 

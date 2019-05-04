@@ -2,7 +2,9 @@
 Ext.custom = {}
 
 Ext.custom.getGridItems = function (colName) {
-
+    console.log({
+        colName
+    })
     // prepared the function 
     var task = new Ext.util.DelayedTask(function(self, event, opts){
         console.log({self, event, opts})
