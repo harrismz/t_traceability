@@ -28,6 +28,10 @@
         $return[$i]['qty']    	            = trim($rs->fields['6']);
         $return[$i]['modelname']            = trim($rs->fields['7']);
         $return[$i]['scan_nik']             = trim($rs->fields['8']);
+        if ((strlen(trim($rs->fields['8']))) == 8)
+        { $return[$i]['scan_nik']  =substr(trim($rs->fields['8']),2,5); } 
+        else 
+        { $return[$i]['scan_nik']  =trim($rs->fields['8']); }
         $return[$i]['created_at']           = trim($rs->fields['9']);
         $return[$i]['updated_at']            = trim($rs->fields['10']);
         $return[$i]['lineprocessname']      = trim($rs->fields['11']);
