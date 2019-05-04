@@ -95,6 +95,7 @@ Ext.onReady(function() {
 					var catMecha 	= $("#valOfCatMecha").val();
 					
 					Ext.getStore('storeMaprosBoard').loadPage(1);
+					Ext.getStore('storeMaprosPanel').loadPage(1);
 				}
 			},
 			bbar		: Ext.create('Ext.PagingToolbar', {

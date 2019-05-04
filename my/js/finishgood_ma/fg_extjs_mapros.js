@@ -71,7 +71,6 @@ Ext.onReady(function() {
 				load: function(store, records) {
 					if (records != "") {
 						Ext.getStore('storeMaprosBoardSymptom').loadPage(1);
-						Ext.getStore('storeMaprosPanel').loadPage(1);
 					} 
 				}
 			}
