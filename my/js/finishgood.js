@@ -3760,7 +3760,7 @@
 								width 		: 80,
 								renderer	: upsize
 							},
-							{	header 		: 'MCH NAME',
+							{	header 		: 'M/C NAME',
 								dataIndex 	: 'input_user',
 								width 		: 100,
 								renderer	: upsize
@@ -3840,7 +3840,7 @@
 							// 							flex 		: 1,
 							// 							renderer	: upsize
 							// 						},
-							// 						{	header 		: 'MCH NAME',
+							// 						{	header 		: 'M/C NAME',
 							// 							dataIndex 	: 'input_user',
 							// 							flex 		: 1,
 							// 							renderer	: upsize
@@ -3928,7 +3928,7 @@
 								flex 		: 1,
 								renderer	: upsize
 							},
-							{	header 		: 'MCH NAME',
+							{	header 		: 'M/C NAME',
 								dataIndex 	: 'input_user',
 								flex 		: 1,
 								renderer	: upsize,
@@ -3995,7 +3995,7 @@
 								width 		: 80,
 								renderer	: upsize
 							},
-							{	header 		: 'MCH NAME',
+							{	header 		: 'M/C NAME',
 								dataIndex 	: 'input_user',
 								width 		: 120,
 								renderer	: upsize
@@ -4112,7 +4112,7 @@
 								width 		: 150,
 								renderer	: upsize
 							},
-							{	header 		: 'MCH NAME',
+							{	header 		: 'M/C NAME',
 								dataIndex 	: 'input_user',
 								width 		: 100,
 								renderer	: upsize
@@ -4267,7 +4267,7 @@
 							// 							flex 		: 1,
 							// 							renderer	: upsize
 							// 						},
-							// 						{	header 		: 'MCH NAME',
+							// 						{	header 		: 'M/C NAME',
 							// 							dataIndex 	: 'input_user',
 							// 							flex 		: 1,
 							// 							renderer	: upsize
@@ -4445,7 +4445,7 @@
 								width 		: 100,
 								renderer	: upsize
 							},
-							{	header 		: 'MCH NAME',
+							{	header 		: 'M/C NAME',
 								dataIndex 	: 'input_user',
 								width 		: 100,
 								renderer	: upsize,
@@ -4524,7 +4524,7 @@
 								width 		: 80,
 								renderer	: upsize
 							},
-							{	header 		: 'MCH NAME',
+							{	header 		: 'M/C NAME',
 								dataIndex 	: 'input_user',
 								width 		: 120,
 								renderer	: upsize
@@ -4604,7 +4604,7 @@
 										// 						flex 		: 1,
 										// 						renderer	: upsize
 										// 					},
-										// 					{	header 		: 'MCH NAME',
+										// 					{	header 		: 'M/C Name',
 										// 						dataIndex 	: 'input_user',
 										// 						flex 		: 1,
 										// 						renderer	: upsize
@@ -4691,7 +4691,7 @@
 								flex 		: 1,
 								renderer	: upsize
 							},
-							{	header 		: 'MCH NAME',
+							{	header 		: 'M/C Name',
 								dataIndex 	: 'input_user',
 								flex 		: 1,
 								renderer	: upsize,
@@ -4758,7 +4758,7 @@
 								width 		: 80,
 								renderer	: upsize
 							},
-							{	header 		: 'MCH NAME',
+							{	header 		: 'M/C Name',
 								dataIndex 	: 'input_user',
 								flex 		: 1,
 								renderer	: upsize
@@ -4844,7 +4844,7 @@
 								// 							flex 		: 1,
 								// 							renderer	: upsize
 								// 						},
-								// 						{	header 		: 'MCH NAME',
+								// 						{	header 		: 'M/C Name',
 								// 							dataIndex 	: 'input_user',
 								// 							flex 		: 1,
 								// 							renderer	: upsize
@@ -4938,7 +4938,7 @@
 								flex 		: 1,
 								renderer	: upsize
 							},
-							{	header 		: 'MCH NAME',
+							{	header 		: 'M/C Name',
 								dataIndex 	: 'input_user',
 								flex 		: 1,
 								renderer	: upsize,

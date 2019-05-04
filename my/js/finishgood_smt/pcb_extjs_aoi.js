@@ -72,7 +72,7 @@ Ext.onReady(function() {
 				autoSizeColumn 	: true,
 				renderer 	: upsize
 			},
-			{ 	header 		: 'MCH NAME',
+			{ 	header 		: 'M/C Name',
 				dataIndex 	: 'linkedserver',
 				componentCls: 'headergrid',
 				flex 			: getFlexPCBSerialAOIBoard(),
@@ -110,7 +110,7 @@ Ext.onReady(function() {
 					type 	: 'string'
 				}
 			}, 
-			{ 	header 		: 'MCH JUDGE',
+			{ 	header 		: 'M/C JUDGE',
 				dataIndex 	: 'aoijudgment',
 				componentCls: 'headergrid',
 				flex 			: getFlexPCBSerialAOIBoard(),
@@ -198,7 +198,7 @@ Ext.onReady(function() {
 				autoSizeColumn 	: true,
 				renderer 	 	: upsize
 			}, 
-			{ 	header 		 	: 'MCH NAME',
+			{ 	header 		 	: 'M/C Name',
 				dataIndex 	 	: 'linkedserver',
 				componentCls 	: 'headergrid',
 				flex 			: getFlexPCBSerialAOIPoint(),
@@ -279,7 +279,7 @@ Ext.onReady(function() {
 				autoSizeColumn 	: getWidthPCBSerialAOIPoint(),
 				renderer 		: renderImage
 			}, 
-			{ 	header 			: 'MCH JUDGE',
+			{ 	header 			: 'M/C JUDGE',
 				dataIndex 		: 'aoijudgment',
 				componentCls	: 'headergrid',
 				flex 			: getFlexPCBSerialAOIPoint(),

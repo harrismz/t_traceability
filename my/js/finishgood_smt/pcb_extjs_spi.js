@@ -72,7 +72,7 @@ Ext.onReady(function() {
 					autoSizeColumn 	: getWidthPCBSerialSPI(),
 					renderer		: upsize
 				},
-				{	header 			: 'MCH NAME',
+				{	header 			: 'M/C Name',
 					dataIndex 		: 'mchname',
 					componentCls 	: 'headergrid',
 					flex 			: getFlexPCBSerialSPI(),
@@ -107,7 +107,7 @@ Ext.onReady(function() {
 					renderer	: upsize,
 					hidden 		: true
 				},
-				{	header 		 	: 'MCH JUDGE',
+				{	header 		 	: 'M/C JUDGE',
 					dataIndex 		: 'spijudge',
 					componentCls 	: 'headergrid',
 					flex 			: getFlexPCBSerialSPI(),

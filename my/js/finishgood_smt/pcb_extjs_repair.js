@@ -56,7 +56,7 @@ Ext.onReady(function() {
 			{ 	header : 'REPAIR DATE',		dataIndex : 'dateid', 		componentCls: 'headergrid',	flex: getFlexPCBSerialRepair(), autoSizeColumn: getWidthPCBSerialRepair(),	renderer : upsize },
 			{ 	header : 'GROUP',			dataIndex : 'group',		componentCls: 'headergrid',	flex: getFlexPCBSerialRepair(), autoSizeColumn: getWidthPCBSerialRepair(),	renderer : upsize },
 			{ 	header : 'SHIFT',			dataIndex : 'shift',		componentCls: 'headergrid',	flex: getFlexPCBSerialRepair(), autoSizeColumn: getWidthPCBSerialRepair(),	renderer : upsize },
-			{ 	header : 'MCH NAME', 		dataIndex : 'mch', 			componentCls: 'headergrid',	flex: getFlexPCBSerialRepair(), autoSizeColumn: getWidthPCBSerialRepair(),	renderer : upsize },
+			{ 	header : 'M/C Name', 		dataIndex : 'mch', 			componentCls: 'headergrid',	flex: getFlexPCBSerialRepair(), autoSizeColumn: getWidthPCBSerialRepair(),	renderer : upsize },
 			{ 	header : 'MODEL NAME', 		dataIndex : 'model_name', 	width : 130, 	renderer : upsize,	hidden : true },
 			{ 	header : 'START SERIAL', 	dataIndex : 'start_serial', componentCls: 'headergrid',	flex: getFlexPCBSerialRepair(), autoSizeColumn: getWidthPCBSerialRepair(),	renderer : upsize },
 			{ 	header : 'SERIAL NO', 		dataIndex : 'serial_no', 	width : 75, 	renderer : upsize,	hidden : true },

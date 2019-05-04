@@ -506,7 +506,7 @@ Ext.onReady(function() {
 					autoSizeColumn 	: getWidthFgFinishgood(),
 					renderer	: fontstyle
 				},
-				{	header 		: 'MCH NAME',
+				{	header 		: 'M/C Name',
 					dataIndex 	: 'input_user',
 					componentCls	: 'headergrid',
 					flex 			: getFlexFgFinishgood(),
@@ -632,7 +632,7 @@ Ext.onReady(function() {
 					autoSizeColumn 	: getWidthFgFinishgood(),
 					renderer	: fontstyle
 				},
-				{	header 		: 'MCH NAME',
+				{	header 		: 'M/C Name',
 					dataIndex 	: 'input_user',
 					componentCls	: 'headergrid',
 					flex 			: getFlexFgFinishgood(),
@@ -736,7 +736,7 @@ Ext.onReady(function() {
 					autoSizeColumn 	: getWidthFgFinishgood(),
 					renderer	: fontstyle
 				},
-				{	header 		: 'MCH NAME',
+				{	header 		: 'M/C Name',
 					dataIndex 	: 'input_user',
 					componentCls	: 'headergrid',
 					flex 			: getFlexFgFinishgood(),
@@ -909,7 +909,7 @@ Ext.onReady(function() {
 					autoSizeColumn 	: getWidthFgFinishgood(),
 					renderer	: fontstyle
 				},
-				{	header 		: 'MCH NAME',
+				{	header 		: 'M/C Name',
 					dataIndex 	: 'input_user',
 					componentCls	: 'headergrid',
 					flex 			: getFlexFgFinishgood(),
@@ -1005,7 +1005,7 @@ Ext.onReady(function() {
 							// 						flex 		: 1,
 							// 						renderer	: fontstyle
 							// 					},
-							// 					{	header 		: 'MCH NAME',
+							// 					{	header 		: 'M/C Name',
 							// 						dataIndex 	: 'input_user',
 							// 						flex 		: 1,
 							// 						renderer	: fontstyle
@@ -1109,7 +1109,7 @@ Ext.onReady(function() {
 					autoSizeColumn 	: getWidthFgFinishgood(),
 					renderer	: fontstyle
 				},
-				{	header 		: 'MCH NAME',
+				{	header 		: 'M/C Name',
 					dataIndex 	: 'input_user',
 					componentCls	: 'headergrid',
 					flex 			: getFlexFgFinishgood(),
@@ -1226,7 +1226,7 @@ Ext.onReady(function() {
 					autoSizeColumn 	: getWidthFgFinishgood(),
 					renderer	: fontstyle
 				},
-				{	header 		: 'MCH NAME',
+				{	header 		: 'M/C Name',
 					dataIndex 	: 'input_user',
 					componentCls	: 'headergrid',
 					flex 			: getFlexFgFinishgood(),
@@ -1399,7 +1399,7 @@ Ext.onReady(function() {
 				// 							flex 		: 1,
 				// 							renderer	: fontstyle
 				// 						},
-				// 						{	header 		: 'MCH NAME',
+				// 						{	header 		: 'M/C Name',
 				// 							dataIndex 	: 'input_user',
 				// 							flex 		: 1,
 				// 							renderer	: fontstyle
@@ -1624,7 +1624,7 @@ Ext.onReady(function() {
 					autoSizeColumn 	: true,
 					renderer	: fontstyle
 				},
-				{	header 		: 'MCH NAME',
+				{	header 		: 'M/C Name',
 					dataIndex 	: 'input_user',
 					componentCls	: 'headergrid',
 					flex 			: false,
@@ -1752,7 +1752,7 @@ Ext.onReady(function() {
 					autoSizeColumn 	: getWidthFgFinishgood(),
 					renderer	: fontstyle
 				},
-				{	header 		: 'MCH NAME',
+				{	header 		: 'M/C Name',
 					dataIndex 	: 'input_user',
 					componentCls	: 'headergrid',
 					flex 			: false,
@@ -1854,7 +1854,7 @@ Ext.onReady(function() {
 					// 							flex 		: 1,
 					// 							renderer	: fontstyle
 					// 						},
-					// 						{	header 		: 'MCH NAME',
+					// 						{	header 		: 'M/C Name',
 					// 							dataIndex 	: 'input_user',
 					// 							flex 		: 1,
 					// 							renderer	: fontstyle
@@ -1967,7 +1967,7 @@ Ext.onReady(function() {
 					autoSizeColumn 	: getWidthFgFinishgood(),
 					renderer	: fontstyle
 				},
-				{	header 		: 'MCH NAME',
+				{	header 		: 'M/C Name',
 					dataIndex 	: 'input_user',
 					componentCls	: 'headergrid',
 					flex 			: getFlexFgFinishgood(),

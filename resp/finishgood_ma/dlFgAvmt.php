@@ -41,7 +41,7 @@
 		header("Expires: 0");
 		
 		$fp = fopen("php://output", "w");
-		$headers = 'MODEL, MCH NAME, SERIAL NO, DUMMY SERIAL, ID AVMT,INSP START, INSP END, LAP, JUDGEMENT' . "\n";
+		$headers = 'MODEL, M/C Name, SERIAL NO, DUMMY SERIAL, ID AVMT,INSP START, INSP END, LAP, JUDGEMENT' . "\n";
 		fwrite($fp,$headers);
 		
 		while(!$rs->EOF)
@@ -93,7 +93,7 @@
 	// 	header("Expires: 0");
 		
 	// 	$fp = fopen("php://output", "w");
-	// 	$headers = 'MODEL, MCH NAME, SERIAL NO, DUMMY SERIAL, ID AVMT,INSP START, INSP END, LAP, JUDGEMENT' . "\n";
+	// 	$headers = 'MODEL, M/C Name, SERIAL NO, DUMMY SERIAL, ID AVMT,INSP START, INSP END, LAP, JUDGEMENT' . "\n";
 	// 	fwrite($fp,$headers);
 		
 	// 	while(!$rs->EOF)

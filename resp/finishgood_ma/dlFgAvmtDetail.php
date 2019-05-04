@@ -41,7 +41,7 @@
 		header("Expires: 0");
 		
 		$fp = fopen("php://output", "w");
-		$headers = 'DUMMY SERIAL, ID AVMT, STEP, TYPE, NAME, JUDGEMENT, VOLT, CURR, FREQ, LVLL, LVLR, DSTL, DSTR, RELL, RELR, SNL, SNR, RATIO, HPOS0, REMARK, MCH NAME, DATE INSPECT' . "\n";
+		$headers = 'DUMMY SERIAL, ID AVMT, STEP, TYPE, NAME, JUDGEMENT, VOLT, CURR, FREQ, LVLL, LVLR, DSTL, DSTR, RELL, RELR, SNL, SNR, RATIO, HPOS0, REMARK, M/C Name, DATE INSPECT' . "\n";
 		fwrite($fp,$headers);
 		
 		while(!$rs->EOF)
@@ -106,7 +106,7 @@
 	// 	header("Expires: 0");
 		
 	// 	$fp = fopen("php://output", "w");
-	// 	$headers = 'MODEL, MCH NAME, SERIAL NO, DUMMY SERIAL, ID AVMT,INSP START, INSP END, LAP, JUDGEMENT' . "\n";
+	// 	$headers = 'MODEL, M/C Name, SERIAL NO, DUMMY SERIAL, ID AVMT,INSP START, INSP END, LAP, JUDGEMENT' . "\n";
 	// 	fwrite($fp,$headers);
 		
 	// 	while(!$rs->EOF)

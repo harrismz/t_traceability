@@ -46,7 +46,7 @@ header("Pragma: no-cache");
 header("Expires: 0");
 
 $fp = fopen("php://output", "w");
-$headers = 'MCH NAME, PCB ID, PCB GUID, PCB SERIAL, START DATE, END DATE, AOI JUDGEMENT, PIC JUDGEMENT' . "\n";
+$headers = 'M/C Name, PCB ID, PCB GUID, PCB SERIAL, START DATE, END DATE, AOI JUDGEMENT, PIC JUDGEMENT' . "\n";
 fwrite($fp,$headers);
 
 while(!$rs_board->EOF)

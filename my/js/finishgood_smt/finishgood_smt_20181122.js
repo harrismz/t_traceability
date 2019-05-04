@@ -665,7 +665,7 @@
 						{ 	header : 'REPAIR DATE',		dataIndex : 'dateid', 		width : 100, 	renderer : upsize },
 						{ 	header : 'GROUP',			dataIndex : 'group',		width : 80,		renderer : upsize },
 						{ 	header : 'SHIFT',			dataIndex : 'shift',		width : 80,		renderer : upsize },
-						{ 	header : 'MCH NAME', 		dataIndex : 'mch', 			width : 90, 	renderer : upsize },
+						{ 	header : 'M/C Name', 		dataIndex : 'mch', 			width : 90, 	renderer : upsize },
 						{ 	header : 'MODEL NAME', 		dataIndex : 'model_name', 	width : 130, 	renderer : upsize,	hidden : true },
 						{ 	header : 'START SERIAL', 	dataIndex : 'start_serial', width : 80, 	renderer : upsize },
 						{ 	header : 'SERIAL NO', 		dataIndex : 'serial_no', 	width : 75, 	renderer : upsize,	hidden : true },
@@ -724,7 +724,7 @@
 							width 	 	: 200,
 							renderer 	: upsize
 						},
-						{ 	header 		: 'MCH NAME',
+						{ 	header 		: 'M/C Name',
 							dataIndex 	: 'linkedserver',
 							width 	 	: 90,
 							renderer 	: upsize
@@ -754,7 +754,7 @@
 								type 	: 'string'
 							}
 						}, 
-						{ 	header 		: 'MCH JUDGE',
+						{ 	header 		: 'M/C JUDGE',
 							dataIndex 	: 'aoijudgment',
 							flex 		: 1,
 							renderer 	: upsize
@@ -811,7 +811,7 @@
 				// 			width 	 	: 200,
 				// 			renderer 	: upsize
 				// 		}, 
-				// 		{ 	header 		: 'MCH NAME',
+				// 		{ 	header 		: 'M/C Name',
 				// 			dataIndex 	: 'linkedserver',
 				// 			width 	 	: 90,
 				// 			renderer 	: upsize
@@ -880,7 +880,7 @@
 								
 				// 			}
 				// 		}, 
-				// 		{ 	header 		: 'MCH JUDGE',
+				// 		{ 	header 		: 'M/C JUDGE',
 				// 			dataIndex 	: 'aoijudgment',
 				// 			flex 		: 1,
 				// 			renderer 	: upsize
@@ -1091,7 +1091,7 @@
 							flex 		: 1,
 							renderer	: upsize
 						},
-						{	header 		: 'MCH NAME',
+						{	header 		: 'M/C Name',
 							dataIndex 	: 'mchname',
 							flex 		: 1,
 							renderer	: upsize
@@ -1120,7 +1120,7 @@
 							renderer	: upsize,
 							hidden 		: true
 						},
-						{	header 		: 'MCH JUDGE',
+						{	header 		: 'M/C JUDGE',
 							dataIndex 	: 'spijudge',
 							flex 		: 1,
 							renderer	: spimchjudge
@@ -1518,7 +1518,7 @@
 							width 		: 60,
 							renderer	: upsize
 						},
-						{	header 		: 'MCH CODE',
+						{	header 		: 'M/C CODE',
 							dataIndex 	: 'input_user',
 							width 		: 100,
 							renderer	: upsize
@@ -1986,7 +1986,7 @@
 												flex 		: 1,
 												renderer	: upsize
 											},
-											{	header 		: 'MCH NAME',
+											{	header 		: 'M/C Name',
 												dataIndex 	: 'input_user',
 												flex 		: 1,
 												renderer	: upsize
@@ -2154,7 +2154,7 @@
 							width 		: 100,
 							renderer	: upsize
 						},
-						{	header 		: 'MCH NAME',
+						{	header 		: 'M/C Name',
 							dataIndex 	: 'input_user',
 							width 		: 100,
 							renderer	: upsize
@@ -2395,7 +2395,7 @@
 							flex 		: 1,
 							renderer	: upsize
 						},
-						{	header 		: 'MCH NAME',
+						{	header 		: 'M/C Name',
 							dataIndex 	: 'input_user',
 							flex 		: 1,
 							renderer	: upsize
@@ -2489,7 +2489,7 @@
 							width 		: 80,
 							renderer	: upsize
 						},
-						{	header 		: 'MCH CODE',
+						{	header 		: 'M/C CODE',
 							dataIndex 	: 'input_user',
 							width 		: 120,
 							renderer	: upsize

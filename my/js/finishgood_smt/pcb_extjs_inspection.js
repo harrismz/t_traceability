@@ -264,7 +264,7 @@ Ext.onReady(function() {
 				width 		: 60,
 				renderer	: upsize
 			},
-			{	header 		: 'MCH CODE',
+			{	header 		: 'M/C CODE',
 				dataIndex 	: 'input_user',
 				componentCls: 'headergrid',	
 				width 		: 100,
@@ -725,7 +725,7 @@ Ext.onReady(function() {
 									flex 		: 1,
 									renderer	: upsize
 								},
-								{	header 		: 'MCH NAME',
+								{	header 		: 'M/C Name',
 									dataIndex 	: 'input_user',
 									flex 		: 1,
 									renderer	: upsize
@@ -893,7 +893,7 @@ Ext.onReady(function() {
 				width 		: 100,
 				renderer	: upsize
 			},
-			{	header 		: 'MCH NAME',
+			{	header 		: 'M/C Name',
 				dataIndex 	: 'input_user',
 				width 		: 100,
 				renderer	: upsize
@@ -1136,7 +1136,7 @@ Ext.onReady(function() {
 				flex 		: 1,
 				renderer	: upsize
 			},
-			{	header 		: 'MCH NAME',
+			{	header 		: 'M/C Name',
 				dataIndex 	: 'input_user',
 				flex 		: 1,
 				renderer	: upsize
@@ -1232,7 +1232,7 @@ Ext.onReady(function() {
 				width 		: 80,
 				renderer	: upsize
 			},
-			{	header 		: 'MCH CODE',
+			{	header 		: 'M/C CODE',
 				dataIndex 	: 'input_user',
 				width 		: 120,
 				renderer	: upsize

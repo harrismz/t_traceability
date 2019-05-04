@@ -37,7 +37,7 @@
 		header("Expires: 0");
 		
 		$fp = fopen("php://output", "w");
-		$headers = 'MODEL, LOT NO / SERIAL NO, AVNTEST ID, INSPECT DATE, PCB SERIAL, JIG NO, JUDGE, INSP TIME, ARTFILENAME, NG CONTENT, MCH NAME' . "\n";
+		$headers = 'MODEL, LOT NO / SERIAL NO, AVNTEST ID, INSPECT DATE, PCB SERIAL, JIG NO, JUDGE, INSP TIME, ARTFILENAME, NG CONTENT, M/C Name' . "\n";
 		fwrite($fp,$headers);
 		
 		while(!$rs->EOF)

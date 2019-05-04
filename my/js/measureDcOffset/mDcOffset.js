@@ -206,7 +206,7 @@ Ext.onReady(function() {
      				renderer 	: fontstyle,
      				hidden 		: true
 				},
-				{	header 		: 'MCH Name',
+				{	header 		: 'M/C Name',
 					dataIndex 	: 'input_user',
 					componentCls 	: 'headergrid',
      				autoSizeColumn : true,
