@@ -346,7 +346,7 @@
       </div>
     </div>
   </div>
-  <div id="report_tab" class="row">
+  <div id="report_tab" class="row" hidden>
     <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="x_panel">
         <div class="x_title">
