@@ -233,6 +233,68 @@
   </div>
   <!-- END OF Plan and Actual Data -->
   <!-- ============================================================================== -->
+  <!-- Summary PCB Serial & Mecha Serial -->
+  <div id="sumpcbmch_tab" class="row">
+    <div class="col-md-6 col-sm-6 col-xs-12">
+      <div class="x_panel">
+        <div class="row x_title">
+          <div class="col-md-8">
+            <h2><i class="far fa-clipboard"></i> PCB Serial  <small> ( Summary ) </small></h2>
+          </div>
+          <!-- <div class="col-md-4">
+            <button id="dlPlan" type="button" class="btn btn-info pull-right" onclick="downloadPlan()">
+              <i class="fas fa-download"></i>
+            </button>
+          </div> -->
+          <div class="col-md-2">
+            <ul class="nav navbar-right panel_toolbox">
+              <li>
+                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+              </li>
+              <li>
+                <a class="close-link"><i class="fas fa-times"></i></a>
+              </li>
+            </ul>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+          <div id="summaryPCBSerial" class="extjs_border">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+      <div class="x_panel">
+        <div class="row x_title">
+          <div class="col-md-8">
+            <h2>
+              <i class="far fa-calendar-check"></i>
+              Mecha Serial
+              <small> ( Summary ) </small>
+            </h2>
+          </div>
+          <div class="col-md-2">
+            <ul class="nav navbar-right panel_toolbox">
+              <li>
+                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+              </li>
+              <li>
+                <a class="close-link"><i class="fas fa-times"></i></a>
+              </li>
+            </ul>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+          <div  id="summaryPCBSerial" class="extjs_border">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- END OF Plan and Actual Data -->
+  <!-- ============================================================================== -->
   <!-- Process Operational Data -->
   <div id="prod_tab" class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
